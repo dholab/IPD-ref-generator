@@ -9,7 +9,7 @@ Original file is located at
 
 # requests installed by default in google colab
 # install biopython
-!pip install biopython
+# !pip install biopython
 
 from Bio import SeqIO
 import requests
