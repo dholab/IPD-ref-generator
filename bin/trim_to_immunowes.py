@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+
+import sys
+
+file_dir = os.getcwd()
+animal = sys.argv[1]
+input_file = sys.argv[2]
+exemplar = sys.argv[3]
+
 # -*- coding: utf-8 -*-
 """27453-trim-to-immunoWES.ipynb
 
@@ -16,18 +25,18 @@ Software needed to run workflow.
 """
 
 # install biopython
-!pip install biopython
+# !pip install biopython
 
 # install bbmap
-!wget https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz
-!tar -xzvf BBMap_38.90.tar.gz
+# !wget https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz
+# !tar -xzvf BBMap_38.90.tar.gz
 
 # install vsearch
-!wget https://github.com/torognes/vsearch/releases/download/v2.17.0/vsearch-2.17.0-linux-x86_64.tar.gz
-!tar xzf vsearch-2.17.0-linux-x86_64.tar.gz
+# !wget https://github.com/torognes/vsearch/releases/download/v2.17.0/vsearch-2.17.0-linux-x86_64.tar.gz
+# !tar xzf vsearch-2.17.0-linux-x86_64.tar.gz
 
 # install pysam
-!pip install pysam
+# !pip install pysam
 
 """## Functions
 Define functions used in workflow.
@@ -322,26 +331,10 @@ Make immunoWES database from IPD sequences
 # trim cDNA sequences to exon 2 and deduplicate
 # in Geneious, extracted exon 2 from most of the same sequences Roger used to make miSeq exemplars
 # selected full-length versions of sequences that are not full cDNA
-createImmunoWESFasta('/content/ipd-mhc-mamu-2022-07-11_cleaned.gbk', '/content/25525-Mamu-exon2-exemplar.fasta')
+createImmunoWESFasta(input_file, exemplar)
 
 """## Cyno immunoWES database
 
 Make immunoWES database from IPD sequences
 """
-
-createImmunoWESFasta('/content/ipd-mhc-mafa-2022-07-11_cleaned.gbk', '/content/25525-Mamu-exon2-exemplar.fasta')
-
-"""## Mane immunoWES database
-
-Make immunoWES database from IPD sequences
-"""
-
-createImmunoWESFasta('/content/ipd-mhc-mane-2022-07-11_cleaned.gbk', '/content/25525-Mamu-exon2-exemplar.fasta')
-
-"""## Universal NHP immunoWES database
-
-Make database from all sequences in IPD.
-"""
-
-createImmunoWESFasta('/content/ipd-mhc-nhp-2022-07-11_cleaned.gbk', '/content/25525-Mamu-exon2-exemplar.fasta')
 

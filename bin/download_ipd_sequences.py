@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # -*- coding: utf-8 -*-
 """27453-download-ipd.ipynb
 
@@ -11,9 +13,12 @@ Original file is located at
 # install biopython
 # !pip install biopython
 
+import sys
 from Bio import SeqIO
 import requests
 from datetime import datetime
+
+allele_count = Int(sys.argv[1])
 
 # create output genbank file for entire database
 with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") as all_nhp:
@@ -28,7 +33,7 @@ with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") 
       with open("ipd-mhc-mane-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") as mane:
 
         # make range of ids to download from ebi
-        nhp_id = range(1, 12008)
+        nhp_id = range(1, allele_count)
 
         # add leading zeros and nhp prefix
         # this is the EBI dbfetch format

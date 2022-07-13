@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+
+import sys
+
+file_dir = os.getcwd()
+animal = sys.argv[1]
+input_file = sys.argv[2]
+exemplar = sys.argv[3]
+
 # -*- coding: utf-8 -*-
 """27453-trim-to-miSeq-amplicon.ipynb
 
@@ -273,23 +282,8 @@ The resulting deduplicated FASTA file can be used as a genotyping target for miS
 """
 
 # run workflow
-createMiseqTrimmedFasta('/content/ipd-mhc-mamu-2022-07-11_cleaned.gbk', '/content/25533_Mamu_MiSeq_representative_alleles.fasta')
+createMiseqTrimmedFasta(input_file, exemplar)
 
-"""## Trim and deduplicate cyno IPD MHC alleles"""
+"""## Trim and deduplicate IPD MHC alleles"""
 
-# run workflow
-createMiseqTrimmedFasta('/content/ipd-mhc-mafa-2022-07-11_cleaned.gbk', '/content/25533_Mamu_MiSeq_representative_alleles.fasta')
-
-"""## Trim and deduplicate mane IPD MHC alleles"""
-
-# run workflow
-createMiseqTrimmedFasta('/content/ipd-mhc-mane-2022-07-11_cleaned.gbk', '/content/25533_Mamu_MiSeq_representative_alleles.fasta')
-
-"""## Trim and deduplicate all IPD
-
-Just for fun, let's try making a database of all the sequences in NHP IPD. This could be a universal database that could be used for any species that is being genotyped.
-"""
-
-# run workflow
-createMiseqTrimmedFasta('/content/ipd-mhc-nhp-2022-07-11_cleaned.gbk', '/content/25533_Mamu_MiSeq_representative_alleles.fasta')
 
