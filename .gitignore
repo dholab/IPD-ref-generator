@@ -2,7 +2,6 @@ deprecated/
 work/
 .nextflow/
 .nova/
-results/
 
 .nextflow.log.*
 .DS_Store
@@ -10,3 +9,4 @@ aspera_qc_dag.png.*
 trace.txt.*
 report.html.*
 timeline.html.*
+*.dot

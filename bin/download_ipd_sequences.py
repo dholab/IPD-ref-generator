@@ -18,7 +18,7 @@ from Bio import SeqIO
 import requests
 from datetime import datetime
 
-allele_count = Int(sys.argv[1])
+allele_count = int(sys.argv[1])
 
 # create output genbank file for entire database
 with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") as all_nhp:
