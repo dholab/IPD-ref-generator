@@ -63,3 +63,57 @@ Jul-15 10:49:33.321 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! exe
 ~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
 Jul-15 10:54:33.379 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
 ~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 10:59:33.396 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:04:33.479 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:09:33.542 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:14:33.685 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:19:33.685 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:24:33.711 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:29:33.801 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:34:33.812 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:39:33.886 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:44:33.958 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:49:33.995 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:54:34.029 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 11:59:34.105 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:04:34.129 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:09:34.216 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:14:34.217 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:19:34.304 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:24:34.309 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:29:34.408 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:34:34.450 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:39:34.488 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:44:34.542 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:49:34.633 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:54:34.679 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 12:59:34.766 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 13:04:34.800 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]
+Jul-15 13:09:34.798 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/informatics/dholk_experiments/27482/work/6a/71748888f83beacdfb3d5688439b08]

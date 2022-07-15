@@ -32,9 +32,9 @@ process PULL_IPD {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 
-	time '3hours'
+	time '4hours'
 	errorStrategy 'retry'
-	maxRetries 3
+	maxRetries 2
 	memory '2 GB'
 
 	output:
@@ -43,7 +43,7 @@ process PULL_IPD {
 	script:
 	"""
 
-	download_ipd_sequences.py ${params.allele_count}
+	download_ipd-mhc_sequences.py ${params.allele_count}
 
 	"""
 
