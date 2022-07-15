@@ -80,7 +80,7 @@ process IWES_TRIMMING {
 	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
 	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
 	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
-	// bases in this experiment.
+	// bases.
 
 	tag "${animal_name}"
 	publishDir params.results, mode: 'move'
