@@ -32,6 +32,7 @@ process PULL_IPD {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 
+	time '3hours'
 	errorStrategy 'retry'
 	maxRetries 3
 	memory '2 GB'
