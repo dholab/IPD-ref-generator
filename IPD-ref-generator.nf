@@ -34,6 +34,7 @@ process PULL_IPD {
 
 	errorStrategy 'retry'
 	maxRetries 3
+	memory '2 GB'
 
 	output:
 	path("*.gbk")
