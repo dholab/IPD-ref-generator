@@ -1,103 +1,61 @@
-Jul-20 13:36:09.481 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf -resume
-Jul-20 13:36:09.560 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
-Jul-20 13:36:09.583 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
-Jul-20 13:36:09.585 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
-Jul-20 13:36:09.606 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Jul-20 13:36:10.279 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [boring_joliot] DSL2 - revision: 95d7615aae
-Jul-20 13:36:10.294 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
-Jul-20 13:36:10.296 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Jul-20 13:36:10.306 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Jul-20 13:36:10.307 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Jul-20 13:36:10.310 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Jul-20 13:36:10.319 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Jul-20 13:36:10.365 [main] DEBUG nextflow.Session - Session uuid: 1351763f-3753-4c79-9f33-c716d4ad596c
-Jul-20 13:36:10.365 [main] DEBUG nextflow.Session - Run name: boring_joliot
-Jul-20 13:36:10.366 [main] DEBUG nextflow.Session - Executor pool size: 8
-Jul-20 13:36:10.545 [main] DEBUG nextflow.cli.CmdRun - 
+Jul-20 14:44:46.225 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf
+Jul-20 14:44:46.304 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
+Jul-20 14:44:46.326 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
+Jul-20 14:44:46.327 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
+Jul-20 14:44:46.349 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jul-20 14:44:46.994 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [prickly_meitner] DSL2 - revision: f2f1596e56
+Jul-20 14:44:47.010 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
+Jul-20 14:44:47.012 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-20 14:44:47.023 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-20 14:44:47.024 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-20 14:44:47.027 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jul-20 14:44:47.036 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-20 14:44:47.086 [main] DEBUG nextflow.Session - Session uuid: 1734d521-792a-4d18-a0e8-622081edbe90
+Jul-20 14:44:47.087 [main] DEBUG nextflow.Session - Run name: prickly_meitner
+Jul-20 14:44:47.088 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jul-20 14:44:47.309 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 22.04.0 build 5697
   Created: 23-04-2022 18:00 UTC (13:00 CDT)
   System: Mac OS X 12.3.1
   Runtime: Groovy 3.0.10 on OpenJDK 64-Bit Server VM 11.0.13+7-b1751.21
   Encoding: UTF-8 (UTF-8)
-  Process: 78472@PATH-DESK-1734.local [128.104.12.196]
-  CPUs: 8 - Mem: 64 GB (17.1 GB) - Swap: 3 GB (1.4 GB)
-Jul-20 13:36:10.564 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27482/work [Mac OS X]
-Jul-20 13:36:10.580 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Jul-20 13:36:10.591 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Jul-20 13:36:10.636 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Jul-20 13:36:10.646 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Jul-20 13:36:10.786 [main] DEBUG nextflow.Session - Session start invoked
-Jul-20 13:36:10.790 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27482/results/trace.txt
-Jul-20 13:36:11.364 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Jul-20 13:36:11.471 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-20 13:36:11.472 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-20 13:36:11.477 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Jul-20 13:36:11.484 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Jul-20 13:36:11.584 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-20 13:36:11.584 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-20 13:36:11.589 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-20 13:36:11.589 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-20 13:36:11.592 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-20 13:36:11.592 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-20 13:36:11.700 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-20 13:36:11.701 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-20 13:36:11.709 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CLEAN_IPD, PULL_MHC_PROTEINS, PULL_IPD_MHC, PULL_KIR_PROTEINS, PULL_IPD_KIR
-Jul-20 13:36:11.710 [main] DEBUG nextflow.Session - Ignite dataflow network (5)
-Jul-20 13:36:11.711 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
-Jul-20 13:36:11.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
-Jul-20 13:36:11.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
-Jul-20 13:36:11.712 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
-Jul-20 13:36:11.713 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_IPD
-Jul-20 13:36:11.713 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Jul-20 13:36:11.713 [main] DEBUG nextflow.Session - Session await
-Jul-20 13:36:11.936 [Task submitter] WARN  nextflow.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
-Jul-20 13:36:11.951 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jul-20 13:36:11.956 [Task submitter] INFO  nextflow.Session - [2f/4c5496] Submitted process > PULL_IPD_MHC
-Jul-20 13:41:11.658 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 13:46:11.676 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 13:51:11.696 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 13:56:11.757 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:01:11.790 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:06:11.835 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:11:11.909 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:16:11.996 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:21:12.045 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:26:12.137 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:31:12.239 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:36:12.253 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:41:12.345 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
-Jul-20 14:43:26.305 [SIGINT handler] DEBUG nextflow.Session - Session aborted -- Cause: SIGINT
-Jul-20 14:43:26.317 [SIGINT handler] DEBUG nextflow.Session - The following nodes are still active:
-[process] CLEAN_IPD
-  status=ACTIVE
-  port 0: (queue) OPEN  ; channel: -
-  port 1: (cntrl) -     ; channel: $
-
-Jul-20 14:43:26.320 [main] DEBUG nextflow.Session - Session await > all process finished
-Jul-20 14:43:26.320 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Jul-20 14:43:26.327 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
-Jul-20 14:43:26.378 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
-Jul-20 14:43:26.378 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
-Jul-20 14:43:26.380 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
-Jul-20 14:43:26.408 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
-  [{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}]
-Jul-20 14:43:27.115 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
-Jul-20 14:43:27.317 [SIGINT handler] INFO  nextflow.Session - Adieu
-Jul-20 14:43:27.318 [main] DEBUG nextflow.dag.GraphvizRenderer - Graphviz error -- command `command -v dot &>/dev/null || exit 128 && dot -Tpng /var/folders/5j/qrmc84n17035xtn8v1qgwznh0000gq/T/nxf-14321611958900063445.dot > /var/folders/5j/qrmc84n17035xtn8v1qgwznh0000gq/T/nxf-15183540332575055893.png` -- exit status: 130
-
-Jul-20 14:43:27.318 [main] WARN  nextflow.dag.GraphvizRenderer - Failed to render DAG file: /Users/nicholasminor/Documents/dholk_experiments/27482/ipd-ref-gen-dag.png
-Jul-20 14:43:27.331 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-Jul-20 14:43:27.344 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+  Process: 12617@PATH-DESK-1734.local [127.0.0.1]
+  CPUs: 8 - Mem: 64 GB (18.2 GB) - Swap: 3 GB (1.4 GB)
+Jul-20 14:44:47.320 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27482/work [Mac OS X]
+Jul-20 14:44:47.338 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-20 14:44:47.349 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-20 14:44:47.395 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-20 14:44:47.407 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Jul-20 14:44:47.482 [main] DEBUG nextflow.Session - Session start invoked
+Jul-20 14:44:47.487 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27482/results/trace.txt
+Jul-20 14:44:48.094 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-20 14:44:48.210 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-20 14:44:48.210 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 14:44:48.217 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-20 14:44:48.222 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jul-20 14:44:48.319 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-20 14:44:48.319 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 14:44:48.324 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-20 14:44:48.324 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 14:44:48.328 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-20 14:44:48.328 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 14:44:48.422 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Jul-20 14:44:48.422 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 14:44:48.428 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CLEAN_IPD, PULL_MHC_PROTEINS, PULL_IPD_MHC, PULL_KIR_PROTEINS, PULL_IPD_KIR
+Jul-20 14:44:48.429 [main] DEBUG nextflow.Session - Ignite dataflow network (5)
+Jul-20 14:44:48.429 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
+Jul-20 14:44:48.430 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
+Jul-20 14:44:48.430 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
+Jul-20 14:44:48.431 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
+Jul-20 14:44:48.431 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_IPD
+Jul-20 14:44:48.432 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jul-20 14:44:48.432 [main] DEBUG nextflow.Session - Session await
+Jul-20 14:44:48.614 [Task submitter] WARN  nextflow.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+Jul-20 14:44:48.629 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:44:48.634 [Task submitter] INFO  nextflow.Session - [4f/99e29f] Submitted process > PULL_KIR_PROTEINS
+Jul-20 14:44:48.654 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:44:48.654 [Task submitter] INFO  nextflow.Session - [c3/1b32d9] Submitted process > PULL_MHC_PROTEINS
+Jul-20 14:44:48.665 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:44:48.666 [Task submitter] INFO  nextflow.Session - [23/257538] Submitted process > PULL_IPD_MHC
+Jul-20 14:44:48.677 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:44:48.678 [Task submitter] INFO  nextflow.Session - [11/ad67b8] Submitted process > PULL_IPD_KIR
