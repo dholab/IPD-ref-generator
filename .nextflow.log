@@ -59,3 +59,45 @@ Jul-20 13:46:11.676 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! exe
 ~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
 Jul-20 13:51:11.696 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
 ~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 13:56:11.757 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:01:11.790 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:06:11.835 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:11:11.909 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:16:11.996 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:21:12.045 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:26:12.137 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:31:12.239 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:36:12.253 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:41:12.345 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 3; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/2f/4c54966c9237b7937cab82ea126961]
+Jul-20 14:43:26.305 [SIGINT handler] DEBUG nextflow.Session - Session aborted -- Cause: SIGINT
+Jul-20 14:43:26.317 [SIGINT handler] DEBUG nextflow.Session - The following nodes are still active:
+[process] CLEAN_IPD
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+Jul-20 14:43:26.320 [main] DEBUG nextflow.Session - Session await > all process finished
+Jul-20 14:43:26.320 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-20 14:43:26.327 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
+Jul-20 14:43:26.378 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Jul-20 14:43:26.378 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jul-20 14:43:26.380 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jul-20 14:43:26.408 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}]
+Jul-20 14:43:27.115 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jul-20 14:43:27.317 [SIGINT handler] INFO  nextflow.Session - Adieu
+Jul-20 14:43:27.318 [main] DEBUG nextflow.dag.GraphvizRenderer - Graphviz error -- command `command -v dot &>/dev/null || exit 128 && dot -Tpng /var/folders/5j/qrmc84n17035xtn8v1qgwznh0000gq/T/nxf-14321611958900063445.dot > /var/folders/5j/qrmc84n17035xtn8v1qgwznh0000gq/T/nxf-15183540332575055893.png` -- exit status: 130
+
+Jul-20 14:43:27.318 [main] WARN  nextflow.dag.GraphvizRenderer - Failed to render DAG file: /Users/nicholasminor/Documents/dholk_experiments/27482/ipd-ref-gen-dag.png
+Jul-20 14:43:27.331 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-20 14:43:27.344 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

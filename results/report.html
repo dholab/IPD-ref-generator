@@ -18,11 +18,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nextflow workflow report for run id [serene_brattain]">
+  <meta name="description" content="Nextflow workflow report for run id [boring_joliot]">
   <meta name="author" content="Paolo Di Tommaso, Phil Ewels">
   <link rel="icon" type="image/png" href="https://www.nextflow.io/img/favicon.png" />
 
-  <title>[serene_brattain] Nextflow Workflow Report</title>
+  <title>[boring_joliot] Nextflow Workflow Report</title>
 
   <style type="text/css">
   /*!
@@ -137,7 +137,7 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
         <li class="nav-item"><a class="nav-link" href="#tasks">Tasks</a></li>
       </ul>
       <span class="navbar-text">
-        [serene_brattain]
+        [boring_joliot]
       </span>
     </div>
   </nav>
@@ -146,46 +146,22 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
     <div class="container">
 
       <h1 class="display-3">Nextflow workflow report</h1>
-      <h2 class="text-muted mb-4"><samp>[serene_brattain]</samp> </h2>
+      <h2 class="text-muted mb-4"><samp>[boring_joliot]</samp> <em>(resumed run)</em></h2>
 
       
           <div class="alert alert-danger mb-4">
               <h4>Workflow execution completed unsuccessfully!</h4>
-              <p>The exit status of the task that caused the workflow execution to fail was: <code>1</code>.</p>
+              <p>The exit status of the task that caused the workflow execution to fail was: <code>null</code>.</p>
               <p>The full error message was:</p>
-              <pre>Error executing process > 'PULL_KIR_PROTEINS'
-
-Caused by:
-  Process `PULL_KIR_PROTEINS` terminated with an error exit status (1)
-
-Command executed:
-
-  download_ipd-mhc_sequences.py null
-
-Command exit status:
-  1
-
-Command output:
-  (empty)
-
-Command error:
-  Traceback (most recent call last):
-    File "/Users/nicholasminor/Documents/dholk_experiments/27482/bin/download_ipd-mhc_sequences.py", line 21, in <module>
-      allele_count = int(sys.argv[1])
-  ValueError: invalid literal for int() with base 10: 'null'
-
-Work dir:
-  /Users/nicholasminor/Documents/dholk_experiments/27482/work/6d/7e15c5f93fc192c7980465c6e021d5
-
-Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line</pre>
+              <pre>SIGINT</pre>
           </div>
       
 
       <dl>
         <dt>Run times</dt>
         <dd>
-          <span id="workflow_start">20-Jul-2022 13:32:31</span> - <span id="workflow_complete">20-Jul-2022 13:32:33</span>
-          (<span id="completed_fromnow"></span>duration: <strong>2s</strong>)
+          <span id="workflow_start">20-Jul-2022 13:36:10</span> - <span id="workflow_complete">20-Jul-2022 14:43:26</span>
+          (<span id="completed_fromnow"></span>duration: <strong>1h 7m 16s</strong>)
         </dd>
 
         <dl>
@@ -193,12 +169,12 @@ Tip: when you have fixed the problem you can continue the execution adding the o
             <div style="width: 0.0%" class="progress-bar bg-success" data-toggle="tooltip" data-placement="top" title="0 tasks succeeded"><span class="text-truncate">&nbsp; 0 succeeded &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-secondary" data-toggle="tooltip" data-placement="top" title="0 tasks were cached"><span class="text-truncate">&nbsp; 0 cached &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-warning" data-toggle="tooltip" data-placement="top" title="0 tasks reported and error and were ignored"><span class="text-truncate">&nbsp; 0 ignored &nbsp;</span></div>
-            <div style="width: 100.0%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="1 tasks failed"><span class="text-truncate">&nbsp; 1 failed &nbsp;</span></div>
+            <div style="width: 0.0%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="0 tasks failed"><span class="text-truncate">&nbsp; 0 failed &nbsp;</span></div>
           </div>
         </dl>
 
         <dt>Nextflow command</dt>
-        <dd><pre class="nfcommand"><code>nextflow run ipd-ref-generator.nf</code></pre></dd>
+        <dd><pre class="nfcommand"><code>nextflow run ipd-ref-generator.nf -resume</code></pre></dd>
       </dl>
 
       <dl class="row small">
@@ -221,7 +197,7 @@ Tip: when you have fixed the problem you can continue the execution adding the o
 
         
           <dt class="col-sm-3">Script ID</dt>
-          <dd class="col-sm-9"><code>0284ef757b5b8ce5711f32a863e9fa4d</code></dd>
+          <dd class="col-sm-9"><code>95d7615aaebd115f3b7e64122edd239f</code></dd>
         
 
         <dt class="col-sm-3">Workflow session</dt>
@@ -1057,7 +1033,7 @@ $(function() {
 
   // Nextflow report data
   window.data = { "trace":[
-{"task_id":"1","hash":"6d\/7e15c5","native_id":"76662","process":"PULL_KIR_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_KIR_PROTEINS","status":"FAILED","exit":"1","submit":"1658341952370","start":"1658341952386","complete":"1658341953061","duration":"691","realtime":"675","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/6d\/7e15c5f93fc192c7980465c6e021d5","script":"\n\n\tdownload_ipd-mhc_sequences.py null\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"3","hash":"3a\/54e161","native_id":"76664","process":"PULL_MHC_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_MHC_PROTEINS","status":"FAILED","exit":"1","submit":"1658341952399","start":"1658341952489","complete":"1658341953129","duration":"730","realtime":"640","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/3a\/54e161ead2e3b75fb588dcab6a6466","script":"\n\n\tdownload_ipd-mhc_sequences.py null\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"44\/adbd3f","native_id":"76668","process":"PULL_IPD_MHC","module":"-","container":"-","tag":"-","name":"PULL_IPD_MHC","status":"ABORTED","exit":"-","submit":"1658341952411","start":"1658341952495","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/44\/adbd3f8957f75409ca16ead243bde7","script":"\n\n\tdownload_ipd-mhc_sequences.py 12008\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"4","hash":"79\/4c54ab","native_id":"76671","process":"PULL_IPD_KIR","module":"-","container":"-","tag":"-","name":"PULL_IPD_KIR","status":"ABORTED","exit":"-","submit":"1658341952422","start":"1658341952503","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/79\/4c54abbfe19e93c6f61ad4081e33c1","script":"\n\n\tdownload_ipd-mhc_sequences.py 1550\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":{"mean":675,"min":675,"q1":675,"q2":675,"q3":675,"max":675,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":{"mean":640,"min":640,"q1":640,"q2":640,"q3":640,"max":640,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_KIR","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
+{"task_id":"3","hash":"2f\/4c5496","native_id":"78531","process":"PULL_IPD_MHC","module":"-","container":"-","tag":"-","name":"PULL_IPD_MHC","status":"ABORTED","exit":"-","submit":"1658342171956","start":"1658342172008","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/2f\/4c54966c9237b7937cab82ea126961","script":"\n\n\tdownload_ipd-mhc_sequences.py 12008\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
 
   </script>
 

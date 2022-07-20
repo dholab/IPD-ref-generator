@@ -42,8 +42,6 @@ with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") 
         # iterate over all NHP files to retrieve
         for i in nhp_id:     
           
-          print("pulling record", i.replace("NHP", ""), "out of", allele_count, sep=" ")
-          
           # get record
           u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + i + ";style=raw")
 

@@ -5,7 +5,7 @@ from Bio import SeqIO
 import requests
 from datetime import datetime
 
-allele_count = int(sys.argv[1])
+protein_count = int(sys.argv[1])
 
 # create output genbank file for entire database
 with open("ipd-kir-nhp-prot-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") as all_nhp:
@@ -20,7 +20,7 @@ with open("ipd-kir-nhp-prot-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", 
       with open("ipd-kir-mane-prot-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") as mane:
 
         # make range of ids to download from ebi
-        nhp_id = range(1, allele_count)
+        nhp_id = range(1, protein_count)
 
         # add leading zeros and nhp prefix
         # this is the EBI dbfetch format
@@ -29,10 +29,8 @@ with open("ipd-kir-nhp-prot-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", 
         # iterate over all NHP files to retrieve
         for i in nhp_id:     
           
-          print("pulling record", i.replace("NHP", ""), "out of", allele_count, sep=" ")
-          
           # get record
-          u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdkirpro;id=" + i + ";style=raw")
+          u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdnhkirpro;id=" + i + ";style=raw")
 
           # IPD MHC uses non-standard ID line
           # need to remove first two semicolons in ID line
