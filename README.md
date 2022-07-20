@@ -28,7 +28,7 @@ chmod +x bin/*.py
 Next, build the Docker image that contains the workflow's dependencies:
 
 ```
-docker build --tag ipd-ref-generator:v1_0_5 config/
+docker build --tag ipd-ref-generator:v1_0_6 config/
 ```
 
 Note that to build the above docker container, you may need to increase the amount of memory allotted to Docker in the Docker Engine preferences.

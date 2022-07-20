@@ -236,7 +236,7 @@ process ALLELE_SORTING {
 	// This process sorts any lists of MHC alleles so their allele group can
 	// be classified correctly
 	
-	tag ${animal_name}
+	tag "${animal_name}"
 	
 	input:
 	tuple val(animal_name), path(fasta)
@@ -259,7 +259,7 @@ process ALLELE_GROUP_NAMING {
 	// This process classifies allele "groups" for instances where a reference allele
 	// sequence matches with numerous alleles
 	
-	tag ${animal_name}
+	tag "${animal_name}"
 	publishDir params.results, mode: 'move'
 	
 	input:

@@ -1,3 +1,1 @@
 task_id	name	status	exit	realtime	%cpu	%mem	rss	vmem	peak_rss	peak_vmem	rchar	wchar
-1	PULL_MHC_PROTEINS	ABORTED	-	-	-	-	-	-	-	-	-	-
-2	PULL_KIR_PROTEINS	ABORTED	-	-	-	-	-	-	-	-	-	-
