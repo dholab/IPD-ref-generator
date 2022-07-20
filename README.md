@@ -2,16 +2,16 @@
 
 _Latest Release:_ 3.9.0.0 (2022-07) build 209 (July 2022)
 
-### Overview
+## Overview
 
-This workflow pulls the latest MHC allele sequences from [IPD](https://www.ebi.ac.uk/ipd/) and prepares a series of species-specific reference databases. These databases will contain MHC alleles that are more than 100 base pairs long for Rhesus macaque (_Macaca mulatta_, a.k.a. Mamu), Cynomolgus macaque (_Macaca fascicularis_ a.k.a. Mafa), and Southern pig-tailed macaque (_Macaca nemestrina_, a.k.a. Mame), as well as for all non-human primates included in IPD. At minimum, this workflow should be run once after each IPD release of new MHC reference alleles.
+This workflow pulls the latest allele and protein sequences from [IPD](https://www.ebi.ac.uk/ipd/) for the MHC and KIR regions. It also prepares a series of species-specific reference databases. These databases will contain sequences that are more than 100 base pairs long for Rhesus macaque (_Macaca mulatta_, a.k.a. Mamu), Cynomolgus macaque (_Macaca fascicularis_ a.k.a. Mafa), and Southern pig-tailed macaque (_Macaca nemestrina_, a.k.a. Mame), as well as for all non-human primates included in IPD. At minimum, this workflow should be run once after each IPD release of new MHC reference alleles.
 
 The workflow also prepares context-specific reference databases for use with data generated at [AVRL](https://dholk.primate.wisc.edu/project/home/begin.view?):
 
 1. Reference allele sequences for use with high depth-of-coverage whole exome sequence data enriched for immuno-genes (iWES)
 2. Reference allele sequences for use with Illumina MiSeq amplicon libraries
 
-### Getting Started
+## Getting Started
 
 To run this workflow, simply `git clone` it into your working directory of choice, like so:
 
@@ -31,13 +31,13 @@ Next, build the Docker image that contains the workflow's dependencies:
 docker build --tag ipd-ref-generator:v1_0_5 config/
 ```
 
-Note that to build the above docker container, you may need to increase the amount of memory alloted to Docker in the Docker Engine preferences.
+Note that to build the above docker container, you may need to increase the amount of memory allotted to Docker in the Docker Engine preferences.
 
-#### Nextflow Installation
+### Nextflow Installation
 
 This workflow uses the [NextFlow](https://www.nextflow.io/) workflow manager. We recommend you install NextFlow to your system in one of the two following ways:
 
-##### 1) Installation with Conda
+#### 1) Installation with Conda
 
 1. Install the miniconda python distribution, if you haven't already: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
 2. Install the `mamba` package installation tool in the command line:
@@ -45,7 +45,7 @@ This workflow uses the [NextFlow](https://www.nextflow.io/) workflow manager. We
 3. Install Nextflow to your base environment:
    `mamba install -c bioconda nextflow `
 
-##### 2) Installation with curl
+#### 2) Installation with curl
 
 1. Run the following line in a directory where you'd like to install NextFlow, and run the following line of code:
    `curl -fsSL https://get.nextflow.io | bash`
@@ -67,7 +67,7 @@ nextflow run ipd-ref-generator.nf -resume
 
 The workflow's configurations (see below) tell NextFlow to plot the workflow and record run statistics. However, the plot the workflow, note that NextFlow requires the package GraphViz, which is easiest to install via the intructions on [GraphViz's website](https://graphviz.org/download/).
 
-### Configuration
+## Configuration
 
 The following runtime parameters have been set for the whole workflow and are available for modification:
 
@@ -87,7 +87,7 @@ nextflow run ipd-ref-generator.nf --results ~/ipd_results/
 
 This workflow requires minimal pre-bundled data, as mentioned above: the iWES exemplar (Mamu-exon2-exemplar.fasta) and the MiSeq exemplar (Mamu_MiSeq_representative_alleles.fasta), both of which are stored in `resources/`.
 
-### Workflow Summary
+## Workflow Summary
 
 - First, the workflow downloads the full list of non-human primate MHC alleles from EMBL, as specified with the above mentioned `allele_count` parameter in `nextflow.config`. This takes place in the process PULL_IPD
 - Next, each file generated in PULL_IPD is cleaned in the process CLEAN_IPD, which removes "X's" that IPD places at the end of each sequence. The process also filters out alleles that are less than 100 base pairs long.
@@ -95,7 +95,7 @@ This workflow requires minimal pre-bundled data, as mentioned above: the iWES ex
 
 ### A note on parallel computation
 
-NextFlow automatically allocates cores to each process, as if it is a job on a compute node. Depending on how many cores you make available to this workflow, the four databases it outputs can each be cleaned and trimmed at the same time as one another.
+NextFlow automatically allocates cores to each process, as if it is a job on a compute node. Depending on how many cores you make available to this workflow, the four databases it outputs can each be downloaded, cleaned, and trimmed at the same time as one another.
 
 ### Output Files
 
@@ -107,6 +107,6 @@ For the following files, there should be 4 of each: one for mamu, mafa, mane, an
 - `ipd-mhc-{animal acronym}-{run date}_cleaned.gdna.fasta` is a FASTA-formatted list of gDNA alleles.
 - `ipd-mhc-{animal acronym}-{run date}_cleaned.immunowes.fasta` is a FASTA-formatted list of alleles from gDNA or MHC exon 2.
 
-### Acknowledgements
+## Acknowledgements
 
 This workflow was developed with support from NIH/NIAID contract HHSN272201100026C. For more information, visit our [public MHC Contract portal](https://dholk.primate.wisc.edu/_webdav/dho/grants/mhc_contract/web_portal/@files/prototype/index.html).

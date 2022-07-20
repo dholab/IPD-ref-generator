@@ -59,3 +59,8 @@ Jul-20 14:44:48.665 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - 
 Jul-20 14:44:48.666 [Task submitter] INFO  nextflow.Session - [23/257538] Submitted process > PULL_IPD_MHC
 Jul-20 14:44:48.677 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
 Jul-20 14:44:48.678 [Task submitter] INFO  nextflow.Session - [11/ad67b8] Submitted process > PULL_IPD_KIR
+Jul-20 14:49:48.429 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 4 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_KIR_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/4f/99e29f24ffbbe118b77cfb1a438c63]
+~> TaskHandler[id: 3; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/c3/1b32d96b067e4ae93223e9ec28ab3f]
+~> TaskHandler[id: 4; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/23/257538d1ef585b9436c5e22f7187a7]
+~> TaskHandler[id: 2; name: PULL_IPD_KIR; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/11/ad67b85ece7dc0a709bdc9f60698fa]
