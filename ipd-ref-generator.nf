@@ -6,26 +6,26 @@ nextflow.enable.dsl = 2
 // Defining the reference-generator workflow
 workflow {
 
-	PULL_IPD_MHC ()
+	// PULL_IPD_MHC ()
 	
-	PULL_IPD_KIR ()
+	// PULL_IPD_KIR ()
 	
 	PULL_MHC_PROTEINS ()
 	
 	PULL_KIR_PROTEINS ()
 
-	CLEAN_IPD (
-		PULL_IPD_MHC.out
-		.flatten()
-		.map{ file -> tuple(file.getSimpleName(), file) }
-		.mix( 
-			
-			PULL_IPD_KIR.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-		
-		)
-	)
+	// CLEAN_IPD (
+	// 	PULL_IPD_MHC.out
+	// 	.flatten()
+	// 	.map{ file -> tuple(file.getSimpleName(), file) }
+	// 	.mix( 
+	// 		
+	// 		PULL_IPD_KIR.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
+	// 	
+	// 	)
+	// )
 
 // 	IWES_TRIMMING (
 // 		CLEAN_IPD.out
@@ -47,56 +47,56 @@ workflow {
 
 
 // Defining each process that will occur while generating new IPD references
-process PULL_IPD_MHC {
+// process PULL_IPD_MHC {
+// 
+// 	// This process pulls the current full roster non-human primate MHC alleles, as listed
+// 	// in the latest Immuno Polymorphism Database release. Species-specific databases will
+// 	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
+// 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
+// 	// estrina, a.k.a. Mame)
+// 
+// 	time '4hours'
+// 	
+// 	when:
+// 	params.pull_mhc == true
+// 
+// 	output:
+// 	path("*.gbk")
+// 
+// 	script:
+// 	"""
+// 
+// 	download_ipd-mhc_sequences.py ${params.mhc_allele_count}
+// 
+// 	"""
+// 
+// }
 
-	// This process pulls the current full roster non-human primate MHC alleles, as listed
-	// in the latest Immuno Polymorphism Database release. Species-specific databases will
-	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
-	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
-	// estrina, a.k.a. Mame)
 
-	time '4hours'
-	
-	when:
-	params.pull_mhc == true
-
-	output:
-	path("*.gbk")
-
-	script:
-	"""
-
-	download_ipd-mhc_sequences.py ${params.mhc_allele_count}
-
-	"""
-
-}
-
-
-process PULL_IPD_KIR {
-
-	// This process pulls the current full roster non-human primate KIR alleles, as listed
-	// in the latest Immuno Polymorphism Database release. Species-specific databases will
-	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
-	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
-	// estrina, a.k.a. Mame)
-
-	time '4hours'
-	
-	when:
-	params.pull_kir == true
-
-	output:
-	path("*.gbk")
-
-	script:
-	"""
-
-	download_ipd-kir_sequences.py ${params.kir_allele_count}
-
-	"""
-
-}
+// process PULL_IPD_KIR {
+// 
+// 	// This process pulls the current full roster non-human primate KIR alleles, as listed
+// 	// in the latest Immuno Polymorphism Database release. Species-specific databases will
+// 	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
+// 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
+// 	// estrina, a.k.a. Mame)
+// 
+// 	time '4hours'
+// 	
+// 	when:
+// 	params.pull_kir == true
+// 
+// 	output:
+// 	path("*.gbk")
+// 
+// 	script:
+// 	"""
+// 
+// 	download_ipd-kir_sequences.py ${params.kir_allele_count}
+// 
+// 	"""
+// 
+// }
 
 
 process PULL_MHC_PROTEINS {
@@ -149,30 +149,30 @@ process PULL_KIR_PROTEINS {
 }
 
 
-process CLEAN_IPD {
-
-	// This process removes X's that are in amongst the bases in each sequence, and b) removes
-	// sequences that are less than 100 base pairs long.
-
-	tag "${animal_name}"
-	publishDir params.results, mode: 'copy'
-
-	input:
-	tuple val(name), path(gbk)
-
-	output:
-	tuple val(animal_name), path("*._cleaned.gbk")
-
-	script:
-
-	animal_name = name.substring(8,12)
-
-	"""
-
-	ipd_genbank_cleaner.py ${animal_name} ${gbk}
-
-	"""
-}
+// process CLEAN_IPD {
+// 
+// 	// This process removes X's that are in amongst the bases in each sequence, and b) removes
+// 	// sequences that are less than 100 base pairs long.
+// 
+// 	tag "${animal_name}"
+// 	publishDir params.results, mode: 'copy'
+// 
+// 	input:
+// 	tuple val(name), path(gbk)
+// 
+// 	output:
+// 	tuple val(animal_name), path("*._cleaned.gbk")
+// 
+// 	script:
+// 
+// 	animal_name = name.substring(8,12)
+// 
+// 	"""
+// 
+// 	ipd_genbank_cleaner.py ${animal_name} ${gbk}
+// 
+// 	"""
+// }
 
 // process IWES_TRIMMING {
 // 

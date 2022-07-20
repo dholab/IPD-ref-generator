@@ -1,5 +1,1 @@
 task_id	name	status	exit	realtime	%cpu	%mem	rss	vmem	peak_rss	peak_vmem	rchar	wchar
-1	PULL_MHC_PROTEINS	FAILED	1	1.3s	-	-	-	-	-	-	-	-
-3	PULL_KIR_PROTEINS	FAILED	1	1.4s	-	-	-	-	-	-	-	-
-4	PULL_IPD_MHC	ABORTED	-	-	-	-	-	-	-	-	-	-
-2	PULL_IPD_KIR	ABORTED	-	-	-	-	-	-	-	-	-	-

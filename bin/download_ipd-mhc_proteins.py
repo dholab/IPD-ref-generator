@@ -29,22 +29,24 @@ with open("ipd-mhc-nhp-prot-" + datetime.today().strftime('%Y-%m-%d') + ".fasta"
         # iterate over all NHP files to retrieve
         for i in nhp_id:     
           
+          print("pulling record", i.replace("NHP", ""), "out of", protein_count, sep=" ")
+          
           # get record
           u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhcpro;id=" + i + ";style=raw")
           
           ipd_fasta = u.text # read content
           
-          ipd_fasta.write(record, all_nhp, "fasta")
+          all_nhp.write(ipd_fasta)
           
           # if rhesus sequence
-          if 'Mamu' in record.id:
-            ipd_fasta.write(record, mamu, "fasta")
+          if 'Mamu' in ipd_fasta:
+            mamu.write(ipd_fasta)
           
           # if cyno sequence
-          if 'Mafa' in record.id:
-            ipd_fasta.write(record, mafa, "fasta")
+          if 'Mafa' in ipd_fasta:
+            mafa.write(ipd_fasta)
           
           # if mane sequence
-          if 'Mane' in record.id:
-            ipd_fasta.write(record, mane, "fasta")
+          if 'Mane' in ipd_fasta:
+            mane.write(ipd_fasta)
 

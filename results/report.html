@@ -18,11 +18,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nextflow workflow report for run id [furious_curran]">
+  <meta name="description" content="Nextflow workflow report for run id [goofy_swartz]">
   <meta name="author" content="Paolo Di Tommaso, Phil Ewels">
   <link rel="icon" type="image/png" href="https://www.nextflow.io/img/favicon.png" />
 
-  <title>[furious_curran] Nextflow Workflow Report</title>
+  <title>[goofy_swartz] Nextflow Workflow Report</title>
 
   <style type="text/css">
   /*!
@@ -137,7 +137,7 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
         <li class="nav-item"><a class="nav-link" href="#tasks">Tasks</a></li>
       </ul>
       <span class="navbar-text">
-        [furious_curran]
+        [goofy_swartz]
       </span>
     </div>
   </nav>
@@ -146,7 +146,7 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
     <div class="container">
 
       <h1 class="display-3">Nextflow workflow report</h1>
-      <h2 class="text-muted mb-4"><samp>[furious_curran]</samp> </h2>
+      <h2 class="text-muted mb-4"><samp>[goofy_swartz]</samp> </h2>
 
       
           <div class="alert alert-danger mb-4">
@@ -170,22 +170,22 @@ Command output:
 
 Command error:
   Traceback (most recent call last):
-    File "/Users/nicholasminor/Documents/dholk_experiments/27482/bin/download_ipd-mhc_proteins.py", line 49, in <module>
-      record.name = record.annotations['keywords'][0]
-  KeyError: 'keywords'
+    File "/Users/nicholasminor/Documents/dholk_experiments/27482/bin/download_ipd-mhc_proteins.py", line 37, in <module>
+      all_nhp.write(ipd_fasta, "a")
+  TypeError: TextIOWrapper.write() takes exactly one argument (2 given)
 
 Work dir:
-  /Users/nicholasminor/Documents/dholk_experiments/27482/work/6e/efc97453e10a4ae726812be61375db
+  /Users/nicholasminor/Documents/dholk_experiments/27482/work/81/17ae1e6d81c0de15bfe37d7260dcca
 
-Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`</pre>
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`</pre>
           </div>
       
 
       <dl>
         <dt>Run times</dt>
         <dd>
-          <span id="workflow_start">20-Jul-2022 15:14:01</span> - <span id="workflow_complete">20-Jul-2022 15:14:03</span>
-          (<span id="completed_fromnow"></span>duration: <strong>2.7s</strong>)
+          <span id="workflow_start">20-Jul-2022 15:44:50</span> - <span id="workflow_complete">20-Jul-2022 15:44:53</span>
+          (<span id="completed_fromnow"></span>duration: <strong>2.4s</strong>)
         </dd>
 
         <dl>
@@ -221,11 +221,11 @@ Tip: you can replicate the issue by changing to the process work dir and enterin
 
         
           <dt class="col-sm-3">Script ID</dt>
-          <dd class="col-sm-9"><code>dedc1e8c6475518f196bcb75012e0b74</code></dd>
+          <dd class="col-sm-9"><code>f778f3a7fd5acd9c8f38fa21ff302fbc</code></dd>
         
 
         <dt class="col-sm-3">Workflow session</dt>
-        <dd class="col-sm-9"><code>7a3c4def-5a53-4c29-aa32-f9353ffbc783</code></dd>
+        <dd class="col-sm-9"><code>766327f6-d986-4cbc-ab39-e9728d939cc9</code></dd>
 
         
 
@@ -1057,7 +1057,7 @@ $(function() {
 
   // Nextflow report data
   window.data = { "trace":[
-{"task_id":"4","hash":"96\/87917b","native_id":"27810","process":"PULL_IPD_MHC","module":"-","container":"-","tag":"-","name":"PULL_IPD_MHC","status":"ABORTED","exit":"-","submit":"1658348042403","start":"1658348042421","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/96\/87917b5de05d3277a42e6ec060c529","script":"\n\n\tdownload_ipd-mhc_sequences.py 9321\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"0a\/e4eab7","native_id":"27811","process":"PULL_IPD_KIR","module":"-","container":"-","tag":"-","name":"PULL_IPD_KIR","status":"ABORTED","exit":"-","submit":"1658348042421","start":"1658348042521","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/0a\/e4eab7a7e30b088dff418aedac6b4d","script":"\n\n\tdownload_ipd-kir_sequences.py 1132\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"1","hash":"6e\/efc974","native_id":"27813","process":"PULL_MHC_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_MHC_PROTEINS","status":"FAILED","exit":"1","submit":"1658348042436","start":"1658348042527","complete":"1658348043865","duration":"1429","realtime":"1338","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/6e\/efc97453e10a4ae726812be61375db","script":"\n\n\tdownload_ipd-mhc_proteins.py 2974\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"3","hash":"4d\/80ddc6","native_id":"27819","process":"PULL_KIR_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_KIR_PROTEINS","status":"FAILED","exit":"1","submit":"1658348042447","start":"1658348042535","complete":"1658348043949","duration":"1502","realtime":"1414","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/4d\/80ddc6a5936395e54c2062756fc6b1","script":"\n\n\tdownload_ipd-kir_proteins.py 1212\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1338,"min":1338,"q1":1338,"q2":1338,"q3":1338,"max":1338,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1414,"min":1414,"q1":1414,"q2":1414,"q3":1414,"max":1414,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_KIR","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
+{"task_id":"1","hash":"b9\/33dfd8","native_id":"43436","process":"PULL_KIR_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_KIR_PROTEINS","status":"ABORTED","exit":"-","submit":"1658349891638","start":"1658349891732","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/b9\/33dfd8678b3d3c09ed4fc4a4652a97","script":"\n\n\tdownload_ipd-kir_proteins.py 1212\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"81\/17ae1e","native_id":"43440","process":"PULL_MHC_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_MHC_PROTEINS","status":"FAILED","exit":"1","submit":"1658349891669","start":"1658349891741","complete":"1658349892918","duration":"1249","realtime":"1177","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/81\/17ae1e6d81c0de15bfe37d7260dcca","script":"\n\n\tdownload_ipd-mhc_proteins.py 2974\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1177,"min":1177,"q1":1177,"q2":1177,"q3":1177,"max":1177,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
 
   </script>
 
