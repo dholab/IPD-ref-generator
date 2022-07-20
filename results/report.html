@@ -18,11 +18,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nextflow workflow report for run id [prickly_meitner]">
+  <meta name="description" content="Nextflow workflow report for run id [furious_curran]">
   <meta name="author" content="Paolo Di Tommaso, Phil Ewels">
   <link rel="icon" type="image/png" href="https://www.nextflow.io/img/favicon.png" />
 
-  <title>[prickly_meitner] Nextflow Workflow Report</title>
+  <title>[furious_curran] Nextflow Workflow Report</title>
 
   <style type="text/css">
   /*!
@@ -137,7 +137,7 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
         <li class="nav-item"><a class="nav-link" href="#tasks">Tasks</a></li>
       </ul>
       <span class="navbar-text">
-        [prickly_meitner]
+        [furious_curran]
       </span>
     </div>
   </nav>
@@ -146,48 +146,54 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
     <div class="container">
 
       <h1 class="display-3">Nextflow workflow report</h1>
-      <h2 class="text-muted mb-4"><samp>[prickly_meitner]</samp> </h2>
+      <h2 class="text-muted mb-4"><samp>[furious_curran]</samp> </h2>
 
       
           <div class="alert alert-danger mb-4">
               <h4>Workflow execution completed unsuccessfully!</h4>
-              <p>The exit status of the task that caused the workflow execution to fail was: <code>0</code>.</p>
+              <p>The exit status of the task that caused the workflow execution to fail was: <code>1</code>.</p>
               <p>The full error message was:</p>
-              <pre>Error executing process > 'CLEAN_IPD (mane)'
+              <pre>Error executing process > 'PULL_MHC_PROTEINS'
 
 Caused by:
-  Missing output file(s) `*._cleaned.gbk` expected by process `CLEAN_IPD (mane)`
+  Process `PULL_MHC_PROTEINS` terminated with an error exit status (1)
 
 Command executed:
 
-  ipd_genbank_cleaner.py mane ipd-kir-mane-prot-2022-07-20.gbk
+  download_ipd-mhc_proteins.py 2974
 
 Command exit status:
-  0
+  1
 
 Command output:
   (empty)
 
-Work dir:
-  /Users/nicholasminor/Documents/dholk_experiments/27482/work/b5/217438a277a3a1284248c9469fa33a
+Command error:
+  Traceback (most recent call last):
+    File "/Users/nicholasminor/Documents/dholk_experiments/27482/bin/download_ipd-mhc_proteins.py", line 49, in <module>
+      record.name = record.annotations['keywords'][0]
+  KeyError: 'keywords'
 
-Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`</pre>
+Work dir:
+  /Users/nicholasminor/Documents/dholk_experiments/27482/work/6e/efc97453e10a4ae726812be61375db
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`</pre>
           </div>
       
 
       <dl>
         <dt>Run times</dt>
         <dd>
-          <span id="workflow_start">20-Jul-2022 14:44:47</span> - <span id="workflow_complete">20-Jul-2022 14:55:42</span>
-          (<span id="completed_fromnow"></span>duration: <strong>10m 55s</strong>)
+          <span id="workflow_start">20-Jul-2022 15:14:01</span> - <span id="workflow_complete">20-Jul-2022 15:14:03</span>
+          (<span id="completed_fromnow"></span>duration: <strong>2.7s</strong>)
         </dd>
 
         <dl>
           <div class="progress" style="height: 1.6rem; margin: 1.2rem auto; border-radius: 0.20rem;">
-            <div style="width: 50.0%" class="progress-bar bg-success" data-toggle="tooltip" data-placement="top" title="1 tasks succeeded"><span class="text-truncate">&nbsp; 1 succeeded &nbsp;</span></div>
+            <div style="width: 0.0%" class="progress-bar bg-success" data-toggle="tooltip" data-placement="top" title="0 tasks succeeded"><span class="text-truncate">&nbsp; 0 succeeded &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-secondary" data-toggle="tooltip" data-placement="top" title="0 tasks were cached"><span class="text-truncate">&nbsp; 0 cached &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-warning" data-toggle="tooltip" data-placement="top" title="0 tasks reported and error and were ignored"><span class="text-truncate">&nbsp; 0 ignored &nbsp;</span></div>
-            <div style="width: 50.0%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="1 tasks failed"><span class="text-truncate">&nbsp; 1 failed &nbsp;</span></div>
+            <div style="width: 100.0%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="1 tasks failed"><span class="text-truncate">&nbsp; 1 failed &nbsp;</span></div>
           </div>
         </dl>
 
@@ -197,7 +203,7 @@ Tip: view the complete command output by changing to the process work dir and en
 
       <dl class="row small">
         <dt class="col-sm-3">CPU-Hours</dt>
-        <dd class="col-sm-9"><samp>0.2 (0.1% failed)</samp></dd>
+        <dd class="col-sm-9"><samp>(a few seconds)</samp></dd>
 
         <dt class="col-sm-3">Launch directory</dt>
         <dd class="col-sm-9"><samp>/Users/nicholasminor/Documents/dholk_experiments/27482</samp></dd>
@@ -215,11 +221,11 @@ Tip: view the complete command output by changing to the process work dir and en
 
         
           <dt class="col-sm-3">Script ID</dt>
-          <dd class="col-sm-9"><code>f2f1596e56690cb7405836795d79911d</code></dd>
+          <dd class="col-sm-9"><code>dedc1e8c6475518f196bcb75012e0b74</code></dd>
         
 
         <dt class="col-sm-3">Workflow session</dt>
-        <dd class="col-sm-9"><code>1734d521-792a-4d18-a0e8-622081edbe90</code></dd>
+        <dd class="col-sm-9"><code>7a3c4def-5a53-4c29-aa32-f9353ffbc783</code></dd>
 
         
 
@@ -1051,7 +1057,7 @@ $(function() {
 
   // Nextflow report data
   window.data = { "trace":[
-{"task_id":"1","hash":"4f\/99e29f","native_id":"12678","process":"PULL_KIR_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_KIR_PROTEINS","status":"COMPLETED","exit":"0","submit":"1658346288634","start":"1658346288742","complete":"1658346941774","duration":"653140","realtime":"652996","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/4f\/99e29f24ffbbe118b77cfb1a438c63","script":"\n\n\tdownload_ipd-kir_proteins.py 1212\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"3","hash":"c3\/1b32d9","native_id":"12680","process":"PULL_MHC_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_MHC_PROTEINS","status":"ABORTED","exit":"-","submit":"1658346288654","start":"1658346288752","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/c3\/1b32d96b067e4ae93223e9ec28ab3f","script":"\n\n\tdownload_ipd-mhc_proteins.py 2974\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"4","hash":"23\/257538","native_id":"12681","process":"PULL_IPD_MHC","module":"-","container":"-","tag":"-","name":"PULL_IPD_MHC","status":"ABORTED","exit":"-","submit":"1658346288666","start":"1658346288758","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/23\/257538d1ef585b9436c5e22f7187a7","script":"\n\n\tdownload_ipd-mhc_sequences.py 9321\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"11\/ad67b8","native_id":"12686","process":"PULL_IPD_KIR","module":"-","container":"-","tag":"-","name":"PULL_IPD_KIR","status":"ABORTED","exit":"-","submit":"1658346288677","start":"1658346288765","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/11\/ad67b85ece7dc0a709bdc9f60698fa","script":"\n\n\tdownload_ipd-kir_sequences.py 1132\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"5","hash":"90\/2dfa2c","native_id":"18143","process":"CLEAN_IPD","module":"-","container":"-","tag":"mafa","name":"CLEAN_IPD (mafa)","status":"ABORTED","exit":"-","submit":"1658346941843","start":"1658346941876","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/90\/2dfa2c48835aba0c1f7fdc69558c9e","script":"\n\n\tipd_genbank_cleaner.py mafa ipd-kir-mafa-prot-2022-07-20.gbk\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"-","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"6","hash":"b9\/a413d9","native_id":"18146","process":"CLEAN_IPD","module":"-","container":"-","tag":"mamu","name":"CLEAN_IPD (mamu)","status":"ABORTED","exit":"-","submit":"1658346941851","start":"1658346941880","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/b9\/a413d994cc87adae5f0782e41567ef","script":"\n\n\tipd_genbank_cleaner.py mamu ipd-kir-mamu-prot-2022-07-20.gbk\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"-","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"7","hash":"b5\/217438","native_id":"18156","process":"CLEAN_IPD","module":"-","container":"-","tag":"mane","name":"CLEAN_IPD (mane)","status":"FAILED","exit":"0","submit":"1658346941896","start":"1658346941977","complete":"1658346942483","duration":"587","realtime":"453","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/b5\/217438a277a3a1284248c9469fa33a","script":"\n\n\tipd_genbank_cleaner.py mane ipd-kir-mane-prot-2022-07-20.gbk\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"-","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"8","hash":"76\/d0beb9","native_id":"18161","process":"CLEAN_IPD","module":"-","container":"-","tag":"nhp-","name":"CLEAN_IPD (nhp-)","status":"FAILED","exit":"0","submit":"1658346941904","start":"1658346941979","complete":"1658346942516","duration":"612","realtime":"445","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/76\/d0beb9788ed7031e9fda4a3cc313c7","script":"\n\n\tipd_genbank_cleaner.py nhp- ipd-kir-nhp-prot-2022-07-20.gbk\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"-","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":4.53,"min":4.53,"q1":4.53,"q2":4.53,"q3":4.53,"max":4.53,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":652996,"min":652996,"q1":652996,"q2":652996,"q3":652996,"max":652996,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"CLEAN_IPD","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":{"mean":449,"min":445,"q1":447,"q2":449,"q3":451,"max":453,"minLabel":"CLEAN_IPD (nhp-)","maxLabel":"CLEAN_IPD (mane)","q1Label":"CLEAN_IPD (nhp-)","q2Label":"CLEAN_IPD (nhp-)","q3Label":"CLEAN_IPD (nhp-)"},"writes":null},{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_KIR","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
+{"task_id":"4","hash":"96\/87917b","native_id":"27810","process":"PULL_IPD_MHC","module":"-","container":"-","tag":"-","name":"PULL_IPD_MHC","status":"ABORTED","exit":"-","submit":"1658348042403","start":"1658348042421","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/96\/87917b5de05d3277a42e6ec060c529","script":"\n\n\tdownload_ipd-mhc_sequences.py 9321\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"0a\/e4eab7","native_id":"27811","process":"PULL_IPD_KIR","module":"-","container":"-","tag":"-","name":"PULL_IPD_KIR","status":"ABORTED","exit":"-","submit":"1658348042421","start":"1658348042521","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/0a\/e4eab7a7e30b088dff418aedac6b4d","script":"\n\n\tdownload_ipd-kir_sequences.py 1132\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"1","hash":"6e\/efc974","native_id":"27813","process":"PULL_MHC_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_MHC_PROTEINS","status":"FAILED","exit":"1","submit":"1658348042436","start":"1658348042527","complete":"1658348043865","duration":"1429","realtime":"1338","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/6e\/efc97453e10a4ae726812be61375db","script":"\n\n\tdownload_ipd-mhc_proteins.py 2974\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"3","hash":"4d\/80ddc6","native_id":"27819","process":"PULL_KIR_PROTEINS","module":"-","container":"-","tag":"-","name":"PULL_KIR_PROTEINS","status":"FAILED","exit":"1","submit":"1658348042447","start":"1658348042535","complete":"1658348043949","duration":"1502","realtime":"1414","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/work\/4d\/80ddc6a5936395e54c2062756fc6b1","script":"\n\n\tdownload_ipd-kir_proteins.py 1212\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"14400000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27482\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1338,"min":1338,"q1":1338,"q2":1338,"q3":1338,"max":1338,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1414,"min":1414,"q1":1414,"q2":1414,"q3":1414,"max":1414,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_KIR","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}] };
 
   </script>
 

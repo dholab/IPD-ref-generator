@@ -1,9 +1,5 @@
 task_id	name	status	exit	realtime	%cpu	%mem	rss	vmem	peak_rss	peak_vmem	rchar	wchar
-1	PULL_KIR_PROTEINS	COMPLETED	0	10m 53s	-	-	-	-	-	-	-	-
-7	CLEAN_IPD (mane)	FAILED	0	453ms	-	-	-	-	-	-	-	-
-8	CLEAN_IPD (nhp-)	FAILED	0	445ms	-	-	-	-	-	-	-	-
-3	PULL_MHC_PROTEINS	ABORTED	-	-	-	-	-	-	-	-	-	-
+1	PULL_MHC_PROTEINS	FAILED	1	1.3s	-	-	-	-	-	-	-	-
+3	PULL_KIR_PROTEINS	FAILED	1	1.4s	-	-	-	-	-	-	-	-
 4	PULL_IPD_MHC	ABORTED	-	-	-	-	-	-	-	-	-	-
 2	PULL_IPD_KIR	ABORTED	-	-	-	-	-	-	-	-	-	-
-5	CLEAN_IPD (mafa)	ABORTED	-	-	-	-	-	-	-	-	-	-
-6	CLEAN_IPD (mamu)	ABORTED	-	-	-	-	-	-	-	-	-	-

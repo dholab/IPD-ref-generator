@@ -22,14 +22,6 @@ workflow {
 			
 			PULL_IPD_KIR.out
 			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) },
-			
-			PULL_MHC_PROTEINS.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) },
-			
-			PULL_KIR_PROTEINS.out
-			.flatten()
 			.map{ file -> tuple(file.getSimpleName(), file) }
 		
 		)
@@ -111,6 +103,8 @@ process PULL_MHC_PROTEINS {
 
 	// This process pulls the current full roster non-human MHC proteins, as listed in
 	// the latest Immuno Polymorphism Database release.
+	
+	publishDir params.results, mode: 'move'
 
 	time '4hours'
 	
@@ -134,6 +128,8 @@ process PULL_KIR_PROTEINS {
 
 	// This process pulls the current full roster non-human KIR proteins, as listed
 	// in the latest Immuno Polymorphism Database release.
+	
+	publishDir params.results, mode: 'move'
 
 	time '4hours'
 	
@@ -165,12 +161,11 @@ process CLEAN_IPD {
 	tuple val(name), path(gbk)
 
 	output:
-	tuple val(animal_name), val(prot), path("*._cleaned.gbk")
+	tuple val(animal_name), path("*._cleaned.gbk")
 
 	script:
 
 	animal_name = name.substring(8,12)
-	prot = name.substring(14,17)
 
 	"""
 
