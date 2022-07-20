@@ -154,19 +154,20 @@ process CLEAN_IPD {
 	// This process removes X's that are in amongst the bases in each sequence, and b) removes
 	// sequences that are less than 100 base pairs long.
 
-	tag "${animal_name}"
+	tag "${tag}"
 	publishDir params.results, mode: 'copy'
 
 	input:
 	tuple val(name), path(gbk)
 
 	output:
-	tuple val(animal_name), val(locus_name), path("*._cleaned.gbk")
+	tuple val(animal_name), val(locus_name), path("*_cleaned.gbk")
 
 	script:
 
 	animal_name = name.substring(8,12)
 	locus_name = name.substring(5,7)
+	tag = name.substring(5,12)
 
 	"""
 
