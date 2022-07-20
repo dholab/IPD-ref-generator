@@ -64,3 +64,63 @@ Jul-20 14:49:48.429 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! exe
 ~> TaskHandler[id: 3; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/c3/1b32d96b067e4ae93223e9ec28ab3f]
 ~> TaskHandler[id: 4; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/23/257538d1ef585b9436c5e22f7187a7]
 ~> TaskHandler[id: 2; name: PULL_IPD_KIR; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/11/ad67b85ece7dc0a709bdc9f60698fa]
+Jul-20 14:54:48.476 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 4 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_KIR_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/4f/99e29f24ffbbe118b77cfb1a438c63]
+~> TaskHandler[id: 3; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/c3/1b32d96b067e4ae93223e9ec28ab3f]
+~> TaskHandler[id: 4; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/23/257538d1ef585b9436c5e22f7187a7]
+~> TaskHandler[id: 2; name: PULL_IPD_KIR; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/11/ad67b85ece7dc0a709bdc9f60698fa]
+Jul-20 14:55:41.776 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: PULL_KIR_PROTEINS; status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/4f/99e29f24ffbbe118b77cfb1a438c63]
+Jul-20 14:55:41.838 [Task submitter] WARN  nextflow.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+Jul-20 14:55:41.843 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:55:41.843 [Task submitter] INFO  nextflow.Session - [90/2dfa2c] Submitted process > CLEAN_IPD (mafa)
+Jul-20 14:55:41.850 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:55:41.852 [Task submitter] INFO  nextflow.Session - [b9/a413d9] Submitted process > CLEAN_IPD (mamu)
+Jul-20 14:55:41.896 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:55:41.897 [Task submitter] INFO  nextflow.Session - [b5/217438] Submitted process > CLEAN_IPD (mane)
+Jul-20 14:55:41.903 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 14:55:41.904 [Task submitter] INFO  nextflow.Session - [76/d0beb9] Submitted process > CLEAN_IPD (nhp-)
+Jul-20 14:55:42.483 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: CLEAN_IPD (mane); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/b5/217438a277a3a1284248c9469fa33a]
+Jul-20 14:55:42.496 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'CLEAN_IPD (mane)'
+
+Caused by:
+  Missing output file(s) `*._cleaned.gbk` expected by process `CLEAN_IPD (mane)`
+
+Command executed:
+
+  ipd_genbank_cleaner.py mane ipd-kir-mane-prot-2022-07-20.gbk
+
+Command exit status:
+  0
+
+Command output:
+  (empty)
+
+Work dir:
+  /Users/nicholasminor/Documents/dholk_experiments/27482/work/b5/217438a277a3a1284248c9469fa33a
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Jul-20 14:55:42.501 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Missing output file(s) `*._cleaned.gbk` expected by process `CLEAN_IPD (mane)`
+Jul-20 14:55:42.513 [Task monitor] DEBUG nextflow.Session - The following nodes are still active:
+[process] CLEAN_IPD
+  status=ACTIVE
+  port 0: (queue) OPEN  ; channel: -
+  port 1: (cntrl) -     ; channel: $
+
+Jul-20 14:55:42.514 [main] DEBUG nextflow.Session - Session await > all process finished
+Jul-20 14:55:42.515 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-20 14:55:42.516 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: CLEAN_IPD (nhp-); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/76/d0beb9788ed7031e9fda4a3cc313c7]
+Jul-20 14:55:42.522 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (5)
+Jul-20 14:55:42.603 [main] DEBUG nextflow.executor.LocalTaskHandler - Unable to kill CLEAN_IPD (mafa) -- command: kill -TERM 18143; exit: 1 
+ bash: line 0: kill: (18143) - No such process
+
+Jul-20 14:55:42.628 [main] DEBUG nextflow.executor.LocalTaskHandler - Unable to kill CLEAN_IPD (mamu) -- command: kill -TERM 18146; exit: 1 
+ bash: line 0: kill: (18146) - No such process
+
+Jul-20 14:55:42.629 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=2; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=5; succeedDuration=10m 53s; failedDuration=898ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=7; peakCpus=7; peakMemory=0; ]
+Jul-20 14:55:42.630 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jul-20 14:55:42.632 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jul-20 14:55:42.670 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":null,"process":"PULL_KIR_PROTEINS","mem":null,"memUsage":null,"timeUsage":{"mean":4.53,"min":4.53,"q1":4.53,"q2":4.53,"q3":4.53,"max":4.53,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":652996,"min":652996,"q1":652996,"q2":652996,"q3":652996,"max":652996,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":null},{"cpuUsage":null,"process":"CLEAN_IPD","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":{"mean":449,"min":445,"q1":447,"q2":449,"q3":451,"max":453,"minLabel":"CLEAN_IPD (nhp-)","maxLabel":"CLEAN_IPD (mane)","q1Label":"CLEAN_IPD (nhp-)","q2Label":"CLEAN_IPD (nhp-)","q3Label":"CLEAN_IPD (nhp-)"},"writes":null},{"cpuUsage":null,"process":"PULL_MHC_PROTEINS","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null},{"cpuUsage":null,"process":"PULL_IPD_KIR","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}]
+Jul-20 14:55:43.341 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jul-20 14:55:43.863 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-20 14:55:43.872 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

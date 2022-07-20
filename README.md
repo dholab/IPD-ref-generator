@@ -71,7 +71,8 @@ The workflow's configurations (see below) tell NextFlow to plot the workflow and
 
 The following runtime parameters have been set for the whole workflow and are available for modification:
 
-- `allele_count` - This is one of the most important settings for the workflow to generate up-to-date databases. To determine how many alleles the workflow should gather, scroll to the bottom right of the IPD allele list at [https://www.ebi.ac.uk/ipd/mhc/allele/list/](https://www.ebi.ac.uk/ipd/mhc/allele/list/)
+- `pull_mhc`, `pull_kir`, `pull_mhc_proteins`, `pull_kir_proteins` - These settings must be set to either _true_ or _false_, and tell the workflow which datasets to download. By default, in the `nextflow.config` file included in this repo, the workflow downloads all four datasets: all non-human primate MHC sequences, all non-human KIR sequences, all non-human primate MHC protein sequences, and all non-human KIR protein sequences. To download only one of these datasets, set that parameter to _true_ and the others to _false_.
+- `mhc_allele_count`, `kir_allele_count`, `mhc_protein_count`, `kir_protein_count` - These are the most important settings for the workflow to generate up-to-date databases. To determine how many alleles the workflow should gather, scroll to the bottom right of the MHC allele list at [https://www.ebi.ac.uk/ipd/mhc/allele/list/](https://www.ebi.ac.uk/ipd/mhc/allele/list/) or the KIR allele list at [https://www.ebi.ac.uk/ipd/kir/alleles/](https://www.ebi.ac.uk/ipd/kir/alleles/)
   - Future versions of this workflow will allow users to download MHC alleles _and_ KIR alleles, though at this time only MHC alleles can be pulled.
 - `iwes_exemplar` - This specifies the path to an exemplar for iWES data, which in most cases need not be changed.
 - `miseq_exemplar` - This specifies the path to an exemplar for MiSeq data, which in most cases need not be changed.
@@ -101,11 +102,11 @@ NextFlow automatically allocates cores to each process, as if it is a job on a c
 
 For the following files, there should be 4 of each: one for mamu, mafa, mane, and nhp. In total, this means there will be 20 output files.
 
-- `ipd-mhc-{animal acronym}-{run date}_cleaned.gbk` is a genbank-format list of all downloaded alleles for each animal that are longer than 100 bases.
-- `ipd-mhc-{animal acronym}-{run date}_cleaned.miseq.trimmed.deduplicated.fasta` is FASTA-formatted list of trimmed alleles with no duplicates within the MiSeq amplicon regions.
-- `ipd-mhc-{animal acronym}-{run date}_cleaned.cdna.fasta` is a FASTA-formatted list of cDNA alleles.
-- `ipd-mhc-{animal acronym}-{run date}_cleaned.gdna.fasta` is a FASTA-formatted list of gDNA alleles.
-- `ipd-mhc-{animal acronym}-{run date}_cleaned.immunowes.fasta` is a FASTA-formatted list of alleles from gDNA or MHC exon 2.
+- `ipd-{locus}-{animal acronym}-{run date}_cleaned.gbk` is a genbank-format list of all downloaded alleles for each animal that are longer than 100 bases.
+- `ipd-{locus}-{animal acronym}-{run date}_cleaned.miseq.trimmed.deduplicated.fasta` is FASTA-formatted list of trimmed alleles with no duplicates within the MiSeq amplicon regions.
+- `ipd-{locus}-{animal acronym}-{run date}_cleaned.cdna.fasta` is a FASTA-formatted list of cDNA alleles.
+- `ipd-{locus}-{animal acronym}-{run date}_cleaned.gdna.fasta` is a FASTA-formatted list of gDNA alleles.
+- `ipd-{locus}-{animal acronym}-{run date}_cleaned.immunowes.fasta` is a FASTA-formatted list of alleles from gDNA or MHC exon 2.
 
 ## Acknowledgements
 
