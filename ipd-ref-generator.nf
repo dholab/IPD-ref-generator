@@ -12,13 +12,21 @@ workflow {
 		PULL_IPD.out.flatten().map{ file -> tuple(file.getSimpleName(), file) }
 	)
 
-	IWES_TRIMMING (
-		CLEAN_IPD.out
-	)
-
-	MISEQ_TRIMMING (
-		CLEAN_IPD.out
-	)
+// 	IWES_TRIMMING (
+// 		CLEAN_IPD.out
+// 	)
+//
+// 	MISEQ_TRIMMING (
+// 		CLEAN_IPD.out
+// 	)
+// 
+// 	ALLELE_SORTING (
+// 		MISEQ_TRIMMING.out
+// 	)
+// 
+// 	ALLELE_GROUP_NAMING (
+// 		ALLELE_SORTING.out
+// 	)
 
 }
 
@@ -33,9 +41,7 @@ process PULL_IPD {
 	// estrina, a.k.a. Mame)
 
 	time '4hours'
-	errorStrategy 'retry'
-	maxRetries 2
-	memory '2 GB'
+	disk '1 GB'
 
 	output:
 	path("*.gbk")
@@ -65,7 +71,7 @@ process CLEAN_IPD {
 
 	script:
 
-	animal_name = name.substring(8,11)
+	animal_name = name.substring(8,12)
 
 	"""
 
@@ -74,51 +80,91 @@ process CLEAN_IPD {
 	"""
 }
 
-process IWES_TRIMMING {
-
-	// This process creates databases from IPD sequences that can be used as references when
-	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
-	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
-	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
-	// bases.
-
-	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
-
-	input:
-	tuple val(animal_name), path(gbk)
-
-	output:
-	path("*")
-
-	script:
-	"""
-
-	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
-
-	"""
-
-}
-
-process MISEQ_TRIMMING {
-
-	// This process removes primers from IPD sequences and then deduplicates identical sequences,
-	// so that groups of identical sequences can be used when genotyping.
-
-	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
-
-	input:
-	tuple val(animal_name), path(gbk)
-
-	output:
-	path("*")
-
-	script:
-	"""
-
-	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
-
-	"""
-
-}
+// process IWES_TRIMMING {
+//
+// 	// This process creates databases from IPD sequences that can be used as references when
+// 	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
+// 	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
+// 	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
+// 	// bases.
+//
+// 	tag "${animal_name}"
+// 	publishDir params.results, mode: 'move'
+//
+// 	input:
+// 	tuple val(animal_name), path(gbk)
+//
+// 	output:
+// 	path("*")
+//
+// 	script:
+// 	"""
+//
+// 	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
+//
+// 	"""
+//
+// }
+//
+// process MISEQ_TRIMMING {
+//
+// 	// This process removes primers from IPD sequences and then deduplicates identical sequences,
+// 	// so that groups of identical sequences can be used when genotyping.
+//
+// 	tag "${animal_name}"
+//
+// 	input:
+// 	tuple val(animal_name), path(gbk)
+//
+// 	output:
+// 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
+//
+// 	script:
+// 	"""
+//
+// 	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
+//
+// 	"""
+//
+// }
+// 
+// 
+// process ALLELE_SORTING {
+// 	
+// 	tag ${animal_name}
+// 	
+// 	input:
+// 	tuple val(animal_name), path(fasta)
+// 	
+// 	output:
+// 	tuple val(animal_name), path("*.sorted.fasta")
+// 	
+// 	script:
+// 	"""
+// 	
+// 	allele_group_sorting.R ${fasta}
+// 	
+// 	"""
+// 	
+// }
+// 
+// 
+// process ALLELE_GROUP_NAMING {
+// 	
+// 	tag ${animal_name}
+// 	publishDir params.results, mode: 'move'
+// 	
+// 	input:
+// 	tuple val(animal_name), path(fasta)
+// 	
+// 	output:
+// 	path("*")
+// 	
+// 	script:
+// 	"""
+// 	
+// 	allele_group_naming.R ${fasta}
+// 	
+// 	"""
+// 	
+// }

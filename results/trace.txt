@@ -1,1 +1,6 @@
 task_id	name	status	exit	realtime	%cpu	%mem	rss	vmem	peak_rss	peak_vmem	rchar	wchar
+1	PULL_IPD	COMPLETED	0	2h 4m 22s	-	-	-	-	-	-	-	-
+5	CLEAN_IPD (nhp)	FAILED	1	360ms	-	-	-	-	-	-	-	-
+2	CLEAN_IPD (maf)	FAILED	1	295ms	-	-	-	-	-	-	-	-
+4	CLEAN_IPD (man)	FAILED	1	391ms	-	-	-	-	-	-	-	-
+3	CLEAN_IPD (mam)	FAILED	1	388ms	-	-	-	-	-	-	-	-
