@@ -205,12 +205,22 @@ $(function() {
 
   // Nextflow report data
   window.data = {
-    "elapsed": "9.6s",
-    "beginningMillis": 1658351178733,
-    "endingMillis": 1658351188359,
+    "elapsed": "1h 33m 49s",
+    "beginningMillis": 1658356785458,
+    "endingMillis": 1658374250556,
     "processes": [
-        {"label": "PULL_MHC_PROTEINS", "cached": false, "index": 0, "times": [{"starting_time": 1658351179678, "ending_time": 1658351179706}]},
-        {"label": "PULL_KIR_PROTEINS", "cached": false, "index": 1, "times": [{"starting_time": 1658351179703, "ending_time": 1658351179805}]}
+        {"label": "PULL_IPD_KIR", "cached": true, "index": 0, "times": [{"starting_time": 1658356785458, "ending_time": 1658356785532}, {"starting_time": 1658356785532, "ending_time": 1658357518124, "label": "12m 14s \/ 45.6 MB \/ CACHED"}, {"starting_time": 1658357518124, "ending_time": 1658357519453}]},
+        {"label": "PULL_IPD_MHC", "cached": false, "index": 1, "times": [{"starting_time": 1658368622352, "ending_time": 1658368622457}, {"starting_time": 1658368622457, "ending_time": 1658374236320, "label": "1h 33m 36s \/ 51.1 MB"}, {"starting_time": 1658374236320, "ending_time": 1658374238292}]},
+        {"label": "PULL_MHC_PROTEINS", "cached": false, "index": 2, "times": [{"starting_time": 1658368622372, "ending_time": 1658368622464}, {"starting_time": 1658368622464, "ending_time": 1658370230332, "label": "26m 49s \/ 46 MB"}, {"starting_time": 1658370230332, "ending_time": 1658370231618}]},
+        {"label": "PULL_KIR_PROTEINS", "cached": false, "index": 3, "times": [{"starting_time": 1658368622384, "ending_time": 1658368622470}, {"starting_time": 1658368622470, "ending_time": 1658369278510, "label": "10m 58s \/ 46.3 MB"}, {"starting_time": 1658369278510, "ending_time": 1658369280216}]},
+        {"label": "CLEAN_IPD (kir-mane)", "cached": false, "index": 4, "times": [{"starting_time": 1658368622396, "ending_time": 1658368622476}, {"starting_time": 1658368622476, "ending_time": 1658368623065, "label": "2.7s \/ 24.3 MB"}, {"starting_time": 1658368623065, "ending_time": 1658368625109}]},
+        {"label": "CLEAN_IPD (kir-mafa)", "cached": false, "index": 4, "times": [{"starting_time": 1658368622413, "ending_time": 1658368622489}, {"starting_time": 1658368622489, "ending_time": 1658368623112, "label": "2.3s \/ 17.8 MB"}, {"starting_time": 1658368623112, "ending_time": 1658368624709}]},
+        {"label": "CLEAN_IPD (kir-mamu)", "cached": false, "index": 4, "times": [{"starting_time": 1658368622432, "ending_time": 1658368622499}, {"starting_time": 1658368622499, "ending_time": 1658368623271, "label": "3s \/ 17.6 MB"}, {"starting_time": 1658368623271, "ending_time": 1658368625414}]},
+        {"label": "CLEAN_IPD (kir-nhp-)", "cached": false, "index": 4, "times": [{"starting_time": 1658368622465, "ending_time": 1658368622559}, {"starting_time": 1658368622559, "ending_time": 1658368623396, "label": "3.1s \/ 12.3 MB"}, {"starting_time": 1658368623396, "ending_time": 1658368625527}]},
+        {"label": "CLEAN_IPD (mhc-mane)", "cached": false, "index": 4, "times": [{"starting_time": 1658374238306, "ending_time": 1658374238397}, {"starting_time": 1658374238397, "ending_time": 1658374240543, "label": "3.7s \/ 39.4 MB"}, {"starting_time": 1658374240543, "ending_time": 1658374242038}]},
+        {"label": "CLEAN_IPD (mhc-nhp-)", "cached": false, "index": 4, "times": [{"starting_time": 1658374238314, "ending_time": 1658374238400}, {"starting_time": 1658374238400, "ending_time": 1658374248294, "label": "11.4s \/ 39.9 MB"}, {"starting_time": 1658374248294, "ending_time": 1658374249738}]},
+        {"label": "CLEAN_IPD (mhc-mafa)", "cached": false, "index": 4, "times": [{"starting_time": 1658374238352, "ending_time": 1658374238403}, {"starting_time": 1658374238403, "ending_time": 1658374243101, "label": "5.9s \/ 39.8 MB"}, {"starting_time": 1658374243101, "ending_time": 1658374244279}]},
+        {"label": "CLEAN_IPD (mhc-mamu)", "cached": false, "index": 4, "times": [{"starting_time": 1658374238360, "ending_time": 1658374238405}, {"starting_time": 1658374238405, "ending_time": 1658374242394, "label": "5.5s \/ 39.5 MB"}, {"starting_time": 1658374242394, "ending_time": 1658374243862}]}
     ]
 }
 ;

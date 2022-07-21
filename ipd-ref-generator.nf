@@ -54,8 +54,6 @@ process PULL_IPD_MHC {
 	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
-
-	time '4hours'
 	
 	when:
 	params.pull_mhc == true
@@ -80,8 +78,6 @@ process PULL_IPD_KIR {
 	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
-
-	time '4hours'
 	
 	when:
 	params.pull_kir == true
@@ -105,8 +101,6 @@ process PULL_MHC_PROTEINS {
 	// the latest Immuno Polymorphism Database release.
 	
 	publishDir params.results, mode: 'move'
-
-	time '4hours'
 	
 	when:
 	params.pull_mhc_proteins == true
@@ -130,8 +124,6 @@ process PULL_KIR_PROTEINS {
 	// in the latest Immuno Polymorphism Database release.
 	
 	publishDir params.results, mode: 'move'
-
-	time '4hours'
 	
 	when:
 	params.pull_kir_proteins == true
@@ -166,8 +158,8 @@ process CLEAN_IPD {
 	script:
 
 	animal_name = name.substring(8,12)
-	locus_name = name.substring(5,7)
-	tag = name.substring(5,12)
+	locus_name = name.substring(4,7)
+	tag = name.substring(4,12)
 
 	"""
 
