@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+import os
+import subprocess
 
 file_dir = os.getcwd()
 animal = sys.argv[1]
@@ -19,24 +21,7 @@ Original file is located at
 
 Create databases from IPD sequences that can be used as references when genotyping from immunoWES data. This means preferring genomic DNA sequences, when available, and falling back to exon 2 sequences when that is not an option. Trimming the databases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed databases in this experiment.
 
-## Dependencies
-
-Software needed to run workflow.
 """
-
-# install biopython
-# !pip install biopython
-
-# install bbmap
-# !wget https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz
-# !tar -xzvf BBMap_38.90.tar.gz
-
-# install vsearch
-# !wget https://github.com/torognes/vsearch/releases/download/v2.17.0/vsearch-2.17.0-linux-x86_64.tar.gz
-# !tar xzf vsearch-2.17.0-linux-x86_64.tar.gz
-
-# install pysam
-# !pip install pysam
 
 """## Functions
 Define functions used in workflow.
@@ -65,10 +50,10 @@ def vsearchMapToReference(query, ref, out_sam):
   
   printStatus('Map to reference with vsearch usearch_global algorithm')
   
-  !/content/vsearch-2.17.0-linux-x86_64/bin/vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam
+  subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam', shell = True)
 
   # remove intermediate fasta file
-  !rm $query
+  subprocess.run('rm $query', shell = True)
 
   return out_sam
 
@@ -87,7 +72,7 @@ def trimQueryByMapping(in_sam):
   samfile = pysam.AlignmentFile(in_sam, 'r', check_sq=False)
 
   # remove temporary sam file
-  !rm $in_sam
+  subprocess.run('rm $in_sam', shell = True)
 
   # create empty list of lists to store trimmed sequences
   trimmed_sequence = []
@@ -253,13 +238,19 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   '''
 
   # create output file names
-  IPD_BASENAME = !basename $in_gbk .gbk
-  IPD_TRIMMED_FASTA = IPD_BASENAME[0] + '.exon2.trimmed.fasta'
-  IPD_IMMUNOWES_FASTA = IPD_BASENAME[0] + '.immunowes.fasta'
-  IPD_CDNA_FASTA = IPD_BASENAME[0] + '.cdna.fasta'
-  IPD_GDNA_FASTA = IPD_BASENAME[0] + '.gdna.fasta'
+  IPD_BASENAME = os.path.basename(in_gbk[:-4])
+  IPD_TRIMMED_FASTA = IPD_BASENAME + '.exon2.trimmed.fasta'
+  IPD_IMMUNOWES_FASTA = IPD_BASENAME + '.immunowes.fasta'
+  IPD_CDNA_FASTA = IPD_BASENAME + '.cdna.fasta'
+  IPD_GDNA_FASTA = IPD_BASENAME + '.gdna.fasta'
 
   # make gdna and cdna files
+  # tmp_cdna = open('tmp_cdna.fasta', "w")
+  # tmp_cdna.close()
+  # 
+  # tmp_sam = open('tmp.sam', "w")
+  # tmp_sam.close()
+  
   separateGdnaFromCdna(in_gbk, IPD_GDNA_FASTA, 'tmp_cdna.fasta')
 
   # map to reference
@@ -275,10 +266,10 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   deduplicate_fasta(IPD_TRIMMED_FASTA, IPD_CDNA_FASTA)
 
   # merge gDNA and cDNA files
-  !cat $IPD_GDNA_FASTA $IPD_CDNA_FASTA > $IPD_IMMUNOWES_FASTA
+  subprocess.run('cat $IPD_GDNA_FASTA $IPD_CDNA_FASTA > $IPD_IMMUNOWES_FASTA', shell = True)
 
   # remove unnecessary intermediate files
-  !rm $IPD_TRIMMED_FASTA
+  subprocess.run('rm $IPD_TRIMMED_FASTA', shell = True)
 
   # check status
   printStatus('Workflow complete!')

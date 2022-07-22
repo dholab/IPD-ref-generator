@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+import os
+import subprocess
 
 file_dir = os.getcwd()
 animal = sys.argv[1]
@@ -19,24 +21,8 @@ Original file is located at
 
 This notebook removes primers from IPD sequences and then deduplicates identical sequences, so that groups of identical sequences can be used when genotyping.
 
-## Dependencies
-
-Software needed to run workflow.
 """
 
-# install biopython
-!pip install biopython
-
-# install bbmap
-!wget https://downloads.sourceforge.net/project/bbmap/BBMap_38.90.tar.gz
-!tar -xzvf BBMap_38.90.tar.gz
-
-# install vsearch
-!wget https://github.com/torognes/vsearch/releases/download/v2.17.0/vsearch-2.17.0-linux-x86_64.tar.gz
-!tar xzf vsearch-2.17.0-linux-x86_64.tar.gz
-
-# install pysam
-!pip install pysam
 
 """## Functions
 
@@ -66,10 +52,10 @@ def vsearchMapToReference(query, ref, out_sam):
   
   printStatus('Map to reference with vsearch usearch_global algorithm')
   
-  !/content/vsearch-2.17.0-linux-x86_64/bin/vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam
+  subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam')
 
   # remove intermediate fasta file
-  !rm $query
+  subprocess.run('rm $query')
 
   return out_sam
 
@@ -88,7 +74,7 @@ def trimQueryByMapping(in_sam):
   samfile = pysam.AlignmentFile(in_sam, 'r', check_sq=False)
 
   # remove temporary sam file
-  !rm $in_sam
+  subprocess.run('rm $in_sam')
 
   # create empty list of lists to store trimmed sequences
   trimmed_sequence = []
@@ -212,7 +198,7 @@ def createMiseqTrimmedFasta(in_gbk, exemplar_fasta):
   chain together above functions to create FASTA file trimmed to exemplar sequences'''
 
   # create output file names
-  IPD_BASENAME = !basename $in_gbk .gbk
+  IPD_BASENAME = os.path.basename(in_gbk[:-4])
   IPD_TRIMMED_FASTA = IPD_BASENAME[0] + '.miseq.trimmed.fasta'
   IPD_TRIMMED_DEDUPLICATED_FASTA = IPD_BASENAME[0] + '.miseq.trimmed.deduplicated.fasta'
 
@@ -232,7 +218,7 @@ def createMiseqTrimmedFasta(in_gbk, exemplar_fasta):
   deduplicate_fasta(IPD_TRIMMED_FASTA, IPD_TRIMMED_DEDUPLICATED_FASTA)
 
   # remove unnecessary intermediate file
-  !rm $IPD_TRIMMED_FASTA
+  subprocess.run('rm $IPD_TRIMMED_FASTA')
 
   # check status
   printStatus('Workflow complete!')

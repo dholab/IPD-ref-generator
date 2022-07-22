@@ -55,6 +55,9 @@ process PULL_IPD_MHC {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
+	time '6h'
+	maxRetries 2
+	
 	when:
 	params.pull_mhc == true
 
@@ -181,7 +184,7 @@ process IWES_TRIMMING {
 	publishDir params.results, mode: 'move'
 	
 	when:
-	locus_name == "mhc"
+	locus_name == "mhc" && animal_name == "mamu"
 
 	input:
 	tuple val(animal_name), val(locus_name), path(gbk)
@@ -206,7 +209,7 @@ process MISEQ_TRIMMING {
 	tag "${animal_name}"
 	
 	when:
-	locus_name == "mhc"
+	locus_name == "mhc" && animal_name == "mamu"
 
 	input:
 	tuple val(animal_name), val(locus_name), path(gbk)
