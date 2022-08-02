@@ -22,7 +22,7 @@ git clone https://github.com/nrminor/IPD-ref-generator.git .
 Once the workflow bundle is in place, first ensure that the workflow scripts are executable, like so:
 
 ```
-chmod +x bin/*.py
+chmod +x bin/*
 ```
 
 Next, build the Docker image that contains the workflow's dependencies:

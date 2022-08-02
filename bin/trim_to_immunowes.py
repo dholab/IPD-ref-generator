@@ -254,7 +254,7 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   separateGdnaFromCdna(in_gbk, IPD_GDNA_FASTA, 'tmp_cdna.fasta')
 
   # map to reference
-  vsearch = vsearchMapToReference('tmp_cdna.fasta', exemplar_fasta, 'tmp.sam')
+  vsearch = vsearchMapToReference('tmp_cdna.f'asta', exemplar_fasta, 'tmp.sam')
 
   # calculate trim
   trim_list = trimQueryByMapping('tmp.sam')

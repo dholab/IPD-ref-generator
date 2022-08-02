@@ -31,17 +31,17 @@ workflow {
 		CLEAN_IPD.out
 	)
 
-	MISEQ_TRIMMING (
-		CLEAN_IPD.out
-	)
-
-	ALLELE_SORTING (
-		MISEQ_TRIMMING.out
-	)
-
-	ALLELE_GROUP_NAMING (
-		ALLELE_SORTING.out
-	)
+// 	MISEQ_TRIMMING (
+// 		CLEAN_IPD.out
+// 	)
+// 
+// 	ALLELE_SORTING (
+// 		MISEQ_TRIMMING.out
+// 	)
+// 
+// 	ALLELE_GROUP_NAMING (
+// 		ALLELE_SORTING.out
+// 	)
 
 }
 
@@ -201,74 +201,74 @@ process IWES_TRIMMING {
 
 }
 
-process MISEQ_TRIMMING {
-
-	// This process removes primers from IPD sequences and then deduplicates identical sequences,
-	// so that groups of identical sequences can be used when genotyping.
-
-	tag "${animal_name}"
-	
-	when:
-	locus_name == "mhc" && animal_name == "mamu"
-
-	input:
-	tuple val(animal_name), val(locus_name), path(gbk)
-
-	output:
-	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
-
-	script:
-	"""
-
-	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
-
-	"""
-
-}
-
-
-process ALLELE_SORTING {
-	
-	// This process sorts any lists of MHC alleles so their allele group can
-	// be classified correctly
-	
-	tag "${animal_name}"
-	
-	input:
-	tuple val(animal_name), path(fasta)
-	
-	output:
-	tuple val(animal_name), path("*.sorted.fasta")
-	
-	script:
-	"""
-	
-	allele_group_sorting.R ${fasta}
-	
-	"""
-	
-}
-
-
-process ALLELE_GROUP_NAMING {
-	
-	// This process classifies allele "groups" for instances where a reference allele
-	// sequence matches with numerous alleles
-	
-	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
-	
-	input:
-	tuple val(animal_name), path(fasta)
-	
-	output:
-	path("*")
-	
-	script:
-	"""
-	
-	allele_group_naming.R ${fasta}
-	
-	"""
-	
-}
+// process MISEQ_TRIMMING {
+// 
+// 	// This process removes primers from IPD sequences and then deduplicates identical sequences,
+// 	// so that groups of identical sequences can be used when genotyping.
+// 
+// 	tag "${animal_name}"
+// 	
+// 	when:
+// 	locus_name == "mhc" && animal_name == "mamu"
+// 
+// 	input:
+// 	tuple val(animal_name), val(locus_name), path(gbk)
+// 
+// 	output:
+// 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
+// 
+// 	script:
+// 	"""
+// 
+// 	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
+// 
+// 	"""
+// 
+// }
+// 
+// 
+// process ALLELE_SORTING {
+// 	
+// 	// This process sorts any lists of MHC alleles so their allele group can
+// 	// be classified correctly
+// 	
+// 	tag "${animal_name}"
+// 	
+// 	input:
+// 	tuple val(animal_name), path(fasta)
+// 	
+// 	output:
+// 	tuple val(animal_name), path("*.sorted.fasta")
+// 	
+// 	script:
+// 	"""
+// 	
+// 	allele_group_sorting.R ${fasta}
+// 	
+// 	"""
+// 	
+// }
+// 
+// 
+// process ALLELE_GROUP_NAMING {
+// 	
+// 	// This process classifies allele "groups" for instances where a reference allele
+// 	// sequence matches with numerous alleles
+// 	
+// 	tag "${animal_name}"
+// 	publishDir params.results, mode: 'move'
+// 	
+// 	input:
+// 	tuple val(animal_name), path(fasta)
+// 	
+// 	output:
+// 	path("*")
+// 	
+// 	script:
+// 	"""
+// 	
+// 	allele_group_naming.R ${fasta}
+// 	
+// 	"""
+// 	
+// }
