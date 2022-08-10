@@ -11,7 +11,17 @@ The workflow also prepares context-specific reference databases for use with dat
 1. Reference allele sequences for use with high depth-of-coverage whole exome sequence data enriched for immuno-genes (iWES)
 2. Reference allele sequences for use with Illumina MiSeq amplicon libraries
 
-## Getting Started
+## Quick Start
+
+If you already have Docker and NextFlow installed on your system, simply run the following command in the directory of your choice:
+
+```
+nextflow run nrminor/IPD-ref-generator -latest
+```
+
+This command automatically pulls the workflow from GitHub and runs it. If you do not have Docker and NextFlow installed, or want to tweak any of the default configurations in the workflow, proceed to the following sections.
+
+## Detailed Instructions
 
 To run this workflow, simply `git clone` it into your working directory of choice, like so:
 
@@ -19,19 +29,9 @@ To run this workflow, simply `git clone` it into your working directory of choic
 git clone https://github.com/nrminor/IPD-ref-generator.git .
 ```
 
-Once the workflow bundle is in place, first ensure that the workflow scripts are executable, like so:
+When the workflow bundle has downloaded, you may need to set the workflow scripts to executable by running `chmod +x bin/*` in the command line.
 
-```
-chmod +x bin/*
-```
-
-Next, build the Docker image that contains the workflow's dependencies:
-
-```
-docker build --tag ipd-ref-generator:v1_0_6 config/
-```
-
-Note that to build the above docker container, you may need to increase the amount of memory allotted to Docker in the Docker Engine preferences.
+You will also need to install the Docker engine if you haven't already. The workflow pulls all the software it needs automatically from Docker Hub, which means you will never need to permanently install that software on your system. To install Docker, simply visit the Docker installation page at [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/).
 
 ### Nextflow Installation
 
@@ -59,21 +59,27 @@ To run the workflow, simply change into the workflow directory and run the follo
 nextflow run ipd-ref-generator.nf
 ```
 
+This workflow generates a large number of working directories. Unless you are debugging, it may be worth running the workflow together with a `nextflow clean` command, like so:
+
+```
+nextflow run ipd-ref-generator.nf && nextflow clean -f 
+```
+
 If the workflow runs partway, but a computer outage or other issue interrupts its progress, no need to start over! Instead, run:
 
 ```
 nextflow run ipd-ref-generator.nf -resume
 ```
 
-The workflow's configurations (see below) tell NextFlow to plot the workflow and record run statistics. However, the plot the workflow, note that NextFlow requires the package GraphViz, which is easiest to install via the intructions on [GraphViz's website](https://graphviz.org/download/).
+Finally, the workflow's default configurations tell NextFlow to plot the workflow and record run statistics. However, the plot the workflow, note that NextFlow requires the package GraphViz, which is easiest to install via the intructions on [GraphViz's website](https://graphviz.org/download/).
 
 ## Configuration
 
-The following runtime parameters have been set for the whole workflow and are available for modification:
+The following runtime parameters have been set for the whole workflow in `nextflow.config` and are available for modification:
 
 - `pull_mhc`, `pull_kir`, `pull_mhc_proteins`, `pull_kir_proteins` - These settings must be set to either _true_ or _false_, and tell the workflow which datasets to download. By default, in the `nextflow.config` file included in this repo, the workflow downloads all four datasets: all non-human primate MHC sequences, all non-human KIR sequences, all non-human primate MHC protein sequences, and all non-human KIR protein sequences. To download only one of these datasets, set that parameter to _true_ and the others to _false_.
+- `trim_for_iwes` and `trim_for_miseq` tell the workflow to trim data for the specific workflows used at University of Wisconsin - Madison's [AVRL](https://dholk.primate.wisc.edu/project/home/begin.view?). More information on these below.
 - `mhc_allele_count`, `kir_allele_count`, `mhc_protein_count`, `kir_protein_count` - These are the most important settings for the workflow to generate up-to-date databases. To determine how many alleles the workflow should gather, scroll to the bottom right of the MHC allele list at [https://www.ebi.ac.uk/ipd/mhc/allele/list/](https://www.ebi.ac.uk/ipd/mhc/allele/list/) or the KIR allele list at [https://www.ebi.ac.uk/ipd/kir/alleles/](https://www.ebi.ac.uk/ipd/kir/alleles/)
-  - Future versions of this workflow will allow users to download MHC alleles _and_ KIR alleles, though at this time only MHC alleles can be pulled.
 - `iwes_exemplar` - This specifies the path to an exemplar for iWES data, which in most cases need not be changed.
 - `miseq_exemplar` - This specifies the path to an exemplar for MiSeq data, which in most cases need not be changed.
 - `results` - path to where the workflow's outputs should be placed. The default is `results/` within the workflow directory.
@@ -96,7 +102,7 @@ This workflow requires minimal pre-bundled data, as mentioned above: the iWES ex
 
 ### A note on parallel computation
 
-NextFlow automatically allocates cores to each process, as if it is a job on a compute node. Depending on how many cores you make available to this workflow, the four databases it outputs can each be downloaded, cleaned, and trimmed at the same time as one another.
+NextFlow automatically allocates cores to each process, as if it is a job on a compute node. Depending on how many cores you make available to this workflow, the four databases it outputs can each be downloaded, cleaned, and trimmed at the same time as one another. The workflow will also download each allele independently, and concatenate them once all have been downloaded. The more cores you can devote to the allele downloading in particular, the faster the workflow as a whole will run.
 
 ### Output Files
 

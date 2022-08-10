@@ -5,43 +5,67 @@ nextflow.enable.dsl = 2
 
 // Defining the reference-generator workflow
 workflow {
+	
+	ch_mhc_count = Channel.from( 0..params.mhc_allele_count )
+	
+	ch_kir_count = Channel.from( 0..params.kir_allele_count )
+	
+	ch_mhc_prot = Channel.from( 0..params.mhc_protein_count )
+	
+	ch_kir_prot = Channel.from( 0..params.kir_protein_count )
 
-	PULL_IPD_MHC ()
+	PULL_IPD_MHC (
+		ch_mhc_count
+	)
 	
-	PULL_IPD_KIR ()
+	CONCAT_MHC (
+		PULL_IPD_MHC.out.collect()
+	)
 	
-	PULL_MHC_PROTEINS ()
+	PULL_IPD_KIR (
+		ch_kir_count
+	)
 	
-	PULL_KIR_PROTEINS ()
+	CONCAT_KIR (
+		PULL_IPD_KIR.out.collect()
+	)
+	
+	PULL_MHC_PROTEINS (
+		ch_mhc_prot
+	)
+	
+	PULL_KIR_PROTEINS (
+		ch_kir_prot
+	)
 
 	CLEAN_IPD (
-		PULL_IPD_MHC.out
+		CONCAT_MHC.out
 		.flatten()
 		.map{ file -> tuple(file.getSimpleName(), file) }
 		.mix( 
 			
-			PULL_IPD_KIR.out
+			CONCAT_KIR.out
 			.flatten()
 			.map{ file -> tuple(file.getSimpleName(), file) }
 		
 		)
 	)
 
-	// IWES_TRIMMING (
-	// 	CLEAN_IPD.out
-	// )
+	IWES_TRIMMING (
+		CLEAN_IPD.out
+	)
 
-// 	MISEQ_TRIMMING (
-// 		CLEAN_IPD.out
-// 	)
-// 
-// 	ALLELE_SORTING (
-// 		MISEQ_TRIMMING.out
-// 	)
-// 
-// 	ALLELE_GROUP_NAMING (
-// 		ALLELE_SORTING.out
-// 	)
+	MISEQ_TRIMMING (
+		CLEAN_IPD.out
+	)
+
+	ALLELE_SORTING (
+		MISEQ_TRIMMING.out
+	)
+
+	ALLELE_GROUP_NAMING (
+		ALLELE_SORTING.out
+	)
 
 }
 
@@ -55,11 +79,16 @@ process PULL_IPD_MHC {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
+	tag "${ipd_num}"
+	
 	time '6h'
 	maxRetries 2
 	
 	when:
 	params.pull_mhc == true
+	
+	input:
+	val(ipd_num)
 
 	output:
 	path("*.gbk")
@@ -67,10 +96,34 @@ process PULL_IPD_MHC {
 	script:
 	"""
 
-	download_ipd-mhc_sequences.py ${params.mhc_allele_count}
+	download_ipd-mhc_sequences.py ${ipd_num}
 
 	"""
 
+}
+
+
+process CONCAT_MHC {
+	
+	input:
+	path(allele_files)
+	
+	output:
+	path("*.gbk")
+	
+	script:
+	mafa = "ipd-mhc-mafa-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	mamu = "ipd-mhc-mamu-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	mane = "ipd-mhc-mane-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	nhp = "ipd-mhc-nhp-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	
+	"""
+	cat ipd-mhc-mafa*.gbk > ${mafa}
+	cat ipd-mhc-mamu*.gbk > ${mamu}
+	cat ipd-mhc-mane*.gbk > ${mane}
+	cat ipd-mhc-nhp*.gbk > ${nhp}
+	"""
+	
 }
 
 
@@ -84,6 +137,9 @@ process PULL_IPD_KIR {
 	
 	when:
 	params.pull_kir == true
+	
+	input:
+	val(ipd_num)
 
 	output:
 	path("*.gbk")
@@ -91,10 +147,34 @@ process PULL_IPD_KIR {
 	script:
 	"""
 
-	download_ipd-kir_sequences.py ${params.kir_allele_count}
+	download_ipd-kir_sequences.py ${ipd_num}
 
 	"""
 
+}
+
+
+process CONCAT_KIR {
+	
+	input:
+	path(allele_files)
+	
+	output:
+	path("*.gbk")
+	
+	script:
+	mafa = "ipd-mhc-mafa-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	mamu = "ipd-mhc-mamu-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	mane = "ipd-mhc-mane-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	nhp = "ipd-mhc-nhp-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	
+	"""
+	cat ipd-mhc-mafa*.gbk > ${mafa}
+	cat ipd-mhc-mamu*.gbk > ${mamu}
+	cat ipd-mhc-mane*.gbk > ${mane}
+	cat ipd-mhc-nhp*.gbk > ${nhp}
+	"""
+	
 }
 
 
@@ -107,6 +187,9 @@ process PULL_MHC_PROTEINS {
 	
 	when:
 	params.pull_mhc_proteins == true
+	
+	input:
+	val(ipd_num)
 
 	output:
 	path("*.fasta")
@@ -114,7 +197,7 @@ process PULL_MHC_PROTEINS {
 	script:
 	"""
 
-	download_ipd-mhc_proteins.py ${params.mhc_protein_count}
+	download_ipd-mhc_proteins.py ${ipd_num}
 
 	"""
 
@@ -130,6 +213,9 @@ process PULL_KIR_PROTEINS {
 	
 	when:
 	params.pull_kir_proteins == true
+	
+	input:
+	val(ipd_num)
 
 	output:
 	path("*.fasta")
@@ -137,7 +223,7 @@ process PULL_KIR_PROTEINS {
 	script:
 	"""
 
-	download_ipd-kir_proteins.py ${params.kir_protein_count}
+	download_ipd-kir_proteins.py ${ipd_num}
 
 	"""
 
@@ -172,103 +258,103 @@ process CLEAN_IPD {
 }
 
 
-// process IWES_TRIMMING {
-// 
-// 	// This process creates databases from IPD sequences that can be used as references when
-// 	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
-// 	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
-// 	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
-// 	// bases.
-// 
-// 	tag "${animal_name}"
-// 	publishDir params.results, mode: 'move'
-// 	
-// 	when:
-// 	locus_name == "mhc" && animal_name == "mamu"
-// 
-// 	input:
-// 	tuple val(animal_name), val(locus_name), path(gbk)
-// 
-// 	output:
-// 	path("*")
-// 
-// 	script:
-// 	"""
-// 
-// 	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
-// 
-// 	"""
-// 
-// }
+process IWES_TRIMMING {
 
-// process MISEQ_TRIMMING {
-// 
-// 	// This process removes primers from IPD sequences and then deduplicates identical sequences,
-// 	// so that groups of identical sequences can be used when genotyping.
-// 
-// 	tag "${animal_name}"
-// 	
-// 	when:
-// 	locus_name == "mhc" && animal_name == "mamu"
-// 
-// 	input:
-// 	tuple val(animal_name), val(locus_name), path(gbk)
-// 
-// 	output:
-// 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
-// 
-// 	script:
-// 	"""
-// 
-// 	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
-// 
-// 	"""
-// 
-// }
-// 
-// 
-// process ALLELE_SORTING {
-// 	
-// 	// This process sorts any lists of MHC alleles so their allele group can
-// 	// be classified correctly
-// 	
-// 	tag "${animal_name}"
-// 	
-// 	input:
-// 	tuple val(animal_name), path(fasta)
-// 	
-// 	output:
-// 	tuple val(animal_name), path("*.sorted.fasta")
-// 	
-// 	script:
-// 	"""
-// 	
-// 	allele_group_sorting.R ${fasta}
-// 	
-// 	"""
-// 	
-// }
-// 
-// 
-// process ALLELE_GROUP_NAMING {
-// 	
-// 	// This process classifies allele "groups" for instances where a reference allele
-// 	// sequence matches with numerous alleles
-// 	
-// 	tag "${animal_name}"
-// 	publishDir params.results, mode: 'move'
-// 	
-// 	input:
-// 	tuple val(animal_name), path(fasta)
-// 	
-// 	output:
-// 	path("*")
-// 	
-// 	script:
-// 	"""
-// 	
-// 	allele_group_naming.R ${fasta}
-// 	
-// 	"""
-// 	
-// }
+	// This process creates databases from IPD sequences that can be used as references when
+	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
+	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
+	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
+	// bases.
+
+	tag "${animal_name}"
+	publishDir params.results, mode: 'move'
+	
+	when:
+	locus_name == "mhc" && animal_name == "mamu" && params.trim_for_iwes == true
+
+	input:
+	tuple val(animal_name), val(locus_name), path(gbk)
+
+	output:
+	path("*")
+
+	script:
+	"""
+
+	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
+
+	"""
+
+}
+
+process MISEQ_TRIMMING {
+
+	// This process removes primers from IPD sequences and then deduplicates identical sequences,
+	// so that groups of identical sequences can be used when genotyping.
+
+	tag "${animal_name}"
+	
+	when:
+	locus_name == "mhc" && animal_name == "mamu" && params.trim_for_miseq == true
+
+	input:
+	tuple val(animal_name), val(locus_name), path(gbk)
+
+	output:
+	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
+
+	script:
+	"""
+
+	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
+
+	"""
+
+}
+
+
+process ALLELE_SORTING {
+	
+	// This process sorts any lists of MHC alleles so their allele group can
+	// be classified correctly
+	
+	tag "${animal_name}"
+	
+	input:
+	tuple val(animal_name), path(fasta)
+	
+	output:
+	tuple val(animal_name), path("*.sorted.fasta")
+	
+	script:
+	"""
+	
+	allele_group_sorting.R ${fasta}
+	
+	"""
+	
+}
+
+
+process ALLELE_GROUP_NAMING {
+	
+	// This process classifies allele "groups" for instances where a reference allele
+	// sequence matches with numerous alleles
+	
+	tag "${animal_name}"
+	publishDir params.results, mode: 'move'
+	
+	input:
+	tuple val(animal_name), path(fasta)
+	
+	output:
+	path("*")
+	
+	script:
+	"""
+	
+	allele_group_naming.R ${fasta}
+	
+	"""
+	
+}

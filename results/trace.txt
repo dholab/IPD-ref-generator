@@ -1,1 +1,10 @@
 task_id	name	status	exit	realtime	%cpu	%mem	rss	vmem	peak_rss	peak_vmem	rchar	wchar
+24	PULL_IPD_MHC (2)	FAILED	125	327ms	-	-	-	-	-	-	-	-
+34	PULL_IPD_MHC (6)	ABORTED	-	807ms	-	-	-	-	-	-	-	-
+34	PULL_IPD_MHC (6)	FAILED	125	807ms	-	-	-	-	-	-	-	-
+14	PULL_IPD_MHC (1)	FAILED	125	706ms	-	-	-	-	-	-	-	-
+2	PULL_IPD_MHC (0)	FAILED	125	699ms	-	-	-	-	-	-	-	-
+14	PULL_IPD_MHC (1)	FAILED	125	706ms	-	-	-	-	-	-	-	-
+35	PULL_IPD_MHC (7)	ABORTED	-	-	-	-	-	-	-	-	-	-
+25	PULL_IPD_MHC (3)	ABORTED	-	-	-	-	-	-	-	-	-	-
+33	PULL_IPD_MHC (5)	ABORTED	-	-	-	-	-	-	-	-	-	-
