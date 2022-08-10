@@ -27,9 +27,9 @@ workflow {
 		)
 	)
 
-	IWES_TRIMMING (
-		CLEAN_IPD.out
-	)
+	// IWES_TRIMMING (
+	// 	CLEAN_IPD.out
+	// )
 
 // 	MISEQ_TRIMMING (
 // 		CLEAN_IPD.out
@@ -172,34 +172,34 @@ process CLEAN_IPD {
 }
 
 
-process IWES_TRIMMING {
-
-	// This process creates databases from IPD sequences that can be used as references when
-	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
-	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
-	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
-	// bases.
-
-	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
-	
-	when:
-	locus_name == "mhc" && animal_name == "mamu"
-
-	input:
-	tuple val(animal_name), val(locus_name), path(gbk)
-
-	output:
-	path("*")
-
-	script:
-	"""
-
-	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
-
-	"""
-
-}
+// process IWES_TRIMMING {
+// 
+// 	// This process creates databases from IPD sequences that can be used as references when
+// 	// genotyping from immunoWES data. This means preferring genomic DNA sequences, when avail-
+// 	// able, and falling back to exon 2 sequences when that is not an option. Trimming the data-
+// 	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
+// 	// bases.
+// 
+// 	tag "${animal_name}"
+// 	publishDir params.results, mode: 'move'
+// 	
+// 	when:
+// 	locus_name == "mhc" && animal_name == "mamu"
+// 
+// 	input:
+// 	tuple val(animal_name), val(locus_name), path(gbk)
+// 
+// 	output:
+// 	path("*")
+// 
+// 	script:
+// 	"""
+// 
+// 	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
+// 
+// 	"""
+// 
+// }
 
 // process MISEQ_TRIMMING {
 // 

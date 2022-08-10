@@ -1,145 +1,92 @@
-Jul-22 13:48:43.818 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf -resume
-Jul-22 13:48:43.958 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
-Jul-22 13:48:43.983 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
-Jul-22 13:48:43.984 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
-Jul-22 13:48:44.058 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Jul-22 13:48:45.490 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [compassionate_wozniak] DSL2 - revision: 41b655e011
-Jul-22 13:48:45.515 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
-Jul-22 13:48:45.517 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Jul-22 13:48:45.543 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Jul-22 13:48:45.547 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Jul-22 13:48:45.553 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Jul-22 13:48:45.565 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Jul-22 13:48:45.670 [main] DEBUG nextflow.Session - Session uuid: d6c47198-4b03-4462-ae50-41401468254a
-Jul-22 13:48:45.670 [main] DEBUG nextflow.Session - Run name: compassionate_wozniak
-Jul-22 13:48:45.671 [main] DEBUG nextflow.Session - Executor pool size: 8
-Jul-22 13:48:45.927 [main] DEBUG nextflow.cli.CmdRun - 
+Aug-10 11:18:06.869 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf
+Aug-10 11:18:06.935 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
+Aug-10 11:18:06.957 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
+Aug-10 11:18:06.958 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27482/nextflow.config
+Aug-10 11:18:06.984 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Aug-10 11:18:07.648 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [elegant_williams] DSL2 - revision: a969c9e1c1
+Aug-10 11:18:07.662 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
+Aug-10 11:18:07.664 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Aug-10 11:18:07.675 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Aug-10 11:18:07.676 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Aug-10 11:18:07.680 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Aug-10 11:18:07.691 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Aug-10 11:18:07.738 [main] DEBUG nextflow.Session - Session uuid: 3f2cebef-a246-47f7-8044-dbd5b3009eeb
+Aug-10 11:18:07.738 [main] DEBUG nextflow.Session - Run name: elegant_williams
+Aug-10 11:18:07.739 [main] DEBUG nextflow.Session - Executor pool size: 8
+Aug-10 11:18:07.917 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 22.04.0 build 5697
   Created: 23-04-2022 18:00 UTC (13:00 CDT)
   System: Mac OS X 12.3.1
   Runtime: Groovy 3.0.10 on OpenJDK 64-Bit Server VM 11.0.13+7-b1751.21
   Encoding: UTF-8 (UTF-8)
-  Process: 98526@PATH-DESK-1734.local [128.104.12.196]
-  CPUs: 8 - Mem: 64 GB (274.7 MB) - Swap: 3 GB (1.6 GB)
-Jul-22 13:48:45.951 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27482/work [Mac OS X]
-Jul-22 13:48:45.972 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Jul-22 13:48:45.987 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Jul-22 13:48:46.054 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Jul-22 13:48:46.072 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Jul-22 13:48:46.239 [main] DEBUG nextflow.Session - Session start invoked
-Jul-22 13:48:46.301 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27482/results/trace.txt
-Jul-22 13:48:47.747 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Jul-22 13:48:47.979 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:47.979 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:47.996 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Jul-22 13:48:48.006 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Jul-22 13:48:48.208 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:48.208 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:48.250 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:48.250 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:48.255 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:48.256 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:48.353 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:48.354 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:48.367 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Jul-22 13:48:48.367 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jul-22 13:48:48.372 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: IWES_TRIMMING, CLEAN_IPD, PULL_MHC_PROTEINS, PULL_IPD_MHC, PULL_KIR_PROTEINS, PULL_IPD_KIR
-Jul-22 13:48:48.373 [main] DEBUG nextflow.Session - Ignite dataflow network (6)
-Jul-22 13:48:48.374 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
-Jul-22 13:48:48.374 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
-Jul-22 13:48:48.375 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
-Jul-22 13:48:48.375 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
-Jul-22 13:48:48.375 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_IPD
-Jul-22 13:48:48.377 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IWES_TRIMMING
-Jul-22 13:48:48.377 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Jul-22 13:48:48.379 [main] DEBUG nextflow.Session - Session await
-Jul-22 13:48:48.635 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [1d/a9e88a] Cached process > PULL_IPD_KIR
-Jul-22 13:48:48.758 [Actor Thread 10] INFO  nextflow.processor.TaskProcessor - [aa/89adfd] Cached process > CLEAN_IPD (kir-mane)
-Jul-22 13:48:48.758 [Actor Thread 1] INFO  nextflow.processor.TaskProcessor - [57/6f9532] Cached process > CLEAN_IPD (kir-nhp-)
-Jul-22 13:48:48.758 [Actor Thread 11] INFO  nextflow.processor.TaskProcessor - [e3/1ba287] Cached process > CLEAN_IPD (kir-mafa)
-Jul-22 13:48:48.758 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [fc/626b10] Cached process > CLEAN_IPD (kir-mamu)
-Jul-22 13:48:48.781 [Actor Thread 1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=4; maxSize=4; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Jul-22 13:48:48.781 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jul-22 13:48:48.787 [Task submitter] INFO  nextflow.Session - [07/5d7d1d] Submitted process > PULL_IPD_MHC
-Jul-22 13:48:48.809 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jul-22 13:48:48.809 [Task submitter] INFO  nextflow.Session - [67/6a9958] Submitted process > PULL_KIR_PROTEINS
-Jul-22 13:48:48.822 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jul-22 13:48:48.823 [Task submitter] INFO  nextflow.Session - [9e/409637] Submitted process > PULL_MHC_PROTEINS
-Jul-22 13:53:48.183 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-~> TaskHandler[id: 2; name: PULL_KIR_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/67/6a99584bbefe3d78b7999a7eeade28]
-~> TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 13:58:48.208 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 3 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-~> TaskHandler[id: 2; name: PULL_KIR_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/67/6a99584bbefe3d78b7999a7eeade28]
-~> TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 14:00:47.675 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: PULL_KIR_PROTEINS; status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/67/6a99584bbefe3d78b7999a7eeade28]
-Jul-22 14:03:48.295 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-~> TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 14:08:48.395 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-~> TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 14:13:48.489 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 2 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-~> TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 14:17:11.302 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: PULL_MHC_PROTEINS; status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/9e/4096375fb59eb69141fd2399496738]
-Jul-22 14:18:48.524 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:23:48.527 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:28:48.621 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:33:48.633 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:38:48.707 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:43:48.754 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:48:48.834 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:53:48.911 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 14:58:48.917 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:03:48.994 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:08:49.025 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:13:49.031 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:18:49.065 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:23:49.066 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:28:49.118 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:33:49.177 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:38:49.221 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:43:49.256 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:48:49.274 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
-~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/07/5d7d1da3d2689a572190ae901f336e]
-Jul-22 15:50:35.841 [SIGINT handler] DEBUG nextflow.Session - Session aborted -- Cause: SIGINT
-Jul-22 15:50:35.879 [SIGINT handler] DEBUG nextflow.Session - The following nodes are still active:
-[process] CLEAN_IPD
-  status=ACTIVE
-  port 0: (queue) OPEN  ; channel: -
-  port 1: (cntrl) -     ; channel: $
-
-[process] IWES_TRIMMING
-  status=ACTIVE
-  port 0: (queue) OPEN  ; channel: -
-  port 1: (cntrl) -     ; channel: $
-
-Jul-22 15:50:35.884 [main] DEBUG nextflow.Session - Session await > all process finished
-Jul-22 15:50:35.885 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Jul-22 15:50:35.899 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (1)
-Jul-22 15:50:35.946 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=0; ignoredCount=0; cachedCount=5; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=1; succeedDuration=40m 18s; failedDuration=0ms; cachedDuration=16m 14s;loadCpus=0; loadMemory=0; peakRunning=3; peakCpus=3; peakMemory=0; ]
-Jul-22 15:50:35.947 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
-Jul-22 15:50:35.950 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
-Jul-22 15:50:36.021 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
-  [{"cpuUsage":{"mean":1.1,"min":1.1,"q1":1.1,"q2":1.1,"q3":1.1,"max":1.1,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"process":"PULL_IPD_KIR","mem":{"mean":47960064,"min":47960064,"q1":47960064,"q2":47960064,"q3":47960064,"max":47960064,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"memUsage":null,"timeUsage":null,"vmem":{"mean":522956800,"min":522956800,"q1":522956800,"q2":522956800,"q3":522956800,"max":522956800,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"reads":{"mean":335869559,"min":335869559,"q1":335869559,"q2":335869559,"q3":335869559,"max":335869559,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"cpu":{"mean":1.1,"min":1.1,"q1":1.1,"q2":1.1,"q3":1.1,"max":1.1,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"time":{"mean":972072,"min":972072,"q1":972072,"q2":972072,"q3":972072,"max":972072,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"},"writes":{"mean":987530,"min":987530,"q1":987530,"q2":987530,"q3":987530,"max":987530,"minLabel":"PULL_IPD_KIR","maxLabel":"PULL_IPD_KIR","q1Label":"PULL_IPD_KIR","q2Label":"PULL_IPD_KIR","q3Label":"PULL_IPD_KIR"}},{"cpuUsage":{"mean":69.97,"min":67,"q1":67.9,"q2":68.5,"q3":70.58,"max":75.9,"minLabel":"CLEAN_IPD (kir-mamu)","maxLabel":"CLEAN_IPD (kir-mane)","q1Label":"CLEAN_IPD (kir-mamu)","q2Label":"CLEAN_IPD (kir-nhp-)","q3Label":"CLEAN_IPD (kir-mafa)"},"process":"CLEAN_IPD","mem":{"mean":15372288,"min":3260416,"q1":14703616,"q2":19132416,"q3":19801088,"max":19963904,"minLabel":"CLEAN_IPD (kir-mane)","maxLabel":"CLEAN_IPD (kir-mafa)","q1Label":"CLEAN_IPD (kir-mane)","q2Label":"CLEAN_IPD (kir-nhp-)","q3Label":"CLEAN_IPD (kir-mamu)"},"memUsage":null,"timeUsage":null,"vmem":{"mean":371098624,"min":5877760,"q1":370299904,"q2":492572672,"q3":493371392,"max":493371392,"minLabel":"CLEAN_IPD (kir-mane)","maxLabel":"CLEAN_IPD (kir-mamu)","q1Label":"CLEAN_IPD (kir-mane)","q2Label":"CLEAN_IPD (kir-nhp-)","q3Label":"CLEAN_IPD (kir-mafa)"},"reads":{"mean":5403354,"min":5403353,"q1":5403353.75,"q2":5403354,"q3":5403354.25,"max":5403355,"minLabel":"CLEAN_IPD (kir-nhp-)","maxLabel":"CLEAN_IPD (kir-mane)","q1Label":"CLEAN_IPD (kir-nhp-)","q2Label":"CLEAN_IPD (kir-mafa)","q3Label":"CLEAN_IPD (kir-mamu)"},"cpu":{"mean":69.97,"min":67,"q1":67.9,"q2":68.5,"q3":70.58,"max":75.9,"minLabel":"CLEAN_IPD (kir-mamu)","maxLabel":"CLEAN_IPD (kir-mane)","q1Label":"CLEAN_IPD (kir-mamu)","q2Label":"CLEAN_IPD (kir-nhp-)","q3Label":"CLEAN_IPD (kir-mafa)"},"time":{"mean":492.5,"min":456,"q1":477,"q2":499,"q3":514.5,"max":516,"minLabel":"CLEAN_IPD (kir-mafa)","maxLabel":"CLEAN_IPD (kir-nhp-)","q1Label":"CLEAN_IPD (kir-mafa)","q2Label":"CLEAN_IPD (kir-mane)","q3Label":"CLEAN_IPD (kir-mamu)"},"writes":{"mean":4690,"min":4690,"q1":4690,"q2":4690,"q3":4690,"max":4690,"minLabel":"CLEAN_IPD (kir-mane)","maxLabel":"CLEAN_IPD (kir-nhp-)","q1Label":"CLEAN_IPD (kir-mane)","q2Label":"CLEAN_IPD (kir-mafa)","q3Label":"CLEAN_IPD (kir-mamu)"}},{"cpuUsage":{"mean":2.6,"min":2.6,"q1":2.6,"q2":2.6,"q3":2.6,"max":2.6,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"process":"PULL_KIR_PROTEINS","mem":{"mean":48218112,"min":48218112,"q1":48218112,"q2":48218112,"q3":48218112,"max":48218112,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"memUsage":null,"timeUsage":null,"vmem":{"mean":522915840,"min":522915840,"q1":522915840,"q2":522915840,"q3":522915840,"max":522915840,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"reads":{"mean":359640780,"min":359640780,"q1":359640780,"q2":359640780,"q3":359640780,"max":359640780,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"cpu":{"mean":2.6,"min":2.6,"q1":2.6,"q2":2.6,"q3":2.6,"max":2.6,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"time":{"mean":717188,"min":717188,"q1":717188,"q2":717188,"q3":717188,"max":717188,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"},"writes":{"mean":2042680,"min":2042680,"q1":2042680,"q2":2042680,"q3":2042680,"max":2042680,"minLabel":"PULL_KIR_PROTEINS","maxLabel":"PULL_KIR_PROTEINS","q1Label":"PULL_KIR_PROTEINS","q2Label":"PULL_KIR_PROTEINS","q3Label":"PULL_KIR_PROTEINS"}},{"cpuUsage":{"mean":2.4,"min":2.4,"q1":2.4,"q2":2.4,"q3":2.4,"max":2.4,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"process":"PULL_MHC_PROTEINS","mem":{"mean":48541696,"min":48541696,"q1":48541696,"q2":48541696,"q3":48541696,"max":48541696,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"memUsage":null,"timeUsage":null,"vmem":{"mean":524087296,"min":524087296,"q1":524087296,"q2":524087296,"q3":524087296,"max":524087296,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"reads":{"mean":873486426,"min":873486426,"q1":873486426,"q2":873486426,"q3":873486426,"max":873486426,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"cpu":{"mean":2.4,"min":2.4,"q1":2.4,"q2":2.4,"q3":2.4,"max":2.4,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"time":{"mean":1700748,"min":1700748,"q1":1700748,"q2":1700748,"q3":1700748,"max":1700748,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"},"writes":{"mean":4138741,"min":4138741,"q1":4138741,"q2":4138741,"q3":4138741,"max":4138741,"minLabel":"PULL_MHC_PROTEINS","maxLabel":"PULL_MHC_PROTEINS","q1Label":"PULL_MHC_PROTEINS","q2Label":"PULL_MHC_PROTEINS","q3Label":"PULL_MHC_PROTEINS"}},{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":null,"writes":null}]
-Jul-22 15:50:36.260 [SIGINT handler] INFO  nextflow.Session - Adieu
+  Process: 51808@PATH-DESK-1734.local [128.104.12.196]
+  CPUs: 8 - Mem: 64 GB (25.8 GB) - Swap: 0 (0)
+Aug-10 11:18:07.935 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27482/work [Mac OS X]
+Aug-10 11:18:07.953 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Aug-10 11:18:07.966 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Aug-10 11:18:08.022 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Aug-10 11:18:08.033 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Aug-10 11:18:08.110 [main] DEBUG nextflow.Session - Session start invoked
+Aug-10 11:18:08.115 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27482/results/trace.txt
+Aug-10 11:18:08.704 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Aug-10 11:18:08.808 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-10 11:18:08.808 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-10 11:18:08.814 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Aug-10 11:18:08.820 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Aug-10 11:18:08.935 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-10 11:18:08.935 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-10 11:18:08.952 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-10 11:18:08.952 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-10 11:18:08.956 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-10 11:18:08.956 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-10 11:18:09.036 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-10 11:18:09.036 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-10 11:18:09.042 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CLEAN_IPD, PULL_MHC_PROTEINS, PULL_IPD_MHC, PULL_KIR_PROTEINS, PULL_IPD_KIR
+Aug-10 11:18:09.043 [main] DEBUG nextflow.Session - Ignite dataflow network (5)
+Aug-10 11:18:09.043 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
+Aug-10 11:18:09.044 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
+Aug-10 11:18:09.045 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
+Aug-10 11:18:09.045 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
+Aug-10 11:18:09.046 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_IPD
+Aug-10 11:18:09.046 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Aug-10 11:18:09.046 [main] DEBUG nextflow.Session - Session await
+Aug-10 11:18:09.246 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-10 11:18:09.253 [Task submitter] INFO  nextflow.Session - [bc/a05b17] Submitted process > PULL_IPD_MHC
+Aug-10 11:23:08.986 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:28:08.999 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:33:09.038 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:38:09.105 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:43:09.189 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:48:09.274 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:53:09.348 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 11:58:09.417 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:03:09.475 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:08:09.577 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:13:09.680 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:18:09.707 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:23:09.733 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:28:09.806 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:33:09.883 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:38:09.936 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:43:09.970 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:48:09.977 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
+Aug-10 12:53:10.060 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 1; name: PULL_IPD_MHC; status: RUNNING; exit: -; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27482/work/bc/a05b17b83ddac517fb99b675749f34]
