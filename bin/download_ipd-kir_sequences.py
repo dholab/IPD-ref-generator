@@ -30,7 +30,7 @@ with open("ipd-kir-nhp-" + datetime.today().strftime('%Y-%m-%d') + ".gbk", "a") 
         for i in nhp_id:     
           
           # get record
-          u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdkir;id=" + i + ";style=raw")
+          u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdnhkir;id=" + i + ";style=raw")
 
           # IPD MHC uses non-standard ID line
           # need to remove first two semicolons in ID line
