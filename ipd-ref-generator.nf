@@ -81,8 +81,9 @@ process PULL_IPD_MHC {
 	
 	tag "${ipd_num}"
 	
-	time '6h'
-	maxRetries 2
+	time '30 seconds'
+	errorStrategy 'retry'
+	maxRetries 4
 	
 	when:
 	params.pull_mhc == true
