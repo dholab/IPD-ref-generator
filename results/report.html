@@ -18,11 +18,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Nextflow workflow report for run id [nostalgic_church]">
+  <meta name="description" content="Nextflow workflow report for run id [silly_allen]">
   <meta name="author" content="Paolo Di Tommaso, Phil Ewels">
   <link rel="icon" type="image/png" href="https://www.nextflow.io/img/favicon.png" />
 
-  <title>[nostalgic_church] Nextflow Workflow Report</title>
+  <title>[silly_allen] Nextflow Workflow Report</title>
 
   <style type="text/css">
   /*!
@@ -137,7 +137,7 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
         <li class="nav-item"><a class="nav-link" href="#tasks">Tasks</a></li>
       </ul>
       <span class="navbar-text">
-        [nostalgic_church]
+        [silly_allen]
       </span>
     </div>
   </nav>
@@ -146,62 +146,37 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
     <div class="container">
 
       <h1 class="display-3">Nextflow workflow report</h1>
-      <h2 class="text-muted mb-4"><samp>[nostalgic_church]</samp> <em>(resumed run)</em></h2>
+      <h2 class="text-muted mb-4"><samp>[silly_allen]</samp> </h2>
 
       
-          <div class="alert alert-danger mb-4">
-              <h4>Workflow execution completed unsuccessfully!</h4>
-              <p>The exit status of the task that caused the workflow execution to fail was: <code>125</code>.</p>
-              <p>The full error message was:</p>
-              <pre>Error executing process > 'PULL_IPD_MHC (2)'
-
-Caused by:
-  Process `PULL_IPD_MHC (2)` terminated with an error exit status (125)
-
-Command executed:
-
-  download_ipd-mhc_sequences.py 2
-
-Command exit status:
-  125
-
-Command output:
-  (empty)
-
-Command error:
-  docker: invalid reference format.
-  See 'docker run --help'.
-
-Work dir:
-  /Users/nicholasminor/Documents/dholk_experiments/27564/work/ec/e75aea77dbd5f9a42ef385b5c4c717
-
-Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line</pre>
+          <div class="alert alert-success mb-4">
+              Workflow execution completed successfully!
           </div>
       
 
       <dl>
         <dt>Run times</dt>
         <dd>
-          <span id="workflow_start">10-Aug-2022 15:34:37</span> - <span id="workflow_complete">10-Aug-2022 15:34:40</span>
-          (<span id="completed_fromnow"></span>duration: <strong>2.9s</strong>)
+          <span id="workflow_start">11-Aug-2022 12:36:13</span> - <span id="workflow_complete">11-Aug-2022 14:03:04</span>
+          (<span id="completed_fromnow"></span>duration: <strong>1h 26m 51s</strong>)
         </dd>
 
         <dl>
           <div class="progress" style="height: 1.6rem; margin: 1.2rem auto; border-radius: 0.20rem;">
-            <div style="width: 0.0%" class="progress-bar bg-success" data-toggle="tooltip" data-placement="top" title="0 tasks succeeded"><span class="text-truncate">&nbsp; 0 succeeded &nbsp;</span></div>
+            <div style="width: 99.99%" class="progress-bar bg-success" data-toggle="tooltip" data-placement="top" title="10964 tasks succeeded"><span class="text-truncate">&nbsp; 10964 succeeded &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-secondary" data-toggle="tooltip" data-placement="top" title="0 tasks were cached"><span class="text-truncate">&nbsp; 0 cached &nbsp;</span></div>
             <div style="width: 0.0%" class="progress-bar bg-warning" data-toggle="tooltip" data-placement="top" title="0 tasks reported and error and were ignored"><span class="text-truncate">&nbsp; 0 ignored &nbsp;</span></div>
-            <div style="width: 100.0%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="1 tasks failed"><span class="text-truncate">&nbsp; 1 failed &nbsp;</span></div>
+            <div style="width: 0.01%" class="progress-bar bg-danger" data-toggle="tooltip" data-placement="top" title="1 tasks failed"><span class="text-truncate">&nbsp; 1 failed &nbsp;</span></div>
           </div>
         </dl>
 
         <dt>Nextflow command</dt>
-        <dd><pre class="nfcommand"><code>nextflow run ipd-ref-generator.nf -resume</code></pre></dd>
+        <dd><pre class="nfcommand"><code>nextflow run ipd-ref-generator.nf</code></pre></dd>
       </dl>
 
       <dl class="row small">
         <dt class="col-sm-3">CPU-Hours</dt>
-        <dd class="col-sm-9"><samp>(a few seconds)</samp></dd>
+        <dd class="col-sm-9"><samp>6.2 (0.3% failed)</samp></dd>
 
         <dt class="col-sm-3">Launch directory</dt>
         <dd class="col-sm-9"><samp>/Users/nicholasminor/Documents/dholk_experiments/27564</samp></dd>
@@ -219,11 +194,11 @@ Tip: when you have fixed the problem you can continue the execution adding the o
 
         
           <dt class="col-sm-3">Script ID</dt>
-          <dd class="col-sm-9"><code>673ef18bc2aa66bb5efe9fdcaa9cab0c</code></dd>
+          <dd class="col-sm-9"><code>abbdcf0c14b719dc188e2d956d05297c</code></dd>
         
 
         <dt class="col-sm-3">Workflow session</dt>
-        <dd class="col-sm-9"><code>0c75edde-9214-477c-8f1a-ad8ffa9961bf</code></dd>
+        <dd class="col-sm-9"><code>7e5cbaa7-7e4b-4840-8176-072e7ff04e1f</code></dd>
 
         
 
@@ -232,7 +207,7 @@ Tip: when you have fixed the problem you can continue the execution adding the o
 
         
         <dt class="col-sm-3">Workflow container</dt>
-        <dd class="col-sm-9"><samp>/ipd-ref-generator:v1_0_7</samp></dd>
+        <dd class="col-sm-9"><samp>nrminor/ipd-ref-generator:v1_0_9</samp></dd>
 
         <dt class="col-sm-3">Container engine</dt>
         <dd class="col-sm-9"><samp>docker</samp></dd>
@@ -1060,8 +1035,7 @@ $(function() {
 
 
   // Nextflow report data
-  window.data = { "trace":[
-{"task_id":"24","hash":"ec\/e75aea","native_id":"1435","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"2","name":"PULL_IPD_MHC (2)","status":"FAILED","exit":"125","submit":"1660163679766","start":"1660163679830","complete":"1660163680157","duration":"391","realtime":"327","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/ec\/e75aea77dbd5f9a42ef385b5c4c717","script":"\n\n\tdownload_ipd-mhc_sequences.py 2\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"34","hash":"df\/f9ec9b","native_id":"1456","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"6","name":"PULL_IPD_MHC (6)","status":"FAILED","exit":"125","submit":"1660163679854","start":"1660163679930","complete":"1660163680737","duration":"883","realtime":"807","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/df\/f9ec9b37db06094ba7195ac92a404f","script":"\n\n\tdownload_ipd-mhc_sequences.py 6\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"14","hash":"aa\/ee7aa8","native_id":"1472","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"1","name":"PULL_IPD_MHC (1)","status":"FAILED","exit":"125","submit":"1660163679934","start":"1660163680034","complete":"1660163680740","duration":"806","realtime":"706","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/aa\/ee7aa8c25e50a32a3f94b232fe0e95","script":"\n\n\tdownload_ipd-mhc_sequences.py 1\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"2","hash":"1d\/71d058","native_id":"1499","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"0","name":"PULL_IPD_MHC (0)","status":"FAILED","exit":"125","submit":"1660163680028","start":"1660163680043","complete":"1660163680742","duration":"714","realtime":"699","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/1d\/71d05810794d05fadf5a515867bbd4","script":"\n\n\tdownload_ipd-mhc_sequences.py 0\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"TERMINATE","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"35","hash":"9d\/9cab39","native_id":"1542","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"7","name":"PULL_IPD_MHC (7)","status":"ABORTED","exit":"-","submit":"1660163680334","start":"0","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/9d\/9cab392d2739f6b8bcd0235283b4ea","script":"\n\n\tdownload_ipd-mhc_sequences.py 7\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"25","hash":"ab\/55b6d0","native_id":"1544","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"3","name":"PULL_IPD_MHC (3)","status":"ABORTED","exit":"-","submit":"1660163680351","start":"0","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/ab\/55b6d0e68a27bdda2bd90536d06d0c","script":"\n\n\tdownload_ipd-mhc_sequences.py 3\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"},{"task_id":"33","hash":"01\/891a3f","native_id":"1575","process":"PULL_IPD_MHC","module":"-","container":"\/ipd-ref-generator:v1_0_7","tag":"5","name":"PULL_IPD_MHC (5)","status":"ABORTED","exit":"-","submit":"1660163680433","start":"0","complete":"-","duration":"-","realtime":"-","%cpu":"-","%mem":"-","rss":"-","vmem":"-","peak_rss":"-","peak_vmem":"-","rchar":"-","wchar":"-","syscr":"-","syscw":"-","read_bytes":"-","write_bytes":"-","attempt":"1","workdir":"\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/work\/01\/891a3ff62bdbc20934651a6caa5308","script":"\n\n\tdownload_ipd-mhc_sequences.py 5\n\n\t","scratch":"-","queue":"-","cpus":"1","memory":"-","disk":"-","time":"21600000","env":"PATH=\/Users\/nicholasminor\/Documents\/dholk_experiments\/27564\/bin:$PATH\n","error_action":"-","vol_ctxt":"-","inv_ctxt":"-"}], "summary":[{"cpuUsage":null,"process":"PULL_IPD_MHC","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":null,"cpu":null,"time":{"mean":675.33,"min":327,"q1":700.75,"q2":706,"q3":781.75,"max":807,"minLabel":"PULL_IPD_MHC (2)","maxLabel":"PULL_IPD_MHC (6)","q1Label":"PULL_IPD_MHC (0)","q2Label":"PULL_IPD_MHC (1)","q3Label":"PULL_IPD_MHC (1)"},"writes":null}] };
+  window.data = { "trace":null, "summary":[{"cpuUsage":{"mean":29.91,"min":7.6,"q1":28,"q2":29.8,"q3":32,"max":49,"minLabel":"PULL_IPD_MHC (4747)","maxLabel":"PULL_IPD_MHC (889)","q1Label":"PULL_IPD_MHC (4237)","q2Label":"PULL_IPD_MHC (9758)","q3Label":"PULL_IPD_MHC (6556)"},"process":"PULL_IPD_MHC","mem":{"mean":44810227.67,"min":3182592,"q1":47366144,"q2":47570944,"q3":47894528,"max":49274880,"minLabel":"PULL_IPD_MHC (6183)","maxLabel":"PULL_IPD_MHC (4269)","q1Label":"PULL_IPD_MHC (9905)","q2Label":"PULL_IPD_MHC (1294)","q3Label":"PULL_IPD_MHC (8286)"},"memUsage":null,"timeUsage":{"mean":3.36,"min":1.76,"q1":3.05,"q2":3.27,"q3":3.51,"max":100.02,"minLabel":"PULL_IPD_MHC (5020)","maxLabel":"PULL_IPD_MHC (10602)","q1Label":"PULL_IPD_MHC (3917)","q2Label":"PULL_IPD_MHC (9640)","q3Label":"PULL_IPD_MHC (2163)"},"vmem":{"mean":514802947.85,"min":5877760,"q1":523010048,"q2":523014144,"q3":523018240,"max":524218368,"minLabel":"PULL_IPD_MHC (67)","maxLabel":"PULL_IPD_MHC (902)","q1Label":"PULL_IPD_MHC (3858)","q2Label":"PULL_IPD_MHC (4365)","q3Label":"PULL_IPD_MHC (8840)"},"reads":{"mean":6788863.19,"min":6523597,"q1":6869755.5,"q2":6873685,"q3":6875095.5,"max":6939696,"minLabel":"PULL_IPD_MHC (0)","maxLabel":"PULL_IPD_MHC (1742)","q1Label":"PULL_IPD_MHC (2628)","q2Label":"PULL_IPD_MHC (2611)","q3Label":"PULL_IPD_MHC (6913)"},"cpu":{"mean":29.91,"min":7.6,"q1":28,"q2":29.8,"q3":32,"max":49,"minLabel":"PULL_IPD_MHC (4747)","maxLabel":"PULL_IPD_MHC (889)","q1Label":"PULL_IPD_MHC (4237)","q2Label":"PULL_IPD_MHC (9758)","q3Label":"PULL_IPD_MHC (6556)"},"time":{"mean":2016.11,"min":1056,"q1":1831,"q2":1963,"q3":2105,"max":60013,"minLabel":"PULL_IPD_MHC (5020)","maxLabel":"PULL_IPD_MHC (10602)","q1Label":"PULL_IPD_MHC (3917)","q2Label":"PULL_IPD_MHC (9640)","q3Label":"PULL_IPD_MHC (2163)"},"writes":{"mean":13010.6,"min":5562,"q1":7761.5,"q2":12901,"q3":16077.5,"max":66801,"minLabel":"PULL_IPD_MHC (4747)","maxLabel":"PULL_IPD_MHC (318)","q1Label":"PULL_IPD_MHC (10022)","q2Label":"PULL_IPD_MHC (9013)","q3Label":"PULL_IPD_MHC (6962)"}},{"cpuUsage":{"mean":12.9,"min":12.9,"q1":12.9,"q2":12.9,"q3":12.9,"max":12.9,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"process":"CONCAT_MHC","mem":{"mean":22745088,"min":22745088,"q1":22745088,"q2":22745088,"q3":22745088,"max":22745088,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"memUsage":null,"timeUsage":null,"vmem":{"mean":27672576,"min":27672576,"q1":27672576,"q2":27672576,"q3":27672576,"max":27672576,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"reads":{"mean":49349275,"min":49349275,"q1":49349275,"q2":49349275,"q3":49349275,"max":49349275,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"cpu":{"mean":12.9,"min":12.9,"q1":12.9,"q2":12.9,"q3":12.9,"max":12.9,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"time":{"mean":119403,"min":119403,"q1":119403,"q2":119403,"q3":119403,"max":119403,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"},"writes":{"mean":49298699,"min":49298699,"q1":49298699,"q2":49298699,"q3":49298699,"max":49298699,"minLabel":"CONCAT_MHC (10958)","maxLabel":"CONCAT_MHC (10958)","q1Label":"CONCAT_MHC (10958)","q2Label":"CONCAT_MHC (10958)","q3Label":"CONCAT_MHC (10958)"}},{"cpuUsage":{"mean":61.38,"min":58.9,"q1":60.48,"q2":61.1,"q3":62,"max":64.4,"minLabel":"CLEAN_IPD (mhc-mamu)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mamu)","q2Label":"CLEAN_IPD (mhc-mafa)","q3Label":"CLEAN_IPD (mhc-mane)"},"process":"CLEAN_IPD","mem":{"mean":41517056,"min":41009152,"q1":41218048,"q2":41555968,"q3":41854976,"max":41947136,"minLabel":"CLEAN_IPD (mhc-mane)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mane)","q2Label":"CLEAN_IPD (mhc-mamu)","q3Label":"CLEAN_IPD (mhc-mafa)"},"memUsage":null,"timeUsage":null,"vmem":{"mean":517103616,"min":517001216,"q1":517102592,"q2":517136384,"q3":517137408,"max":517140480,"minLabel":"CLEAN_IPD (mhc-mane)","maxLabel":"CLEAN_IPD (mhc-mafa)","q1Label":"CLEAN_IPD (mhc-mane)","q2Label":"CLEAN_IPD (mhc-mamu)","q3Label":"CLEAN_IPD (mhc-nhp-)"},"reads":{"mean":17771036,"min":8098510,"q1":12512884,"q2":14275005,"q3":19533157,"max":34435624,"minLabel":"CLEAN_IPD (mhc-mane)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mane)","q2Label":"CLEAN_IPD (mhc-mamu)","q3Label":"CLEAN_IPD (mhc-mafa)"},"cpu":{"mean":61.38,"min":58.9,"q1":60.48,"q2":61.1,"q3":62,"max":64.4,"minLabel":"CLEAN_IPD (mhc-mamu)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mamu)","q2Label":"CLEAN_IPD (mhc-mafa)","q3Label":"CLEAN_IPD (mhc-mane)"},"time":{"mean":7753.5,"min":2538,"q1":5430.75,"q2":6620.5,"q3":8943.25,"max":15235,"minLabel":"CLEAN_IPD (mhc-mane)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mane)","q2Label":"CLEAN_IPD (mhc-mamu)","q3Label":"CLEAN_IPD (mhc-mafa)"},"writes":{"mean":12194059,"min":2600812,"q1":7040462.5,"q2":8749659,"q3":13903255.5,"max":28676106,"minLabel":"CLEAN_IPD (mhc-mane)","maxLabel":"CLEAN_IPD (mhc-nhp-)","q1Label":"CLEAN_IPD (mhc-mane)","q2Label":"CLEAN_IPD (mhc-mamu)","q3Label":"CLEAN_IPD (mhc-mafa)"}}] };
 
   </script>
 

@@ -47,7 +47,7 @@ workflow {
 		PULL_KIR_PROTEINS.out
 	)
 
-	CLEAN_IPD (
+	CLEAN_ALLELES (
 		CONCAT_MHC.out
 		.flatten()
 		.map{ file -> tuple(file.getSimpleName(), file) }
@@ -61,11 +61,11 @@ workflow {
 	)
 
 	IWES_TRIMMING (
-		CLEAN_IPD.out
+		CLEAN_ALLELES.out
 	)
 
 	MISEQ_TRIMMING (
-		CLEAN_IPD.out
+		CLEAN_ALLELES.out
 	)
 
 	ALLELE_SORTING (
@@ -325,7 +325,7 @@ process CONCAT_KIR_PROTEINS {
 }
 
 
-process CLEAN_IPD {
+process CLEAN_ALLELES {
 
 	// This process removes X's that are in amongst the bases in each sequence, and b) removes
 	// sequences that are less than 100 base pairs long.
