@@ -155,6 +155,8 @@ process PULL_IPD_KIR {
 	errorStrategy 'retry'
 	maxRetries 4
 	
+	publishDir params.kir_temp, pattern: '*.gbk', mode: 'move'
+	
 	when:
 	params.pull_kir == true
 	
@@ -214,6 +216,8 @@ process PULL_MHC_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 4
 	
+	publishDir params.mhc_prot_temp, pattern: '*.gbk', mode: 'move'
+	
 	when:
 	params.pull_mhc_proteins == true
 	
@@ -270,6 +274,8 @@ process PULL_KIR_PROTEINS {
 	time '1 minute'
 	errorStrategy 'retry'
 	maxRetries 4
+	
+	publishDir params.kir_prot_temp, pattern: '*.gbk', mode: 'move'
 	
 	when:
 	params.pull_kir_proteins == true
