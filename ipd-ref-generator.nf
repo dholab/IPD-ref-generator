@@ -6,20 +6,21 @@ nextflow.enable.dsl = 2
 // Defining the reference-generator workflow
 workflow {
 	
-	ch_mhc_count = Channel.from( 0..params.mhc_allele_count )
+	ch_mhc_count = Channel.of( 0..params.mhc_allele_count )
 	
-	ch_kir_count = Channel.from( 0..params.kir_allele_count )
+	ch_kir_count = Channel.of( 0..params.kir_allele_count )
 	
-	ch_mhc_prot = Channel.from( 0..params.mhc_protein_count )
+	ch_mhc_prot = Channel.of( 0..params.mhc_protein_count )
 	
-	ch_kir_prot = Channel.from( 0..params.kir_protein_count )
+	ch_kir_prot = Channel.of( 0..params.kir_protein_count )
+
 
 	PULL_IPD_MHC (
 		ch_mhc_count
 	)
 	
 	CONCAT_MHC (
-		PULL_IPD_MHC.out.collect()
+		PULL_IPD_MHC.out
 	)
 	
 	PULL_IPD_KIR (
@@ -27,15 +28,23 @@ workflow {
 	)
 	
 	CONCAT_KIR (
-		PULL_IPD_KIR.out.collect()
+		PULL_IPD_KIR.out
 	)
 	
 	PULL_MHC_PROTEINS (
 		ch_mhc_prot
 	)
 	
+	CONCAT_MHC_PROTEINS (
+		PULL_MHC_PROTEINS.out
+	)
+	
 	PULL_KIR_PROTEINS (
 		ch_kir_prot
+	)
+	
+	CONCAT_KIR_PROTEINS (
+		PULL_KIR_PROTEINS.out
 	)
 
 	CLEAN_IPD (
@@ -81,9 +90,11 @@ process PULL_IPD_MHC {
 	
 	tag "${ipd_num}"
 	
-	time '30 seconds'
+	time '1 minute'
 	errorStrategy 'retry'
 	maxRetries 4
+	
+	publishDir params.mhc_temp, pattern: '*.gbk', mode: 'move'
 	
 	when:
 	params.pull_mhc == true
@@ -92,13 +103,13 @@ process PULL_IPD_MHC {
 	val(ipd_num)
 
 	output:
-	path("*.gbk")
+	tuple val(ipd_num), path("*.gbk")
 
 	script:
 	"""
-
+	
 	download_ipd-mhc_sequences.py ${ipd_num}
-
+	
 	"""
 
 }
@@ -106,23 +117,25 @@ process PULL_IPD_MHC {
 
 process CONCAT_MHC {
 	
+	when:
+	ipd_num == params.mhc_allele_count
+	
 	input:
-	path(allele_files)
+	tuple val(ipd_num), path(gbk)
 	
 	output:
 	path("*.gbk")
 	
-	script:
-	mafa = "ipd-mhc-mafa-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	mamu = "ipd-mhc-mamu-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	mane = "ipd-mhc-mane-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	nhp = "ipd-mhc-nhp-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	shell:
+	date = new java.util.Date().format('yyyy-MM-dd')
 	
 	"""
-	cat ipd-mhc-mafa*.gbk > ${mafa}
-	cat ipd-mhc-mamu*.gbk > ${mamu}
-	cat ipd-mhc-mane*.gbk > ${mane}
-	cat ipd-mhc-nhp*.gbk > ${nhp}
+	cat ${params.mhc_temp}/ipd-mhc-mafa*.gbk > ipd-mhc-mafa-${date}.gbk
+	cat ${params.mhc_temp}/ipd-mhc-mamu*.gbk > ipd-mhc-mamu-${date}.gbk
+	cat ${params.mhc_temp}/ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}.gbk
+	cat ${params.mhc_temp}/ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}.gbk
+	
+	rm -rf ${params.mhc_temp}
 	"""
 	
 }
@@ -136,6 +149,12 @@ process PULL_IPD_KIR {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
+	tag "${ipd_num}"
+	
+	time '1 minute'
+	errorStrategy 'retry'
+	maxRetries 4
+	
 	when:
 	params.pull_kir == true
 	
@@ -143,7 +162,7 @@ process PULL_IPD_KIR {
 	val(ipd_num)
 
 	output:
-	path("*.gbk")
+	tuple val(ipd_num), path("*.gbk")
 
 	script:
 	"""
@@ -157,23 +176,28 @@ process PULL_IPD_KIR {
 
 process CONCAT_KIR {
 	
+	tag "${ipd_num}"
+	publishDir params.results, mode: 'move'
+	
+	when:
+	ipd_num == params.kir_allele_count
+	
 	input:
-	path(allele_files)
+	tuple val(ipd_num), path(gbk)
 	
 	output:
 	path("*.gbk")
 	
 	script:
-	mafa = "ipd-mhc-mafa-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	mamu = "ipd-mhc-mamu-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	mane = "ipd-mhc-mane-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
-	nhp = "ipd-mhc-nhp-" + java.util.Date().format( 'yyyy-MM-dd') + ".gbk"
+	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
 	"""
-	cat ipd-mhc-mafa*.gbk > ${mafa}
-	cat ipd-mhc-mamu*.gbk > ${mamu}
-	cat ipd-mhc-mane*.gbk > ${mane}
-	cat ipd-mhc-nhp*.gbk > ${nhp}
+	cat ipd-kir-mafa*.gbk > ipd-kir-mafa-${date}.gbk
+	cat ipd-kir-mamu*.gbk > ipd-kir-mamu-${date}.gbk
+	cat ipd-kir-mane*.gbk > ipd-kir-mane-${date}.gbk
+	cat ipd-kir-nhp*.gbk > ipd-kir-nhp-${date}.gbk
+	
+	rm -rf ${params.kir_temp}
 	"""
 	
 }
@@ -184,7 +208,11 @@ process PULL_MHC_PROTEINS {
 	// This process pulls the current full roster non-human MHC proteins, as listed in
 	// the latest Immuno Polymorphism Database release.
 	
-	publishDir params.results, mode: 'move'
+	tag "${ipd_num}"
+	
+	time '1 minute'
+	errorStrategy 'retry'
+	maxRetries 4
 	
 	when:
 	params.pull_mhc_proteins == true
@@ -193,15 +221,42 @@ process PULL_MHC_PROTEINS {
 	val(ipd_num)
 
 	output:
-	path("*.fasta")
+	tuple val(ipd_num), path("*.fasta")
 
 	script:
 	"""
-
 	download_ipd-mhc_proteins.py ${ipd_num}
-
 	"""
 
+}
+
+
+process CONCAT_MHC_PROTEINS {
+	
+	tag "${ipd_num}"
+	publishDir params.results, mode: 'move'
+	
+	when:
+	ipd_num == params.mhc_protein_count
+	
+	input:
+	tuple val(ipd_num), path(fasta)
+	
+	output:
+	path("*.fasta")
+	
+	script:
+	date = new java.util.Date().format( 'yyyy-MM-dd')
+	
+	"""
+	cat ipd-mhc-mafa-prot*.gbk > ipd-mhc-mafa-prot-${date}.gbk
+	cat ipd-mhc-mamu-prot*.gbk > ipd-mhc-mamu-prot-${date}.gbk
+	cat ipd-mhc-mane-prot*.gbk > ipd-mhc-mane-prot-${date}.gbk
+	cat ipd-mhc-nhp-prot*.gbk > ipd-mhc-nhp-prot-${date}.gbk
+	
+	rm -rf ${params.mhc_prot_temp}
+	"""
+	
 }
 
 
@@ -210,7 +265,11 @@ process PULL_KIR_PROTEINS {
 	// This process pulls the current full roster non-human KIR proteins, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	publishDir params.results, mode: 'move'
+	tag "${ipd_num}"
+	
+	time '1 minute'
+	errorStrategy 'retry'
+	maxRetries 4
 	
 	when:
 	params.pull_kir_proteins == true
@@ -219,7 +278,7 @@ process PULL_KIR_PROTEINS {
 	val(ipd_num)
 
 	output:
-	path("*.fasta")
+	tuple val(ipd_num), path("*.fasta")
 
 	script:
 	"""
@@ -228,6 +287,35 @@ process PULL_KIR_PROTEINS {
 
 	"""
 
+}
+
+
+process CONCAT_KIR_PROTEINS {
+	
+	tag "${ipd_num}"
+	publishDir params.results, mode: 'move'
+	
+	when:
+	ipd_num == params.kir_protein_count
+	
+	input:
+	tuple val(ipd_num), path(fasta)
+	
+	output:
+	path("*.fasta")
+	
+	script:
+	date = new java.util.Date().format( 'yyyy-MM-dd')
+	
+	"""
+	cat ipd-kir-mafa-prot*.gbk > ipd-kir-mafa-prot-${date}.gbk
+	cat ipd-kir-mamu-prot*.gbk > ipd-kir-mamu-prot-${date}.gbk
+	cat ipd-kir-mane-prot*.gbk > ipd-kir-mane-prot-${date}.gbk
+	cat ipd-kir-nhp-prot*.gbk > ipd-kir-nhp-prot-${date}.gbk
+	
+	rm -rf ${params.kir_prot_temp}
+	"""
+	
 }
 
 
