@@ -6,13 +6,25 @@ nextflow.enable.dsl = 2
 // Defining the reference-generator workflow
 workflow {
 	
-	ch_mhc_count = Channel.of( 0..params.mhc_allele_count )
+	ch_mhc_count = Channel
+		.of( 0..params.mhc_allele_count )
+		.toSortedList()
+		.flatten()
 	
-	ch_kir_count = Channel.of( 0..params.kir_allele_count )
+	ch_kir_count = Channel
+		.of( 0..params.kir_allele_count )
+		.toSortedList()
+		.flatten()
 	
-	ch_mhc_prot = Channel.of( 0..params.mhc_protein_count )
+	ch_mhc_prot = Channel
+		.of( 0..params.mhc_protein_count )
+		.toSortedList()
+		.flatten()
 	
-	ch_kir_prot = Channel.of( 0..params.kir_protein_count )
+	ch_kir_prot = Channel
+		.of( 0..params.kir_protein_count )
+		.toSortedList()
+		.flatten()
 
 
 	PULL_IPD_MHC (
@@ -94,7 +106,7 @@ process PULL_IPD_MHC {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.mhc_temp, pattern: '*.gbk', mode: 'move'
+	publishDir params.mhc_temp, pattern: '*.gbk', mode: 'copy'
 	
 	when:
 	params.pull_mhc == true
@@ -155,7 +167,7 @@ process PULL_IPD_KIR {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.kir_temp, pattern: '*.gbk', mode: 'move'
+	publishDir params.kir_temp, pattern: '*.gbk', mode: 'copy'
 	
 	when:
 	params.pull_kir == true
@@ -179,7 +191,6 @@ process PULL_IPD_KIR {
 process CONCAT_KIR {
 	
 	tag "${ipd_num}"
-	publishDir params.results, mode: 'move'
 	
 	when:
 	ipd_num == params.kir_allele_count
@@ -194,10 +205,10 @@ process CONCAT_KIR {
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
 	"""
-	cat ipd-kir-mafa*.gbk > ipd-kir-mafa-${date}.gbk
-	cat ipd-kir-mamu*.gbk > ipd-kir-mamu-${date}.gbk
-	cat ipd-kir-mane*.gbk > ipd-kir-mane-${date}.gbk
-	cat ipd-kir-nhp*.gbk > ipd-kir-nhp-${date}.gbk
+	cat ${params.kir_temp}/ipd-kir-mafa*.gbk > ipd-kir-mafa-${date}.gbk
+	cat ${params.kir_temp}/ipd-kir-mamu*.gbk > ipd-kir-mamu-${date}.gbk
+	cat ${params.kir_temp}/ipd-kir-mane*.gbk > ipd-kir-mane-${date}.gbk
+	cat ${params.kir_temp}/ipd-kir-nhp*.gbk > ipd-kir-nhp-${date}.gbk
 	
 	rm -rf ${params.kir_temp}
 	"""
@@ -216,7 +227,7 @@ process PULL_MHC_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.mhc_prot_temp, pattern: '*.gbk', mode: 'move'
+	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: 'copy'
 	
 	when:
 	params.pull_mhc_proteins == true
@@ -253,10 +264,10 @@ process CONCAT_MHC_PROTEINS {
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
 	"""
-	cat ipd-mhc-mafa-prot*.gbk > ipd-mhc-mafa-prot-${date}.gbk
-	cat ipd-mhc-mamu-prot*.gbk > ipd-mhc-mamu-prot-${date}.gbk
-	cat ipd-mhc-mane-prot*.gbk > ipd-mhc-mane-prot-${date}.gbk
-	cat ipd-mhc-nhp-prot*.gbk > ipd-mhc-nhp-prot-${date}.gbk
+	cat ${params.mhc_prot_temp}/ipd-mhc-mafa-prot*.fasta > ipd-mhc-mafa-prot-${date}.fasta
+	cat ${params.mhc_prot_temp}/ipd-mhc-mamu-prot*.fasta > ipd-mhc-mamu-prot-${date}.fasta
+	cat ${params.mhc_prot_temp}/ipd-mhc-mane-prot*.fasta > ipd-mhc-mane-prot-${date}.fasta
+	cat ${params.mhc_prot_temp}/ipd-mhc-nhp-prot*.fasta > ipd-mhc-nhp-prot-${date}.fasta
 	
 	rm -rf ${params.mhc_prot_temp}
 	"""
@@ -275,7 +286,7 @@ process PULL_KIR_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.kir_prot_temp, pattern: '*.gbk', mode: 'move'
+	publishDir params.kir_prot_temp, pattern: '*.fasta', mode: 'copy'
 	
 	when:
 	params.pull_kir_proteins == true
@@ -314,10 +325,10 @@ process CONCAT_KIR_PROTEINS {
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
 	"""
-	cat ipd-kir-mafa-prot*.gbk > ipd-kir-mafa-prot-${date}.gbk
-	cat ipd-kir-mamu-prot*.gbk > ipd-kir-mamu-prot-${date}.gbk
-	cat ipd-kir-mane-prot*.gbk > ipd-kir-mane-prot-${date}.gbk
-	cat ipd-kir-nhp-prot*.gbk > ipd-kir-nhp-prot-${date}.gbk
+	cat ${params.kir_prot_temp}/ipd-kir-mafa-prot*.fasta > ipd-kir-mafa-prot-${date}.fasta
+	cat ${params.kir_prot_temp}/ipd-kir-mamu-prot*.fasta > ipd-kir-mamu-prot-${date}.fasta
+	cat ${params.kir_prot_temp}/ipd-kir-mane-prot*.fasta > ipd-kir-mane-prot-${date}.fasta
+	cat ${params.kir_prot_temp}/ipd-kir-nhp-prot*.fasta > ipd-kir-nhp-prot-${date}.fasta
 	
 	rm -rf ${params.kir_prot_temp}
 	"""
