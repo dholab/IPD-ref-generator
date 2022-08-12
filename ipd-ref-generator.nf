@@ -190,8 +190,6 @@ process PULL_IPD_KIR {
 
 process CONCAT_KIR {
 	
-	tag "${ipd_num}"
-	
 	when:
 	ipd_num == params.kir_allele_count
 	
@@ -248,7 +246,6 @@ process PULL_MHC_PROTEINS {
 
 process CONCAT_MHC_PROTEINS {
 	
-	tag "${ipd_num}"
 	publishDir params.results, mode: 'move'
 	
 	when:
@@ -309,7 +306,6 @@ process PULL_KIR_PROTEINS {
 
 process CONCAT_KIR_PROTEINS {
 	
-	tag "${ipd_num}"
 	publishDir params.results, mode: 'move'
 	
 	when:
