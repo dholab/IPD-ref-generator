@@ -180,7 +180,6 @@ process PULL_IPD_MHC {
 	tuple val(ipd_num), path("*.gbk")
 
 	script:
-	
 	"""
 	
 	download_ipd-mhc_sequences.py ${ipd_num}
@@ -211,6 +210,27 @@ process CONCAT_MHC {
 	cat ${params.mhc_temp}/ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}.gbk
 	
 	rm -rf ${params.mhc_temp}
+	
+	if test -f ${params.results}/ipd-mhc-mamu-${date}_added.gbk; then
+		cat ${params.results}/ipd-mhc-mamu-${date}_added.gbk >> ipd-mhc-mamu-${date}.gbk
+		rm ${params.results}/ipd-mhc-mamu-${date}_added.gbk
+	fi
+	
+	if test -f ${params.results}/ipd-mhc-mafa-${date}_added.gbk; then
+		cat ${params.results}/ipd-mhc-mafa-${date}_added.gbk >> ipd-mhc-mafa-${date}.gbk
+		rm ${params.results}/ipd-mhc-mafa-${date}_added.gbk
+	fi
+	
+	if test -f ${params.results}/ipd-mhc-mane-${date}_added.gbk; then
+		cat ${params.results}/ipd-mhc-mane-${date}_added.gbk >> ipd-mhc-mane-${date}.gbk
+		rm ${params.results}/ipd-mhc-mane-${date}_added.gbk
+	fi
+	
+	if test -f ${params.results}/ipd-mhc-nhp-${date}_added.gbk; then
+		cat ${params.results}/ipd-mhc-nhp-${date}_added.gbk >> ipd-mhc-nhp--${date}.gbk
+		rm ${params.results}/ipd-mhc-nhp-${date}_added.gbk
+	fi
+	
 	"""
 	
 }
