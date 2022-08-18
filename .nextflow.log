@@ -1,276 +1,276 @@
-Aug-18 12:05:25.678 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf
-Aug-18 12:05:25.748 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
-Aug-18 12:05:25.768 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27586/nextflow.config
-Aug-18 12:05:25.769 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27586/nextflow.config
-Aug-18 12:05:25.789 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Aug-18 12:05:26.423 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [sick_easley] DSL2 - revision: 4900d04f44
-Aug-18 12:05:26.437 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
-Aug-18 12:05:26.439 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Aug-18 12:05:26.449 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Aug-18 12:05:26.450 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Aug-18 12:05:26.453 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Aug-18 12:05:26.462 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Aug-18 12:05:26.511 [main] DEBUG nextflow.Session - Session uuid: 7a37b08a-6698-4740-b60d-15c0fb1e1d51
-Aug-18 12:05:26.511 [main] DEBUG nextflow.Session - Run name: sick_easley
-Aug-18 12:05:26.512 [main] DEBUG nextflow.Session - Executor pool size: 8
-Aug-18 12:05:26.543 [main] DEBUG nextflow.cli.CmdRun - 
+Aug-18 12:10:12.564 [main] DEBUG nextflow.cli.Launcher - $> nextflow run ipd-ref-generator.nf
+Aug-18 12:10:12.640 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 22.04.0
+Aug-18 12:10:12.666 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/nicholasminor/Documents/dholk_experiments/27586/nextflow.config
+Aug-18 12:10:12.668 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/nicholasminor/Documents/dholk_experiments/27586/nextflow.config
+Aug-18 12:10:12.690 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Aug-18 12:10:13.374 [main] INFO  nextflow.cli.CmdRun - Launching `ipd-ref-generator.nf` [gloomy_kalman] DSL2 - revision: b78959dc62
+Aug-18 12:10:13.388 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/nicholasminor/.nextflow/plugins; core-plugins: nf-amazon@1.7.1,nf-azure@0.13.1,nf-console@1.0.3,nf-ga4gh@1.0.3,nf-google@1.1.4,nf-sqldb@0.4.0,nf-tower@1.4.0
+Aug-18 12:10:13.390 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Aug-18 12:10:13.400 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Aug-18 12:10:13.401 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Aug-18 12:10:13.405 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Aug-18 12:10:13.414 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Aug-18 12:10:13.466 [main] DEBUG nextflow.Session - Session uuid: 3ef6b523-0f44-4108-b07d-88e6260c210a
+Aug-18 12:10:13.466 [main] DEBUG nextflow.Session - Run name: gloomy_kalman
+Aug-18 12:10:13.467 [main] DEBUG nextflow.Session - Executor pool size: 8
+Aug-18 12:10:13.498 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 22.04.0 build 5697
   Created: 23-04-2022 18:00 UTC (13:00 CDT)
   System: Mac OS X 12.3.1
   Runtime: Groovy 3.0.10 on OpenJDK 64-Bit Server VM 11.0.13+7-b1751.21
   Encoding: UTF-8 (UTF-8)
-  Process: 45001@PATH-DESK-1734.local [127.0.0.1]
-  CPUs: 8 - Mem: 64 GB (18.6 GB) - Swap: 5 GB (1.2 GB)
-Aug-18 12:05:26.555 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27586/work [Mac OS X]
-Aug-18 12:05:26.574 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Aug-18 12:05:26.585 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Aug-18 12:05:26.636 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Aug-18 12:05:26.646 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Aug-18 12:05:26.714 [main] DEBUG nextflow.Session - Session start invoked
-Aug-18 12:05:26.717 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27586/results/trace.txt
-Aug-18 12:05:27.595 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Aug-18 12:05:27.839 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.839 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.843 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Aug-18 12:05:27.848 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Aug-18 12:05:27.935 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.936 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.956 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.956 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.965 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.966 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.972 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.972 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.980 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.981 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.987 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.987 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:27.993 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:27.993 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.002 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.002 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.008 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.008 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.026 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.026 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.032 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.032 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.037 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.037 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.042 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.042 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.048 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
-Aug-18 12:05:28.048 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Aug-18 12:05:28.054 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CONCAT_KIR, CONCAT_MHC_PROTEINS, CONCAT_KIR_PROTEINS, ALLELE_SORTING, PULL_MHC_PROTEINS, ALLELE_GROUP_NAMING, PULL_KIR_PROTEINS, PULL_IPD_KIR, CLEAN_ALLELES, IWES_TRIMMING, CONCAT_MHC, MISEQ_TRIMMING, PULL_SPEC_SAMPLES, PULL_IPD_MHC, CONCAT_SPEC_SAMPLES
-Aug-18 12:05:28.055 [main] DEBUG nextflow.Session - Ignite dataflow network (20)
-Aug-18 12:05:28.082 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_SPEC_SAMPLES
-Aug-18 12:05:28.083 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_SPEC_SAMPLES
-Aug-18 12:05:28.083 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
-Aug-18 12:05:28.083 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_MHC
-Aug-18 12:05:28.083 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
-Aug-18 12:05:28.084 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_KIR
-Aug-18 12:05:28.084 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
-Aug-18 12:05:28.085 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_MHC_PROTEINS
-Aug-18 12:05:28.086 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
-Aug-18 12:05:28.086 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_KIR_PROTEINS
-Aug-18 12:05:28.088 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_ALLELES
-Aug-18 12:05:28.088 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IWES_TRIMMING
-Aug-18 12:05:28.089 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MISEQ_TRIMMING
-Aug-18 12:05:28.089 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ALLELE_SORTING
-Aug-18 12:05:28.089 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ALLELE_GROUP_NAMING
-Aug-18 12:05:28.089 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Aug-18 12:05:28.089 [main] DEBUG nextflow.Session - Session await
-Aug-18 12:05:28.833 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:28.839 [Task submitter] INFO  nextflow.Session - [7d/0b13a7] Submitted process > PULL_SPEC_SAMPLES (5)
-Aug-18 12:05:28.878 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:28.879 [Task submitter] INFO  nextflow.Session - [05/8a28a6] Submitted process > PULL_SPEC_SAMPLES (7)
-Aug-18 12:05:28.937 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:28.938 [Task submitter] INFO  nextflow.Session - [de/992e6a] Submitted process > PULL_SPEC_SAMPLES (3)
-Aug-18 12:05:29.101 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:29.104 [Task submitter] INFO  nextflow.Session - [92/be96a0] Submitted process > PULL_SPEC_SAMPLES (1)
-Aug-18 12:05:29.194 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:29.196 [Task submitter] INFO  nextflow.Session - [77/30a366] Submitted process > PULL_SPEC_SAMPLES (9)
-Aug-18 12:05:29.266 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:29.266 [Task submitter] INFO  nextflow.Session - [7a/df89a1] Submitted process > PULL_SPEC_SAMPLES (6)
-Aug-18 12:05:29.312 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:29.313 [Task submitter] INFO  nextflow.Session - [40/3d4dca] Submitted process > PULL_SPEC_SAMPLES (8)
-Aug-18 12:05:29.436 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:29.438 [Task submitter] INFO  nextflow.Session - [58/d6222f] Submitted process > PULL_SPEC_SAMPLES (4)
-Aug-18 12:05:33.556 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 26; name: PULL_SPEC_SAMPLES (8); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/40/3d4dca392e6baef408c5d41683ddcf]
-Aug-18 12:05:33.563 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:33.563 [Task submitter] INFO  nextflow.Session - [7e/520c2f] Submitted process > PULL_SPEC_SAMPLES (2)
-Aug-18 12:05:33.801 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 27; name: PULL_SPEC_SAMPLES (9); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/77/30a366d5ed1fa0e27c8e62dde5cb43]
-Aug-18 12:05:33.807 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:33.807 [Task submitter] INFO  nextflow.Session - [fe/1d0df9] Submitted process > PULL_SPEC_SAMPLES (10)
-Aug-18 12:05:33.874 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: PULL_SPEC_SAMPLES (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/92/be96a0f7454352fe665ec479c164fe]
-Aug-18 12:05:33.879 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:33.880 [Task submitter] INFO  nextflow.Session - [ba/f8d8a9] Submitted process > PULL_SPEC_SAMPLES (11)
-Aug-18 12:05:33.997 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: PULL_SPEC_SAMPLES (3); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/de/992e6afbd5cae654a9131ccc4210fd]
-Aug-18 12:05:34.004 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:34.004 [Task submitter] INFO  nextflow.Session - [10/52fb95] Submitted process > PULL_SPEC_SAMPLES (12)
-Aug-18 12:05:34.157 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 25; name: PULL_SPEC_SAMPLES (7); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/05/8a28a62984e63f5dcae909474a78ae]
-Aug-18 12:05:34.162 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:34.162 [Task submitter] INFO  nextflow.Session - [46/9fbbe5] Submitted process > PULL_SPEC_SAMPLES (13)
-Aug-18 12:05:34.208 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: PULL_SPEC_SAMPLES (5); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/7d/0b13a7c80875588129b30c1370f674]
-Aug-18 12:05:34.213 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:34.214 [Task submitter] INFO  nextflow.Session - [9a/c16b13] Submitted process > PULL_SPEC_SAMPLES (14)
-Aug-18 12:05:34.264 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 24; name: PULL_SPEC_SAMPLES (6); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/7a/df89a19fc70c54bee89c651f206616]
-Aug-18 12:05:34.273 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:34.273 [Task submitter] INFO  nextflow.Session - [17/2e7d4c] Submitted process > PULL_SPEC_SAMPLES (15)
-Aug-18 12:05:34.501 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: PULL_SPEC_SAMPLES (4); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/58/d6222f0c2115dc80a68771318b66b3]
-Aug-18 12:05:34.507 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:34.507 [Task submitter] INFO  nextflow.Session - [0a/dc208d] Submitted process > PULL_SPEC_SAMPLES (16)
-Aug-18 12:05:37.103 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: PULL_SPEC_SAMPLES (2); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/7e/520c2f39578e9bbb75a18595697532]
-Aug-18 12:05:37.109 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:37.109 [Task submitter] INFO  nextflow.Session - [1d/fb96ab] Submitted process > PULL_SPEC_SAMPLES (17)
-Aug-18 12:05:37.226 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3070; name: PULL_SPEC_SAMPLES (10); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/fe/1d0df9ada3f3f920f6d54b33828596]
-Aug-18 12:05:37.236 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:37.236 [Task submitter] INFO  nextflow.Session - [d1/289e00] Submitted process > PULL_SPEC_SAMPLES (18)
-Aug-18 12:05:37.854 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3392; name: PULL_SPEC_SAMPLES (13); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/46/9fbbe5ec49194fd442e4b63950a56f]
-Aug-18 12:05:37.858 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:37.858 [Task submitter] INFO  nextflow.Session - [c0/70452f] Submitted process > PULL_SPEC_SAMPLES (19)
-Aug-18 12:05:37.937 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3119; name: PULL_SPEC_SAMPLES (11); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ba/f8d8a91cfffeece73ab6b885e04b25]
-Aug-18 12:05:37.942 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:37.942 [Task submitter] INFO  nextflow.Session - [f0/1d6266] Submitted process > PULL_SPEC_SAMPLES (20)
-Aug-18 12:05:38.105 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3505; name: PULL_SPEC_SAMPLES (15); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/17/2e7d4c191f38eba9f28b1b79bc47cf]
-Aug-18 12:05:38.109 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:38.110 [Task submitter] INFO  nextflow.Session - [1d/6c633c] Submitted process > PULL_SPEC_SAMPLES (21)
-Aug-18 12:05:38.258 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3332; name: PULL_SPEC_SAMPLES (12); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/10/52fb95ceb16b4e225c306ddc79d2cc]
-Aug-18 12:05:38.262 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:38.263 [Task submitter] INFO  nextflow.Session - [59/57b5ea] Submitted process > PULL_SPEC_SAMPLES (22)
-Aug-18 12:05:38.463 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3452; name: PULL_SPEC_SAMPLES (14); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/9a/c16b1328e16cea1b407af244a0acb5]
-Aug-18 12:05:38.467 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:38.468 [Task submitter] INFO  nextflow.Session - [f7/c633d5] Submitted process > PULL_SPEC_SAMPLES (23)
-Aug-18 12:05:38.487 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3551; name: PULL_SPEC_SAMPLES (16); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/0a/dc208d807a861e832c074ae440761d]
-Aug-18 12:05:38.491 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:38.491 [Task submitter] INFO  nextflow.Session - [6d/5f27f2] Submitted process > PULL_SPEC_SAMPLES (24)
-Aug-18 12:05:40.452 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3602; name: PULL_SPEC_SAMPLES (17); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/1d/fb96ab2ffd1e1d6db21c3056280d1a]
-Aug-18 12:05:40.456 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:40.456 [Task submitter] INFO  nextflow.Session - [93/07e09e] Submitted process > PULL_SPEC_SAMPLES (25)
-Aug-18 12:05:40.763 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3656; name: PULL_SPEC_SAMPLES (18); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/d1/289e006f403fe74e1e111ce412bc12]
-Aug-18 12:05:40.767 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:40.767 [Task submitter] INFO  nextflow.Session - [71/07e4e7] Submitted process > PULL_SPEC_SAMPLES (26)
-Aug-18 12:05:41.378 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3703; name: PULL_SPEC_SAMPLES (19); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c0/70452f12a006e3c1f921279dca3c12]
-Aug-18 12:05:41.382 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:41.382 [Task submitter] INFO  nextflow.Session - [74/8abe6a] Submitted process > PULL_SPEC_SAMPLES (27)
-Aug-18 12:05:41.445 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3785; name: PULL_SPEC_SAMPLES (21); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/1d/6c633cc06d1aa42bbffa4355089ffc]
-Aug-18 12:05:41.449 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:41.449 [Task submitter] INFO  nextflow.Session - [37/73b8f2] Submitted process > PULL_SPEC_SAMPLES (28)
-Aug-18 12:05:41.900 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3734; name: PULL_SPEC_SAMPLES (20); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/f0/1d626693d1491123f09790cac71d05]
-Aug-18 12:05:41.904 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:41.904 [Task submitter] INFO  nextflow.Session - [e1/2da100] Submitted process > PULL_SPEC_SAMPLES (29)
-Aug-18 12:05:42.116 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5396; name: PULL_SPEC_SAMPLES (24); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/6d/5f27f2c52bebd9dec8cf2600bbcd9d]
-Aug-18 12:05:42.119 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:42.119 [Task submitter] INFO  nextflow.Session - [6a/d6174e] Submitted process > PULL_SPEC_SAMPLES (30)
-Aug-18 12:05:42.254 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3885; name: PULL_SPEC_SAMPLES (23); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/f7/c633d5b60006f61dcdedc53c5e4552]
-Aug-18 12:05:42.258 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:42.258 [Task submitter] INFO  nextflow.Session - [18/aa475f] Submitted process > PULL_SPEC_SAMPLES (31)
-Aug-18 12:05:42.372 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3834; name: PULL_SPEC_SAMPLES (22); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/59/57b5eafb62bd4c4b25ba13f9b271e4]
-Aug-18 12:05:42.375 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:42.375 [Task submitter] INFO  nextflow.Session - [49/ff5706] Submitted process > PULL_SPEC_SAMPLES (32)
-Aug-18 12:05:43.964 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5432; name: PULL_SPEC_SAMPLES (25); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/93/07e09ea2a6c349f22b69562cdca594]
-Aug-18 12:05:43.968 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:43.969 [Task submitter] INFO  nextflow.Session - [29/023a86] Submitted process > PULL_SPEC_SAMPLES (33)
-Aug-18 12:05:44.296 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5453; name: PULL_SPEC_SAMPLES (26); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/71/07e4e7b2e83075cc1d41162b9f939c]
-Aug-18 12:05:44.299 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:44.299 [Task submitter] INFO  nextflow.Session - [45/b04800] Submitted process > PULL_SPEC_SAMPLES (34)
-Aug-18 12:05:44.922 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5463; name: PULL_SPEC_SAMPLES (27); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/74/8abe6a999d706c0277389e3bbc9963]
-Aug-18 12:05:44.925 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:44.925 [Task submitter] INFO  nextflow.Session - [90/4f6d3b] Submitted process > PULL_SPEC_SAMPLES (35)
-Aug-18 12:05:45.555 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5535; name: PULL_SPEC_SAMPLES (30); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/6a/d6174ec63fffad2628db9f2d91a7e0]
-Aug-18 12:05:45.559 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:45.559 [Task submitter] INFO  nextflow.Session - [8d/497575] Submitted process > PULL_SPEC_SAMPLES (36)
-Aug-18 12:05:45.743 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5505; name: PULL_SPEC_SAMPLES (29); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/e1/2da100cd587d17e5c065e0239aa3cd]
-Aug-18 12:05:45.746 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:45.747 [Task submitter] INFO  nextflow.Session - [ad/168bac] Submitted process > PULL_SPEC_SAMPLES (37)
-Aug-18 12:05:45.868 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5488; name: PULL_SPEC_SAMPLES (28); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/37/73b8f2cfe93a9d64df4253ee5244ca]
-Aug-18 12:05:45.872 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:45.872 [Task submitter] INFO  nextflow.Session - [c8/931816] Submitted process > PULL_SPEC_SAMPLES (38)
-Aug-18 12:05:45.977 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5542; name: PULL_SPEC_SAMPLES (31); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/18/aa475faa547929e6b80385c1a3548c]
-Aug-18 12:05:45.981 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:45.982 [Task submitter] INFO  nextflow.Session - [61/04bb0b] Submitted process > PULL_SPEC_SAMPLES (39)
-Aug-18 12:05:46.343 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5550; name: PULL_SPEC_SAMPLES (32); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/49/ff5706a2c0f1b9dc0252f0a44e5e8e]
-Aug-18 12:05:46.346 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:46.346 [Task submitter] INFO  nextflow.Session - [ff/68dd56] Submitted process > PULL_SPEC_SAMPLES (40)
-Aug-18 12:05:47.187 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5572; name: PULL_SPEC_SAMPLES (33); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/29/023a860dabef43986f1ab9554a89fd]
-Aug-18 12:05:47.190 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:47.191 [Task submitter] INFO  nextflow.Session - [2a/87ce12] Submitted process > PULL_SPEC_SAMPLES (41)
-Aug-18 12:05:47.468 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5607; name: PULL_SPEC_SAMPLES (34); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/45/b04800def6df8c0277a8763f0861a8]
-Aug-18 12:05:47.472 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:47.473 [Task submitter] INFO  nextflow.Session - [f4/501371] Submitted process > PULL_SPEC_SAMPLES (42)
-Aug-18 12:05:48.297 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5629; name: PULL_SPEC_SAMPLES (35); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/90/4f6d3bb78257f75cbe484adfb8d666]
-Aug-18 12:05:48.300 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:48.301 [Task submitter] INFO  nextflow.Session - [58/6e2678] Submitted process > PULL_SPEC_SAMPLES (43)
-Aug-18 12:05:48.843 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5664; name: PULL_SPEC_SAMPLES (36); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/8d/4975751b3dbaeed4c1796c95845d1b]
-Aug-18 12:05:48.846 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:48.847 [Task submitter] INFO  nextflow.Session - [a3/22f5c2] Submitted process > PULL_SPEC_SAMPLES (44)
-Aug-18 12:05:49.430 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5700; name: PULL_SPEC_SAMPLES (37); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ad/168bac1329e759f8e8dd2f43e41a92]
-Aug-18 12:05:49.435 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:49.435 [Task submitter] INFO  nextflow.Session - [62/2b7bb6] Submitted process > PULL_SPEC_SAMPLES (45)
-Aug-18 12:05:49.485 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5740; name: PULL_SPEC_SAMPLES (38); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c8/931816e91e577528f5fd8854799c85]
-Aug-18 12:05:49.488 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:49.488 [Task submitter] INFO  nextflow.Session - [80/28a377] Submitted process > PULL_SPEC_SAMPLES (46)
-Aug-18 12:05:49.634 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5785; name: PULL_SPEC_SAMPLES (39); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/61/04bb0b003662f3eb6a7affa37d24f6]
-Aug-18 12:05:49.637 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:49.637 [Task submitter] INFO  nextflow.Session - [ac/18a706] Submitted process > PULL_SPEC_SAMPLES (47)
-Aug-18 12:05:49.638 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5786; name: PULL_SPEC_SAMPLES (40); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ff/68dd5617369588fb4964db73789ea4]
-Aug-18 12:05:49.642 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:49.642 [Task submitter] INFO  nextflow.Session - [fd/719fa3] Submitted process > PULL_SPEC_SAMPLES (48)
-Aug-18 12:05:50.422 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5788; name: PULL_SPEC_SAMPLES (41); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/2a/87ce1272c50f0081205d46df3e7f78]
-Aug-18 12:05:50.425 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:50.425 [Task submitter] INFO  nextflow.Session - [7f/e86601] Submitted process > PULL_SPEC_SAMPLES (49)
-Aug-18 12:05:50.616 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5810; name: PULL_SPEC_SAMPLES (42); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/f4/501371b7b7fa4fd2636f41f7263992]
-Aug-18 12:05:50.619 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:50.619 [Task submitter] INFO  nextflow.Session - [5e/801db3] Submitted process > PULL_SPEC_SAMPLES (50)
-Aug-18 12:05:51.645 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5824; name: PULL_SPEC_SAMPLES (43); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/58/6e2678cd44aeaae4b26676913e3202]
-Aug-18 12:05:51.648 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:51.649 [Task submitter] INFO  nextflow.Session - [09/774438] Submitted process > PULL_SPEC_SAMPLES (51)
-Aug-18 12:05:52.099 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5868; name: PULL_SPEC_SAMPLES (44); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/a3/22f5c2b5d56bd0a6daeccf9fff5821]
-Aug-18 12:05:52.103 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:52.103 [Task submitter] INFO  nextflow.Session - [2e/36f168] Submitted process > PULL_SPEC_SAMPLES (52)
-Aug-18 12:05:52.831 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5883; name: PULL_SPEC_SAMPLES (45); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/62/2b7bb681da0baca98021807eb3ba1c]
-Aug-18 12:05:52.834 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:52.835 [Task submitter] INFO  nextflow.Session - [07/354846] Submitted process > PULL_SPEC_SAMPLES (53)
-Aug-18 12:05:53.149 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5894; name: PULL_SPEC_SAMPLES (46); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/80/28a3779a617132e0c484f7179599c2]
-Aug-18 12:05:53.153 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:53.153 [Task submitter] INFO  nextflow.Session - [e9/320c7d] Submitted process > PULL_SPEC_SAMPLES (54)
-Aug-18 12:05:53.535 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5936; name: PULL_SPEC_SAMPLES (47); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ac/18a7061e004d3490c21af5fa2cd110]
-Aug-18 12:05:53.538 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:53.539 [Task submitter] INFO  nextflow.Session - [78/980760] Submitted process > PULL_SPEC_SAMPLES (55)
-Aug-18 12:05:54.105 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5963; name: PULL_SPEC_SAMPLES (48); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/fd/719fa3d16d8ac15d80d36a6123220a]
-Aug-18 12:05:54.108 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:54.109 [Task submitter] INFO  nextflow.Session - [c7/099559] Submitted process > PULL_SPEC_SAMPLES (56)
-Aug-18 12:05:54.130 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5985; name: PULL_SPEC_SAMPLES (49); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/7f/e866010c8378286f0a0c94f2e84bb0]
-Aug-18 12:05:54.149 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:54.149 [Task submitter] INFO  nextflow.Session - [ce/ce126e] Submitted process > PULL_SPEC_SAMPLES (57)
-Aug-18 12:05:55.082 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6050; name: PULL_SPEC_SAMPLES (51); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/09/774438679e8b748918ceabce3d4cf5]
-Aug-18 12:05:55.085 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:55.086 [Task submitter] INFO  nextflow.Session - [b4/e93ba3] Submitted process > PULL_SPEC_SAMPLES (58)
-Aug-18 12:05:55.143 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6017; name: PULL_SPEC_SAMPLES (50); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5e/801db3ff7d13e6b8e496847c754c88]
-Aug-18 12:05:55.147 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:55.147 [Task submitter] INFO  nextflow.Session - [98/d76174] Submitted process > PULL_SPEC_SAMPLES (59)
-Aug-18 12:05:55.458 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6091; name: PULL_SPEC_SAMPLES (52); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/2e/36f168a6f877bbaeac7b77fc4f1254]
-Aug-18 12:05:55.461 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:55.462 [Task submitter] INFO  nextflow.Session - [b9/df02a2] Submitted process > PULL_SPEC_SAMPLES (60)
-Aug-18 12:05:56.453 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6165; name: PULL_SPEC_SAMPLES (53); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/07/354846d487784d7d07414c55b755bc]
-Aug-18 12:05:56.908 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6198; name: PULL_SPEC_SAMPLES (54); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/e9/320c7d4bf9c35cebffc5ffb6951e92]
-Aug-18 12:05:57.012 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6249; name: PULL_SPEC_SAMPLES (55); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/78/980760594256c55670a2ab154fa528]
-Aug-18 12:05:57.274 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6294; name: PULL_SPEC_SAMPLES (56); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c7/099559cb176c05fc778afa674ff60a]
-Aug-18 12:05:57.370 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6310; name: PULL_SPEC_SAMPLES (57); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ce/ce126eec440307c068f1c0b824b540]
-Aug-18 12:05:58.036 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7047; name: PULL_SPEC_SAMPLES (60); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/b9/df02a2b63f15f4a3cc95f0522e15f3]
-Aug-18 12:05:58.103 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6388; name: PULL_SPEC_SAMPLES (59); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/98/d76174ebdaa42d1ba9e15ac3049a24]
-Aug-18 12:05:58.156 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6359; name: PULL_SPEC_SAMPLES (58); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/b4/e93ba353b37df14a98d66d5a28c321]
-Aug-18 12:05:58.245 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Aug-18 12:05:58.246 [Task submitter] INFO  nextflow.Session - [5f/51d79e] Submitted process > CONCAT_SPEC_SAMPLES
-Aug-18 12:06:00.816 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16421; name: CONCAT_SPEC_SAMPLES; status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5f/51d79e40bd830ced20a3ebecd44ae5]
-Aug-18 12:06:00.833 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=4; maxSize=4; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Aug-18 12:06:00.836 [main] DEBUG nextflow.Session - Session await > all process finished
-Aug-18 12:06:00.921 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Aug-18 12:06:00.929 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=61; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1m 53s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=8; peakCpus=8; peakMemory=0; ]
-Aug-18 12:06:00.929 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
-Aug-18 12:06:00.931 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
-Aug-18 12:06:01.001 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
-  [{"cpuUsage":{"mean":30.66,"min":20.4,"q1":26.88,"q2":30.6,"q3":33.58,"max":42.2,"minLabel":"PULL_SPEC_SAMPLES (50)","maxLabel":"PULL_SPEC_SAMPLES (60)","q1Label":"PULL_SPEC_SAMPLES (29)","q2Label":"PULL_SPEC_SAMPLES (36)","q3Label":"PULL_SPEC_SAMPLES (17)"},"process":"PULL_SPEC_SAMPLES","mem":{"mean":40824558.93,"min":12365824,"q1":46447616,"q2":47321088,"q3":47722496,"max":48660480,"minLabel":"PULL_SPEC_SAMPLES (16)","maxLabel":"PULL_SPEC_SAMPLES (14)","q1Label":"PULL_SPEC_SAMPLES (6)","q2Label":"PULL_SPEC_SAMPLES (23)","q3Label":"PULL_SPEC_SAMPLES (7)"},"memUsage":null,"timeUsage":{"mean":3.11,"min":2.25,"q1":2.76,"q2":3.06,"q3":3.46,"max":5.08,"minLabel":"PULL_SPEC_SAMPLES (60)","maxLabel":"PULL_SPEC_SAMPLES (50)","q1Label":"PULL_SPEC_SAMPLES (59)","q2Label":"PULL_SPEC_SAMPLES (39)","q3Label":"PULL_SPEC_SAMPLES (49)"},"vmem":{"mean":498315332.27,"min":18333696,"q1":522860544,"q2":523010048,"q3":523280384,"max":524201984,"minLabel":"PULL_SPEC_SAMPLES (16)","maxLabel":"PULL_SPEC_SAMPLES (49)","q1Label":"PULL_SPEC_SAMPLES (6)","q2Label":"PULL_SPEC_SAMPLES (8)","q3Label":"PULL_SPEC_SAMPLES (50)"},"reads":{"mean":6755189.42,"min":6729105,"q1":6730068.75,"q2":6732897,"q3":6787408,"max":6790288,"minLabel":"PULL_SPEC_SAMPLES (5)","maxLabel":"PULL_SPEC_SAMPLES (49)","q1Label":"PULL_SPEC_SAMPLES (35)","q2Label":"PULL_SPEC_SAMPLES (48)","q3Label":"PULL_SPEC_SAMPLES (24)"},"cpu":{"mean":30.66,"min":20.4,"q1":26.88,"q2":30.6,"q3":33.58,"max":42.2,"minLabel":"PULL_SPEC_SAMPLES (50)","maxLabel":"PULL_SPEC_SAMPLES (60)","q1Label":"PULL_SPEC_SAMPLES (29)","q2Label":"PULL_SPEC_SAMPLES (36)","q3Label":"PULL_SPEC_SAMPLES (17)"},"time":{"mean":1866.4,"min":1347,"q1":1655.75,"q2":1834,"q3":2073.75,"max":3050,"minLabel":"PULL_SPEC_SAMPLES (60)","maxLabel":"PULL_SPEC_SAMPLES (50)","q1Label":"PULL_SPEC_SAMPLES (59)","q2Label":"PULL_SPEC_SAMPLES (39)","q3Label":"PULL_SPEC_SAMPLES (49)"},"writes":{"mean":24385.52,"min":22501,"q1":23957,"q2":24089,"q3":24234,"max":28213,"minLabel":"PULL_SPEC_SAMPLES (5)","maxLabel":"PULL_SPEC_SAMPLES (49)","q1Label":"PULL_SPEC_SAMPLES (15)","q2Label":"PULL_SPEC_SAMPLES (24)","q3Label":"PULL_SPEC_SAMPLES (41)"}},{"cpuUsage":{"mean":14.1,"min":14.1,"q1":14.1,"q2":14.1,"q3":14.1,"max":14.1,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"process":"CONCAT_SPEC_SAMPLES","mem":{"mean":3293184,"min":3293184,"q1":3293184,"q2":3293184,"q3":3293184,"max":3293184,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"memUsage":null,"timeUsage":null,"vmem":{"mean":5877760,"min":5877760,"q1":5877760,"q2":5877760,"q3":5877760,"max":5877760,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"reads":{"mean":779428,"min":779428,"q1":779428,"q2":779428,"q3":779428,"max":779428,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"cpu":{"mean":14.1,"min":14.1,"q1":14.1,"q2":14.1,"q3":14.1,"max":14.1,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"time":{"mean":790,"min":790,"q1":790,"q2":790,"q3":790,"max":790,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"writes":{"mean":732186,"min":732186,"q1":732186,"q2":732186,"q3":732186,"max":732186,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"}}]
-Aug-18 12:06:01.693 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
-Aug-18 12:06:02.343 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-Aug-18 12:06:02.356 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+  Process: 48538@PATH-DESK-1734.local [128.104.12.196]
+  CPUs: 8 - Mem: 64 GB (17.8 GB) - Swap: 5 GB (1.3 GB)
+Aug-18 12:10:13.519 [main] DEBUG nextflow.Session - Work-dir: /Users/nicholasminor/Documents/dholk_experiments/27586/work [Mac OS X]
+Aug-18 12:10:13.535 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Aug-18 12:10:13.546 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Aug-18 12:10:13.606 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Aug-18 12:10:13.620 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Aug-18 12:10:13.703 [main] DEBUG nextflow.Session - Session start invoked
+Aug-18 12:10:13.708 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /Users/nicholasminor/Documents/dholk_experiments/27586/results/trace.txt
+Aug-18 12:10:14.666 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Aug-18 12:10:14.892 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:14.892 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:14.899 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Aug-18 12:10:14.904 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=64 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Aug-18 12:10:14.999 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:14.999 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.015 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.015 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.023 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.023 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.029 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.029 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.034 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.035 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.040 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.040 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.044 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.045 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.053 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.053 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.057 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.057 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.072 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.073 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.077 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.077 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.082 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.082 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.086 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.086 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.091 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Aug-18 12:10:15.091 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Aug-18 12:10:15.094 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CONCAT_KIR, CONCAT_MHC_PROTEINS, CONCAT_KIR_PROTEINS, ALLELE_SORTING, PULL_MHC_PROTEINS, ALLELE_GROUP_NAMING, PULL_KIR_PROTEINS, PULL_IPD_KIR, CLEAN_ALLELES, IWES_TRIMMING, CONCAT_MHC, MISEQ_TRIMMING, PULL_SPEC_SAMPLES, PULL_IPD_MHC, CONCAT_SPEC_SAMPLES
+Aug-18 12:10:15.095 [main] DEBUG nextflow.Session - Ignite dataflow network (20)
+Aug-18 12:10:15.124 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_SPEC_SAMPLES
+Aug-18 12:10:15.127 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_SPEC_SAMPLES
+Aug-18 12:10:15.128 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_MHC
+Aug-18 12:10:15.128 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_MHC
+Aug-18 12:10:15.128 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_IPD_KIR
+Aug-18 12:10:15.128 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_KIR
+Aug-18 12:10:15.130 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_MHC_PROTEINS
+Aug-18 12:10:15.131 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_MHC_PROTEINS
+Aug-18 12:10:15.133 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PULL_KIR_PROTEINS
+Aug-18 12:10:15.133 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCAT_KIR_PROTEINS
+Aug-18 12:10:15.133 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CLEAN_ALLELES
+Aug-18 12:10:15.134 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > IWES_TRIMMING
+Aug-18 12:10:15.134 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MISEQ_TRIMMING
+Aug-18 12:10:15.136 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ALLELE_SORTING
+Aug-18 12:10:15.137 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ALLELE_GROUP_NAMING
+Aug-18 12:10:15.137 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Aug-18 12:10:15.138 [main] DEBUG nextflow.Session - Session await
+Aug-18 12:10:15.740 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:15.763 [Task submitter] INFO  nextflow.Session - [05/38fd3b] Submitted process > PULL_SPEC_SAMPLES (5)
+Aug-18 12:10:15.891 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:15.892 [Task submitter] INFO  nextflow.Session - [5c/98b6ff] Submitted process > PULL_SPEC_SAMPLES (8)
+Aug-18 12:10:16.030 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.030 [Task submitter] INFO  nextflow.Session - [fa/c4695f] Submitted process > PULL_SPEC_SAMPLES (6)
+Aug-18 12:10:16.135 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.140 [Task submitter] INFO  nextflow.Session - [d0/dd2adb] Submitted process > PULL_SPEC_SAMPLES (2)
+Aug-18 12:10:16.183 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.184 [Task submitter] INFO  nextflow.Session - [18/faf0f0] Submitted process > PULL_SPEC_SAMPLES (7)
+Aug-18 12:10:16.230 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.231 [Task submitter] INFO  nextflow.Session - [40/3a268a] Submitted process > PULL_SPEC_SAMPLES (1)
+Aug-18 12:10:16.517 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.520 [Task submitter] INFO  nextflow.Session - [04/de6f06] Submitted process > PULL_SPEC_SAMPLES (3)
+Aug-18 12:10:16.641 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:16.642 [Task submitter] INFO  nextflow.Session - [6e/fd6161] Submitted process > PULL_SPEC_SAMPLES (4)
+Aug-18 12:10:20.572 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: PULL_SPEC_SAMPLES (7); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/18/faf0f0005f3e5e7e8a442f45e44054]
+Aug-18 12:10:20.578 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:20.578 [Task submitter] INFO  nextflow.Session - [b9/bb7230] Submitted process > PULL_SPEC_SAMPLES (9)
+Aug-18 12:10:21.330 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: PULL_SPEC_SAMPLES (2); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/d0/dd2adb674ed4aa2c7323fb4e792b46]
+Aug-18 12:10:21.336 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:21.336 [Task submitter] INFO  nextflow.Session - [04/1c6a7a] Submitted process > PULL_SPEC_SAMPLES (10)
+Aug-18 12:10:21.602 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: PULL_SPEC_SAMPLES (3); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/04/de6f062677ce4fe33afe74e81c5e22]
+Aug-18 12:10:21.608 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:21.608 [Task submitter] INFO  nextflow.Session - [5d/751ee0] Submitted process > PULL_SPEC_SAMPLES (11)
+Aug-18 12:10:21.824 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: PULL_SPEC_SAMPLES (4); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/6e/fd616180bd2b1c39998c84ed895a39]
+Aug-18 12:10:21.830 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:21.831 [Task submitter] INFO  nextflow.Session - [1c/f1e557] Submitted process > PULL_SPEC_SAMPLES (12)
+Aug-18 12:10:21.964 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: PULL_SPEC_SAMPLES (8); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5c/98b6ff6d1135fb070bcd4d401d985f]
+Aug-18 12:10:21.968 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:21.968 [Task submitter] INFO  nextflow.Session - [c2/70efbd] Submitted process > PULL_SPEC_SAMPLES (13)
+Aug-18 12:10:22.053 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: PULL_SPEC_SAMPLES (5); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/05/38fd3bc0d98a1fef619cd9722fe3b9]
+Aug-18 12:10:22.057 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:22.057 [Task submitter] INFO  nextflow.Session - [90/6d04a5] Submitted process > PULL_SPEC_SAMPLES (14)
+Aug-18 12:10:22.180 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: PULL_SPEC_SAMPLES (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/40/3a268a230c43dbdd8d80472d7c126a]
+Aug-18 12:10:22.184 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:22.185 [Task submitter] INFO  nextflow.Session - [64/f069aa] Submitted process > PULL_SPEC_SAMPLES (15)
+Aug-18 12:10:22.347 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: PULL_SPEC_SAMPLES (6); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/fa/c4695ffc873cb807b1a06ca5cd7534]
+Aug-18 12:10:22.355 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:22.355 [Task submitter] INFO  nextflow.Session - [5e/b304ce] Submitted process > PULL_SPEC_SAMPLES (16)
+Aug-18 12:10:24.037 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: PULL_SPEC_SAMPLES (9); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/b9/bb72300b83586c1ff8e5fc8656c823]
+Aug-18 12:10:24.042 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:24.042 [Task submitter] INFO  nextflow.Session - [fd/6ddaa3] Submitted process > PULL_SPEC_SAMPLES (17)
+Aug-18 12:10:24.878 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2286; name: PULL_SPEC_SAMPLES (10); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/04/1c6a7a8436d30a5879141fa26be8e6]
+Aug-18 12:10:24.883 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:24.884 [Task submitter] INFO  nextflow.Session - [1d/ace5c3] Submitted process > PULL_SPEC_SAMPLES (18)
+Aug-18 12:10:25.291 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2411; name: PULL_SPEC_SAMPLES (11); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5d/751ee0b2af2709d52b534e0552e6d3]
+Aug-18 12:10:25.296 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:25.296 [Task submitter] INFO  nextflow.Session - [67/c9534c] Submitted process > PULL_SPEC_SAMPLES (19)
+Aug-18 12:10:25.492 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3052; name: PULL_SPEC_SAMPLES (12); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/1c/f1e557be1d075ea5e9db6b1a8ebcb6]
+Aug-18 12:10:25.497 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:25.497 [Task submitter] INFO  nextflow.Session - [c9/b255a3] Submitted process > PULL_SPEC_SAMPLES (20)
+Aug-18 12:10:25.852 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3256; name: PULL_SPEC_SAMPLES (15); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/64/f069aab3a9dddd2cb11e4af4fd955f]
+Aug-18 12:10:25.856 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:25.856 [Task submitter] INFO  nextflow.Session - [3f/23533d] Submitted process > PULL_SPEC_SAMPLES (21)
+Aug-18 12:10:25.904 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3189; name: PULL_SPEC_SAMPLES (14); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/90/6d04a533fd2d8f298f803b3092439c]
+Aug-18 12:10:25.911 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:25.911 [Task submitter] INFO  nextflow.Session - [78/3a437f] Submitted process > PULL_SPEC_SAMPLES (22)
+Aug-18 12:10:26.011 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3154; name: PULL_SPEC_SAMPLES (13); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c2/70efbd4c3caa2da0b51c04c0aa8a44]
+Aug-18 12:10:26.015 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:26.016 [Task submitter] INFO  nextflow.Session - [5c/9efcca] Submitted process > PULL_SPEC_SAMPLES (30)
+Aug-18 12:10:26.080 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3310; name: PULL_SPEC_SAMPLES (16); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5e/b304cefcd2f1f88629ed7bf5b88b09]
+Aug-18 12:10:26.084 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:26.084 [Task submitter] INFO  nextflow.Session - [03/380809] Submitted process > PULL_SPEC_SAMPLES (23)
+Aug-18 12:10:27.145 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3351; name: PULL_SPEC_SAMPLES (17); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/fd/6ddaa3e615e8b9fff3c65f88f49841]
+Aug-18 12:10:27.151 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:27.151 [Task submitter] INFO  nextflow.Session - [08/302d3a] Submitted process > PULL_SPEC_SAMPLES (24)
+Aug-18 12:10:28.569 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3404; name: PULL_SPEC_SAMPLES (18); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/1d/ace5c341482c770132d36d4901e403]
+Aug-18 12:10:28.574 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:28.574 [Task submitter] INFO  nextflow.Session - [9f/8883c9] Submitted process > PULL_SPEC_SAMPLES (25)
+Aug-18 12:10:28.994 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3452; name: PULL_SPEC_SAMPLES (19); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/67/c9534ce8168781a293c9dea158fb17]
+Aug-18 12:10:28.998 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:28.998 [Task submitter] INFO  nextflow.Session - [c3/fac860] Submitted process > PULL_SPEC_SAMPLES (26)
+Aug-18 12:10:29.424 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3494; name: PULL_SPEC_SAMPLES (20); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c9/b255a3fa16ee6c4687dedb7421539c]
+Aug-18 12:10:29.428 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:29.428 [Task submitter] INFO  nextflow.Session - [c6/37a059] Submitted process > PULL_SPEC_SAMPLES (27)
+Aug-18 12:10:29.780 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4448; name: PULL_SPEC_SAMPLES (30); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5c/9efcca1c0b75b150a5881ef09a999d]
+Aug-18 12:10:29.784 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:29.785 [Task submitter] INFO  nextflow.Session - [64/3e77be] Submitted process > PULL_SPEC_SAMPLES (28)
+Aug-18 12:10:29.964 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3589; name: PULL_SPEC_SAMPLES (22); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/78/3a437f6c43b8434d75a1e68b028fbc]
+Aug-18 12:10:29.967 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:29.968 [Task submitter] INFO  nextflow.Session - [6e/5d0bb7] Submitted process > PULL_SPEC_SAMPLES (29)
+Aug-18 12:10:30.319 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3545; name: PULL_SPEC_SAMPLES (21); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/3f/23533dc0ce9a50bd12ddd8b0758a0d]
+Aug-18 12:10:30.323 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:30.323 [Task submitter] INFO  nextflow.Session - [35/71ae1e] Submitted process > PULL_SPEC_SAMPLES (31)
+Aug-18 12:10:30.402 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3679; name: PULL_SPEC_SAMPLES (24); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/08/302d3a34dcf4f7a505ea5b123074eb]
+Aug-18 12:10:30.406 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:30.406 [Task submitter] INFO  nextflow.Session - [20/667520] Submitted process > PULL_SPEC_SAMPLES (32)
+Aug-18 12:10:30.457 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3632; name: PULL_SPEC_SAMPLES (23); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/03/38080980904d9dea019ba6e0060f0e]
+Aug-18 12:10:30.461 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:30.461 [Task submitter] INFO  nextflow.Session - [49/ac1694] Submitted process > PULL_SPEC_SAMPLES (33)
+Aug-18 12:10:32.231 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3736; name: PULL_SPEC_SAMPLES (25); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/9f/8883c9eb93af67928c9d8369ca4869]
+Aug-18 12:10:32.235 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:32.235 [Task submitter] INFO  nextflow.Session - [bd/6c5e8a] Submitted process > PULL_SPEC_SAMPLES (34)
+Aug-18 12:10:32.747 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3797; name: PULL_SPEC_SAMPLES (26); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c3/fac860caa85a0206a689a794b2a25c]
+Aug-18 12:10:32.750 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:32.751 [Task submitter] INFO  nextflow.Session - [5c/40a009] Submitted process > PULL_SPEC_SAMPLES (35)
+Aug-18 12:10:32.839 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4337; name: PULL_SPEC_SAMPLES (27); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c6/37a05958440706c9ce98479fba092b]
+Aug-18 12:10:32.843 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:32.843 [Task submitter] INFO  nextflow.Session - [5d/c2ffa4] Submitted process > PULL_SPEC_SAMPLES (43)
+Aug-18 12:10:33.150 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4378; name: PULL_SPEC_SAMPLES (28); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/64/3e77bed382e5d0c00b03e37794a1a2]
+Aug-18 12:10:33.155 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:33.155 [Task submitter] INFO  nextflow.Session - [b9/ce877e] Submitted process > PULL_SPEC_SAMPLES (44)
+Aug-18 12:10:33.639 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4420; name: PULL_SPEC_SAMPLES (29); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/6e/5d0bb76021c6d17667637d3c5093d6]
+Aug-18 12:10:33.642 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:33.642 [Task submitter] INFO  nextflow.Session - [7a/1352d7] Submitted process > PULL_SPEC_SAMPLES (36)
+Aug-18 12:10:34.186 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4542; name: PULL_SPEC_SAMPLES (32); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/20/6675204c1ab7e46d4e5c0525fe7ea7]
+Aug-18 12:10:34.190 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:34.190 [Task submitter] INFO  nextflow.Session - [4a/0987ee] Submitted process > PULL_SPEC_SAMPLES (37)
+Aug-18 12:10:34.196 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4490; name: PULL_SPEC_SAMPLES (31); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/35/71ae1e629e2196b3503c75e4866b91]
+Aug-18 12:10:34.199 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:34.199 [Task submitter] INFO  nextflow.Session - [9d/b2173b] Submitted process > PULL_SPEC_SAMPLES (38)
+Aug-18 12:10:34.249 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4602; name: PULL_SPEC_SAMPLES (33); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/49/ac1694502dd06d2ed895cef962c07c]
+Aug-18 12:10:34.252 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:34.252 [Task submitter] INFO  nextflow.Session - [44/674676] Submitted process > PULL_SPEC_SAMPLES (39)
+Aug-18 12:10:35.678 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4655; name: PULL_SPEC_SAMPLES (34); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/bd/6c5e8ad3c19691c712da0ee91c232c]
+Aug-18 12:10:35.682 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:35.682 [Task submitter] INFO  nextflow.Session - [2d/4c29d2] Submitted process > PULL_SPEC_SAMPLES (40)
+Aug-18 12:10:36.514 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4706; name: PULL_SPEC_SAMPLES (35); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5c/40a0099b5c750128294aad17245f26]
+Aug-18 12:10:36.518 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:36.518 [Task submitter] INFO  nextflow.Session - [84/d4181f] Submitted process > PULL_SPEC_SAMPLES (41)
+Aug-18 12:10:36.633 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4959; name: PULL_SPEC_SAMPLES (43); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/5d/c2ffa42dd33f294678ac7093f43243]
+Aug-18 12:10:36.637 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:36.637 [Task submitter] INFO  nextflow.Session - [77/fbdd98] Submitted process > PULL_SPEC_SAMPLES (42)
+Aug-18 12:10:36.836 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4996; name: PULL_SPEC_SAMPLES (44); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/b9/ce877e06ff89e97645d784c0174491]
+Aug-18 12:10:36.839 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:36.840 [Task submitter] INFO  nextflow.Session - [ca/cf0310] Submitted process > PULL_SPEC_SAMPLES (45)
+Aug-18 12:10:37.951 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4745; name: PULL_SPEC_SAMPLES (36); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/7a/1352d7493bbaf5d2b8f91146c90dc6]
+Aug-18 12:10:37.955 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:37.955 [Task submitter] INFO  nextflow.Session - [c0/cd934a] Submitted process > PULL_SPEC_SAMPLES (46)
+Aug-18 12:10:38.022 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4848; name: PULL_SPEC_SAMPLES (38); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/9d/b2173b9e26c6a2afb9bb0f3f381469]
+Aug-18 12:10:38.025 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:38.026 [Task submitter] INFO  nextflow.Session - [c3/3d70f0] Submitted process > PULL_SPEC_SAMPLES (47)
+Aug-18 12:10:38.087 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4878; name: PULL_SPEC_SAMPLES (39); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/44/674676b8f6643801261c45ee4f5900]
+Aug-18 12:10:38.091 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:38.091 [Task submitter] INFO  nextflow.Session - [0c/da10fc] Submitted process > PULL_SPEC_SAMPLES (48)
+Aug-18 12:10:38.200 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4790; name: PULL_SPEC_SAMPLES (37); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/4a/0987eee06ba6b6aee2ddce83791551]
+Aug-18 12:10:38.203 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:38.203 [Task submitter] INFO  nextflow.Session - [61/51f5f9] Submitted process > PULL_SPEC_SAMPLES (49)
+Aug-18 12:10:39.348 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4893; name: PULL_SPEC_SAMPLES (40); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/2d/4c29d2c0ab64cfc4408891d7beafeb]
+Aug-18 12:10:39.351 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:39.351 [Task submitter] INFO  nextflow.Session - [1b/2f4db4] Submitted process > PULL_SPEC_SAMPLES (50)
+Aug-18 12:10:40.332 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4910; name: PULL_SPEC_SAMPLES (41); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/84/d4181f81b135fa3743e4461023ddf5]
+Aug-18 12:10:40.335 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:40.335 [Task submitter] INFO  nextflow.Session - [37/48393f] Submitted process > PULL_SPEC_SAMPLES (58)
+Aug-18 12:10:40.869 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5094; name: PULL_SPEC_SAMPLES (46); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c0/cd934abf65c25ba147f39d61c789cc]
+Aug-18 12:10:40.873 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:40.873 [Task submitter] INFO  nextflow.Session - [04/878b3e] Submitted process > PULL_SPEC_SAMPLES (59)
+Aug-18 12:10:41.405 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4940; name: PULL_SPEC_SAMPLES (42); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/77/fbdd980e0be2d501df7356c45342c2]
+Aug-18 12:10:41.409 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:41.409 [Task submitter] INFO  nextflow.Session - [07/3d5bed] Submitted process > PULL_SPEC_SAMPLES (60)
+Aug-18 12:10:41.480 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5231; name: PULL_SPEC_SAMPLES (48); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/0c/da10fc3d2aa07a63f8892af6bc79de]
+Aug-18 12:10:41.483 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:41.483 [Task submitter] INFO  nextflow.Session - [45/e651e9] Submitted process > PULL_SPEC_SAMPLES (51)
+Aug-18 12:10:41.757 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5274; name: PULL_SPEC_SAMPLES (49); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/61/51f5f9e91ed6f251db63c33067744c]
+Aug-18 12:10:41.760 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:41.760 [Task submitter] INFO  nextflow.Session - [42/67b856] Submitted process > PULL_SPEC_SAMPLES (52)
+Aug-18 12:10:41.800 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5048; name: PULL_SPEC_SAMPLES (45); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/ca/cf031005763551ba1c249b4208fd70]
+Aug-18 12:10:41.803 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:41.804 [Task submitter] INFO  nextflow.Session - [99/adcd88] Submitted process > PULL_SPEC_SAMPLES (53)
+Aug-18 12:10:41.836 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5178; name: PULL_SPEC_SAMPLES (47); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/c3/3d70f0fa62ce83d51e4a36a219d487]
+Aug-18 12:10:41.839 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:41.839 [Task submitter] INFO  nextflow.Session - [69/60d79f] Submitted process > PULL_SPEC_SAMPLES (54)
+Aug-18 12:10:42.208 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5323; name: PULL_SPEC_SAMPLES (50); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/1b/2f4db42530cc5ce0ef2cfd953e4b64]
+Aug-18 12:10:42.212 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:42.212 [Task submitter] INFO  nextflow.Session - [6f/33d0ff] Submitted process > PULL_SPEC_SAMPLES (55)
+Aug-18 12:10:43.600 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5680; name: PULL_SPEC_SAMPLES (58); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/37/48393f970e09ac2a9a46562b787dd0]
+Aug-18 12:10:43.603 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:43.603 [Task submitter] INFO  nextflow.Session - [3e/80a9d1] Submitted process > PULL_SPEC_SAMPLES (56)
+Aug-18 12:10:44.420 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5688; name: PULL_SPEC_SAMPLES (59); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/04/878b3e681c890ea767d779094dc657]
+Aug-18 12:10:44.423 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:44.423 [Task submitter] INFO  nextflow.Session - [20/834895] Submitted process > PULL_SPEC_SAMPLES (57)
+Aug-18 12:10:45.006 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5415; name: PULL_SPEC_SAMPLES (52); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/42/67b856e13cd25ce9b00409db3d476d]
+Aug-18 12:10:45.193 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5722; name: PULL_SPEC_SAMPLES (60); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/07/3d5bed6854a822b7c63393a9c581c8]
+Aug-18 12:10:45.384 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5373; name: PULL_SPEC_SAMPLES (51); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/45/e651e95bb349cce0d82df743d8a995]
+Aug-18 12:10:45.415 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5591; name: PULL_SPEC_SAMPLES (55); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/6f/33d0ffcc90038c675d119d44a46443]
+Aug-18 12:10:45.488 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5514; name: PULL_SPEC_SAMPLES (54); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/69/60d79f689871e6ce34bc075ff3709a]
+Aug-18 12:10:45.532 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5469; name: PULL_SPEC_SAMPLES (53); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/99/adcd881126251e52d6ee37ba922396]
+Aug-18 12:10:46.276 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5628; name: PULL_SPEC_SAMPLES (56); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/3e/80a9d13614fd3fc9b29b7158cfe848]
+Aug-18 12:10:47.411 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5667; name: PULL_SPEC_SAMPLES (57); status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/20/834895f31b5aa5fd8fff778aaa8952]
+Aug-18 12:10:47.509 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Aug-18 12:10:47.509 [Task submitter] INFO  nextflow.Session - [8c/15f08c] Submitted process > CONCAT_SPEC_SAMPLES
+Aug-18 12:10:50.950 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16421; name: CONCAT_SPEC_SAMPLES; status: COMPLETED; exit: 0; error: -; workDir: /Users/nicholasminor/Documents/dholk_experiments/27586/work/8c/15f08cab3802c4e9281c21cf83c7ae]
+Aug-18 12:10:50.971 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=4; maxSize=4; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Aug-18 12:10:50.974 [main] DEBUG nextflow.Session - Session await > all process finished
+Aug-18 12:10:50.981 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Aug-18 12:10:50.991 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=61; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=1m 52s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=8; peakCpus=8; peakMemory=0; ]
+Aug-18 12:10:50.992 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Aug-18 12:10:50.994 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Aug-18 12:10:51.085 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":{"mean":31.54,"min":19.9,"q1":28.6,"q2":30.85,"q3":34.78,"max":44.2,"minLabel":"PULL_SPEC_SAMPLES (45)","maxLabel":"PULL_SPEC_SAMPLES (50)","q1Label":"PULL_SPEC_SAMPLES (1)","q2Label":"PULL_SPEC_SAMPLES (47)","q3Label":"PULL_SPEC_SAMPLES (33)"},"process":"PULL_SPEC_SAMPLES","mem":{"mean":40731101.87,"min":9465856,"q1":39975936,"q2":47529984,"q3":48219136,"max":48611328,"minLabel":"PULL_SPEC_SAMPLES (5)","maxLabel":"PULL_SPEC_SAMPLES (17)","q1Label":"PULL_SPEC_SAMPLES (31)","q2Label":"PULL_SPEC_SAMPLES (43)","q3Label":"PULL_SPEC_SAMPLES (9)"},"memUsage":null,"timeUsage":{"mean":3.1,"min":1.98,"q1":2.81,"q2":3.05,"q3":3.31,"max":5.02,"minLabel":"PULL_SPEC_SAMPLES (50)","maxLabel":"PULL_SPEC_SAMPLES (45)","q1Label":"PULL_SPEC_SAMPLES (31)","q2Label":"PULL_SPEC_SAMPLES (14)","q3Label":"PULL_SPEC_SAMPLES (53)"},"vmem":{"mean":508190310.4,"min":16797696,"q1":516193280,"q2":523005952,"q3":524098560,"max":524193792,"minLabel":"PULL_SPEC_SAMPLES (5)","maxLabel":"PULL_SPEC_SAMPLES (56)","q1Label":"PULL_SPEC_SAMPLES (31)","q2Label":"PULL_SPEC_SAMPLES (47)","q3Label":"PULL_SPEC_SAMPLES (53)"},"reads":{"mean":6730335.82,"min":6729034,"q1":6730043,"q2":6730074,"q3":6730153.5,"max":6732927,"minLabel":"PULL_SPEC_SAMPLES (12)","maxLabel":"PULL_SPEC_SAMPLES (47)","q1Label":"PULL_SPEC_SAMPLES (20)","q2Label":"PULL_SPEC_SAMPLES (26)","q3Label":"PULL_SPEC_SAMPLES (14)"},"cpu":{"mean":31.54,"min":19.9,"q1":28.6,"q2":30.85,"q3":34.78,"max":44.2,"minLabel":"PULL_SPEC_SAMPLES (45)","maxLabel":"PULL_SPEC_SAMPLES (50)","q1Label":"PULL_SPEC_SAMPLES (1)","q2Label":"PULL_SPEC_SAMPLES (47)","q3Label":"PULL_SPEC_SAMPLES (33)"},"time":{"mean":1862.97,"min":1185,"q1":1688.5,"q2":1831,"q3":1984,"max":3010,"minLabel":"PULL_SPEC_SAMPLES (50)","maxLabel":"PULL_SPEC_SAMPLES (45)","q1Label":"PULL_SPEC_SAMPLES (31)","q2Label":"PULL_SPEC_SAMPLES (14)","q3Label":"PULL_SPEC_SAMPLES (53)"},"writes":{"mean":24280.55,"min":22348,"q1":23854.25,"q2":23962.5,"q3":24035.5,"max":27971,"minLabel":"PULL_SPEC_SAMPLES (12)","maxLabel":"PULL_SPEC_SAMPLES (49)","q1Label":"PULL_SPEC_SAMPLES (26)","q2Label":"PULL_SPEC_SAMPLES (55)","q3Label":"PULL_SPEC_SAMPLES (6)"}},{"cpuUsage":{"mean":14.4,"min":14.4,"q1":14.4,"q2":14.4,"q3":14.4,"max":14.4,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"process":"CONCAT_SPEC_SAMPLES","mem":{"mean":3334144,"min":3334144,"q1":3334144,"q2":3334144,"q3":3334144,"max":3334144,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"memUsage":null,"timeUsage":null,"vmem":{"mean":5877760,"min":5877760,"q1":5877760,"q2":5877760,"q3":5877760,"max":5877760,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"reads":{"mean":779308,"min":779308,"q1":779308,"q2":779308,"q3":779308,"max":779308,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"cpu":{"mean":14.4,"min":14.4,"q1":14.4,"q2":14.4,"q3":14.4,"max":14.4,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"time":{"mean":669,"min":669,"q1":669,"q2":669,"q3":669,"max":669,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"},"writes":{"mean":732066,"min":732066,"q1":732066,"q2":732066,"q3":732066,"max":732066,"minLabel":"CONCAT_SPEC_SAMPLES","maxLabel":"CONCAT_SPEC_SAMPLES","q1Label":"CONCAT_SPEC_SAMPLES","q2Label":"CONCAT_SPEC_SAMPLES","q3Label":"CONCAT_SPEC_SAMPLES"}}]
+Aug-18 12:10:51.881 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Aug-18 12:10:52.406 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Aug-18 12:10:52.425 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

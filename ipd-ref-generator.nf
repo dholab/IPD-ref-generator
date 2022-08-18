@@ -122,7 +122,7 @@ process PULL_SPEC_SAMPLES {
 	
 	script:
 	"""
-	download_additional_embl_sequences.py "${accession}" "${informal_name}"
+	download_additional_embl_sequences.py "${accession}" "${formal_name}"
 	"""
 	
 }

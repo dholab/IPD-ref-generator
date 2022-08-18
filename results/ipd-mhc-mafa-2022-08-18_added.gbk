@@ -1,4 +1,4 @@
-LOCUS       Mafa-A1_060_05_ext      2921 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-A1*060:05:01:01    2921 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957124.
 ACCESSION   OW957124
 VERSION     OW957124
@@ -99,7 +99,7 @@ ORIGIN
      2821 ctttgacttg gatgtattga gcatgtgatg ggctgtttaa agtgtcactc ctcactgtga
      2881 cagatatgaa ttttttcatg aatatttttt ctgtagtgtg a
 //
-LOCUS       Mafa-A1_031_01_ext      2910 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-A1*031:01:01:01    2910 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957125.
 ACCESSION   OW957125
 VERSION     OW957125
@@ -201,7 +201,7 @@ ORIGIN
      2821 atgtattgag catgtgatgg gctgtttaaa gtgtcactcc tcactgtgac ggatgtgaat
      2881 tttttcatga atattttttc tatagtgtga
 //
-LOCUS       Mafa-AG1_05_28_01_01_nov 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:34:01:01    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957126.
 ACCESSION   OW957126
 VERSION     OW957126
@@ -301,7 +301,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcatgaa tgtgttttct atagagtga
 //
-LOCUS       Mafa-A4_01_09N_ext      2928 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-A4*01:09:01:01N    2928 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957127.
 ACCESSION   OW957127
 VERSION     OW957127
@@ -396,7 +396,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt tgttcatgaa tattttttct atagtgtggg acagctaa
 //
-LOCUS       Mafa-AG1_05_11_01_01_nov 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:35:01:01    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957128.
 ACCESSION   OW957128
 VERSION     OW957128
@@ -496,7 +496,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcatgaa tatgttttct atagagtga
 //
-LOCUS       Mafa-AG1_05_31_01_01_nov 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:36:01:01N   2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957230.
 ACCESSION   OW957230
 VERSION     OW957230
@@ -590,7 +590,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcatgaa tatgttttct atagagtga
 //
-LOCUS       Mafa-AG3_02_03_03_01_nov 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:16:01:01    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957571.
 ACCESSION   OW957571
 VERSION     OW957571
@@ -690,7 +690,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt tgttcatgaa tatgttttct atagtgtga
 //
-LOCUS       Mafa-AG3_02_06_01_03_ext 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:06:01:04    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957756.
 ACCESSION   OW957756
 VERSION     OW957756
@@ -790,7 +790,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcataaa tatgttttct atagtgtga
 //
-LOCUS       Mafa-AG6_04_11_01_01_nov02 2920 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG6*04:05:03:02    2920 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957988.
 ACCESSION   OW957988
 VERSION     OW957988
@@ -890,7 +890,7 @@ ORIGIN
      2821 tttgacttgg atgtattgag catgtgatgg gctgtttaaa gtgtcactcc tcactgtgac
      2881 ggatgtgaat tttttcatga atattttttc tatagtgtga
 //
-LOCUS       Mafa-AG3_03_02_nov      3235 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*03:01:04:01    3235 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957997.
 ACCESSION   OW957997
 VERSION     OW957997
@@ -989,7 +989,7 @@ ORIGIN
      3121 gtgctgtggg gtttctttga cttggatgta ttgagcatgt gatggactgt ttaaagtgtc
      3181 actcctcact gtgacggatg tgaatttttt cataaatatg ttttctatag tgtga
 //
-LOCUS       Mafa-AG6_04_11_01_01_nov03 2920 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG6*04:05:03:01    2920 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW957998.
 ACCESSION   OW957998
 VERSION     OW957998
@@ -1089,7 +1089,7 @@ ORIGIN
      2821 tttgacttgg atgtattgag catgtgatgg gctgtttaaa gtgtcactcc tcactgtgac
      2881 ggatgtgaat tttttcatga atattttttc tatagtgtga
 //
-LOCUS       Mafa-K_01_02_nov        2957 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-K*01:03:01:01      2957 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958290.
 ACCESSION   OW958290
 VERSION     OW958290
@@ -1185,7 +1185,7 @@ ORIGIN
      2881 cgatgggctg tttaaagtgt tacccctcac tatgacagat agaaatttct ccattaatat
      2941 ttttttttat agtgtga
 //
-LOCUS       Mafa-A1_032_01_ext      2911 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-A1*032:01:01:01    2911 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958402.
 ACCESSION   OW958402
 VERSION     OW958402
@@ -1286,7 +1286,7 @@ ORIGIN
      2821 gatgtattga gcatgtgatg ggctgtttaa agtgtcactc ctcactgtga cggatatgaa
      2881 ttttttcatg aatatgtttt ctatagtgtg a
 //
-LOCUS       Mafa-AG1_05_11_01_01_ext 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:11:01:02    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958403.
 ACCESSION   OW958403
 VERSION     OW958403
@@ -1386,7 +1386,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcatgaa tatgttttct atagagtga
 //
-LOCUS       Mafa-AG6_04_08_nov      2918 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG6*04:27:01:01N   2918 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958569.
 ACCESSION   OW958569
 VERSION     OW958569
@@ -1486,7 +1486,7 @@ ORIGIN
      2821 tgacttggat gtattgagca tgtgatgggc tgtttaaagt gtcactcctc actgtgacgg
      2881 atgtgaattt gttcatgaat attttttcta tagtgtga
 //
-LOCUS       Mafa-AG5_06_02_03_02_ext 2915 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG5*06:02:03:03    2915 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958789.
 ACCESSION   OW958789
 VERSION     OW958789
@@ -1586,7 +1586,7 @@ ORIGIN
      2821 cttggatgta ttgagcatgt gatgggctgt ttaaagtgtc actcctcact gtgacggatg
      2881 tgaatttttt catgaatatg ttttctatag tgtga
 //
-LOCUS       Mafa-AG3_02_03_02_01_ext 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:03:02:02    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW958797.
 ACCESSION   OW958797
 VERSION     OW958797
@@ -1686,7 +1686,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt tgttcatgaa tatgttttct atagtgtga
 //
-LOCUS       Mafa-AG3_02_03_04_01_nov01 2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:03:05:01    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959154.
 ACCESSION   OW959154
 VERSION     OW959154
@@ -1786,7 +1786,7 @@ ORIGIN
      2821 ttgacttgaa tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt tgttcatgaa tatgttttct atagtgtga
 //
-LOCUS       Mafa-AG5_07_13_01_01_nov 2916 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG5*07:03:02:01    2916 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959244.
 ACCESSION   OW959244
 VERSION     OW959244
@@ -1886,7 +1886,7 @@ ORIGIN
      2821 acttggatgt attgagcatg tgatgggctg tttaaagtgt cactcctaac tgtgacagat
      2881 gtgaattttt tcatgaatat gttttctata gagtga
 //
-LOCUS       Mafa-AG5_06_05_ext      2915 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG5*06:05:01:01    2915 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959512.
 ACCESSION   OW959512
 VERSION     OW959512
@@ -1986,7 +1986,7 @@ ORIGIN
      2821 cttggatgta ttgagcatgt gatgggctgt ttaaagtgtc actcctaact gtgacggatg
      2881 tgaatttttt catgaatatg ttttctatag tgtga
 //
-LOCUS       Mafa-AG6_04_06_nov      2919 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG6*04:25:01:01    2919 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959519.
 ACCESSION   OW959519
 VERSION     OW959519
@@ -2086,7 +2086,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt tgttcatgaa tattttttct atagtgtga
 //
-LOCUS       Mafa-AG3_02_06_01_01_nov 2918 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:18:01:01    2918 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959520.
 ACCESSION   OW959520
 VERSION     OW959520
@@ -2186,7 +2186,7 @@ ORIGIN
      2821 tgacttggat gtattgagca tgtgatgggc tgtttaaagt gtcactcctc actgtgacgg
      2881 atgtgaattt tttcataaat atgttttcta tagtgtga
 //
-LOCUS       Mafa-AG3_02_07_01_01_nov 2929 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG3*02:17:01:01    2929 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW959715.
 ACCESSION   OW959715
 VERSION     OW959715
@@ -2286,7 +2286,7 @@ ORIGIN
      2821 tttgacttgg atgtattgag catgtgatgg gctgtttaaa gtgtcactcc tcactgtgac
      2881 ggatgtgaat tttttcataa atatgttttc tatagtgtga gacagctac
 //
-LOCUS       Mafa-B_072_02_ext       2854 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*072:02:01:01     2854 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981792.
 ACCESSION   OW981792
 VERSION     OW981792
@@ -2388,7 +2388,7 @@ ORIGIN
      2761 gtaacgtttc gagtgtgtgg tgggctgttc agagtgtcat cacttaccat gactgacttg
      2821 aatttgttca tgactgttgt tttctgtagc ttga
 //
-LOCUS       Mafa-B16_01_04_nov01    3853 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:13:01:01    3853 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981793.
 ACCESSION   OW981793
 VERSION     OW981793
@@ -2507,7 +2507,7 @@ ORIGIN
      3781 agagtgtcat cacttaacat gactgacttg gatttgttta tgactattgt tttctgtagc
      3841 ctgagacagc tgc
 //
-LOCUS       Mafa-B02Ps_01_11_01_01_nov 2861 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B02Ps*01:11:02:01  2861 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981794.
 ACCESSION   OW981794
 VERSION     OW981794
@@ -2609,7 +2609,7 @@ ORIGIN
      2761 tttgattggg atgttgcagg tgtgtggtgg gctgttcaga gtgtcatcac ttaccatgac
      2821 tgacttgaat ttgttcatga ctgttgtttt ctgtagcctg a
 //
-LOCUS       Mafa-AG2_01_03_01_02_ext_NG 2926 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG2*01:03:03:01    2926 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981795.
 ACCESSION   OW981795
 VERSION     OW981795
@@ -2710,7 +2710,7 @@ ORIGIN
      2821 ggtttctttg acttggatat attgagcatg tgatgggctg tttaaagtgt cactcctgac
      2881 tgtgacggat gtgaattttt tcatgaatat tttttctata gtgtga
 //
-LOCUS       Mafa-J_02_01_01_02_ext  2935 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-J*02:01:05:01      2935 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981796.
 ACCESSION   OW981796
 VERSION     OW981796
@@ -2807,7 +2807,7 @@ ORIGIN
      2821 gtgctatgga gtttctttga cttggatgta ttgagcacat gatgggctgt ttaaagtgtg
      2881 accccttgct gtgactgata tgaatttgtt catgaatatt ttttctatag tgtga
 //
-LOCUS       Mafa-AG2_01_04_nov_NG   2926 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG2*01:14:01:01    2926 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981797.
 ACCESSION   OW981797
 VERSION     OW981797
@@ -2908,7 +2908,7 @@ ORIGIN
      2821 ggtttctttg acttggatat attgagcatg tgatgggctg tttaaagtgt cactcctgac
      2881 tgtgacggat gtgaattttt tcatgaatat tttttctata gtgtga
 //
-LOCUS       Mafa-AG2_01_06_01_01_nov01_NG 2926 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG2*01:07:02:01    2926 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981799.
 ACCESSION   OW981799
 VERSION     OW981799
@@ -3009,7 +3009,7 @@ ORIGIN
      2821 ggtttctttg acttggatat attgagcatg tgatgggctg tttaaagtgt cactcctgac
      2881 tgtgacggat gtgaattttt tcatgaatat tttttctata gtgtga
 //
-LOCUS       Mafa-AG2_01_06_01_01_nov02_NG 2930 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG2*01:15:01:01N   2930 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981800.
 ACCESSION   OW981800
 VERSION     OW981800
@@ -3110,7 +3110,7 @@ ORIGIN
      2821 gtggggtttc tttgacttgg atatattgag catgtgatgg gctgtttaaa gtgtcactcc
      2881 tgactgtgac agatatgaat tttttcatga atattttttc tatagtgtga
 //
-LOCUS       Mafa-AG1_05_02_03_ext   2909 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:02:03:01    2909 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981801.
 ACCESSION   OW981801
 VERSION     OW981801
@@ -3212,7 +3212,7 @@ ORIGIN
      2821 tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg gatgtgaatt
      2881 ttttcatgaa tatgttttct atagtgtga
 //
-LOCUS       Mafa-B16_01_04_nov04    3849 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B22*01:02:01:01    3849 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981802.
 ACCESSION   OW981802
 VERSION     OW981802
@@ -3331,7 +3331,7 @@ ORIGIN
      3781 tgtcatcact taacatgact gacttggatt tgtttatgac tattgctttc tgtagcctga
      3841 gacagctgc
 //
-LOCUS       Mafa-B16_01_04_ext      3849 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:04:01:01    3849 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981803.
 ACCESSION   OW981803
 VERSION     OW981803
@@ -3450,7 +3450,7 @@ ORIGIN
      3781 tgtcatcact taacatgact gacttggatt tgtttatgac tattgttttc tgtagcctga
      3841 gacagctgc
 //
-LOCUS       Mafa-J_01_01_01_02_nov  2957 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-J*01:07:01:01N     2957 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981804.
 ACCESSION   OW981804
 VERSION     OW981804
@@ -3548,7 +3548,7 @@ ORIGIN
      2881 gtgatgggct gtttaaagtg tgacccctcg ctgtgactga tatgaatttg ttcatgaata
      2941 ttttttctat agtgtga
 //
-LOCUS       Mafa-B16_01_04_nov03    3853 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:15:01:01    3853 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981805.
 ACCESSION   OW981805
 VERSION     OW981805
@@ -3667,7 +3667,7 @@ ORIGIN
      3781 agagtgtcat cacttaacat gactgacttg gatttgttta tgactattgt tttctgtagc
      3841 ctgagacagc tgc
 //
-LOCUS       Mafa-B16_01_12_01_01_nov02 3848 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:16:01:01    3848 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981806.
 ACCESSION   OW981806
 VERSION     OW981806
@@ -3786,7 +3786,7 @@ ORIGIN
      3781 gtcatcactt aacatgactg acttggattt gtttatgact attgttttct gtagcctgag
      3841 acagctgc
 //
-LOCUS       Mafa-B16_01_12_01_01_nov01 3851 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:18:01:01N   3851 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981807.
 ACCESSION   OW981807
 VERSION     OW981807
@@ -3901,7 +3901,7 @@ ORIGIN
      3781 agtgtcatca cttaacatga ctgacttgga tttgtttatg actattgttt tctgtagcct
      3841 gagacagctg c
 //
-LOCUS       Mafa-B21Ps_01_05_01_01_nov01 2875 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B21Ps*01:05:02:01  2875 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981808.
 ACCESSION   OW981808
 VERSION     OW981808
@@ -3998,7 +3998,7 @@ ORIGIN
      2761 gtgtaatgga gattctttga ttgtgacatt tcgagtgtgt ggtggctgtt cagagtgtca
      2821 tcacttacca tgactgactt gaatttgttc atgactgttg ttttctgtag cctga
 //
-LOCUS       Mafa-B22_01_nov         3849 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B22*01:01:02:01N   3849 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981809.
 ACCESSION   OW981809
 VERSION     OW981809
@@ -4111,7 +4111,7 @@ ORIGIN
      3781 tgtcatcact taacatgact gacttggatt tgtttatgac tattgttttc tgtagcctga
      3841 gacagctgc
 //
-LOCUS       Mafa-I_05_01_01_01_ext  2856 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-I*05:01:01:02      2856 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981810.
 ACCESSION   OW981810
 VERSION     OW981810
@@ -4213,7 +4213,7 @@ ORIGIN
      2761 attgggatgt ttcaggtgtg tggtggctgt tcagagtgtc atcacttacc atgactgact
      2821 tgaatttgtc catgactgtt gttttctgta gcctga
 //
-LOCUS       Mafa-B_078_04_nov       2943 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-K*01:04:01:01      2943 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981811.
 ACCESSION   OW981811
 VERSION     OW981811
@@ -4311,7 +4311,7 @@ ORIGIN
      2881 aagtgctacc cctcactatg acagatagga atttctccat taatattttt ttctatactg
      2941 tga
 //
-LOCUS       Mafa-AG1_05_10_02_01_ext 2918 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:10:02:02    2918 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981812.
 ACCESSION   OW981812
 VERSION     OW981812
@@ -4413,7 +4413,7 @@ ORIGIN
      2821 tgacttggat gtattgagca tgtgatgggc tgtttaaagt gtcactcctc actgtgacgg
      2881 atgtgaattt tttcatgaat attttttcta tagagtga
 //
-LOCUS       Mafa-B_064_01_01_01_nov01 2860 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*148:01:01:01     2860 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981813.
 ACCESSION   OW981813
 VERSION     OW981813
@@ -4515,7 +4515,7 @@ ORIGIN
      2761 tgattgggac gtttcgagtg tgtggtgggc tgttcagagt gtcatcactt accatgactg
      2821 acttgaattt tttgttcatg acttgttttc tgtagcctga
 //
-LOCUS       Mafa-B_098_06_01_ext    2854 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*098:06:01:01     2854 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981814.
 ACCESSION   OW981814
 VERSION     OW981814
@@ -4617,7 +4617,7 @@ ORIGIN
      2761 gtaacgtttc gagtgtgtga tgggctgttc agagtgtcat cacttaccat gactgacttg
      2821 aatttgttca tgactgttgt tttctgtagc ctga
 //
-LOCUS       Mafa-B_109_24_01_01_nov 2849 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*109:31:01:01     2849 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981815.
 ACCESSION   OW981815
 VERSION     OW981815
@@ -4719,7 +4719,7 @@ ORIGIN
      2761 tttcgagtgt gtggtgggct gttcagagtg tcatcactta ccatgactga cttgaatttt
      2821 ttgttcatga cttgttttct gtagcctga
 //
-LOCUS       Mafa-B_164_02_ext       2862 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*164:02:01:01     2862 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981816.
 ACCESSION   OW981816
 VERSION     OW981816
@@ -4821,7 +4821,7 @@ ORIGIN
      2761 tctttgattg taacgtttcg agtgtgtggt gggctgttca gagtgtcact cctaaccgtg
      2821 acggatgtga attttttcat gaatatgttt tctatagtgt ga
 //
-LOCUS       Mafa-A1_047_01_ext      2911 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-A1*047:02:01:01    2911 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981817.
 ACCESSION   OW981817
 VERSION     OW981817
@@ -4923,7 +4923,7 @@ ORIGIN
      2821 gatgtattga gcatgtgatg ggctgtttaa agtgtcactc ctcactgtga cggatgtgaa
      2881 ttttttcatg aatatttttt ctatagtgtg a
 //
-LOCUS       Mafa-I_01_22_ext        2857 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-I*01:22:01:01      2857 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981818.
 ACCESSION   OW981818
 VERSION     OW981818
@@ -5025,7 +5025,7 @@ ORIGIN
      2761 gattgagatg tttcaggtgt gtggtggctg ttcagagtgt catcacttac catgactgac
      2821 ttgaatttgt tcatgactgt tgttttctgt agcctga
 //
-LOCUS       Mafa-AG5_07_11_01_01_nov 2920 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG5*07:18:01:01    2920 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981819.
 ACCESSION   OW981819
 VERSION     OW981819
@@ -5127,7 +5127,7 @@ ORIGIN
      2821 tttgacttgg atgtattgag catgtgatgg gctgtttaaa gtgtcactcc taaccgtgac
      2881 ggatgtgaat tttttcatga atatgttttc tatagtgtga
 //
-LOCUS       Mafa-AG6_04_04_02_nov   2928 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG6*04:26:01:01    2928 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981820.
 ACCESSION   OW981820
 VERSION     OW981820
@@ -5229,7 +5229,7 @@ ORIGIN
      2821 ttgacttgga tgtattgagc atgtgatggg ctgtttaaag tgtcactcct cactgtgacg
      2881 gatgtgaatt ttttcatgaa tattttttct atagtgcgag atagctgc
 //
-LOCUS       Mafa-AG1_05_23_01_01_nov 2918 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-AG1*05:23:02:01    2918 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981821.
 ACCESSION   OW981821
 VERSION     OW981821
@@ -5331,7 +5331,7 @@ ORIGIN
      2821 tgacttggat gtattgagca tgtgatgggc tgtttaaagt gtcactcctc actgtgacgg
      2881 atgtgaattt tttcatgaat atgttttcta tagagtga
 //
-LOCUS       Mafa-B_044_04_ext       2867 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*044:04:01:01     2867 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981822.
 ACCESSION   OW981822
 VERSION     OW981822
@@ -5433,7 +5433,7 @@ ORIGIN
      2761 tggagattct ttgattgtga cgtttcaagt gtggtggctg ttcagagtgt catcacttac
      2821 catgactgac ttgaatttgt tcatgactgt tgttttctgt agcctga
 //
-LOCUS       Mafa-B_051_04_01_01_nov 2847 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*051:33:01:01     2847 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981823.
 ACCESSION   OW981823
 VERSION     OW981823
@@ -5535,7 +5535,7 @@ ORIGIN
      2761 tcgagtgtgt gatgggctgt tcagagtgtc atcacttacc atgactgact tgaatttttt
      2821 gttcatgact tgttttctgt aacctga
 //
-LOCUS       Mafa-B21Ps_01_05_01_01_nov02 2873 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B21Ps*01:07:01:01  2873 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981824.
 ACCESSION   OW981824
 VERSION     OW981824
@@ -5632,7 +5632,7 @@ ORIGIN
      2761 gtaatggaga ttctttgatt gtgacatttc gagtgtgtgg tggctgttca gagtgtcatc
      2821 acttaccatg actgacttga atttgttcat gactgttgtt tcctgtagcc tga
 //
-LOCUS       Mafa-B_097_03_01_01_nov 2861 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*097:07:01:01     2861 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981825.
 ACCESSION   OW981825
 VERSION     OW981825
@@ -5734,7 +5734,7 @@ ORIGIN
      2761 tttgattggg acgtttcaag tgtgtggtgg gctgttcaga gtgtcatcac ttaccatgac
      2821 tgacttgaat ttgttcatga ctgttgtttt ctgtagcctg a
 //
-LOCUS       Mafa-B_098_04_01_02_ext 2852 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*098:04:01:03     2852 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981826.
 ACCESSION   OW981826
 VERSION     OW981826
@@ -5836,7 +5836,7 @@ ORIGIN
      2761 aacgtttcga gtgtgtgatg ggctgttcag agtgtcatca cttaccatga ctgacttgaa
      2821 tttgttcatg actgttgttt tctgtagcct ga
 //
-LOCUS       Mafa-B_060_06_ext       2863 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*060:06:01:01     2863 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981827.
 ACCESSION   OW981827
 VERSION     OW981827
@@ -5938,7 +5938,7 @@ ORIGIN
      2761 tctttgattg ggacgtttcc actgtgtggt gggctgttca gagtgtcatc acttaccatg
      2821 actgacttga atttgttcat gactgttgtt ttctgtagcc tga
 //
-LOCUS       Mafa-B_151_01_ext       2837 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B*151:01:01:01     2837 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981828.
 ACCESSION   OW981828
 VERSION     OW981828
@@ -6038,7 +6038,7 @@ ORIGIN
      2761 ttctttgatt gggacatttt gagagtgtgg tgggctcttc agagactgac tgacttgaat
      2821 ttgttcatga ctgttgt
 //
-LOCUS       Mafa-B16_01_04_nov02    3854 bp    DNA              MAM 01-JAN-1980
+LOCUS       Mafa-B16*01:14:01:01    3854 bp    DNA              MAM 01-JAN-1980
 DEFINITION  OW981829.
 ACCESSION   OW981829
 VERSION     OW981829
