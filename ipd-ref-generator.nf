@@ -25,7 +25,20 @@ workflow {
 		.of( 0..params.kir_protein_count )
 		.toSortedList()
 		.flatten()
-
+		
+	ch_added_seqs = Channel
+		.fromPath( params.added_seqs )
+		.splitCsv( header: true )
+		.map { row -> tuple(row.accession, row.formal_name, row.informal_name, row.ipd_id, row.animal_id) }
+	
+	
+	PULL_SPEC_SAMPLES (
+		ch_added_seqs
+	)
+	
+	CONCAT_SPEC_SAMPLES (
+		PULL_SPEC_SAMPLES.out.collect()
+	)
 
 	PULL_IPD_MHC (
 		ch_mhc_count
@@ -92,6 +105,55 @@ workflow {
 
 
 // Defining each process that will occur while generating new IPD references
+process PULL_SPEC_SAMPLES {
+	
+	time '1 minute'
+	errorStrategy 'retry'
+	maxRetries 4
+	
+	when:
+	params.pull_added_seqs == true
+	
+	input:
+	tuple val(accession), val(formal_name), val(informal_name), val(ipd_id), val(animal_id)
+	
+	output:
+	path("*.gbk")
+	
+	script:
+	"""
+	download_additional_embl_sequences.py "${accession}" "${informal_name}"
+	"""
+	
+}
+
+
+process CONCAT_SPEC_SAMPLES {
+	
+	publishDir params.results, pattern: '*.gbk', mode: 'copy'
+	
+	when:
+	params.pull_added_seqs == true
+	
+	input:
+	path(gbk_files)
+	
+	output:
+	path("*.gbk")
+	
+	script:
+	date = new java.util.Date().format('yyyy-MM-dd')
+	
+	"""
+	cat ipd-mhc-mafa*.gbk > ipd-mhc-mafa-${date}_added.gbk
+	cat ipd-mhc-mamu*.gbk > ipd-mhc-mamu-${date}_added.gbk
+	cat ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}_added.gbk
+	cat ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}_added.gbk
+	"""
+	
+}
+
+
 process PULL_IPD_MHC {
 
 	// This process pulls the current full roster non-human primate MHC alleles, as listed
@@ -118,6 +180,7 @@ process PULL_IPD_MHC {
 	tuple val(ipd_num), path("*.gbk")
 
 	script:
+	
 	"""
 	
 	download_ipd-mhc_sequences.py ${ipd_num}
