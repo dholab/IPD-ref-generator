@@ -8,5 +8,6 @@ work/
 trace.txt.*
 report.html.*
 timeline.html*
+report.html*
 *.dot
 *.png.*
