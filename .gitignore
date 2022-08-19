@@ -7,6 +7,6 @@ work/
 .DS_Store
 trace.txt.*
 report.html.*
-timeline.html.*
+timeline.html*
 *.dot
 *.png.*
