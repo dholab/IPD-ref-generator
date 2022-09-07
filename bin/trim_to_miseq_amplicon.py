@@ -6,7 +6,7 @@ import subprocess
 
 file_dir = os.getcwd()
 animal = sys.argv[1]
-input_file = sys.argv[2]
+in_gbk = sys.argv[2]
 exemplar = sys.argv[3]
 
 # -*- coding: utf-8 -*-
@@ -52,10 +52,14 @@ def vsearchMapToReference(query, ref, out_sam):
   
   printStatus('Map to reference with vsearch usearch_global algorithm')
   
-  subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam')
+  os.environ['query'] = query
+  os.environ['ref'] = ref
+  os.environ['out_sam'] = out_sam
+  
+  subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam', shell = True)
 
   # remove intermediate fasta file
-  subprocess.run('rm $query')
+  subprocess.run('rm $query', shell = True)
 
   return out_sam
 
@@ -72,9 +76,11 @@ def trimQueryByMapping(in_sam):
 
   # import SAM file as pysam object
   samfile = pysam.AlignmentFile(in_sam, 'r', check_sq=False)
+  
+  os.environ['in_sam'] = in_sam
 
   # remove temporary sam file
-  subprocess.run('rm $in_sam')
+  subprocess.run('rm $in_sam', shell = True)
 
   # create empty list of lists to store trimmed sequences
   trimmed_sequence = []
@@ -199,8 +205,13 @@ def createMiseqTrimmedFasta(in_gbk, exemplar_fasta):
 
   # create output file names
   IPD_BASENAME = os.path.basename(in_gbk[:-4])
-  IPD_TRIMMED_FASTA = IPD_BASENAME[0] + '.miseq.trimmed.fasta'
-  IPD_TRIMMED_DEDUPLICATED_FASTA = IPD_BASENAME[0] + '.miseq.trimmed.deduplicated.fasta'
+  IPD_TRIMMED_FASTA = IPD_BASENAME + '.miseq.trimmed.fasta'
+  IPD_TRIMMED_DEDUPLICATED_FASTA = IPD_BASENAME + '.miseq.trimmed.deduplicated.fasta'
+  
+  # make sure file names are available to subprocess environment
+  os.environ['IPD_BASENAME'] = IPD_BASENAME
+  os.environ['IPD_TRIMMED_FASTA'] = IPD_TRIMMED_FASTA
+  os.environ['IPD_TRIMMED_DEDUPLICATED_FASTA'] = IPD_TRIMMED_DEDUPLICATED_FASTA
 
   # make FASTA
   ipd_fasta = createFastaFromGenbank(in_gbk, 'tmp.fasta')
@@ -218,7 +229,7 @@ def createMiseqTrimmedFasta(in_gbk, exemplar_fasta):
   deduplicate_fasta(IPD_TRIMMED_FASTA, IPD_TRIMMED_DEDUPLICATED_FASTA)
 
   # remove unnecessary intermediate file
-  subprocess.run('rm $IPD_TRIMMED_FASTA')
+  subprocess.run('rm $IPD_TRIMMED_FASTA', shell = True)
 
   # check status
   printStatus('Workflow complete!')
@@ -268,7 +279,7 @@ The resulting deduplicated FASTA file can be used as a genotyping target for miS
 """
 
 # run workflow
-createMiseqTrimmedFasta(input_file, exemplar)
+createMiseqTrimmedFasta(in_gbk, exemplar)
 
 """## Trim and deduplicate IPD MHC alleles"""
 
