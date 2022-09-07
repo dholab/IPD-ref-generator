@@ -6,7 +6,7 @@ import subprocess
 
 file_dir = os.getcwd()
 animal = sys.argv[1]
-input_file = sys.argv[2]
+in_gbk = sys.argv[2]
 exemplar = sys.argv[3]
 
 # -*- coding: utf-8 -*-
@@ -50,6 +50,10 @@ def vsearchMapToReference(query, ref, out_sam):
   
   printStatus('Map to reference with vsearch usearch_global algorithm')
   
+  os.environ['query'] = query
+  os.environ['ref'] = ref
+  os.environ['out_sam'] = out_sam
+  
   subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam', shell = True)
 
   # remove intermediate fasta file
@@ -70,6 +74,8 @@ def trimQueryByMapping(in_sam):
 
   # import SAM file as pysam object
   samfile = pysam.AlignmentFile(in_sam, 'r', check_sq=False)
+  
+  os.environ['in_sam'] = in_sam
 
   # remove temporary sam file
   subprocess.run('rm $in_sam', shell = True)
@@ -243,18 +249,19 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   IPD_IMMUNOWES_FASTA = IPD_BASENAME + '.immunowes.fasta'
   IPD_CDNA_FASTA = IPD_BASENAME + '.cdna.fasta'
   IPD_GDNA_FASTA = IPD_BASENAME + '.gdna.fasta'
+  
+  # make sure file names are available to subprocess environment
+  os.environ['IPD_BASENAME'] = IPD_BASENAME
+  os.environ['IPD_TRIMMED_FASTA'] = IPD_TRIMMED_FASTA
+  os.environ['IPD_IMMUNOWES_FASTA'] = IPD_IMMUNOWES_FASTA
+  os.environ['IPD_CDNA_FASTA'] = IPD_CDNA_FASTA
+  os.environ['IPD_GDNA_FASTA'] = IPD_GDNA_FASTA
 
   # make gdna and cdna files
-  # tmp_cdna = open('tmp_cdna.fasta', "w")
-  # tmp_cdna.close()
-  # 
-  # tmp_sam = open('tmp.sam', "w")
-  # tmp_sam.close()
-  
   separateGdnaFromCdna(in_gbk, IPD_GDNA_FASTA, 'tmp_cdna.fasta')
 
   # map to reference
-  vsearch = vsearchMapToReference('tmp_cdna.f'asta', exemplar_fasta, 'tmp.sam')
+  vsearch = vsearchMapToReference('tmp_cdna.fasta', exemplar_fasta, 'tmp.sam')
 
   # calculate trim
   trim_list = trimQueryByMapping('tmp.sam')
@@ -267,7 +274,7 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
 
   # merge gDNA and cDNA files
   subprocess.run('cat $IPD_GDNA_FASTA $IPD_CDNA_FASTA > $IPD_IMMUNOWES_FASTA', shell = True)
-
+  
   # remove unnecessary intermediate files
   subprocess.run('rm $IPD_TRIMMED_FASTA', shell = True)
 
@@ -322,7 +329,7 @@ Make immunoWES database from IPD sequences
 # trim cDNA sequences to exon 2 and deduplicate
 # in Geneious, extracted exon 2 from most of the same sequences Roger used to make miSeq exemplars
 # selected full-length versions of sequences that are not full cDNA
-createImmunoWESFasta(input_file, exemplar)
+createImmunoWESFasta(in_gbk, exemplar)
 
 """## Cyno immunoWES database
 
