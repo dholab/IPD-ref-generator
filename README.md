@@ -4,7 +4,7 @@ _Latest Release:_ 3.9.0.0 (2022-07) build 209 (July 2022)
 
 ## Overview
 
-This workflow pulls the latest allele and protein sequences from [IPD](https://www.ebi.ac.uk/ipd/) for the MHC and KIR regions. It also prepares a series of species-specific reference databases. These databases will contain sequences that are more than 100 base pairs long for Rhesus macaque (_Macaca mulatta_, a.k.a. Mamu), Cynomolgus macaque (_Macaca fascicularis_ a.k.a. Mafa), and Southern pig-tailed macaque (_Macaca nemestrina_, a.k.a. Mame), as well as for all non-human primates included in IPD. At minimum, this workflow should be run once after each IPD release of new MHC reference alleles.
+This workflow pulls the latest allele and protein sequences from [IPD](https://www.ebi.ac.uk/ipd/) for the MHC and KIR regions. It also prepares a series of species-specific reference databases. These databases will contain sequences that are more than 100 base pairs long for Rhesus macaque (_Macaca mulatta_, a.k.a. Mamu), Cynomolgus macaque (_Macaca fascicularis_ a.k.a. Mafa), and Southern pig-tailed macaque (_Macaca nemestrina_, a.k.a. Mane), as well as for all non-human primates included in IPD. At minimum, this workflow should be run once after each IPD release of new MHC reference alleles.
 
 The workflow also prepares context-specific reference databases for use with data generated at [AVRL](https://dholk.primate.wisc.edu/project/home/begin.view?):
 
