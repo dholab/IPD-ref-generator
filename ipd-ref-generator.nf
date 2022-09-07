@@ -472,6 +472,7 @@ process IWES_TRIMMING {
 
 }
 
+
 process MISEQ_TRIMMING {
 
 	// This process removes primers from IPD sequences and then deduplicates identical sequences,
