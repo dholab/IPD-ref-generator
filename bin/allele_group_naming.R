@@ -8,26 +8,29 @@ args = commandArgs(trailingOnly=TRUE)
 library(tidyr)
 library(stringr)
 library(tidyverse)
-# filepath = "/Users/nicholasminor/Documents/dholk_experiments/27453/3b_miSeq-trimming" # replace this filepath with wherever you have stored the fastas
-# setwd(filepath)
-fasta <- read.delim("ipd-mhc-nhp-2022-07-11_cleaned.miseq.trimmed.deduplicated.sorted.fasta", header = F)
-# fasta <- read.delim(args[1], header = F)
 
-file_basename <- "ipd-mhc-nhp-2022-07-11_cleaned.miseq.trimmed.deduplicated.sorted"
-# file_basename <- str_remove(args[1], ".fasta")
+fasta <- read.delim(args[1], header = F)
+file_basename <- str_remove(args[1], ".fasta")
 
 if (grepl("-nhp-", file_basename)){
+  
   animal_filename <- "nhp"
   
 } else if (TRUE %in% grepl(">Mamu-", fasta[,1])){
+  
   animal <- ">Mamu-"
   animal_filename <- "mamu"
+  
 } else if (TRUE %in% grepl(">Mafa-", fasta[,1])){
+  
   animal <- ">Mafa-"
   animal_filename <- "mafa"
+  
 } else if (TRUE %in% grepl(">Mane-", fasta[,1])){
+  
   animal <- ">Mane-"
   animal_filename <- "mane"
+  
 }
 
 
@@ -1434,10 +1437,10 @@ if (animal_filename=="nhp"
   
   # SANITY CHECK(S) ####
   # progress
-  # groups <- as.data.frame(fasta[grepl("|", fasta[,1], fixed = T),]) # visually check groups to make sure that not groups are without a name
-  # groups_final <- data.frame("group" = str_replace_all(groups[,1], fixed(">"), ""))
-  # groups_final$group <- str_replace(groups_final$group, fixed("|"), " ")
-  # groups_final <- separate(groups_final, col = group, into = c("group", "alleles"), sep = " ")
+  groups <- as.data.frame(fasta[grepl("|", fasta[,1], fixed = T),]) # visually check groups to make sure that not groups are without a name
+  groups_final <- data.frame("group" = str_replace_all(groups[,1], fixed(">"), ""))
+  groups_final$group <- str_replace(groups_final$group, fixed("|"), " ")
+  groups_final <- separate(groups_final, col = group, into = c("group", "alleles"), sep = " ")
   
   
   # FINAL EXPORTING ####

@@ -8,13 +8,9 @@ args = commandArgs(trailingOnly=TRUE)
 library(tidyr)
 library(stringr)
 library(tidyverse)
-filepath = "/Users/nicholasminor/Documents/dholk_experiments/27453/3b_miSeq-trimming" # replace this filepath with wherever you have stored the fastas
-setwd(filepath)
-fasta <- read.delim("ipd-mhc-nhp-2022-07-11_cleaned.miseq.trimmed.deduplicated.fasta", header = F)
-# fasta <- read.delim(args[1], header = F)
 
-file_basename <- "ipd-mhc-nhp-2022-07-11_cleaned.miseq.trimmed.deduplicated"
-# file_basename <- str_remove(args[1], ".fasta")
+fasta <- read.delim(args[1], header = F)
+file_basename <- str_remove(args[1], ".fasta")
 
 # how many rows of allele groups are there?
 paste("There are", length(fasta[grepl("|", fasta[,1], fixed=T),1]), "rows to examine in this fasta.", sep = " ")
