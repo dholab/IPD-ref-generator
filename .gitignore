@@ -2,6 +2,10 @@ deprecated/
 work/
 .nextflow/
 .nova/
+results/mhc_tmp/
+results/mhc_prot_tmp/
+results/kir_tmp/
+results/kir_prot_tmp/
 
 .nextflow.log*
 .DS_Store

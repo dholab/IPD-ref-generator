@@ -159,7 +159,7 @@ process CONCAT_SPEC_SAMPLES {
 	cat ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}_added.gbk
 	cat ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}_added.gbk
 	
-	find . -name "*_added.gbk" -size 0 -print -delete
+	find . -name "*.gbk" -size 0 -print -delete
 	"""
 	
 }
@@ -242,7 +242,7 @@ process CONCAT_MHC {
 		rm ${params.results}/ipd-mhc-nhp-${date}_added.gbk
 	fi
 	
-	find . -name "*.gbk" -size 0 -print -delete
+	find ${params.results} -name "*.gbk" -size 0 -print -delete
 	
 	"""
 	
@@ -343,7 +343,7 @@ process PULL_MHC_PROTEINS {
 
 process CONCAT_MHC_PROTEINS {
 	
-	publishDir params.results, mode: 'move'
+	publishDir params.results, mode: params.publishMode
 	
 	when:
 	ipd_num == params.mhc_protein_count
@@ -404,7 +404,7 @@ process PULL_KIR_PROTEINS {
 
 process CONCAT_KIR_PROTEINS {
 	
-	publishDir params.results, mode: 'move'
+	publishDir params.results, mode: params.publishMode
 	
 	when:
 	ipd_num == params.kir_protein_count
