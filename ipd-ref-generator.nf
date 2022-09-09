@@ -104,6 +104,15 @@ workflow {
 }
 
 
+// specifying whether to run in resumable mode
+if( params.resumable == true ) {
+	params.publishMode = 'copy'
+}
+else {
+	params.publishMode = 'move'
+}
+
+
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
 	
@@ -130,7 +139,7 @@ process PULL_SPEC_SAMPLES {
 
 process CONCAT_SPEC_SAMPLES {
 	
-	publishDir params.results, pattern: '*.gbk', mode: 'copy'
+	publishDir params.results, pattern: '*.gbk', mode: params.publishMode
 	
 	when:
 	params.pull_added_seqs == true
@@ -149,6 +158,8 @@ process CONCAT_SPEC_SAMPLES {
 	cat ipd-mhc-mamu*.gbk > ipd-mhc-mamu-${date}_added.gbk
 	cat ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}_added.gbk
 	cat ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}_added.gbk
+	
+	find . -name "*_added.gbk" -size 0 -print -delete
 	"""
 	
 }
@@ -168,7 +179,7 @@ process PULL_IPD_MHC {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.mhc_temp, pattern: '*.gbk', mode: 'copy'
+	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	when:
 	params.pull_mhc == true
@@ -231,6 +242,8 @@ process CONCAT_MHC {
 		rm ${params.results}/ipd-mhc-nhp-${date}_added.gbk
 	fi
 	
+	find . -name "*.gbk" -size 0 -print -delete
+	
 	"""
 	
 }
@@ -250,7 +263,7 @@ process PULL_IPD_KIR {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.kir_temp, pattern: '*.gbk', mode: 'copy'
+	publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	when:
 	params.pull_kir == true
@@ -292,6 +305,7 @@ process CONCAT_KIR {
 	cat ${params.kir_temp}/ipd-kir-nhp*.gbk > ipd-kir-nhp-${date}.gbk
 	
 	rm -rf ${params.kir_temp}
+	find . -name "*.gbk" -size 0 -print -delete
 	"""
 	
 }
@@ -308,7 +322,7 @@ process PULL_MHC_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: 'copy'
+	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
 	
 	when:
 	params.pull_mhc_proteins == true
@@ -350,6 +364,7 @@ process CONCAT_MHC_PROTEINS {
 	cat ${params.mhc_prot_temp}/ipd-mhc-nhp-prot*.fasta > ipd-mhc-nhp-prot-${date}.fasta
 	
 	rm -rf ${params.mhc_prot_temp}
+	find . -name "*.fasta" -size 0 -print -delete
 	"""
 	
 }
@@ -366,7 +381,7 @@ process PULL_KIR_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.kir_prot_temp, pattern: '*.fasta', mode: 'copy'
+	publishDir params.kir_prot_temp, pattern: '*.fasta', mode: params.publishMode
 	
 	when:
 	params.pull_kir_proteins == true
@@ -410,6 +425,7 @@ process CONCAT_KIR_PROTEINS {
 	cat ${params.kir_prot_temp}/ipd-kir-nhp-prot*.fasta > ipd-kir-nhp-prot-${date}.fasta
 	
 	rm -rf ${params.kir_prot_temp}
+	find . -name "*.fasta" -size 0 -print -delete
 	"""
 	
 }
@@ -421,7 +437,7 @@ process CLEAN_ALLELES {
 	// sequences that are less than 100 base pairs long.
 
 	tag "${tag}"
-	publishDir params.results, mode: 'copy'
+	publishDir params.results, mode: params.publishMode
 
 	input:
 	tuple val(name), path(gbk)
@@ -455,7 +471,7 @@ process IWES_TRIMMING {
 	publishDir params.results, mode: 'move'
 	
 	when:
-	locus_name == "mhc" && animal_name == "mamu" && params.trim_for_iwes == true
+	params.trim_for_iwes == true && locus_name == "mhc" && (animal_name == "mamu" || animal_name == "mafa")
 
 	input:
 	tuple val(animal_name), val(locus_name), path(gbk)
@@ -481,7 +497,7 @@ process MISEQ_TRIMMING {
 	tag "${animal_name}"
 	
 	when:
-	locus_name == "mhc" && animal_name == "mamu" && params.trim_for_miseq == true
+	params.trim_for_miseq == true && locus_name == "mhc" && (animal_name == "mamu" || animal_name == "mafa")
 
 	input:
 	tuple val(animal_name), val(locus_name), path(gbk)
