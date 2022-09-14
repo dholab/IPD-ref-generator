@@ -296,6 +296,8 @@ process PULL_IPD_HLA {
 
 process CONCAT_HLA {
 	
+	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
+	
 	when:
 	ipd_num == params.hla_allele_count
 	
