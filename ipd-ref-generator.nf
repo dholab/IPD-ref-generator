@@ -6,23 +6,28 @@ nextflow.enable.dsl = 2
 // Defining the reference-generator workflow
 workflow {
 	
+	ch_hla_count = Channel
+		.of( 1..params.hla_allele_count )
+		.toSortedList()
+		.flatten()
+	
 	ch_mhc_count = Channel
-		.of( 0..params.mhc_allele_count )
+		.of( 1..params.mhc_allele_count )
 		.toSortedList()
 		.flatten()
 	
 	ch_kir_count = Channel
-		.of( 0..params.kir_allele_count )
+		.of( 1..params.kir_allele_count )
 		.toSortedList()
 		.flatten()
 	
 	ch_mhc_prot = Channel
-		.of( 0..params.mhc_protein_count )
+		.of( 1..params.mhc_protein_count )
 		.toSortedList()
 		.flatten()
 	
 	ch_kir_prot = Channel
-		.of( 0..params.kir_protein_count )
+		.of( 1..params.kir_protein_count )
 		.toSortedList()
 		.flatten()
 		
@@ -38,6 +43,14 @@ workflow {
 	
 	CONCAT_SPEC_SAMPLES (
 		PULL_SPEC_SAMPLES.out.collect()
+	)
+	
+	PULL_IPD_HLA (
+		ch_hla_count
+	)
+	
+	CONCAT_HLA (
+		PULL_IPD_HLA.out
 	)
 
 	PULL_IPD_MHC (
@@ -240,6 +253,69 @@ process CONCAT_MHC {
 	if test -f ${params.results}/ipd-mhc-nhp-${date}_added.gbk; then
 		cat ${params.results}/ipd-mhc-nhp-${date}_added.gbk >> ipd-mhc-nhp--${date}.gbk
 		rm ${params.results}/ipd-mhc-nhp-${date}_added.gbk
+	fi
+	
+	find ${params.results} -name "*.gbk" -size 0 -print -delete
+	
+	"""
+	
+}
+
+
+process PULL_IPD_HLA {
+
+	// This process pulls the current full roster HLA alleles, as listed
+	// in the latest Immuno Polymorphism Database release.
+	
+	tag "${ipd_num}"
+	
+	time '2 minute'
+	errorStrategy 'retry'
+	maxRetries 4
+	
+	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
+	
+	when:
+	params.pull_hla == true
+	
+	input:
+	val(ipd_num)
+
+	output:
+	tuple val(ipd_num), path("*.gbk")
+
+	script:
+	"""
+	
+	download_ipd-hla_sequences.py ${ipd_num}
+	
+	"""
+
+}
+
+
+process CONCAT_HLA {
+	
+	when:
+	ipd_num == params.hla_allele_count
+	
+	input:
+	tuple val(ipd_num), path(gbk)
+	
+	output:
+	path("*.gbk")
+	
+	shell:
+	date = new java.util.Date().format('yyyy-MM-dd')
+	
+	"""
+	cat ${params.hla_temp}/ipd-hla-*.gbk > ipd-hla-${date}.gbk
+	
+	rm -rf ${params.hla_temp}
+	
+	if test -f ${params.results}/ipd-hla-${date}_added.gbk; then
+		cat ${params.results}/ipd-hla-${date}_added.gbk >> ipd-hla-${date}.gbk
+		rm ${params.results}/ipd-hla-${date}_added.gbk
 	fi
 	
 	find ${params.results} -name "*.gbk" -size 0 -print -delete
