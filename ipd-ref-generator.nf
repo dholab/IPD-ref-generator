@@ -269,7 +269,7 @@ process PULL_IPD_HLA {
 	
 	tag "${ipd_num}"
 	
-	time '2 minute'
+	time '3 minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -310,19 +310,25 @@ process CONCAT_HLA {
 	shell:
 	date = new java.util.Date().format('yyyy-MM-dd')
 	
-	"""
-	cat ${params.hla_temp}/ipd-hla-*.gbk > ipd-hla-${date}.gbk
+	'''
 	
-	rm -rf ${params.hla_temp}
+	find !{params.hla_temp} -maxdepth 1 -type f -name "*.gbk" > !{params.hla_temp}/gbk_list.txt
+	touch ipd-hla-${date}.gbk
+	for i in `cat !{params.hla_temp}/gbk_list.txt`;
+	do
+		cat $i >> ipd-hla-!{date}.gbk
+	done
 	
-	if test -f ${params.results}/ipd-hla-${date}_added.gbk; then
-		cat ${params.results}/ipd-hla-${date}_added.gbk >> ipd-hla-${date}.gbk
-		rm ${params.results}/ipd-hla-${date}_added.gbk
+	rm -rf !{params.hla_temp}
+	
+	if test -f !{params.results}/ipd-hla-${date}_added.gbk; then
+		cat !{params.results}/ipd-hla-${date}_added.gbk >> ipd-hla-${date}.gbk
+		rm !{params.results}/ipd-hla-${date}_added.gbk
 	fi
 	
-	find ${params.results} -name "*.gbk" -size 0 -print -delete
+	find !{params.results} -name "*.gbk" -size 0 -print -delete
 	
-	"""
+	'''
 	
 }
 
