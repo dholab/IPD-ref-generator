@@ -129,7 +129,7 @@ else {
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
 	
-	time '1 minute'
+	time '1minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -188,7 +188,7 @@ process PULL_IPD_MHC {
 	
 	tag "${ipd_num}"
 	
-	time '1 minute'
+	time '1minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -269,7 +269,7 @@ process PULL_IPD_HLA {
 	
 	tag "${ipd_num}"
 	
-	time '3 minute'
+	time '3minutes'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -343,7 +343,7 @@ process PULL_IPD_KIR {
 	
 	tag "${ipd_num}"
 	
-	time '1 minute'
+	time '1minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -402,7 +402,7 @@ process PULL_MHC_PROTEINS {
 	
 	tag "${ipd_num}"
 	
-	time '1 minute'
+	time '1minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -461,7 +461,7 @@ process PULL_KIR_PROTEINS {
 	
 	tag "${ipd_num}"
 	
-	time '1 minute'
+	time '1minute'
 	errorStrategy 'retry'
 	maxRetries 4
 	
