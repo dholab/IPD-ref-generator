@@ -49,60 +49,40 @@ workflow {
 		ch_hla_count
 	)
 	
-	COUNT_HLA_FILES (
-		PULL_IPD_HLA.out
-	)
-	
 	CONCAT_HLA (
-		COUNT_HLA_FILES.out
+		PULL_IPD_HLA.out
 	)
 
 	PULL_IPD_MHC (
 		ch_mhc_count
 	)
 	
-	COUNT_MHC_ALLELES (
-		PULL_IPD_MHC.out
-	)
-	
 	CONCAT_MHC (
-		COUNT_MHC_ALLELES.out
+		PULL_IPD_MHC.out
 	)
 	
 	PULL_IPD_KIR (
 		ch_kir_count
 	)
 	
-	COUNT_KIR_ALLELES (
-		PULL_IPD_KIR.out
-	)
-	
 	CONCAT_KIR (
-		COUNT_KIR_ALLELES.out
+		PULL_IPD_KIR.out
 	)
 	
 	PULL_MHC_PROTEINS (
 		ch_mhc_prot
 	)
 	
-	COUNT_MHC_PROTEINS (
-		PULL_MHC_PROTEINS.out
-	)
-	
 	CONCAT_MHC_PROTEINS (
-		COUNT_MHC_PROTEINS.out
+		PULL_MHC_PROTEINS.out
 	)
 	
 	PULL_KIR_PROTEINS (
 		ch_kir_prot
 	)
 	
-	COUNT_KIR_PROTEINS (
-		PULL_KIR_PROTEINS.out
-	)
-	
 	CONCAT_KIR_PROTEINS (
-		COUNT_KIR_PROTEINS.out
+		PULL_KIR_PROTEINS.out
 	)
 
 	CLEAN_ALLELES (
@@ -257,9 +237,14 @@ process PULL_IPD_MHC {
 	val(ipd_num)
 
 	output:
-	tuple val(ipd_num), path("*.gbk")
+	tuple val(gbk_count), path("*.gbk")
 
 	script:
+	gbk_count = new File(params.mhc_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size() + 1
+	
 	"""
 	
 	download_ipd-mhc_sequences.py ${ipd_num}
@@ -269,32 +254,13 @@ process PULL_IPD_MHC {
 }
 
 
-process COUNT_MHC_ALLELES {
-	
-	tag "${ipd_num}"
-	
-	input:
-	tuple val(ipd_num), path(gbk)
-	
-	output:
-	val(gbk_count)
-	
-	exec:
-	gbk_count = new File(params.mhc_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.gbk/ }
-		.size()
-	
-}
-
-
 process CONCAT_MHC {
 	
 	when:
 	gbk_count == params.mhc_allele_count
 	
 	input:
-	val(gbk_count)
+	tuple val(gbk_count), path(gbk)
 	
 	output:
 	path("*.gbk")
@@ -381,36 +347,20 @@ process PULL_IPD_HLA {
 	val(ipd_num)
 
 	output:
-	tuple val(ipd_num), path("*.gbk")
+	tuple val(gbk_count), path("*.gbk")
 
 	script:
+	gbk_count = new File(params.hla_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size() + 1
+	
 	"""
 	
 	download_ipd-hla_sequences.py ${ipd_num}
 	
 	"""
 
-}
-
-process COUNT_HLA_FILES {
-	
-	tag "${ipd_num}"
-	
-	when:
-	params.pull_hla == true
-	
-	input:
-	tuple val(ipd_num), path(gbk)
-	
-	output:
-	val(gbk_count)
-	
-	exec:
-	gbk_count = new File(params.hla_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.gbk/ }
-		.size()
-	
 }
 
 
@@ -422,7 +372,7 @@ process CONCAT_HLA {
 	gbk_count == params.hla_allele_count
 	
 	input:
-	val(gbk_count)
+	tuple val(gbk_count), path(gbk)
 	
 	output:
 	path("*.gbk")
@@ -476,37 +426,20 @@ process PULL_IPD_KIR {
 	val(ipd_num)
 
 	output:
-	tuple val(ipd_num), path("*.gbk")
+	tuple val(gbk_count), path("*.gbk")
 
 	script:
+	gbk_count = new File(params.kir_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size() + 1
+	
 	"""
 
 	download_ipd-kir_sequences.py ${ipd_num}
 
 	"""
 
-}
-
-
-process COUNT_KIR_ALLELES {
-	
-	tag "${ipd_num}"
-	
-	when:
-	params.pull_kir == true
-	
-	input:
-	tuple val(ipd_num), path(gbk)
-	
-	output:
-	val(gbk_count)
-	
-	exec:
-	gbk_count = new File(params.kir_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.gbk/ }
-		.size()
-	
 }
 
 
@@ -518,7 +451,7 @@ process CONCAT_KIR {
 	gbk_count == params.kir_allele_count
 	
 	input:
-	val(gbk_count)
+	tuple val(gbk_count), path(gbk)
 	
 	output:
 	path("*.gbk")
@@ -589,35 +522,18 @@ process PULL_MHC_PROTEINS {
 	val(ipd_num)
 
 	output:
-	tuple val(ipd_num), path("*.fasta")
+	tuple val(fasta_count), path("*.fasta")
 
 	script:
+	fasta_count = new File(params.mhc_prot_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.fasta/ }
+		.size() + 1
+		
 	"""
 	download_ipd-mhc_proteins.py ${ipd_num}
 	"""
 
-}
-
-
-process COUNT_MHC_PROTEINS {
-	
-	tag "${ipd_num}"
-	
-	when:
-	params.pull_mhc_proteins == true
-	
-	input:
-	tuple val(ipd_num), path(gbk)
-	
-	output:
-	val(fasta_count)
-	
-	exec:
-	fasta_count = new File(params.mhc_prot_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.fasta/ }
-		.size()
-	
 }
 
 
@@ -629,7 +545,7 @@ process CONCAT_MHC_PROTEINS {
 	fasta_count == params.mhc_protein_count
 	
 	input:
-	val(fasta_count)
+	tuple val(fasta_count), path(gbk)
 	
 	output:
 	path("*.fasta")
@@ -702,34 +618,17 @@ process PULL_KIR_PROTEINS {
 	tuple val(ipd_num), path("*.fasta")
 
 	script:
+	fasta_count = new File(params.kir_prot_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.fasta/ }
+		.size() + 1
+	
 	"""
 
 	download_ipd-kir_proteins.py ${ipd_num}
 
 	"""
 
-}
-
-
-process COUNT_KIR_PROTEINS {
-	
-	tag "${ipd_num}"
-	
-	when:
-	params.pull_kir_proteins == true
-	
-	input:
-	tuple val(ipd_num), path(gbk)
-	
-	output:
-	val(fasta_count)
-	
-	exec:
-	fasta_count = new File(params.kir_prot_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.fasta/ }
-		.size()
-	
 }
 
 
@@ -741,7 +640,7 @@ process CONCAT_KIR_PROTEINS {
 	fasta_count == params.kir_protein_count
 	
 	input:
-	val(fasta_count)
+	tuple val(fasta_count), path(fasta)
 	
 	output:
 	path("*.fasta")
