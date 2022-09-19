@@ -310,6 +310,10 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{date}.gbk
+		if test -f !{params.results}/ipd-mhc-mafa-!{date}_added.gbk; then
+			cat !{params.results}/ipd-mhc-mafa-!{date}_added.gbk >> ipd-mhc-mafa-!{date}.gbk
+			rm !{params.results}/ipd-mhc-mafa-!{date}_added.gbk
+		fi
 	done
 	
 	touch ipd-mhc-mamu-!{date}.gbk
@@ -318,6 +322,10 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{date}.gbk
+		if test -f !{params.results}/ipd-mhc-mamu-!{date}_added.gbk; then
+			cat !{params.results}/ipd-mhc-mamu-!{date}_added.gbk >> ipd-mhc-mamu-!{date}.gbk
+			rm !{params.results}/ipd-mhc-mamu-!{date}_added.gbk
+		fi
 	done
 	
 	touch ipd-mhc-mane-!{date}.gbk
@@ -326,6 +334,10 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{date}.gbk
+		if test -f !{params.results}/ipd-mhc-mane-!{date}_added.gbk; then
+			cat !{params.results}/ipd-mhc-mane-!{date}_added.gbk >> ipd-mhc-mane-!{date}.gbk
+			rm !{params.results}/ipd-mhc-mane-!{date}_added.gbk
+		fi
 	done
 	
 	touch ipd-mhc-nhp-!{date}.gbk
@@ -334,6 +346,10 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{date}.gbk
+		if test -f !{params.results}/ipd-mhc-nhp*!{date}_added.gbk; then
+			cat !{params.results}/ipd-mhc-nhp*!{date}_added.gbk >> ipd-mhc-nhp-!{date}.gbk
+			rm !{params.results}/ipd-mhc-nhp*!{date}_added.gbk
+		fi
 	done
 	
 	rm -rf !{params.mhc_temp}
