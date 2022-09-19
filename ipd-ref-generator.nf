@@ -153,7 +153,8 @@ params.kir_prot_temp = params.results + "/" + "kir_prot_tmp"
 params.kir_prot_results = params.results + "/" + "kir_proteins"
 
 // additions from samplesheet
-params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
+// params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
+params.spec_results = params.results + "/" + "samplesheet_sequences"
 
 // iWES results
 params.iwes_results = params.results + "/" + "iwes_databases"
@@ -188,7 +189,7 @@ process PULL_SPEC_SAMPLES {
 
 process CONCAT_SPEC_SAMPLES {
 	
-	publishDir params.results, pattern: '*.gbk', mode: params.publishMode
+	publishDir params.spec_results, pattern: '*.gbk', mode: params.publishMode
 	
 	when:
 	params.pull_added_seqs == true
@@ -275,9 +276,9 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{date}.gbk
-		if test -f !{params.results}/ipd-mhc-mafa-!{date}_added.gbk; then
-			cat !{params.results}/ipd-mhc-mafa-!{date}_added.gbk >> ipd-mhc-mafa-!{date}.gbk
-			rm !{params.results}/ipd-mhc-mafa-!{date}_added.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk >> ipd-mhc-mafa-!{date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk
 		fi
 	done
 	
@@ -287,9 +288,9 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{date}.gbk
-		if test -f !{params.results}/ipd-mhc-mamu-!{date}_added.gbk; then
-			cat !{params.results}/ipd-mhc-mamu-!{date}_added.gbk >> ipd-mhc-mamu-!{date}.gbk
-			rm !{params.results}/ipd-mhc-mamu-!{date}_added.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk >> ipd-mhc-mamu-!{date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk
 		fi
 	done
 	
@@ -299,9 +300,9 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{date}.gbk
-		if test -f !{params.results}/ipd-mhc-mane-!{date}_added.gbk; then
-			cat !{params.results}/ipd-mhc-mane-!{date}_added.gbk >> ipd-mhc-mane-!{date}.gbk
-			rm !{params.results}/ipd-mhc-mane-!{date}_added.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk >> ipd-mhc-mane-!{date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk
 		fi
 	done
 	
@@ -311,13 +312,14 @@ process CONCAT_MHC {
 	do
 		f=$(basename "$i")
 		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{date}.gbk
-		if test -f !{params.results}/ipd-mhc-nhp*!{date}_added.gbk; then
-			cat !{params.results}/ipd-mhc-nhp*!{date}_added.gbk >> ipd-mhc-nhp-!{date}.gbk
-			rm !{params.results}/ipd-mhc-nhp*!{date}_added.gbk
+		if test -f !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk >> ipd-mhc-nhp-!{date}.gbk
+			rm !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk
 		fi
 	done
 	
 	rm -rf !{params.mhc_temp}
+	rm -rf !{params.spec_results}
 	find . -name "*.gbk" -size 0 -print -delete
 	
 	'''
