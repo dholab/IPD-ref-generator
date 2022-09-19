@@ -222,7 +222,7 @@ process PULL_IPD_MHC {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
-	tag "${ipd_num}"
+	tag "${gbk_count}"
 	
 	time '1minute'
 	errorStrategy 'retry'
@@ -331,7 +331,7 @@ process PULL_IPD_HLA {
 	// This process pulls the current full roster HLA alleles, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num}"
+	tag "${gbk_count}"
 	
 	cpus 1
 	time '2minutes'
@@ -411,7 +411,7 @@ process PULL_IPD_KIR {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
-	tag "${ipd_num}"
+	tag "${gbk_count}"
 	
 	time '1minute'
 	errorStrategy 'retry'
@@ -507,7 +507,7 @@ process PULL_MHC_PROTEINS {
 	// This process pulls the current full roster non-human MHC proteins, as listed in
 	// the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num}"
+	tag "${fasta_count}"
 	
 	time '1minute'
 	errorStrategy 'retry'
@@ -600,7 +600,7 @@ process PULL_KIR_PROTEINS {
 	// This process pulls the current full roster non-human KIR proteins, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num}"
+	tag "${fasta_count}"
 	
 	time '1minute'
 	errorStrategy 'retry'
