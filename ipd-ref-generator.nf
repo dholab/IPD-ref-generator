@@ -698,6 +698,7 @@ process CLEAN_ALLELES {
 	tag "${tag}"
 	publishDir params.mhc_allele_results, pattern: "*mhc*.gbk", mode: 'copy'
 	publishDir params.kir_allele_results, pattern: "*kir*.gbk", mode: 'copy'
+	publishDir params.hla_results, pattern: "*hla*.gbk", mode: 'copy'
 
 	input:
 	tuple val(name), path(gbk)
