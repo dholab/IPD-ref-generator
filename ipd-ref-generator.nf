@@ -153,27 +153,27 @@ else {
 
 // Defining where to place results
 // hla alleles
-hla_temp = params.results + "/" + "hla_tmp"
-hla_results = params.results + "/" + "hla_alleles"
+params.hla_temp = params.results + "/" + "hla_tmp"
+params.hla_results = params.results + "/" + "hla_alleles"
 
 // mhc alleles
-mhc_temp = params.results + "/" + "mhc_tmp"
-mhc_allele_results = params.results + "/" + "mhc_alleles"
+params.mhc_temp = params.results + "/" + "mhc_tmp"
+params.mhc_allele_results = params.results + "/" + "mhc_alleles"
 
 // kir alleles
-kir_temp = params.results + "/" + "kir_tmp"
-kir_allele_results = params.results + "/" + "kir_alleles"
+params.kir_temp = params.results + "/" + "kir_tmp"
+params.kir_allele_results = params.results + "/" + "kir_alleles"
 
 // mhc proteins
-mhc_prot_temp = params.results + "/" + "mhc_prot_tmp"
-mhc_prot_results = params.results + "/" + "mhc_proteins"
+params.mhc_prot_temp = params.results + "/" + "mhc_prot_tmp"
+params.mhc_prot_results = params.results + "/" + "mhc_proteins"
 
 // kir proteins
-kir_prot_temp = params.results + "/" + "kir_prot_tmp"
-kir_prot_results = params.results + "/" + "kir_proteins"
+params.kir_prot_temp = params.results + "/" + "kir_prot_tmp"
+params.kir_prot_results = params.results + "/" + "kir_proteins"
 
 // additions from samplesheet
-gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
+params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
 
 
 // Defining each process that will occur while generating new IPD references
@@ -490,7 +490,7 @@ process COUNT_KIR_ALLELES {
 
 process CONCAT_KIR {
 	
-	publishDir params.results, mode: params.publishMode
+	publishDir params.kir_allele_results, mode: params.publishMode
 		
 	when:
 	gbk_count == params.kir_allele_count
@@ -601,7 +601,7 @@ process COUNT_MHC_PROTEINS {
 
 process CONCAT_MHC_PROTEINS {
 	
-	publishDir params.results, mode: params.publishMode
+	publishDir params.mhc_prot_results, mode: params.publishMode
 	
 	when:
 	fasta_count == params.mhc_protein_count
@@ -713,7 +713,7 @@ process COUNT_KIR_PROTEINS {
 
 process CONCAT_KIR_PROTEINS {
 	
-	publishDir params.results, mode: params.publishMode
+	publishDir params.kir_prot_results, mode: params.publishMode
 	
 	when:
 	fasta_count == params.kir_protein_count
