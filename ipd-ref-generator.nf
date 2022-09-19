@@ -175,6 +175,12 @@ params.kir_prot_results = params.results + "/" + "kir_proteins"
 // additions from samplesheet
 params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
 
+// iWES results
+params.iwes_results = params.results + "/" + "iwes_databases"
+
+// miseq results
+params.miseq_results = params.results + "/" + "miseq_databases"
+
 
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
@@ -775,7 +781,8 @@ process CLEAN_ALLELES {
 	// sequences that are less than 100 base pairs long.
 
 	tag "${tag}"
-	publishDir params.results, mode: params.publishMode
+	publishDir params.mhc_allele_results, pattern: "*mhc*.gbk", mode: 'copy'
+	publishDir params.kir_allele_results, pattern: "*kir*.gbk", mode: 'copy'
 
 	input:
 	tuple val(name), path(gbk)
@@ -806,7 +813,7 @@ process IWES_TRIMMING {
 	// bases.
 
 	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
+	publishDir params.iwes_results, mode: 'move'
 	
 	when:
 	params.trim_for_iwes == true && locus_name == "mhc" && (animal_name == "mamu" || animal_name == "mafa")
@@ -833,6 +840,7 @@ process MISEQ_TRIMMING {
 	// so that groups of identical sequences can be used when genotyping.
 
 	tag "${animal_name}"
+	publishDir params.miseq_results, pattern: "*hla*.gbk", mode: 'copy'
 	
 	when:
 	params.trim_for_miseq == true && locus_name != "kir" && animal_name != "nhp"
@@ -885,7 +893,7 @@ process ALLELE_GROUP_NAMING {
 	// sequence matches with numerous alleles
 	
 	tag "${animal_name}"
-	publishDir params.results, mode: 'move'
+	publishDir params.miseq_results, mode: 'move'
 	
 	input:
 	tuple val(animal_name), path(fasta)
