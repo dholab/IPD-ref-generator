@@ -113,8 +113,6 @@ workflow {
 			
 			CONCAT_KIR.out
 			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) },
-			CONCAT_HLA.out
 			.map{ file -> tuple(file.getSimpleName(), file) }
 		
 		)
@@ -126,6 +124,12 @@ workflow {
 
 	MISEQ_TRIMMING (
 		CLEAN_ALLELES.out
+		.mix(
+			
+			CONCAT_HLA.out
+			.map{ file -> tuple("hum", "hla", file) }
+			
+		)
 	)
 
 	ALLELE_SORTING (
@@ -807,7 +811,7 @@ process MISEQ_TRIMMING {
 	tag "${animal_name}"
 	
 	when:
-	params.trim_for_miseq == true && locus_name == "mhc" && (animal_name == "mamu" || animal_name == "mafa")
+	params.trim_for_miseq == true && locus_name != "kir" && animal_name != "nhp"
 
 	input:
 	tuple val(animal_name), val(locus_name), path(gbk)
@@ -831,6 +835,9 @@ process ALLELE_SORTING {
 	// be classified correctly
 	
 	tag "${animal_name}"
+	
+	when:
+	params.trim_for_miseq == true && animal_name != "nhp" && animal_name != "hum"
 	
 	input:
 	tuple val(animal_name), path(fasta)
