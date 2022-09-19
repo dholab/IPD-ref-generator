@@ -151,6 +151,30 @@ else {
 	params.publishMode = 'move'
 }
 
+// Defining where to place results
+// hla alleles
+hla_temp = params.results + "/" + "hla_tmp"
+hla_results = params.results + "/" + "hla_alleles"
+
+// mhc alleles
+mhc_temp = params.results + "/" + "mhc_tmp"
+mhc_allele_results = params.results + "/" + "mhc_alleles"
+
+// kir alleles
+kir_temp = params.results + "/" + "kir_tmp"
+kir_allele_results = params.results + "/" + "kir_alleles"
+
+// mhc proteins
+mhc_prot_temp = params.results + "/" + "mhc_prot_tmp"
+mhc_prot_results = params.results + "/" + "mhc_proteins"
+
+// kir proteins
+kir_prot_temp = params.results + "/" + "kir_prot_tmp"
+kir_prot_results = params.results + "/" + "kir_proteins"
+
+// additions from samplesheet
+gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
+
 
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
