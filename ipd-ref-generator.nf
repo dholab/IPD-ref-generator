@@ -49,40 +49,60 @@ workflow {
 		ch_hla_count
 	)
 	
-	CONCAT_HLA (
+	COUNT_HLA_FILES (
 		PULL_IPD_HLA.out
+	)
+	
+	CONCAT_HLA (
+		COUNT_HLA_FILES.out
 	)
 
 	PULL_IPD_MHC (
 		ch_mhc_count
 	)
 	
-	CONCAT_MHC (
+	COUNT_MHC_ALLELES (
 		PULL_IPD_MHC.out
+	)
+	
+	CONCAT_MHC (
+		COUNT_MHC_ALLELES.out
 	)
 	
 	PULL_IPD_KIR (
 		ch_kir_count
 	)
 	
-	CONCAT_KIR (
+	COUNT_KIR_ALLELES (
 		PULL_IPD_KIR.out
+	)
+	
+	CONCAT_KIR (
+		COUNT_KIR_ALLELES.out
 	)
 	
 	PULL_MHC_PROTEINS (
 		ch_mhc_prot
 	)
 	
-	CONCAT_MHC_PROTEINS (
+	COUNT_MHC_PROTEINS (
 		PULL_MHC_PROTEINS.out
+	)
+	
+	CONCAT_MHC_PROTEINS (
+		COUNT_MHC_PROTEINS.out
 	)
 	
 	PULL_KIR_PROTEINS (
 		ch_kir_prot
 	)
 	
-	CONCAT_KIR_PROTEINS (
+	COUNT_KIR_PROTEINS (
 		PULL_KIR_PROTEINS.out
+	)
+	
+	CONCAT_KIR_PROTEINS (
+		COUNT_KIR_PROTEINS.out
 	)
 
 	CLEAN_ALLELES (
@@ -213,51 +233,77 @@ process PULL_IPD_MHC {
 }
 
 
-process CONCAT_MHC {
+process COUNT_MHC_ALLELES {
 	
-	when:
-	ipd_num == params.mhc_allele_count
+	tag "${ipd_num}"
 	
 	input:
 	tuple val(ipd_num), path(gbk)
 	
 	output:
+	val(gbk_count)
+	
+	exec:
+	gbk_count = new File(params.mhc_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size()
+	
+}
+
+
+process CONCAT_MHC {
+	
+	when:
+	gbk_count == params.mhc_allele_count
+	
+	input:
+	val(gbk_count)
+	
+	output:
 	path("*.gbk")
 	
 	shell:
-	date = new java.util.Date().format('yyyy-MM-dd')
+	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
-	"""
-	cat ${params.mhc_temp}/ipd-mhc-mafa*.gbk > ipd-mhc-mafa-${date}.gbk
-	cat ${params.mhc_temp}/ipd-mhc-mamu*.gbk > ipd-mhc-mamu-${date}.gbk
-	cat ${params.mhc_temp}/ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}.gbk
-	cat ${params.mhc_temp}/ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}.gbk
+	'''
 	
-	rm -rf ${params.mhc_temp}
+	touch ipd-mhc-mafa-!{date}.gbk
+	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa*.gbk" > mhc_mafa_list.txt && \
+	for i in $(cat mhc_mafa_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{date}.gbk
+	done
 	
-	if test -f ${params.results}/ipd-mhc-mamu-${date}_added.gbk; then
-		cat ${params.results}/ipd-mhc-mamu-${date}_added.gbk >> ipd-mhc-mamu-${date}.gbk
-		rm ${params.results}/ipd-mhc-mamu-${date}_added.gbk
-	fi
+	touch ipd-mhc-mamu-!{date}.gbk
+	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu*.gbk" > mhc_mamu_list.txt && \
+	for i in $(cat mhc_mamu_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{date}.gbk
+	done
 	
-	if test -f ${params.results}/ipd-mhc-mafa-${date}_added.gbk; then
-		cat ${params.results}/ipd-mhc-mafa-${date}_added.gbk >> ipd-mhc-mafa-${date}.gbk
-		rm ${params.results}/ipd-mhc-mafa-${date}_added.gbk
-	fi
+	touch ipd-mhc-mane-!{date}.gbk
+	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mane*.gbk" > mhc_mane_list.txt && \
+	for i in $(cat mhc_mane_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{date}.gbk
+	done
 	
-	if test -f ${params.results}/ipd-mhc-mane-${date}_added.gbk; then
-		cat ${params.results}/ipd-mhc-mane-${date}_added.gbk >> ipd-mhc-mane-${date}.gbk
-		rm ${params.results}/ipd-mhc-mane-${date}_added.gbk
-	fi
+	touch ipd-mhc-nhp-!{date}.gbk
+	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp*.gbk" > mhc_nhp_list.txt && \
+	for i in $(cat mhc_nhp_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{date}.gbk
+	done
 	
-	if test -f ${params.results}/ipd-mhc-nhp-${date}_added.gbk; then
-		cat ${params.results}/ipd-mhc-nhp-${date}_added.gbk >> ipd-mhc-nhp--${date}.gbk
-		rm ${params.results}/ipd-mhc-nhp-${date}_added.gbk
-	fi
+	rm -rf !{params.mhc_temp}
+	find . -name "*.gbk" -size 0 -print -delete
 	
-	find ${params.results} -name "*.gbk" -size 0 -print -delete
-	
-	"""
+	'''
 	
 }
 
@@ -269,7 +315,8 @@ process PULL_IPD_HLA {
 	
 	tag "${ipd_num}"
 	
-	time '3minutes'
+	cpus 1
+	time '2minutes'
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -293,16 +340,37 @@ process PULL_IPD_HLA {
 
 }
 
-
-process CONCAT_HLA {
+process COUNT_HLA_FILES {
 	
-	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
+	tag "${ipd_num}"
 	
 	when:
-	ipd_num == params.hla_allele_count
+	params.pull_hla == true
 	
 	input:
 	tuple val(ipd_num), path(gbk)
+	
+	output:
+	val(gbk_count)
+	
+	exec:
+	gbk_count = new File(params.hla_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size()
+	
+}
+
+
+process CONCAT_HLA {
+	
+	publishDir params.results, pattern: '*.gbk', mode: params.publishMode
+	
+	when:
+	gbk_count == params.hla_allele_count
+	
+	input:
+	val(gbk_count)
 	
 	output:
 	path("*.gbk")
@@ -312,18 +380,18 @@ process CONCAT_HLA {
 	
 	'''
 	
-	find !{params.hla_temp} -maxdepth 1 -type f -name "*.gbk" > !{params.hla_temp}/gbk_list.txt
-	touch ipd-hla-${date}.gbk
-	for i in `cat !{params.hla_temp}/gbk_list.txt`;
+	touch ipd-hla-!{date}.gbk
+	find !{params.hla_temp} -maxdepth 1 -type f -name "*.gbk" > gbk_list.txt && \
+	for i in $(cat gbk_list.txt);
 	do
-		cat $i >> ipd-hla-!{date}.gbk
-	done
-	
+		f=$(basename "$i")
+		cat !{params.hla_temp}/$f >> ipd-hla-!{date}.gbk
+	done && \
 	rm -rf !{params.hla_temp}
 	
-	if test -f !{params.results}/ipd-hla-${date}_added.gbk; then
-		cat !{params.results}/ipd-hla-${date}_added.gbk >> ipd-hla-${date}.gbk
-		rm !{params.results}/ipd-hla-${date}_added.gbk
+	if test -f !{params.results}/ipd-hla-!{date}_added.gbk; then
+		cat !{params.results}/ipd-hla-!{date}_added.gbk >> ipd-hla-${date}.gbk
+		rm !{params.results}/ipd-hla-!{date}_added.gbk
 	fi
 	
 	find !{params.results} -name "*.gbk" -size 0 -print -delete
@@ -368,29 +436,83 @@ process PULL_IPD_KIR {
 }
 
 
-process CONCAT_KIR {
+process COUNT_KIR_ALLELES {
+	
+	tag "${ipd_num}"
 	
 	when:
-	ipd_num == params.kir_allele_count
+	params.pull_kir == true
 	
 	input:
 	tuple val(ipd_num), path(gbk)
 	
 	output:
+	val(gbk_count)
+	
+	exec:
+	gbk_count = new File(params.kir_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.gbk/ }
+		.size()
+	
+}
+
+
+process CONCAT_KIR {
+	
+	publishDir params.results, mode: params.publishMode
+		
+	when:
+	gbk_count == params.kir_allele_count
+	
+	input:
+	val(gbk_count)
+	
+	output:
 	path("*.gbk")
 	
-	script:
+	shell:
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
-	"""
-	cat ${params.kir_temp}/ipd-kir-mafa*.gbk > ipd-kir-mafa-${date}.gbk
-	cat ${params.kir_temp}/ipd-kir-mamu*.gbk > ipd-kir-mamu-${date}.gbk
-	cat ${params.kir_temp}/ipd-kir-mane*.gbk > ipd-kir-mane-${date}.gbk
-	cat ${params.kir_temp}/ipd-kir-nhp*.gbk > ipd-kir-nhp-${date}.gbk
+	'''
 	
-	rm -rf ${params.kir_temp}
+	touch ipd-kir-mafa-!{date}.gbk
+	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mafa*.gbk" > kir_mafa_list.txt && \
+	for i in $(cat kir_mafa_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_temp}/$f >> ipd-kir-mafa-!{date}.gbk
+	done
+	
+	touch ipd-kir-mamu-!{date}.gbk
+	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mamu*.gbk" > kir_mamu_list.txt && \
+	for i in $(cat kir_mamu_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_temp}/$f >> ipd-kir-mamu-!{date}.gbk
+	done
+	
+	touch ipd-kir-mane-!{date}.gbk
+	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mane*.gbk" > kir_mane_list.txt && \
+	for i in $(cat kir_mane_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_temp}/$f >> ipd-kir-mane-!{date}.gbk
+	done
+	
+	touch ipd-kir-nhp-!{date}.gbk
+	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-nhp*.gbk" > kir_nhp_list.txt && \
+	for i in $(cat kir_nhp_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_temp}/$f >> ipd-kir-nhp-!{date}.gbk
+	done
+	
+	rm -rf !{params.kir_temp}
 	find . -name "*.gbk" -size 0 -print -delete
-	"""
+	
+	'''
+
 	
 }
 
@@ -425,31 +547,82 @@ process PULL_MHC_PROTEINS {
 }
 
 
+process COUNT_MHC_PROTEINS {
+	
+	tag "${ipd_num}"
+	
+	when:
+	params.pull_mhc_proteins == true
+	
+	input:
+	tuple val(ipd_num), path(gbk)
+	
+	output:
+	val(fasta_count)
+	
+	exec:
+	fasta_count = new File(params.mhc_prot_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.fasta/ }
+		.size()
+	
+}
+
+
 process CONCAT_MHC_PROTEINS {
 	
 	publishDir params.results, mode: params.publishMode
 	
 	when:
-	ipd_num == params.mhc_protein_count
+	fasta_count == params.mhc_protein_count
 	
 	input:
-	tuple val(ipd_num), path(fasta)
+	val(fasta_count)
 	
 	output:
 	path("*.fasta")
 	
-	script:
+	shell:
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
-	"""
-	cat ${params.mhc_prot_temp}/ipd-mhc-mafa-prot*.fasta > ipd-mhc-mafa-prot-${date}.fasta
-	cat ${params.mhc_prot_temp}/ipd-mhc-mamu-prot*.fasta > ipd-mhc-mamu-prot-${date}.fasta
-	cat ${params.mhc_prot_temp}/ipd-mhc-mane-prot*.fasta > ipd-mhc-mane-prot-${date}.fasta
-	cat ${params.mhc_prot_temp}/ipd-mhc-nhp-prot*.fasta > ipd-mhc-nhp-prot-${date}.fasta
+	'''
 	
-	rm -rf ${params.mhc_prot_temp}
-	find . -name "*.fasta" -size 0 -print -delete
-	"""
+	touch ipd-mhc-mafa-prot-!{date}.fasta
+	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa-prot*.fasta" > mafa_prot_list.txt && \
+	for i in $(cat mafa_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mafa-prot-!{date}.fasta
+	done
+	
+	touch ipd-mhc-mamu-prot-!{date}.fasta
+	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu-prot*.fasta" > mamu_prot_list.txt && \
+	for i in $(cat mamu_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mamu-prot-!{date}.fasta
+	done
+	
+	touch ipd-mhc-mane-prot-!{date}.fasta
+	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mane-prot*.fasta" > mane_prot_list.txt && \
+	for i in $(cat mane_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mane-prot-!{date}.fasta
+	done
+	
+	touch ipd-mhc-nhp-prot-!{date}.fasta
+	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp-prot*.fasta" > nhp_prot_list.txt && \
+	for i in $(cat nhp_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-nhp-prot-!{date}.fasta
+	done
+	
+	rm -rf !{params.mhc_prot_temp}
+	find . -name "-prot*.fasta" -size 0 -print -delete
+	
+	'''
 	
 }
 
@@ -486,31 +659,82 @@ process PULL_KIR_PROTEINS {
 }
 
 
+process COUNT_KIR_PROTEINS {
+	
+	tag "${ipd_num}"
+	
+	when:
+	params.pull_kir_proteins == true
+	
+	input:
+	tuple val(ipd_num), path(gbk)
+	
+	output:
+	val(fasta_count)
+	
+	exec:
+	fasta_count = new File(params.kir_prot_temp)
+		.listFiles()
+		.findAll { it.name ==~ /.*.fasta/ }
+		.size()
+	
+}
+
+
 process CONCAT_KIR_PROTEINS {
 	
 	publishDir params.results, mode: params.publishMode
 	
 	when:
-	ipd_num == params.kir_protein_count
+	fasta_count == params.kir_protein_count
 	
 	input:
-	tuple val(ipd_num), path(fasta)
+	val(fasta_count)
 	
 	output:
 	path("*.fasta")
 	
-	script:
+	shell:
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
-	"""
-	cat ${params.kir_prot_temp}/ipd-kir-mafa-prot*.fasta > ipd-kir-mafa-prot-${date}.fasta
-	cat ${params.kir_prot_temp}/ipd-kir-mamu-prot*.fasta > ipd-kir-mamu-prot-${date}.fasta
-	cat ${params.kir_prot_temp}/ipd-kir-mane-prot*.fasta > ipd-kir-mane-prot-${date}.fasta
-	cat ${params.kir_prot_temp}/ipd-kir-nhp-prot*.fasta > ipd-kir-nhp-prot-${date}.fasta
+	'''
 	
-	rm -rf ${params.kir_prot_temp}
-	find . -name "*.fasta" -size 0 -print -delete
-	"""
+	touch ipd-kir-mafa-prot-!{date}.fasta
+	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mafa-prot*.fasta" > mafa_prot_list.txt && \
+	for i in $(cat mafa_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mafa-prot-!{date}.fasta
+	done
+	
+	touch ipd-kir-mamu-prot-!{date}.fasta
+	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mamu-prot*.fasta" > mamu_prot_list.txt && \
+	for i in $(cat mamu_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mamu-prot-!{date}.fasta
+	done
+	
+	touch ipd-kir-mane-prot-!{date}.fasta
+	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mane-prot*.fasta" > mane_prot_list.txt && \
+	for i in $(cat mane_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mane-prot-!{date}.fasta
+	done
+	
+	touch ipd-kir-nhp-prot-!{date}.fasta
+	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-nhp-prot*.fasta" > nhp_prot_list.txt && \
+	for i in $(cat nhp_prot_list.txt);
+	do
+		f=$(basename "$i")
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-nhp-prot-!{date}.fasta
+	done
+	
+	rm -rf !{params.kir_prot_temp}
+	find . -name "-prot*.fasta" -size 0 -print -delete
+	
+	'''
 	
 }
 
