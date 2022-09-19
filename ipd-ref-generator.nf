@@ -840,7 +840,7 @@ process MISEQ_TRIMMING {
 	// so that groups of identical sequences can be used when genotyping.
 
 	tag "${animal_name}"
-	publishDir params.miseq_results, pattern: "*hla*.gbk", mode: 'copy'
+	publishDir params.miseq_results, pattern: "*hla*.fasta", mode: 'copy'
 	
 	when:
 	params.trim_for_miseq == true && locus_name != "kir" && animal_name != "nhp"
