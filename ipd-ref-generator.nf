@@ -253,7 +253,7 @@ process PULL_IPD_MHC {
 process CONCAT_MHC {
 	
 	when:
-	gbk_count == params.mhc_allele_count
+	file(params.mhc_temp).listFiles().count { it.name ==~ /.*.gbk/ } == params.mhc_allele_count
 	
 	input:
 	path(gbk)
@@ -262,10 +262,6 @@ process CONCAT_MHC {
 	path("*.gbk")
 	
 	shell:
-	gbk_count = new File(params.mhc_temp)
-		.listFiles()
-		.findAll { it.name ==~ /.*.gbk/ }
-		.size()
 	date = new java.util.Date().format( 'yyyy-MM-dd')
 	
 	'''
@@ -365,7 +361,7 @@ process CONCAT_HLA {
 	publishDir params.hla_results, pattern: '*.gbk', mode: 'copy'
 	
 	when:
-	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == params.hla_allele_count
+	file(params.hla_temp).listFiles().count { it.name ==~ /.*.gbk/ } == params.hla_allele_count
 	
 	input:
 	path(gbk)
@@ -439,7 +435,7 @@ process CONCAT_KIR {
 	publishDir params.kir_allele_results, mode: params.publishMode
 		
 	when:
-	file(params.kir_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == params.kir_allele_count
+	file(params.kir_temp).listFiles().count { it.name ==~ /.*.gbk/ } == params.kir_allele_count
 	
 	input:
 	path(gbk)
@@ -530,7 +526,7 @@ process CONCAT_MHC_PROTEINS {
 	publishDir params.mhc_prot_results, mode: params.publishMode
 	
 	when:
-	file(params.mhc_prot_temp).listFiles().findAll { it.name ==~ /.*.fasta/ }.size() == params.mhc_protein_count
+	file(params.mhc_prot_temp).listFiles().count { it.name ==~ /.*.fasta/ } == params.mhc_protein_count
 	
 	input:
 	path(fasta)
@@ -620,7 +616,7 @@ process CONCAT_KIR_PROTEINS {
 	publishDir params.kir_prot_results, mode: params.publishMode
 	
 	when:
-	file(params.kir_prot_temp).listFiles().findAll { it.name ==~ /.*.fasta/ }.size() == params.kir_protein_count
+	file(params.kir_prot_temp).listFiles().count { it.name ==~ /.*.fasta/ } == params.kir_protein_count
 	
 	input:
 	path(fasta)
