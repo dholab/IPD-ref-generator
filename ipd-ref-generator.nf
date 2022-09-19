@@ -113,6 +113,8 @@ workflow {
 			
 			CONCAT_KIR.out
 			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) },
+			CONCAT_HLA.out
 			.map{ file -> tuple(file.getSimpleName(), file) }
 		
 		)
