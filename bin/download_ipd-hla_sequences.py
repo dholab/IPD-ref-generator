@@ -18,6 +18,8 @@ import sys
 from Bio import SeqIO
 import requests
 from datetime import datetime
+import warnings
+warnings.filterwarnings('ignore')
 
 ipd_number = int(sys.argv[1])
 
@@ -65,5 +67,5 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
         # record.description = record.name
         
         record.name = record.annotations['keywords'][3]
-        print(record.name + ' - ' + record.description)
+        # print(record.name + ' - ' + record.description)
         SeqIO.write(record, hla_allele, "genbank")
