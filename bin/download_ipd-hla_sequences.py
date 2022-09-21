@@ -49,11 +49,27 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     # reconstruct ID line in EMBL format that can be parsed by biopython
     ipd_line[0] = id_line_split[0] + ' ' + id_line_split[1] + ' ' + id_line_split[2] + '; ' + id_line_split[3] + '; ' + id_line_split[4] + '; ' + id_line_split[5]
     
-    # reconstruct KW/locus line
-    kw_line = ipd_line[9]
-    kw_line_split = kw_line.split(',')
-    ipd_line[9] = kw_line_split[0]
-
+    # reconstruct DE line line
+    de_line = ipd_line[9]
+    de_line_split = de_line.split(',')
+    ipd_line[9] = de_line_split[0]
+    
+    # remove any duplicates from KW line
+    kw_line = ipd_line[11]
+    kw_line_nolabel = kw_line.replace('KW   ', '')
+    kw_line_split = kw_line_nolabel.split('; ')
+    while(";" in kw_line_split):
+      kw_line_split.remove(";")
+    kw_line_split_dedup = list()
+    for item in kw_line_split:
+      if item not in kw_line_split_dedup:
+          kw_line_split_dedup.append(item)
+    # while("" in kw_line_split_dedup):
+    #   kw_line_split_dedup.remove("")
+    kw_line_joined = '; '.join(kw_line_split_dedup)
+    kw_line_fixed = "KW   " + kw_line_joined
+    ipd_line[11] = kw_line_fixed
+    
     # join lines to create embl file
     embl_file = ('\n').join(ipd_line)
 
@@ -65,8 +81,6 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     # read EMBL file and export as Genbank
     for record in SeqIO.parse("response.embl", "embl"):
         # record.description = record.name
-        
-        record.annotations['keywords'] = list(set(record.annotations['keywords']))
         
         record.name = record.annotations['keywords'][3]
         # print(record.name + ' - ' + record.description)
