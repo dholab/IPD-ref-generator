@@ -54,34 +54,37 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     de_line_split = de_line.split(',')
     ipd_line[9] = de_line_split[0]
     
-    # remove any duplicates from KW line
+    # remove any duplicates from KW line and check for IPD removals
     kw_line = ipd_line[11]
-    kw_line_nolabel = kw_line.replace('KW   ', '')
-    kw_line_split = kw_line_nolabel.split('; ')
-    while(";" in kw_line_split):
-      kw_line_split.remove(";")
-    kw_line_split_dedup = list()
-    for item in kw_line_split:
-      if item not in kw_line_split_dedup:
-          kw_line_split_dedup.append(item)
-    # while("" in kw_line_split_dedup):
-    #   kw_line_split_dedup.remove("")
-    kw_line_joined = '; '.join(kw_line_split_dedup)
-    kw_line_fixed = "KW   " + kw_line_joined
-    ipd_line[11] = kw_line_fixed
-    
-    # join lines to create embl file
-    embl_file = ('\n').join(ipd_line)
-
-    # create temporary file in correct EMBL format
-    # i tried to use tempfile but couldn't get it to work
-    with open("response.embl", "w") as f:
-        f.write(embl_file)
-
-    # read EMBL file and export as Genbank
-    for record in SeqIO.parse("response.embl", "embl"):
-        # record.description = record.name
-        
-        record.name = record.annotations['keywords'][3]
-        # print(record.name + ' - ' + record.description)
-        SeqIO.write(record, hla_allele, "genbank")
+    if kw_line.startswith('XX'):
+      hla_allele.close()
+    else:
+      kw_line_nolabel = kw_line.replace('KW   ', '')
+      kw_line_split = kw_line_nolabel.split('; ')
+      while(";" in kw_line_split):
+        kw_line_split.remove(";")
+      kw_line_split_dedup = list()
+      for item in kw_line_split:
+        if item not in kw_line_split_dedup:
+            kw_line_split_dedup.append(item)
+      # while("" in kw_line_split_dedup):
+      #   kw_line_split_dedup.remove("")
+      kw_line_joined = '; '.join(kw_line_split_dedup)
+      kw_line_fixed = "KW   " + kw_line_joined
+      ipd_line[11] = kw_line_fixed
+      
+      # join lines to create embl file
+      embl_file = ('\n').join(ipd_line)
+  
+      # create temporary file in correct EMBL format
+      # i tried to use tempfile but couldn't get it to work
+      with open("response.embl", "w") as f:
+          f.write(embl_file)
+  
+      # read EMBL file and export as Genbank
+      for record in SeqIO.parse("response.embl", "embl"):
+          # record.description = record.name
+          
+          record.name = record.annotations['keywords'][3]
+          # print(record.name + ' - ' + record.description)
+          SeqIO.write(record, hla_allele, "genbank")
