@@ -51,7 +51,7 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     
     # reconstruct KW/locus line
     kw_line = ipd_line[9]
-    kw_line_split = list(set(kw_line.split(',')))
+    kw_line_split = kw_line.split(',')
     ipd_line[9] = kw_line_split[0]
 
     # join lines to create embl file
@@ -65,6 +65,8 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     # read EMBL file and export as Genbank
     for record in SeqIO.parse("response.embl", "embl"):
         # record.description = record.name
+        
+        record.annotations['keywords'] = list(set(record.annotations['keywords']))
         
         record.name = record.annotations['keywords'][3]
         # print(record.name + ' - ' + record.description)
