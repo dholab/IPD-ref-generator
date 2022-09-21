@@ -331,9 +331,9 @@ process PULL_IPD_HLA {
 	tag "${ipd_num}"
 	
 	cpus 1
-	time '5minutes'
+	time '1minute'
 	errorStrategy 'retry'
-	maxRetries 9
+	maxRetries 3
 	
 	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
