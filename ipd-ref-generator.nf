@@ -361,7 +361,7 @@ process CONCAT_HLA {
 	publishDir params.hla_results, pattern: '*.gbk', mode: 'copy'
 	
 	when:
-	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == ( params.hla_allele_count * 4 )
+	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == params.hla_allele_count
 	
 	input:
 	path(gbk)
