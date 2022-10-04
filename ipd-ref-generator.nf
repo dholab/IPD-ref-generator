@@ -399,7 +399,7 @@ process CONCAT_HLA {
 
 process COMPRESS_HLA {
 	
-	publishDir params.hla_results, pattern: '*.gbk.gz', mode: 'move'
+	publishDir params.hla_results, pattern: '*.gbk.xz', mode: 'move'
 	
 	input:
 	path(gbk)
