@@ -1,7 +1,7 @@
 ## Reference Database Files for Immuno-Whole Exome Sequence (iWES) Genotyping
 A manuscript describing this method of genotyping is in preparation, but you may view the workflow at the GitHub repo [dholab/nf-iWES](https://github.com/dholab/nf-iWES).
 
-Immuno-WES genotyping relies on reference all sequences from the [Immuno-Polymorphism Database (IPD)](https://www.ebi.ac.uk/ipd/mhc/), which are downloaded as part of the IPD-ref-generator workflow. The workflow then produces the following date-stamped reference databases for Rhesus macaque alleles and Cynomolgus/crab-eating macaque alleles:
+Immuno-WES genotyping relies on reference allele sequences from the [Immuno-Polymorphism Database (IPD)](https://www.ebi.ac.uk/ipd/mhc/), which are downloaded as part of the IPD-ref-generator workflow. The workflow then produces the following date-stamped reference databases for Rhesus macaque alleles and Cynomolgus/crab-eating macaque alleles:
 
 - `*.gdna.fasta` - These FASTA files contain only those alleles from IPD that have full-length, genomic DNA sequences, i.e., they contain exons _and_ introns.
 - `*.cdna.fasta` - These FASTA files contain all the alleles that lack introns, i.e., do not have full-length genomic DNA sequences published on IPD.
