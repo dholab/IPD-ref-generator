@@ -44,6 +44,14 @@ workflow {
 	CONCAT_SPEC_SAMPLES (
 		PULL_SPEC_SAMPLES.out.collect()
 	)
+
+	PULL_IPD_MHC (
+		ch_mhc_count
+	)
+	
+	CONCAT_MHC (
+		PULL_IPD_MHC.out
+	)
 	
 	PULL_IPD_HLA (
 		ch_hla_count
@@ -52,13 +60,9 @@ workflow {
 	CONCAT_HLA (
 		PULL_IPD_HLA.out
 	)
-
-	PULL_IPD_MHC (
-		ch_mhc_count
-	)
 	
-	CONCAT_MHC (
-		PULL_IPD_MHC.out
+	COMPRESS_HLA (
+		CONCAT_HLA.out
 	)
 	
 	PULL_IPD_KIR (
@@ -331,9 +335,9 @@ process PULL_IPD_HLA {
 	tag "${ipd_num}"
 	
 	cpus 1
-	time '5minutes'
+	time { 2.minute * task.attempt }
 	errorStrategy 'retry'
-	maxRetries 9
+	maxRetries 4
 	
 	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
@@ -358,10 +362,8 @@ process PULL_IPD_HLA {
 
 process CONCAT_HLA {
 	
-	publishDir params.hla_results, pattern: '*.gbk', mode: 'copy'
-	
 	when:
-	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == ( params.hla_allele_count * 4 )
+	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == params.hla_allele_count
 	
 	input:
 	path(gbk)
@@ -391,6 +393,24 @@ process CONCAT_HLA {
 	find !{params.results} -name "*.gbk" -size 0 -print -delete
 	
 	'''
+	
+}
+
+
+process COMPRESS_HLA {
+	
+	publishDir params.hla_results, pattern: '*.gbk.xz', mode: 'move'
+	
+	input:
+	path(gbk)
+	
+	output:
+	path(gbk)
+	
+	script:
+	"""
+	xz -9 ${gbk}
+	"""
 	
 }
 
