@@ -42,10 +42,10 @@ def createFastaFromGenbank(in_gbk, out_fasta):
   return out_fasta
 
 def vsearchMapToReference(query, ref, out_sam):
-  '''map FASTA sequences to exemplar FASTA for miSeq trimming'''
+  '''map FASTA sequences to exemplar FASTA for exon 2 trimming'''
   # map IPD FASTA reads to exemplar sequences
   # SAM output CIGAR strings define where matches begin and end
-  # which allows trimming IPD sequences to miSeq amplicon length
+  # which allows trimming IPD sequences to exon 2 length
   # write samheader so pysam parsing works correctly
   
   printStatus('Map to reference with vsearch usearch_global algorithm')
@@ -55,9 +55,6 @@ def vsearchMapToReference(query, ref, out_sam):
   os.environ['out_sam'] = out_sam
   
   subprocess.run('vsearch --usearch_global $query --db $ref --id 0.8 --samheader --samout $out_sam', shell = True)
-
-  # remove intermediate fasta file
-  subprocess.run('rm $query', shell = True)
 
   return out_sam
 
@@ -246,6 +243,7 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   # create output file names
   IPD_BASENAME = os.path.basename(in_gbk[:-4])
   IPD_TRIMMED_FASTA = IPD_BASENAME + '.exon2.trimmed.fasta'
+  IPD_EXON2_FASTA = IPD_BASENAME + '.exon2.fasta'
   IPD_IMMUNOWES_FASTA = IPD_BASENAME + '.immunowes.fasta'
   IPD_CDNA_FASTA = IPD_BASENAME + '.cdna.fasta'
   IPD_GDNA_FASTA = IPD_BASENAME + '.gdna.fasta'
@@ -253,15 +251,16 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   # make sure file names are available to subprocess environment
   os.environ['IPD_BASENAME'] = IPD_BASENAME
   os.environ['IPD_TRIMMED_FASTA'] = IPD_TRIMMED_FASTA
+  os.environ['IPD_EXON2_FASTA'] = IPD_EXON2_FASTA
   os.environ['IPD_IMMUNOWES_FASTA'] = IPD_IMMUNOWES_FASTA
   os.environ['IPD_CDNA_FASTA'] = IPD_CDNA_FASTA
   os.environ['IPD_GDNA_FASTA'] = IPD_GDNA_FASTA
 
   # make gdna and cdna files
-  separateGdnaFromCdna(in_gbk, IPD_GDNA_FASTA, 'tmp_cdna.fasta')
+  separateGdnaFromCdna(in_gbk, IPD_GDNA_FASTA, IPD_CDNA_FASTA)
 
   # map to reference
-  vsearch = vsearchMapToReference('tmp_cdna.fasta', exemplar_fasta, 'tmp.sam')
+  vsearch = vsearchMapToReference(IPD_CDNA_FASTA, exemplar_fasta, 'tmp.sam')
 
   # calculate trim
   trim_list = trimQueryByMapping('tmp.sam')
@@ -270,10 +269,10 @@ def createImmunoWESFasta(in_gbk, exemplar_fasta):
   replaceGenbankSequence(in_gbk, trim_list, IPD_TRIMMED_FASTA)
 
   # deduplicate cDNA
-  deduplicate_fasta(IPD_TRIMMED_FASTA, IPD_CDNA_FASTA)
+  deduplicate_fasta(IPD_TRIMMED_FASTA, IPD_EXON2_FASTA)
 
   # merge gDNA and cDNA files
-  subprocess.run('cat $IPD_GDNA_FASTA $IPD_CDNA_FASTA > $IPD_IMMUNOWES_FASTA', shell = True)
+  subprocess.run('cat $IPD_GDNA_FASTA $IPD_EXON2_FASTA > $IPD_IMMUNOWES_FASTA', shell = True)
   
   # remove unnecessary intermediate files
   subprocess.run('rm $IPD_TRIMMED_FASTA', shell = True)

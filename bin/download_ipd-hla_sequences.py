@@ -51,7 +51,7 @@ with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_num
     
     # reconstruct KW/locus line
     kw_line = ipd_line[9]
-    kw_line_split = kw_line.split(',')
+    kw_line_split = list(set(kw_line.split(',')))
     ipd_line[9] = kw_line_split[0]
 
     # join lines to create embl file
