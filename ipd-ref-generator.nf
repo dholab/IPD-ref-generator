@@ -51,6 +51,9 @@ workflow {
 	
 	CONCAT_MHC (
 		PULL_IPD_MHC.out
+			.flatten()
+			.map { it -> it.getName() }
+			.collectFile(name: 'allele_file_list.txt', newLine: true)
 	)
 	
 	PULL_IPD_HLA (
@@ -71,6 +74,9 @@ workflow {
 	
 	CONCAT_KIR (
 		PULL_IPD_KIR.out
+			.flatten()
+			.map { it -> it.getName() }
+			.collectFile(name: 'allele_file_list.txt', newLine: true)
 	)
 	
 	PULL_MHC_PROTEINS (
@@ -79,6 +85,9 @@ workflow {
 	
 	CONCAT_MHC_PROTEINS (
 		PULL_MHC_PROTEINS.out
+			.flatten()
+			.map { it -> it.getName() }
+			.collectFile(name: 'allele_file_list.txt', newLine: true)
 	)
 	
 	PULL_KIR_PROTEINS (
@@ -87,6 +96,9 @@ workflow {
 	
 	CONCAT_KIR_PROTEINS (
 		PULL_KIR_PROTEINS.out
+			.flatten()
+			.map { it -> it.getName() }
+			.collectFile(name: 'allele_file_list.txt', newLine: true)
 	)
 
 	CLEAN_ALLELES (
@@ -181,7 +193,7 @@ process PULL_SPEC_SAMPLES {
 	tuple val(accession), val(formal_name), val(informal_name), val(ipd_id), val(animal_id)
 	
 	output:
-	path("*.gbk")
+	path "*.gbk"
 	
 	script:
 	"""
@@ -193,27 +205,49 @@ process PULL_SPEC_SAMPLES {
 
 process CONCAT_SPEC_SAMPLES {
 	
-	publishDir params.spec_results, pattern: '*.gbk', mode: params.publishMode
+	publishDir params.spec_results, mode: 'move'
 	
 	when:
 	params.pull_added_seqs == true
 	
 	input:
-	path(gbk_files)
+	path gbk_files
 	
 	output:
-	path("*.gbk")
+	path "*_added.gbk"
 	
 	script:
 	date = new java.util.Date().format('yyyy-MM-dd')
 	
 	"""
-	cat ipd-mhc-mafa*.gbk > ipd-mhc-mafa-${date}_added.gbk
-	cat ipd-mhc-mamu*.gbk > ipd-mhc-mamu-${date}_added.gbk
-	cat ipd-mhc-mane*.gbk > ipd-mhc-mane-${date}_added.gbk
-	cat ipd-mhc-nhp*.gbk > ipd-mhc-nhp-${date}_added.gbk
+	cat `realpath ipd-mhc-mafa*.gbk` > ipd-mhc-mafa-${date}_added.gbk && \
+	if [[ `head -n 1 ipd-mhc-mafa-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
+    	echo "mafa sequences found"
+	else 
+		rm -f ipd-mhc-mafa-${date}_added.gbk
+	fi
+
+	cat `realpath ipd-mhc-mamu*.gbk` > ipd-mhc-mamu-${date}_added.gbk && \
+	if [[ `head -n 1 ipd-mhc-mamu-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
+    	echo "mamu sequences found"
+	else 
+		rm -f ipd-mhc-mamu-${date}_added.gbk
+	fi
 	
-	find . -name "*.gbk" -size 0 -print -delete
+	cat `realpath ipd-mhc-mane*.gbk` > ipd-mhc-mane-${date}_added.gbk
+	if [[ `head -n 1 ipd-mhc-mane-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
+    	echo "mane sequences found"
+	else 
+		rm -f ipd-mhc-mane-${date}_added.gbk
+	fi
+	
+	cat `realpath ipd-mhc-nhp*.gbk` > ipd-mhc-nhp-${date}_added.gbk && \
+	if [[ `head -n 1 ipd-mhc-nhp-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
+    	echo "nhp sequences found"
+	else 
+		rm -f ipd-mhc-nhp-${date}_added.gbk
+	fi
+	
 	"""
 	
 }
@@ -256,14 +290,11 @@ process PULL_IPD_MHC {
 
 process CONCAT_MHC {
 	
-	when:
-	file(params.mhc_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == ( params.mhc_allele_count * 4 )
-	
 	input:
-	path(gbk)
+	path allele_list
 	
 	output:
-	path("*.gbk")
+	path "*.gbk"
 	
 	shell:
 	date = new java.util.Date().format( 'yyyy-MM-dd')
@@ -362,9 +393,6 @@ process PULL_IPD_HLA {
 
 process CONCAT_HLA {
 	
-	when:
-	file(params.hla_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == params.hla_allele_count
-	
 	input:
 	path(gbk)
 	
@@ -452,10 +480,7 @@ process PULL_IPD_KIR {
 
 process CONCAT_KIR {
 	
-	publishDir params.kir_allele_results, mode: params.publishMode
-		
-	when:
-	file(params.kir_temp).listFiles().findAll { it.name ==~ /.*.gbk/ }.size() == ( params.kir_allele_count * 4 )
+	// publishDir params.kir_allele_results, mode: params.publishMode
 	
 	input:
 	path(gbk)
@@ -545,9 +570,6 @@ process CONCAT_MHC_PROTEINS {
 	
 	publishDir params.mhc_prot_results, mode: params.publishMode
 	
-	when:
-	file(params.mhc_prot_temp).listFiles().findAll { it.name ==~ /.*.fasta/ }.size() == ( params.mhc_protein_count * 4)
-	
 	input:
 	path(fasta)
 	
@@ -634,9 +656,6 @@ process PULL_KIR_PROTEINS {
 process CONCAT_KIR_PROTEINS {
 	
 	publishDir params.kir_prot_results, mode: params.publishMode
-	
-	when:
-	file(params.kir_prot_temp).listFiles().findAll { it.name ==~ /.*.fasta/ }.size() == ( params.kir_protein_count * 4 )
 	
 	input:
 	path(fasta)
