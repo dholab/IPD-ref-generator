@@ -217,35 +217,39 @@ process CONCAT_SPEC_SAMPLES {
 	path "*_added.gbk"
 	
 	script:
-	date = new java.util.Date().format('yyyy-MM-dd')
-	
 	"""
-	cat `realpath ipd-mhc-mafa*.gbk` > ipd-mhc-mafa-${date}_added.gbk && \
-	if [[ `head -n 1 ipd-mhc-mafa-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
-    	echo "mafa sequences found"
-	else 
-		rm -f ipd-mhc-mafa-${date}_added.gbk
+	if (( `ls ipd-mhc-mamu*.gbk` > 0 )); then
+		cat `realpath ipd-mhc-mafa*.gbk` > ipd-mhc-mafa-${params.date}_added.gbk && \
+		if [[ `head -n 1 ipd-mhc-mafa-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
+			echo "mafa sequences found"
+		else 
+			rm -f ipd-mhc-mafa-${params.date}_added.gbk
+		fi
 	fi
 
-	cat `realpath ipd-mhc-mamu*.gbk` > ipd-mhc-mamu-${date}_added.gbk && \
-	if [[ `head -n 1 ipd-mhc-mamu-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
-    	echo "mamu sequences found"
-	else 
-		rm -f ipd-mhc-mamu-${date}_added.gbk
+	if (( `ls ipd-mhc-mamu*.gbk` > 0 )); then
+		cat `realpath ipd-mhc-mamu*.gbk` > ipd-mhc-mamu-${params.date}_added.gbk && \
+		if [[ `head -n 1 ipd-mhc-mamu-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
+			echo "mamu sequences found"
+		else 
+			rm -f ipd-mhc-mamu-${params.date}_added.gbk
+		fi
 	fi
 	
-	cat `realpath ipd-mhc-mane*.gbk` > ipd-mhc-mane-${date}_added.gbk
-	if [[ `head -n 1 ipd-mhc-mane-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
-    	echo "mane sequences found"
-	else 
-		rm -f ipd-mhc-mane-${date}_added.gbk
+	if (( `ls ipd-mhc-mane*.gbk` > 0 )); then
+		cat `realpath ipd-mhc-mane*.gbk` > ipd-mhc-mane-${params.date}_added.gbk
+		if [[ `head -n 1 ipd-mhc-mane-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
+			echo "mane sequences found"
+		else 
+			rm -f ipd-mhc-mane-${params.date}_added.gbk
+		fi
 	fi
-	
-	cat `realpath ipd-mhc-nhp*.gbk` > ipd-mhc-nhp-${date}_added.gbk && \
-	if [[ `head -n 1 ipd-mhc-nhp-${date}_added.gbk` =~ ^LOCUS.*  ]]; then
+
+	cat `realpath ipd-mhc-nhp*.gbk` > ipd-mhc-nhp-${params.date}_added.gbk && \
+	if [[ `head -n 1 ipd-mhc-nhp-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
     	echo "nhp sequences found"
 	else 
-		rm -f ipd-mhc-nhp-${date}_added.gbk
+		rm -f ipd-mhc-nhp-${params.date}_added.gbk
 	fi
 	
 	"""
@@ -297,55 +301,53 @@ process CONCAT_MHC {
 	path "*.gbk"
 	
 	shell:
-	date = new java.util.Date().format( 'yyyy-MM-dd')
-	
 	'''
 	
-	touch ipd-mhc-mafa-!{date}.gbk
+	touch ipd-mhc-mafa-!{params.date}.gbk
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa*.gbk" > mhc_mafa_list.txt && \
 	for i in $(cat mhc_mafa_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk >> ipd-mhc-mafa-!{date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mafa-!{date}_added.gbk
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{params.date}.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk >> ipd-mhc-mafa-!{params.date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk
 		fi
 	done
 	
-	touch ipd-mhc-mamu-!{date}.gbk
+	touch ipd-mhc-mamu-!{params.date}.gbk
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu*.gbk" > mhc_mamu_list.txt && \
 	for i in $(cat mhc_mamu_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk >> ipd-mhc-mamu-!{date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mamu-!{date}_added.gbk
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{params.date}.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk >> ipd-mhc-mamu-!{params.date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk
 		fi
 	done
 	
-	touch ipd-mhc-mane-!{date}.gbk
+	touch ipd-mhc-mane-!{params.date}.gbk
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mane*.gbk" > mhc_mane_list.txt && \
 	for i in $(cat mhc_mane_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk >> ipd-mhc-mane-!{date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mane-!{date}_added.gbk
+		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{params.date}.gbk
+		if test -f !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk >> ipd-mhc-mane-!{params.date}.gbk
+			rm !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk
 		fi
 	done
 	
-	touch ipd-mhc-nhp-!{date}.gbk
+	touch ipd-mhc-nhp-!{params.date}.gbk
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp*.gbk" > mhc_nhp_list.txt && \
 	for i in $(cat mhc_nhp_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk >> ipd-mhc-nhp-!{date}.gbk
-			rm !{params.spec_results}/ipd-mhc-nhp*!{date}_added.gbk
+		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{params.date}.gbk
+		if test -f !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk; then
+			cat !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk >> ipd-mhc-nhp-!{params.date}.gbk
+			rm !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk
 		fi
 	done
 	
@@ -400,22 +402,20 @@ process CONCAT_HLA {
 	path("*.gbk")
 	
 	shell:
-	date = new java.util.Date().format('yyyy-MM-dd')
-	
 	'''
 	
-	touch ipd-hla-!{date}.gbk
+	touch ipd-hla-!{params.date}.gbk
 	find !{params.hla_temp} -maxdepth 1 -type f -name "*.gbk" > gbk_list.txt && \
 	for i in $(cat gbk_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.hla_temp}/$f >> ipd-hla-!{date}.gbk
+		cat !{params.hla_temp}/$f >> ipd-hla-!{params.date}.gbk
 	done && \
 	rm -rf !{params.hla_temp}
 	
-	if test -f !{params.results}/ipd-hla-!{date}_added.gbk; then
-		cat !{params.results}/ipd-hla-!{date}_added.gbk >> ipd-hla-${date}.gbk
-		rm !{params.results}/ipd-hla-!{date}_added.gbk
+	if test -f !{params.results}/ipd-hla-!{params.date}_added.gbk; then
+		cat !{params.results}/ipd-hla-!{params.date}_added.gbk >> ipd-hla-${params.date}.gbk
+		rm !{params.results}/ipd-hla-!{params.date}_added.gbk
 	fi
 	
 	find !{params.results} -name "*.gbk" -size 0 -print -delete
@@ -489,40 +489,38 @@ process CONCAT_KIR {
 	path("*.gbk")
 	
 	shell:
-	date = new java.util.Date().format( 'yyyy-MM-dd')
-	
 	'''
 	
-	touch ipd-kir-mafa-!{date}.gbk
+	touch ipd-kir-mafa-!{params.date}.gbk
 	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mafa*.gbk" > kir_mafa_list.txt && \
 	for i in $(cat kir_mafa_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mafa-!{date}.gbk
+		cat !{params.kir_temp}/$f >> ipd-kir-mafa-!{params.date}.gbk
 	done
 	
-	touch ipd-kir-mamu-!{date}.gbk
+	touch ipd-kir-mamu-!{params.date}.gbk
 	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mamu*.gbk" > kir_mamu_list.txt && \
 	for i in $(cat kir_mamu_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mamu-!{date}.gbk
+		cat !{params.kir_temp}/$f >> ipd-kir-mamu-!{params.date}.gbk
 	done
 	
-	touch ipd-kir-mane-!{date}.gbk
+	touch ipd-kir-mane-!{params.date}.gbk
 	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mane*.gbk" > kir_mane_list.txt && \
 	for i in $(cat kir_mane_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mane-!{date}.gbk
+		cat !{params.kir_temp}/$f >> ipd-kir-mane-!{params.date}.gbk
 	done
 	
-	touch ipd-kir-nhp-!{date}.gbk
+	touch ipd-kir-nhp-!{params.date}.gbk
 	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-nhp*.gbk" > kir_nhp_list.txt && \
 	for i in $(cat kir_nhp_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-nhp-!{date}.gbk
+		cat !{params.kir_temp}/$f >> ipd-kir-nhp-!{params.date}.gbk
 	done
 	
 	rm -rf !{params.kir_temp}
@@ -577,40 +575,38 @@ process CONCAT_MHC_PROTEINS {
 	path("*.fasta")
 	
 	shell:
-	date = new java.util.Date().format( 'yyyy-MM-dd')
-	
 	'''
 	
-	touch ipd-mhc-mafa-prot-!{date}.fasta
+	touch ipd-mhc-mafa-prot-!{params.date}.fasta
 	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa-prot*.fasta" > mafa_prot_list.txt && \
 	for i in $(cat mafa_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mafa-prot-!{date}.fasta
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mafa-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-mhc-mamu-prot-!{date}.fasta
+	touch ipd-mhc-mamu-prot-!{params.date}.fasta
 	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu-prot*.fasta" > mamu_prot_list.txt && \
 	for i in $(cat mamu_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mamu-prot-!{date}.fasta
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mamu-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-mhc-mane-prot-!{date}.fasta
+	touch ipd-mhc-mane-prot-!{params.date}.fasta
 	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mane-prot*.fasta" > mane_prot_list.txt && \
 	for i in $(cat mane_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mane-prot-!{date}.fasta
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mane-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-mhc-nhp-prot-!{date}.fasta
+	touch ipd-mhc-nhp-prot-!{params.date}.fasta
 	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp-prot*.fasta" > nhp_prot_list.txt && \
 	for i in $(cat nhp_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-nhp-prot-!{date}.fasta
+		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-nhp-prot-!{params.date}.fasta
 	done
 	
 	rm -rf !{params.mhc_prot_temp}
@@ -664,40 +660,38 @@ process CONCAT_KIR_PROTEINS {
 	path("*.fasta")
 	
 	shell:
-	date = new java.util.Date().format( 'yyyy-MM-dd')
-	
 	'''
 	
-	touch ipd-kir-mafa-prot-!{date}.fasta
+	touch ipd-kir-mafa-prot-!{params.date}.fasta
 	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mafa-prot*.fasta" > mafa_prot_list.txt && \
 	for i in $(cat mafa_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mafa-prot-!{date}.fasta
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mafa-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-kir-mamu-prot-!{date}.fasta
+	touch ipd-kir-mamu-prot-!{params.date}.fasta
 	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mamu-prot*.fasta" > mamu_prot_list.txt && \
 	for i in $(cat mamu_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mamu-prot-!{date}.fasta
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mamu-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-kir-mane-prot-!{date}.fasta
+	touch ipd-kir-mane-prot-!{params.date}.fasta
 	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mane-prot*.fasta" > mane_prot_list.txt && \
 	for i in $(cat mane_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mane-prot-!{date}.fasta
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-mane-prot-!{params.date}.fasta
 	done
 	
-	touch ipd-kir-nhp-prot-!{date}.fasta
+	touch ipd-kir-nhp-prot-!{params.date}.fasta
 	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-nhp-prot*.fasta" > nhp_prot_list.txt && \
 	for i in $(cat nhp_prot_list.txt);
 	do
 		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-nhp-prot-!{date}.fasta
+		cat !{params.kir_prot_temp}/$f >> ipd-kir-nhp-prot-!{params.date}.fasta
 	done
 	
 	rm -rf !{params.kir_prot_temp}
