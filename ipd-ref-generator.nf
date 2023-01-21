@@ -218,7 +218,7 @@ process CONCAT_SPEC_SAMPLES {
 	
 	script:
 	"""
-	if (( `ls ipd-mhc-mamu*.gbk` > 0 )); then
+	if (( `ls -1 ipd-mhc-mamu*.gbk | wc -l` > 0 )); then
 		cat `realpath ipd-mhc-mafa*.gbk` > ipd-mhc-mafa-${params.date}_added.gbk && \
 		if [[ `head -n 1 ipd-mhc-mafa-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
 			echo "mafa sequences found"
@@ -227,7 +227,7 @@ process CONCAT_SPEC_SAMPLES {
 		fi
 	fi
 
-	if (( `ls ipd-mhc-mamu*.gbk` > 0 )); then
+	if (( `ls -1 ipd-mhc-mamu*.gbk | wc -l` > 0 )); then
 		cat `realpath ipd-mhc-mamu*.gbk` > ipd-mhc-mamu-${params.date}_added.gbk && \
 		if [[ `head -n 1 ipd-mhc-mamu-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
 			echo "mamu sequences found"
@@ -236,7 +236,7 @@ process CONCAT_SPEC_SAMPLES {
 		fi
 	fi
 	
-	if (( `ls ipd-mhc-mane*.gbk` > 0 )); then
+	if (( `ls -1 ipd-mhc-mane*.gbk | wc -l` > 0 )); then
 		cat `realpath ipd-mhc-mane*.gbk` > ipd-mhc-mane-${params.date}_added.gbk
 		if [[ `head -n 1 ipd-mhc-mane-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
 			echo "mane sequences found"
