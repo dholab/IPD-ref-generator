@@ -21,16 +21,16 @@ from datetime import datetime
 ipd_number = int(sys.argv[1])
 
 # create output genbank file for entire database
-with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_number) + ".gbk", "a") as all_nhp:
+with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
 
   # create output genbank file for rhesus only
-  with open("ipd-mhc-mamu-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_number) + ".gbk", "a") as mamu:
+  with open("ipd-mhc-mamu-" + str(ipd_number) + ".gbk", "a") as mamu:
 
     # create output genbank file for cyno only
-    with open("ipd-mhc-mafa-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_number) + ".gbk", "a") as mafa:
+    with open("ipd-mhc-mafa-" + str(ipd_number) + ".gbk", "a") as mafa:
 
       # create output genbank file for mane only
-      with open("ipd-mhc-mane-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_number) + ".gbk", "a") as mane:
+      with open("ipd-mhc-mane-" + str(ipd_number) + ".gbk", "a") as mane:
 
         # add leading zeros and nhp prefix
         # this is the EBI dbfetch format

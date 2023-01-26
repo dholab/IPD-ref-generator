@@ -24,7 +24,7 @@ warnings.filterwarnings('ignore')
 ipd_number = int(sys.argv[1])
 
 # create output genbank file for entire database
-with open("ipd-hla-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(ipd_number) + ".gbk", "a") as hla_allele:
+with open("ipd-hla-" + str(ipd_number) + ".gbk", "a") as hla_allele:
 
   # add leading zeros and nhp prefix
   # this is the EBI dbfetch format

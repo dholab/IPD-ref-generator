@@ -22,11 +22,11 @@ embl_accession = sys.argv[1]
 allele_name = sys.argv[2]
 
 # create output genbank file for entire database
-with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(embl_accession) + ".gbk", "a") as all_nhp:
+with open("ipd-mhc-nhp-" + str(embl_accession) + ".gbk", "a") as all_nhp:
 
   if allele_name.startswith('Mamu'):
     # create output genbank file for rhesus only
-    with open("ipd-mhc-mamu-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(embl_accession) + ".gbk", "a") as mamu:
+    with open("ipd-mhc-mamu-" + str(embl_accession) + ".gbk", "a") as mamu:
 
       # get record
         u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")
@@ -71,7 +71,7 @@ with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(emb
   # if cyno sequence
   elif allele_name.startswith('Mafa'):
     # create output genbank file for cyno only
-    with open("ipd-mhc-mafa-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(embl_accession) + ".gbk", "a") as mafa:
+    with open("ipd-mhc-mafa-" + str(embl_accession) + ".gbk", "a") as mafa:
       # get record
         u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")
         
@@ -115,7 +115,7 @@ with open("ipd-mhc-nhp-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(emb
   else:
 
     # create output genbank file for mane only
-      with open("ipd-mhc-mane-" + datetime.today().strftime('%Y-%m-%d') + "_" + str(embl_accession) + ".gbk", "a") as mane:
+      with open("ipd-mhc-mane-" + str(embl_accession) + ".gbk", "a") as mane:
 
         # get record
         u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")

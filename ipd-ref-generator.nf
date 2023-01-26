@@ -271,7 +271,7 @@ process PULL_IPD_MHC {
 	errorStrategy 'retry'
 	maxRetries 4
 	
-	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode
+	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode, overwrite: true
 	
 	when:
 	params.pull_mhc == true
@@ -307,8 +307,7 @@ process CONCAT_MHC {
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa*.gbk" > mhc_mafa_list.txt && \
 	for i in $(cat mhc_mafa_list.txt);
 	do
-		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mafa-!{params.date}.gbk
+		cat $i >> ipd-mhc-mafa-!{params.date}.gbk
 		if test -f !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk; then
 			cat !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk >> ipd-mhc-mafa-!{params.date}.gbk
 			rm !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk
@@ -319,8 +318,7 @@ process CONCAT_MHC {
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu*.gbk" > mhc_mamu_list.txt && \
 	for i in $(cat mhc_mamu_list.txt);
 	do
-		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mamu-!{params.date}.gbk
+		cat $i >> ipd-mhc-mamu-!{params.date}.gbk
 		if test -f !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk; then
 			cat !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk >> ipd-mhc-mamu-!{params.date}.gbk
 			rm !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk
@@ -331,8 +329,7 @@ process CONCAT_MHC {
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mane*.gbk" > mhc_mane_list.txt && \
 	for i in $(cat mhc_mane_list.txt);
 	do
-		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-mane-!{params.date}.gbk
+		cat $i >> ipd-mhc-mane-!{params.date}.gbk
 		if test -f !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk; then
 			cat !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk >> ipd-mhc-mane-!{params.date}.gbk
 			rm !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk
@@ -343,8 +340,7 @@ process CONCAT_MHC {
 	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp*.gbk" > mhc_nhp_list.txt && \
 	for i in $(cat mhc_nhp_list.txt);
 	do
-		f=$(basename "$i")
-		cat !{params.mhc_temp}/$f >> ipd-mhc-nhp-!{params.date}.gbk
+		cat $i >> ipd-mhc-nhp-!{params.date}.gbk
 		if test -f !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk; then
 			cat !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk >> ipd-mhc-nhp-!{params.date}.gbk
 			rm !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk
