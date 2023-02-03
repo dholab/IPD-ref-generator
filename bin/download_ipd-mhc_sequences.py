@@ -20,6 +20,20 @@ from datetime import datetime
 
 ipd_number = int(sys.argv[1])
 
+# add leading zeros and nhp prefix
+# this is the EBI dbfetch format
+nhp_id = 'NHP' + str(ipd_number).zfill(5)
+
+# get record
+u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + nhp_id + ";style=raw")
+
+ipd_embl = u.text # read content
+
+# Exit with code 1 if that content is empty
+if ipd_embl == "":
+  print("Download for IPD Accession " + nhp_id + " failed. Must retry.")
+  sys.exit(1)
+
 # create output genbank file for entire database
 with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
 
@@ -31,26 +45,17 @@ with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
 
       # create output genbank file for mane only
       with open("ipd-mhc-mane-" + str(ipd_number) + ".gbk", "a") as mane:
-
-        # add leading zeros and nhp prefix
-        # this is the EBI dbfetch format
-        nhp_id = 'NHP' + str(ipd_number).zfill(5)
-
-        # get record
-        u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + nhp_id + ";style=raw")
-
-        # IPD MHC uses non-standard ID line
-        # need to remove first two semicolons in ID line
-        ipd_embl = u.text # read content
         
         # handle missing records
         # these don't have identifiers and can be skipped
         if not ipd_embl.startswith('ID'):
-          all_nhp.close()
+          # all_nhp.close()
           mamu.close()
           mafa.close()
           mane.close()
         else:
+          # IPD MHC uses non-standard ID line
+          # need to remove first two semicolons in ID line
           ipd_line = ipd_embl.splitlines() # split by line
           id_line = ipd_line[0] # get ID line
           id_line_split = id_line.split(';') # split elements by semicolon
@@ -69,10 +74,15 @@ with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
           # read EMBL file and export as Genbank
           for record in SeqIO.parse("response.embl", "embl"):
               record.description = record.name
+
+              # Exit with code 1 if the EMBL is empty
+              if record.description == "":
+                error_message = "Download for IPD Accession " + nhp_id + " failed. Must retry."
+                sys.exit(error_message)
               
-              record.name = record.annotations['keywords'][0]
-              print(record.name + ' - ' + record.description)
-              SeqIO.write(record, all_nhp, "genbank")
+              # record.name = record.annotations['keywords'][0]
+              # print(record.name + ' - ' + record.description)
+              # SeqIO.write(record, all_nhp, "genbank")
   
               # if rhesus sequence
               if record.name.startswith('Mamu'):

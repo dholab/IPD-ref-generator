@@ -247,7 +247,7 @@ process CONCAT_SPEC_SAMPLES {
 
 	cat `realpath ipd-mhc-nhp*.gbk` > ipd-mhc-nhp-${params.date}_added.gbk && \
 	if [[ `head -n 1 ipd-mhc-nhp-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
-    	echo "nhp sequences found"
+		echo "nhp sequences found"
 	else 
 		rm -f ipd-mhc-nhp-${params.date}_added.gbk
 	fi
@@ -269,7 +269,6 @@ process PULL_IPD_MHC {
 	
 	time '1minute'
 	errorStrategy 'retry'
-	maxRetries 4
 	
 	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode, overwrite: true
 	
@@ -284,15 +283,15 @@ process PULL_IPD_MHC {
 
 	script:
 	"""
-	
 	download_ipd-mhc_sequences.py ${ipd_num}
-	
 	"""
 
 }
 
 
 process CONCAT_MHC {
+
+	publishDir params.mhc_allele_results, pattern: "*nhp*.gbk", mode: 'copy'
 	
 	input:
 	path allele_list
