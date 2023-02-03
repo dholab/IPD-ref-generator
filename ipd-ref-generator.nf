@@ -283,7 +283,9 @@ process PULL_IPD_MHC {
 
 	script:
 	"""
-	download_ipd-mhc_sequences.py ${ipd_num}
+	download_ipd-mhc_sequences.py ${ipd_num} && \
+	code_1=\$?
+	exit \${code_1}
 	"""
 
 }

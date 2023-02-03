@@ -30,8 +30,9 @@ u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + n
 ipd_embl = u.text # read content
 
 # Exit with code 1 if that content is empty
+error_message = "Download for IPD Accession " + nhp_id + " failed. Must retry."
 if ipd_embl == "":
-  print("Download for IPD Accession " + nhp_id + " failed. Must retry.")
+  print(error_message)
   sys.exit(1)
 
 # create output genbank file for entire database
@@ -77,12 +78,12 @@ with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
 
               # Exit with code 1 if the EMBL is empty
               if record.description == "":
-                error_message = "Download for IPD Accession " + nhp_id + " failed. Must retry."
-                sys.exit(error_message)
+                print(error_message)
+                sys.exit(1)
               
-              # record.name = record.annotations['keywords'][0]
-              # print(record.name + ' - ' + record.description)
-              # SeqIO.write(record, all_nhp, "genbank")
+              record.name = record.annotations['keywords'][0]
+              print(record.name + ' - ' + record.description)
+              SeqIO.write(record, all_nhp, "genbank")
   
               # if rhesus sequence
               if record.name.startswith('Mamu'):
