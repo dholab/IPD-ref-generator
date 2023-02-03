@@ -268,7 +268,7 @@ process PULL_IPD_MHC {
 	tag "${ipd_num}"
 	
 	time '1minute'
-	errorStrategy 'retry'
+	errorStrategy { sleep(Math.pow(2, task.attempt) * 200 as long); return 'retry' }
 	
 	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode, overwrite: true
 	
