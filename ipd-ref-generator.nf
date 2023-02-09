@@ -60,8 +60,12 @@ workflow {
 	// )
 
 	CONCAT_MHC (
-		PULL_IPD_MHC.out.collect(),
-		PULL_SPEC_SAMPLES.out.collect()
+		PULL_IPD_MHC.out
+			.mix (
+				PULL_SPEC_SAMPLES.out
+			)
+			.collect()
+		
 	)
 	
 	PULL_IPD_HLA (
@@ -258,8 +262,7 @@ process CONCAT_MHC {
 	publishDir params.mhc_allele_results, mode: 'copy', overwrite: true
 	
 	input:
-	path ipd_seqs
-	path added_seqs
+	path gbk_files
 	
 	output:
 	path "*.gbk"
