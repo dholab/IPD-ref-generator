@@ -16,145 +16,79 @@ Original file is located at
 import sys
 from Bio import SeqIO
 import requests
+import csv
 from datetime import datetime
 
-embl_accession = sys.argv[1]
-allele_name = sys.argv[2]
+samplesheet_path = str(sys.argv[1])
+run_date = str(sys.argv[2])
 
-# create output genbank file for entire database
-with open("ipd-mhc-nhp-" + str(embl_accession) + ".gbk", "a") as all_nhp:
+# parse samplesheet for EMBL accessions and formal allele names
+with open(samplesheet_path, "r") as csvfile:
+  samplesheet = csv.reader(csvfile)
 
-  if allele_name.startswith('Mamu'):
+  # create output genbank file for entire database
+  with open("ipd-mhc-nhp-" + run_date + "_added.gbk", "a") as all_nhp:
+
     # create output genbank file for rhesus only
-    with open("ipd-mhc-mamu-" + str(embl_accession) + ".gbk", "a") as mamu:
+    with open("ipd-mhc-mamu-" + run_date+ "_added.gbk", "a") as mamu:
 
-      # get record
-        u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")
+      # create output genbank file for cyno only
+      with open("ipd-mhc-mafa-" + run_date + "_added.gbk", "a") as mafa:
 
-        
-        ipd_embl = u.text # read content
-        
-        # handle missing records
-        # these don't have identifiers and can be skipped
-        if not ipd_embl.startswith('ID'):
-          all_nhp.close()
-          mamu.close()
-        else:
-          # IPD MHC uses non-standard ID line
-          # need to remove first two semicolons in ID line
-          ipd_line = ipd_embl.splitlines() # split by line
-          id_line = ipd_line[0] # get ID line
-          id_line_split = id_line.split(';') # split elements by semicolon
-  
-          # reconstruct ID line in EMBL format that can be parsed by biopython
-          ipd_line[0] = id_line_split[0] + ' ' + id_line_split[1] + ' ' + id_line_split[4] + '; ' + id_line_split[3] + '; ' + id_line_split[5] + '; ' + id_line_split[6]
-  
-          # join lines to create embl file
-          embl_file = ('\n').join(ipd_line)
-  
-          # create temporary file in correct EMBL format
-          # i tried to use tempfile but couldn't get it to work
-          with open("response.embl", "w") as f:
-              f.write(embl_file)
-  
-          # read EMBL file and export as Genbank
-          for record in SeqIO.parse("response.embl", "embl"):
-            
-              record.description = record.name
-              record.name = allele_name
+        # create output genbank file for mane only
+        with open("ipd-mhc-mane-" + run_date + "_added.gbk", "a") as mane:
+
+          # loop through samplesheet CSV
+          for accession,formal_name,informal_name,ipd_id,animal_id in samplesheet:
               
-              SeqIO.write(record, all_nhp, "genbank")
-  
-              # write rhesus only genbank file
-              SeqIO.write(record, mamu, "genbank")
-  
-  # if cyno sequence
-  elif allele_name.startswith('Mafa'):
-    # create output genbank file for cyno only
-    with open("ipd-mhc-mafa-" + str(embl_accession) + ".gbk", "a") as mafa:
-      # get record
-        u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")
-        
-        ipd_embl = u.text # read content
-        
-        # handle missing records
-        # these don't have identifiers and can be skipped
-        if not ipd_embl.startswith('ID'):
-          all_nhp.close()
-          mafa.close()
-        else:
-          # IPD MHC uses non-standard ID line
-          # need to remove first two semicolons in ID line
-          ipd_line = ipd_embl.splitlines() # split by line
-          id_line = ipd_line[0] # get ID line
-          id_line_split = id_line.split(';') # split elements by semicolon
-  
-          # reconstruct ID line in EMBL format that can be parsed by biopython
-          ipd_line[0] = id_line_split[0] + ' ' + id_line_split[1] + ' ' + id_line_split[4] + '; ' + id_line_split[3] + '; ' + id_line_split[5] + '; ' + id_line_split[6]
-  
-          # join lines to create embl file
-          embl_file = ('\n').join(ipd_line)
-  
-          # create temporary file in correct EMBL format
-          # i tried to use tempfile but couldn't get it to work
-          with open("response.embl", "w") as f:
-              f.write(embl_file)
-  
-          # read EMBL file and export as Genbank
-          for record in SeqIO.parse("response.embl", "embl"):
+            # get record
+            u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + accession + "&style=raw")
+
+            # IPD MHC uses non-standard ID line
+            # need to remove first two semicolons in ID line
+            ipd_embl = u.text # read content
+
+            # handle missing records
+            # these don't have identifiers and can be skipped
+            if not ipd_embl.startswith('ID'):
+              continue
             
-              record.description = record.name
-              record.name = allele_name
+            # need to remove first two semicolons in ID line
+            ipd_line = ipd_embl.splitlines() # split by line
+            id_line = ipd_line[0] # get ID line
+            id_line_split = id_line.split(';') # split elements by semicolon
+    
+            # reconstruct ID line in EMBL format that can be parsed by biopython
+            ipd_line[0] = id_line_split[0] + ' ' + id_line_split[1] + ' ' + id_line_split[4] + '; ' + id_line_split[3] + '; ' + id_line_split[5] + '; ' + id_line_split[6]
+    
+            # join lines to create embl file
+            embl_file = ('\n').join(ipd_line)
+
+            # create temporary file in correct EMBL format
+            # i tried to use tempfile but couldn't get it to work
+            with open("response.embl", "w") as f:
+                f.write(embl_file)
+
+            # read EMBL file and export as Genbank
+            for record in SeqIO.parse("response.embl", "embl"):
               
-              SeqIO.write(record, all_nhp, "genbank")
-  
-              # write cyno specific genbank file
-              SeqIO.write(record, mafa, "genbank")
-
-  # if mane sequence
-  else:
-
-    # create output genbank file for mane only
-      with open("ipd-mhc-mane-" + str(embl_accession) + ".gbk", "a") as mane:
-
-        # get record
-        u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=embl&id=" + embl_accession + "&style=raw")
-        
-        ipd_embl = u.text # read content
-        
-        # handle missing records
-        # these don't have identifiers and can be skipped
-        if not ipd_embl.startswith('ID'):
-          all_nhp.close()
-          mamu.close()
-          mafa.close()
-          mane.close()
-        else:
-          # IPD MHC uses non-standard ID line
-          # need to remove first two semicolons in ID line
-          ipd_line = ipd_embl.splitlines() # split by line
-          id_line = ipd_line[0] # get ID line
-          id_line_split = id_line.split(';') # split elements by semicolon
-  
-          # reconstruct ID line in EMBL format that can be parsed by biopython
-          ipd_line[0] = id_line_split[0] + ' ' + id_line_split[1] + ' ' + id_line_split[4] + '; ' + id_line_split[3] + '; ' + id_line_split[5] + '; ' + id_line_split[6]
-  
-          # join lines to create embl file
-          embl_file = ('\n').join(ipd_line)
-  
-          # create temporary file in correct EMBL format
-          # i tried to use tempfile but couldn't get it to work
-          with open("response.embl", "w") as f:
-              f.write(embl_file)
-  
-          # read EMBL file and export as Genbank
-          for record in SeqIO.parse("response.embl", "embl"):
-            
               record.description = record.name
-              record.name = allele_name
-              
-              SeqIO.write(record, all_nhp, "genbank")
-  
-              # write mane specific genbank file
-              SeqIO.write(record, mane, "genbank")
+              record.name = formal_name
+              print(record.name + ' - ' + record.description)
 
+              record.seq = record.seq.rstrip("X")
+
+              if len(record.seq) > 100:
+                SeqIO.write(record, all_nhp, "genbank")
+
+                # if rhesus sequence
+                if formal_name.startswith('Mamu'):
+                  SeqIO.write(record, mamu, "genbank")
+
+                # if cyno sequence
+                if formal_name.startswith('Mafa'):
+                  SeqIO.write(record, mafa, "genbank")
+
+                # if mane sequence
+                if formal_name.startswith('Mane'):
+                  SeqIO.write(record, mane, "genbank")

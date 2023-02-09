@@ -19,42 +19,40 @@ import requests
 from datetime import datetime
 
 ipd_number = int(sys.argv[1])
-
-# add leading zeros and nhp prefix
-# this is the EBI dbfetch format
-nhp_id = 'NHP' + str(ipd_number).zfill(5)
-
-# get record
-u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + nhp_id + ";style=raw")
-
-ipd_embl = u.text # read content
-
-# Exit with code 1 if that content is empty
-error_message = "Download for IPD Accession " + nhp_id + " failed. Must retry."
-if ipd_embl == "":
-  print(error_message)
-  sys.exit(1)
+date = str(sys.argv[2])
 
 # create output genbank file for entire database
-with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
+with open("ipd-mhc-nhp-" + date + ".gbk", "a") as all_nhp:
 
   # create output genbank file for rhesus only
-  with open("ipd-mhc-mamu-" + str(ipd_number) + ".gbk", "a") as mamu:
+  with open("ipd-mhc-mamu-" + date + ".gbk", "a") as mamu:
 
     # create output genbank file for cyno only
-    with open("ipd-mhc-mafa-" + str(ipd_number) + ".gbk", "a") as mafa:
+    with open("ipd-mhc-mafa-" + date + ".gbk", "a") as mafa:
 
       # create output genbank file for mane only
-      with open("ipd-mhc-mane-" + str(ipd_number) + ".gbk", "a") as mane:
-        
-        # handle missing records
-        # these don't have identifiers and can be skipped
-        if not ipd_embl.startswith('ID'):
-          # all_nhp.close()
-          mamu.close()
-          mafa.close()
-          mane.close()
-        else:
+      with open("ipd-mhc-mane-" + date + ".gbk", "a") as mane:
+
+        # make range of ids to download from ebi
+        nhp_id = range(1, ipd_number)
+
+        # add leading zeros and nhp prefix
+        # this is the EBI dbfetch format
+        nhp_id = ['NHP' + str(item).zfill(5) for item in nhp_id]
+
+        # iterate over all NHP files to retrieve
+        for i in nhp_id:
+          
+          # get record
+          u = requests.get("https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdmhc;id=" + i + ";style=raw")
+
+          ipd_embl = u.text # read content
+          
+          # handle missing records
+          # these don't have identifiers and can be skipped
+          if not ipd_embl.startswith('ID'):
+            continue
+          
           # IPD MHC uses non-standard ID line
           # need to remove first two semicolons in ID line
           ipd_line = ipd_embl.splitlines() # split by line
@@ -71,18 +69,18 @@ with open("ipd-mhc-nhp-" + str(ipd_number) + ".gbk", "a") as all_nhp:
           # i tried to use tempfile but couldn't get it to work
           with open("response.embl", "w") as f:
               f.write(embl_file)
-  
+
           # read EMBL file and export as Genbank
           for record in SeqIO.parse("response.embl", "embl"):
-              record.description = record.name
+            
+            record.description = record.name
+            record.name = record.annotations['keywords'][0]
+            print(record.name + ' - ' + record.description)
 
-              # Exit with code 1 if the EMBL is empty
-              if record.description == "":
-                print(error_message)
-                sys.exit(1)
+            record.seq = record.seq.rstrip("X")
+
+            if len(record.seq) > 100:
               
-              record.name = record.annotations['keywords'][0]
-              print(record.name + ' - ' + record.description)
               SeqIO.write(record, all_nhp, "genbank")
   
               # if rhesus sequence

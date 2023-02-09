@@ -16,6 +16,10 @@ workflow {
 		.toSortedList()
 		.flatten()
 	
+	// ch_mhc_count = Channel
+	// 	.of( 1..params.mhc_allele_count )
+	// 	.buffer( size: 100, remainder: true)
+	
 	ch_kir_count = Channel
 		.of( 1..params.kir_allele_count )
 		.toSortedList()
@@ -33,27 +37,31 @@ workflow {
 		
 	ch_added_seqs = Channel
 		.fromPath( params.added_seqs )
-		.splitCsv( header: true )
-		.map { row -> tuple(row.accession, row.formal_name, row.informal_name, row.ipd_id, row.animal_id) }
 	
 	
 	PULL_SPEC_SAMPLES (
+		ch_added_seqs,
 		ch_added_seqs
+			.splitCsv()
+			.count()
 	)
 	
-	CONCAT_SPEC_SAMPLES (
-		PULL_SPEC_SAMPLES.out.collect()
-	)
+	// CONCAT_SPEC_SAMPLES (
+	// 	PULL_SPEC_SAMPLES.out.collect()
+	// )
 
-	PULL_IPD_MHC (
-		ch_mhc_count
-	)
+	PULL_IPD_MHC ()
 	
+	// CONCAT_MHC (
+	// 	PULL_IPD_MHC.out
+	// 		.flatten()
+	// 		.map { it -> it.getName() }
+	// 		.collectFile(name: 'allele_file_list.txt', newLine: true)
+	// )
+
 	CONCAT_MHC (
-		PULL_IPD_MHC.out
-			.flatten()
-			.map { it -> it.getName() }
-			.collectFile(name: 'allele_file_list.txt', newLine: true)
+		PULL_IPD_MHC.out.collect(),
+		PULL_SPEC_SAMPLES.out.collect()
 	)
 	
 	PULL_IPD_HLA (
@@ -101,32 +109,44 @@ workflow {
 			.collectFile(name: 'allele_file_list.txt', newLine: true)
 	)
 
-	CLEAN_ALLELES (
-		CONCAT_MHC.out
-		.flatten()
-		.map{ file -> tuple(file.getSimpleName(), file) }
-		.mix( 
+	// CLEAN_ALLELES (
+	// 	CONCAT_MHC.out
+	// 	.flatten()
+	// 	.map{ file -> tuple(file.getSimpleName(), file) }
+	// 	.mix( 
 			
-			CONCAT_KIR.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
+	// 		CONCAT_KIR.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
 		
-		)
-	)
+	// 	)
+	// )
+
+	// IWES_TRIMMING (
+	// 	CLEAN_ALLELES.out
+	// )
 
 	IWES_TRIMMING (
-		CLEAN_ALLELES.out
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
 	)
 
 	MISEQ_TRIMMING (
-		CLEAN_ALLELES.out
-		.mix(
-			
-			CONCAT_HLA.out
-			.map{ file -> tuple("hum", "hla", file) }
-			
-		)
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
 	)
+
+	// MISEQ_TRIMMING (
+	// 	CLEAN_ALLELES.out
+	// 	.mix(
+			
+	// 		CONCAT_HLA.out
+	// 		.map{ file -> tuple("hum", "hla", file) }
+			
+	// 	)
+	// )
 
 	ALLELE_SORTING (
 		MISEQ_TRIMMING.out
@@ -182,7 +202,10 @@ params.miseq_results = params.results + "/" + "miseq_databases"
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
 	
-	time '1minute'
+	// publishDir params.spec_results, mode: 'copy'
+
+	tag "${sample_count} seqs"
+	
 	errorStrategy 'retry'
 	maxRetries 4
 	
@@ -190,68 +213,15 @@ process PULL_SPEC_SAMPLES {
 	params.pull_added_seqs == true
 	
 	input:
-	tuple val(accession), val(formal_name), val(informal_name), val(ipd_id), val(animal_id)
+	path samplesheet
+	val sample_count
 	
 	output:
 	path "*.gbk"
 	
 	script:
 	"""
-	download_additional_embl_sequences.py "${accession}" "${formal_name}"
-	"""
-	
-}
-
-
-process CONCAT_SPEC_SAMPLES {
-	
-	publishDir params.spec_results, mode: 'move'
-	
-	when:
-	params.pull_added_seqs == true
-	
-	input:
-	path gbk_files
-	
-	output:
-	path "*_added.gbk"
-	
-	script:
-	"""
-	if (( `ls -1 ipd-mhc-mamu*.gbk | wc -l` > 0 )); then
-		cat `realpath ipd-mhc-mafa*.gbk` > ipd-mhc-mafa-${params.date}_added.gbk && \
-		if [[ `head -n 1 ipd-mhc-mafa-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
-			echo "mafa sequences found"
-		else 
-			rm -f ipd-mhc-mafa-${params.date}_added.gbk
-		fi
-	fi
-
-	if (( `ls -1 ipd-mhc-mamu*.gbk | wc -l` > 0 )); then
-		cat `realpath ipd-mhc-mamu*.gbk` > ipd-mhc-mamu-${params.date}_added.gbk && \
-		if [[ `head -n 1 ipd-mhc-mamu-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
-			echo "mamu sequences found"
-		else 
-			rm -f ipd-mhc-mamu-${params.date}_added.gbk
-		fi
-	fi
-	
-	if (( `ls -1 ipd-mhc-mane*.gbk | wc -l` > 0 )); then
-		cat `realpath ipd-mhc-mane*.gbk` > ipd-mhc-mane-${params.date}_added.gbk
-		if [[ `head -n 1 ipd-mhc-mane-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
-			echo "mane sequences found"
-		else 
-			rm -f ipd-mhc-mane-${params.date}_added.gbk
-		fi
-	fi
-
-	cat `realpath ipd-mhc-nhp*.gbk` > ipd-mhc-nhp-${params.date}_added.gbk && \
-	if [[ `head -n 1 ipd-mhc-nhp-${params.date}_added.gbk` =~ ^LOCUS.*  ]]; then
-		echo "nhp sequences found"
-	else 
-		rm -f ipd-mhc-nhp-${params.date}_added.gbk
-	fi
-	
+	download_additional_embl_sequences.py ${samplesheet} ${params.date}
 	"""
 	
 }
@@ -264,28 +234,20 @@ process PULL_IPD_MHC {
 	// also be downloaded for Rhesus macaque (Macaca mulatta, a.k.a. Mamu), Cynomolgus mac-
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
+
+	tag "${params.mhc_allele_count} seqs"
 	
-	tag "${ipd_num}"
-	
-	time '1minute'
-	errorStrategy { sleep(Math.pow(2, task.attempt) * 200 as long); return 'retry' }
-	
-	publishDir params.mhc_temp, pattern: '*.gbk', mode: params.publishMode, overwrite: true
+	// publishDir params.mhc_allele_results, mode: params.publishMode, overwrite: true
 	
 	when:
 	params.pull_mhc == true
 	
-	input:
-	val(ipd_num)
-
 	output:
-	path("*.gbk")
+	path "*.gbk"
 
 	script:
 	"""
-	download_ipd-mhc_sequences.py ${ipd_num} && \
-	code_1=\$?
-	exit \${code_1}
+	download_ipd-mhc_sequences.py ${params.mhc_allele_count} ${params.date}
 	"""
 
 }
@@ -293,67 +255,23 @@ process PULL_IPD_MHC {
 
 process CONCAT_MHC {
 
-	publishDir params.mhc_allele_results, pattern: "*nhp*.gbk", mode: 'copy'
+	publishDir params.mhc_allele_results, mode: 'copy', overwrite: true
 	
 	input:
-	path allele_list
+	path ipd_seqs
+	path added_seqs
 	
 	output:
 	path "*.gbk"
-	
-	shell:
-	'''
-	
-	touch ipd-mhc-mafa-!{params.date}.gbk
-	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa*.gbk" > mhc_mafa_list.txt && \
-	for i in $(cat mhc_mafa_list.txt);
-	do
-		cat $i >> ipd-mhc-mafa-!{params.date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk >> ipd-mhc-mafa-!{params.date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mafa-!{params.date}_added.gbk
-		fi
-	done
-	
-	touch ipd-mhc-mamu-!{params.date}.gbk
-	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu*.gbk" > mhc_mamu_list.txt && \
-	for i in $(cat mhc_mamu_list.txt);
-	do
-		cat $i >> ipd-mhc-mamu-!{params.date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk >> ipd-mhc-mamu-!{params.date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mamu-!{params.date}_added.gbk
-		fi
-	done
-	
-	touch ipd-mhc-mane-!{params.date}.gbk
-	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-mane*.gbk" > mhc_mane_list.txt && \
-	for i in $(cat mhc_mane_list.txt);
-	do
-		cat $i >> ipd-mhc-mane-!{params.date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk >> ipd-mhc-mane-!{params.date}.gbk
-			rm !{params.spec_results}/ipd-mhc-mane-!{params.date}_added.gbk
-		fi
-	done
-	
-	touch ipd-mhc-nhp-!{params.date}.gbk
-	find !{params.mhc_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp*.gbk" > mhc_nhp_list.txt && \
-	for i in $(cat mhc_nhp_list.txt);
-	do
-		cat $i >> ipd-mhc-nhp-!{params.date}.gbk
-		if test -f !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk; then
-			cat !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk >> ipd-mhc-nhp-!{params.date}.gbk
-			rm !{params.spec_results}/ipd-mhc-nhp*!{params.date}_added.gbk
-		fi
-	done
-	
-	rm -rf !{params.mhc_temp}
-	rm -rf !{params.spec_results}
-	find . -name "*.gbk" -size 0 -print -delete
-	
-	'''
-	
+
+	script:
+	"""
+	cat ipd-mhc-nhp-${params.date}_added.gbk >> ipd-mhc-nhp-${params.date}.gbk
+	cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}.gbk
+	cat ipd-mhc-mafa-${params.date}_added.gbk >> ipd-mhc-mafa-${params.date}.gbk
+	cat ipd-mhc-mane-${params.date}_added.gbk >> ipd-mhc-mane-${params.date}.gbk
+	"""
+
 }
 
 
@@ -741,15 +659,20 @@ process IWES_TRIMMING {
 	publishDir params.iwes_results, mode: 'move'
 	
 	when:
-	params.trim_for_iwes == true && locus_name == "mhc" && (animal_name == "mamu" || animal_name == "mafa")
+	params.trim_for_iwes == true && ( animal_name == "mamu" || animal_name == "mafa" )
 
 	input:
-	tuple val(animal_name), val(locus_name), path(gbk)
+	tuple val(name), path(gbk)
 
 	output:
-	path("*")
+	path "*.fasta"
 
 	script:
+
+	animal_name = name.substring(8,12)
+	locus_name = name.substring(4,7)
+	tag = name.substring(4,12)
+	
 	"""
 
 	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
@@ -768,15 +691,20 @@ process MISEQ_TRIMMING {
 	publishDir params.miseq_results, pattern: "*hla*.fasta", mode: 'copy'
 	
 	when:
-	params.trim_for_miseq == true && locus_name != "kir" && animal_name != "nhp"
+	params.trim_for_miseq == true
 
 	input:
-	tuple val(animal_name), val(locus_name), path(gbk)
+	tuple val(name), path(gbk)
 
 	output:
 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
 
 	script:
+
+	animal_name = name.substring(8,12)
+	locus_name = name.substring(4,7)
+	tag = name.substring(4,12)
+
 	"""
 
 	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}

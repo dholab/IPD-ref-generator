@@ -7,6 +7,9 @@ results/mhc_prot_tmp/
 results/kir_tmp/
 results/kir_prot_tmp/
 results/hla_tmp/
+results/testing/
+results/samplesheet_sequences/
+bin/find_missing_accessions.R
 
 .nextflow.log*
 .DS_Store

@@ -7,4 +7,3 @@ Immuno-WES genotyping relies on reference allele sequences from the [Immuno-Poly
 - `*.cdna.fasta` - These FASTA files contain all the alleles that lack introns, i.e., do not have full-length genomic DNA sequences published on IPD.
 - `*.exon2.fasta` - In these FASTA files, exon-only alleles are trimmed down to exon 2 only. This is important for iWES genotyping because it provides a fall-back for genotyping with reference alleles that are not published with introns.
 - `*.immunowes.fasta` - The most recent FASTA file with this extension should be used for iWES Genotyping. It contains all alleles from IPD that are full-length genomic DNAs, and for those that are not, it contains only their exon 2 sequences as a fall back. To make the immunowes FASTA, we simply concatenate the `.exon2.fasta` and `.gdna.fasta`.
-
