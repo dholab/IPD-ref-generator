@@ -273,38 +273,38 @@ process CONCAT_MHC {
 	script:
 	"""
 	touch ipd-mhc-nhp-${params.date}_cleaned.gbk
-	if [ -f cat ipd-mhc-nhp-${params.date}.gbk ]; then
+	if [ -f ipd-mhc-nhp-${params.date}.gbk ]; then
 		cat ipd-mhc-nhp-${params.date}.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
 	fi
 
-	if [ -f cat ipd-mhc-nhp-${params.date}_added.gbk ]; then
+	if [ -f ipd-mhc-nhp-${params.date}_added.gbk ]; then
 		cat ipd-mhc-nhp-${params.date}_added.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
 	fi
 
 	touch ipd-mhc-mamu-${params.date}_cleaned.gbk
-	if [ -f cat ipd-mhc-mamu-${params.date}.gbk ]; then
+	if [ -f ipd-mhc-mamu-${params.date}.gbk ]; then
 		cat ipd-mhc-mamu-${params.date}.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
 	fi
 
-	if [ -f cat ipd-mhc-mamu-${params.date}_added.gbk ]; then
+	if [ -f ipd-mhc-mamu-${params.date}_added.gbk ]; then
 		cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
 	fi
 
 	touch ipd-mhc-mafa-${params.date}_cleaned.gbk
-	if [ -f cat ipd-mhc-mafa-${params.date}.gbk ]; then
+	if [ -f ipd-mhc-mafa-${params.date}.gbk ]; then
 		cat ipd-mhc-mafa-${params.date}.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
 	fi
 
-	if [ -f cat ipd-mhc-mafa-${params.date}_added.gbk ]; then
+	if [ -f ipd-mhc-mafa-${params.date}_added.gbk ]; then
 		cat ipd-mhc-mafa-${params.date}_added.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
 	fi
 
 	touch ipd-mhc-mane-${params.date}_cleaned.gbk
-	if [ -f cat ipd-mhc-mane-${params.date}.gbk ]; then
+	if [ -f ipd-mhc-mane-${params.date}.gbk ]; then
 		cat ipd-mhc-mane-${params.date}.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
 	fi
 
-	if [ -f cat ipd-mhc-mane-${params.date}_added.gbk ]; then
+	if [ -f ipd-mhc-mane-${params.date}_added.gbk ]; then
 		cat ipd-mhc-mane-${params.date}_added.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
 	fi
 	"""
