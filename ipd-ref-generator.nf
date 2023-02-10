@@ -210,8 +210,8 @@ process PULL_SPEC_SAMPLES {
 
 	tag "${sample_count} seqs"
 	
-	errorStrategy 'retry'
-	maxRetries 4
+	// errorStrategy 'retry'
+	// maxRetries 4
 	
 	when:
 	params.pull_added_seqs == true
@@ -267,12 +267,46 @@ process CONCAT_MHC {
 	output:
 	path "*.gbk"
 
+	when:
+	params.pull_mhc == true || params.pull_added_seqs == true
+
 	script:
 	"""
-	cat ipd-mhc-nhp-${params.date}_added.gbk >> ipd-mhc-nhp-${params.date}.gbk
-	cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}.gbk
-	cat ipd-mhc-mafa-${params.date}_added.gbk >> ipd-mhc-mafa-${params.date}.gbk
-	cat ipd-mhc-mane-${params.date}_added.gbk >> ipd-mhc-mane-${params.date}.gbk
+	touch ipd-mhc-nhp-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-nhp-${params.date}.gbk ]; then
+		cat ipd-mhc-nhp-${params.date}.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
+	fi
+
+	if [ -f cat ipd-mhc-nhp-${params.date}_added.gbk ]; then
+		cat ipd-mhc-nhp-${params.date}_added.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
+	fi
+
+	touch ipd-mhc-mamu-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-mamu-${params.date}.gbk ]; then
+		cat ipd-mhc-mamu-${params.date}.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
+	fi
+
+	if [ -f cat ipd-mhc-mamu-${params.date}_added.gbk ]; then
+		cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
+	fi
+
+	touch ipd-mhc-mafe-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-mafe-${params.date}.gbk ]; then
+		cat ipd-mhc-mafe-${params.date}.gbk >> ipd-mhc-mafe-${params.date}_cleaned.gbk
+	fi
+
+	if [ -f cat ipd-mhc-mafe-${params.date}_added.gbk ]; then
+		cat ipd-mhc-mafe-${params.date}_added.gbk >> ipd-mhc-mafe-${params.date}_cleaned.gbk
+	fi
+
+	touch ipd-mhc-mane-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-mane-${params.date}.gbk ]; then
+		cat ipd-mhc-mane-${params.date}.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
+	fi
+
+	if [ -f cat ipd-mhc-mane-${params.date}_added.gbk ]; then
+		cat ipd-mhc-mane-${params.date}_added.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
+	fi
 	"""
 
 }
@@ -662,7 +696,7 @@ process IWES_TRIMMING {
 	publishDir params.iwes_results, mode: 'move'
 	
 	when:
-	params.trim_for_iwes == true && ( animal_name == "mamu" || animal_name == "mafa" )
+	params.trim_for_iwes == true 
 
 	input:
 	tuple val(name), path(gbk)

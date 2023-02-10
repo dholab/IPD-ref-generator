@@ -47,6 +47,9 @@ with open(samplesheet_path, "r") as csvfile:
             # IPD MHC uses non-standard ID line
             # need to remove first two semicolons in ID line
             ipd_embl = u.text # read content
+            
+            # getting rid of unexpected characters
+            ipd_embl = ipd_embl.replace('<', '')
 
             # handle missing records
             # these don't have identifiers and can be skipped
