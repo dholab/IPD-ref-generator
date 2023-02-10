@@ -290,13 +290,13 @@ process CONCAT_MHC {
 		cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
 	fi
 
-	touch ipd-mhc-mafe-${params.date}_cleaned.gbk
-	if [ -f cat ipd-mhc-mafe-${params.date}.gbk ]; then
-		cat ipd-mhc-mafe-${params.date}.gbk >> ipd-mhc-mafe-${params.date}_cleaned.gbk
+	touch ipd-mhc-mafa-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-mafa-${params.date}.gbk ]; then
+		cat ipd-mhc-mafa-${params.date}.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
 	fi
 
-	if [ -f cat ipd-mhc-mafe-${params.date}_added.gbk ]; then
-		cat ipd-mhc-mafe-${params.date}_added.gbk >> ipd-mhc-mafe-${params.date}_cleaned.gbk
+	if [ -f cat ipd-mhc-mafa-${params.date}_added.gbk ]; then
+		cat ipd-mhc-mafa-${params.date}_added.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
 	fi
 
 	touch ipd-mhc-mane-${params.date}_cleaned.gbk
