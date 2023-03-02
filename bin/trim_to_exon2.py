@@ -9,6 +9,13 @@ from Bio.SeqRecord import SeqRecord
 
 input_genbank = sys.argv[1]
 
+def removeSpecialCharacters(in_str, special_characters='*|: ', replace_character='_'):
+    '''remove specified special characters from input str'''
+    
+    out_str = in_str.translate ({ord(c): replace_character for c in special_characters})
+    
+    return out_str
+
 def separateExon2(in_gbk, exon2_fasta):
 
   # determine the coordinates for exon 2 in 
@@ -36,6 +43,7 @@ def separateExon2(in_gbk, exon2_fasta):
             exon2_record = record[:]
             exon2_record.seq = exon2_seq
             exon2_record.id = exon2_record.name + "_exon2"
+            exon2_record.id = removeSpecialCharacters(exon2_record.id)
           
             # Write exon 2 record to output file
             SeqIO.write(exon2_record, output_handle, "fasta")
@@ -79,7 +87,7 @@ def deduplicate_fasta(in_fasta, out_fasta):
   with open(out_fasta, "w") as output_handle:
     for item in deduplicated.items():
       # concatenate identical sequence names
-      seq_name = '|'.join(item[1])
+      seq_name = ','.join(item[1])
       # get sequence
       deduplicated_sequence = item[0]
       # create biopython object
