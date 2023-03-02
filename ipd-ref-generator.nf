@@ -130,6 +130,12 @@ workflow {
 	// 	CLEAN_ALLELES.out
 	// )
 
+	EXON2_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
+
 	IWES_TRIMMING (
 		CONCAT_MHC.out
 			.flatten()
@@ -195,6 +201,9 @@ params.kir_prot_results = params.results + "/" + "kir_proteins"
 // additions from samplesheet
 // params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
 params.spec_results = params.results + "/" + "samplesheet_sequences"
+
+// Exon 2 results
+params.exon2_results = params.results + "/" + "exon2_databases"
 
 // iWES results
 params.iwes_results = params.results + "/" + "iwes_databases"
@@ -681,6 +690,39 @@ process CLEAN_ALLELES {
 	ipd_genbank_cleaner.py ${animal_name} ${locus_name} ${gbk}
 
 	"""
+}
+
+
+process EXON2_TRIMMING {
+
+	/*
+	In this process, we trim each MHC database into exon-2-only sequences, which can 
+	be used for lower-resolution genotyping. These databases are useful in scenarios
+	when a) high-resolution genotyping is not needed or is computationally prohibitive,
+	or b) available reference databases are too incomplete to reliably perform high-
+	resolution genotyping. This step creates an exon 2 database for all alleles, and
+	also creates separate databases for Class I and Class II alleles, which are 
+	sometimes treated separately.
+	*/
+
+	tag "${animal_name}"
+	publishDir params.exon2_results, pattern: '*exon2_deduplicated*' mode: 'move'
+
+	input:
+	tuple val(name), path(gbk)
+
+	output:
+	path "*.fasta"
+	
+	when:
+	params.trim_for_exon2 == true 
+
+	script:
+	animal_name = name.substring(8,12)
+	"""
+	trim_to_exon2.py ${gbk}
+	"""
+
 }
 
 
