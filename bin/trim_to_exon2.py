@@ -43,7 +43,7 @@ def separateExon2(in_gbk, exon2_fasta):
             exon2_record = record[:]
             exon2_record.seq = exon2_seq
             exon2_record.id = exon2_record.name + "_exon2"
-            exon2_record.id = removeSpecialCharacters(exon2_record.id)
+            # exon2_record.id = removeSpecialCharacters(exon2_record.id)
           
             # Write exon 2 record to output file
             SeqIO.write(exon2_record, output_handle, "fasta")
