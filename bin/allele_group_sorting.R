@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-args = commandArgs(trailingOnly=TRUE)
+args <- commandArgs(trailingOnly = TRUE)
 
 # THIS SCRIPT WILL PUT ALL ALLELES WITHIN EACH GROUP IN NUMERIC/ALPHABETIC ORDER
 
@@ -7,58 +7,58 @@ args = commandArgs(trailingOnly=TRUE)
 library(tidyverse)
 
 # pull arguments from the command line by default
-fasta <- read.delim(args[1], header = F)
+fasta <- read.delim(args[1], header = FALSE)
 file_basename <- str_remove(args[1], ".fasta")
 
-main <- compiler::cmpfun(function(sequences, basename){
-  
+main <- compiler::cmpfun(function(sequences, basename) {
+
   # how many rows of allele groups are there?
-  paste("There are", length(fasta[grepl("|", fasta[,1], fixed=T),1]),
+  paste("There are", length(fasta[grepl("|", fasta[, 1], fixed = TRUE), 1]),
         "rows to examine in this fasta.", sep = " ")
-  
+
   # correcting allele order in unsorted allele group rows
   rows_fixed <- NA
-  for (i in 1:nrow(fasta)){
-    
-    if (!grepl(">", fasta[i,1])){
+  for (i in seq_len(nrow(df))) {
+
+    if (!grepl(">", fasta[i, 1])) {
       next
     }
-    if (!grepl("|", fasta[i,1], fixed=T)){
+    if (!grepl("|", fasta[i, 1], fixed = TRUE)) {
       next
     }
-    sub <- fasta[i,1]
-    
+    sub <- fasta[i, 1]
+
     # PRE-SORTING PROCESSING:
     sub <- str_replace_all(sub, fixed(">"), "") %>%
       str_replace_all(fixed("|"), " ") %>%
       strsplit(split = " ") %>%
       unlist()
     sub <- t(t(sub))
-    
+
     # SORTING:
-    sub_sorted <- sort(sub[,1])
-    
+    sub_sorted <- sort(sub[, 1])
+
     # POST-SORTING PROCESSING:
     sub_sorted <- paste(sub_sorted, collapse = "|", sep = "")
     sub_sorted <- paste(">", sub_sorted, sep = "")
-    if (sub_sorted==fasta[i,1]){
+    if (sub_sorted == fasta[i, 1]) {
       next
     }
-    
+
     # INSERTING BACK INTO FASTA:
-    fasta[i,1] <- sub_sorted
+    fasta[i, 1] <- sub_sorted
     rows_fixed <- c(na.omit(rows_fixed), i)
-    
+
   } # end for loop
-  
-  paste("This script has fixed", length(rows_fixed), 
+
+  paste("This script has fixed", length(rows_fixed),
         "rows in the inserted fasta.", sep = " ")
-  
+
   # exporting now-sorted fasta
-  write.table(fasta, 
+  write.table(fasta,
               paste(file_basename, ".sorted.fasta", sep = ""),
-              sep = "\t", quote = F, col.names = F, row.names = F)
-  
+              sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
+
 })
 
 # run main
