@@ -13,4 +13,10 @@ ENV PATH /opt/conda/envs/ipd-ref-generator/bin:$PATH
 
 ENV CONDA_DEFAULT_ENV ipd-ref-generator
 
+COPY src/downloadIPD.go /src
+
+RUN go build /src/downloadIPD.go -o goDownloadIPD && \
+	chmod +x goDownloadIPD && \
+	mv goDownloadIPD /usr/local/bin
+
 CMD ["/bin/bash"]

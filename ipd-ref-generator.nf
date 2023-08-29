@@ -7,33 +7,19 @@ nextflow.enable.dsl = 2
 workflow {
 	
 	ch_hla_count = Channel
-		.of( 1..params.hla_allele_count )
-		.toSortedList()
-		.flatten()
+		.of( params.hla_allele_count )
 	
 	ch_mhc_count = Channel
-		.of( 1..params.mhc_allele_count )
-		.toSortedList()
-		.flatten()
-	
-	// ch_mhc_count = Channel
-	// 	.of( 1..params.mhc_allele_count )
-	// 	.buffer( size: 100, remainder: true)
+		.of( params.mhc_allele_count )
 	
 	ch_kir_count = Channel
-		.of( 1..params.kir_allele_count )
-		.toSortedList()
-		.flatten()
+		.of( params.kir_allele_count )
 	
 	ch_mhc_prot = Channel
-		.of( 1..params.mhc_protein_count )
-		.toSortedList()
-		.flatten()
+		.of( params.mhc_protein_count )
 	
 	ch_kir_prot = Channel
-		.of( 1..params.kir_protein_count )
-		.toSortedList()
-		.flatten()
+		.of( params.kir_protein_count )
 		
 	ch_added_seqs = Channel
 		.fromPath( params.added_seqs )
@@ -45,26 +31,16 @@ workflow {
 			.splitCsv()
 			.count()
 	)
-	
-	// CONCAT_SPEC_SAMPLES (
-	// 	PULL_SPEC_SAMPLES.out.collect()
-	// )
 
-	PULL_IPD_MHC ()
-	
-	// CONCAT_MHC (
-	// 	PULL_IPD_MHC.out
-	// 		.flatten()
-	// 		.map { it -> it.getName() }
-	// 		.collectFile(name: 'allele_file_list.txt', newLine: true)
-	// )
+	PULL_IPD_MHC (
+		ch_mhc_count
+	)
 
 	CONCAT_MHC (
-		PULL_IPD_MHC.out
+		PULL_IPD_MHC.out.collect()
 			.mix (
-				PULL_SPEC_SAMPLES.out
+				PULL_SPEC_SAMPLES.out.collect()
 			)
-			.collect()
 		
 	)
 	
@@ -73,7 +49,7 @@ workflow {
 	)
 	
 	CONCAT_HLA (
-		PULL_IPD_HLA.out
+		PULL_IPD_HLA.out.collect()
 	)
 	
 	COMPRESS_HLA (
@@ -85,10 +61,7 @@ workflow {
 	)
 	
 	CONCAT_KIR (
-		PULL_IPD_KIR.out
-			.flatten()
-			.map { it -> it.getName() }
-			.collectFile(name: 'allele_file_list.txt', newLine: true)
+		PULL_IPD_KIR.out.collect()
 	)
 	
 	PULL_MHC_PROTEINS (
@@ -96,10 +69,7 @@ workflow {
 	)
 	
 	CONCAT_MHC_PROTEINS (
-		PULL_MHC_PROTEINS.out
-			.flatten()
-			.map { it -> it.getName() }
-			.collectFile(name: 'allele_file_list.txt', newLine: true)
+		PULL_MHC_PROTEINS.out.collect()
 	)
 	
 	PULL_KIR_PROTEINS (
@@ -107,60 +77,43 @@ workflow {
 	)
 	
 	CONCAT_KIR_PROTEINS (
-		PULL_KIR_PROTEINS.out
-			.flatten()
-			.map { it -> it.getName() }
-			.collectFile(name: 'allele_file_list.txt', newLine: true)
+		PULL_KIR_PROTEINS.out.collect()
 	)
 
-	// CLEAN_ALLELES (
-	// 	CONCAT_MHC.out
-	// 	.flatten()
-	// 	.map{ file -> tuple(file.getSimpleName(), file) }
-	// 	.mix( 
+	CLEAN_ALLELES (
+		CONCAT_MHC.out
+		.flatten()
+		.map{ file -> tuple(file.getSimpleName(), file) }
+		.mix( 
 			
-	// 		CONCAT_KIR.out
+			CONCAT_KIR.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+		
+		)
+	)
+
+	// EXON2_TRIMMING (
+	// 	CONCAT_MHC.out
 	// 		.flatten()
 	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-		
-	// 	)
 	// )
 
 	// IWES_TRIMMING (
-	// 	CLEAN_ALLELES.out
+	// 	CONCAT_MHC.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
 	// )
-
-	EXON2_TRIMMING (
-		CONCAT_MHC.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-	)
-
-	IWES_TRIMMING (
-		CONCAT_MHC.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-	)
-
-	MISEQ_TRIMMING (
-		CONCAT_MHC.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-	)
 
 	// MISEQ_TRIMMING (
-	// 	CLEAN_ALLELES.out
-	// 	.mix(
-			
-	// 		CONCAT_HLA.out
-	// 		.map{ file -> tuple("hum", "hla", file) }
-			
-	// 	)
+	// 	CONCAT_MHC.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
 	// )
 
-	ALLELE_SORTING (
-		MISEQ_TRIMMING.out
-	)
+	// ALLELE_SORTING (
+	// 	MISEQ_TRIMMING.out
+	// )
 
 	// ALLELE_GROUP_NAMING (
 	// 	ALLELE_SORTING.out
@@ -214,13 +167,13 @@ params.miseq_results = params.results + "/" + "miseq_databases"
 
 // Defining each process that will occur while generating new IPD references
 process PULL_SPEC_SAMPLES {
-	
-	// publishDir params.spec_results, mode: 'copy'
 
 	tag "${sample_count} seqs"
+
+	cpus 1
 	
-	// errorStrategy 'retry'
-	// maxRetries 4
+	errorStrategy 'retry'
+	maxRetries 2
 	
 	when:
 	params.pull_added_seqs == true
@@ -249,18 +202,21 @@ process PULL_IPD_MHC {
 	// estrina, a.k.a. Mame)
 
 	tag "${params.mhc_allele_count} alleles"
+
+	cpus 8
+
+	input:
+	val allele_count
 	
-	// publishDir params.mhc_allele_results, mode: params.publishMode, overwrite: true
+	output:
+	path "*.embl"
 	
 	when:
 	params.pull_mhc == true
-	
-	output:
-	path "*.gbk"
 
 	script:
 	"""
-	goDownloadIPD MHC ${params.mhc_allele_count} ${params.last_release_date}
+	goDownloadIPD MHC ${allele_count} ${params.last_release_date}
 	"""
 
 }
@@ -271,6 +227,8 @@ process CONCAT_MHC {
 	publishDir params.mhc_allele_results, mode: 'copy', overwrite: true
 	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_mhc_database.gbk", mode: 'copy', overwrite: true
 	
+	cpus 1
+
 	input:
 	path gbk_files
 	
@@ -293,27 +251,27 @@ process PULL_IPD_HLA {
 	// This process pulls the updated roster of HLA alleles, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num}"
+	tag "${ipd_num} alleles"
 	
-	cpus 1
-	time { 2.minute * task.attempt }
+	cpus 8
+	
 	errorStrategy 'retry'
-	maxRetries 4
+	maxRetries 2
 	
 	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
-	when:
-	params.pull_hla == true
-	
 	input:
-	val(ipd_num)
+	val allele_count
 
 	output:
-	path("*.gbk")
+	path "*.embl"
+	
+	when:
+	params.pull_hla == true
 
 	script:
 	"""
-	goDownloadIPD HLA ${ipd_num} ${params.last_release_date}
+	goDownloadIPD HLA ${allele_count} ${params.last_release_date}
 	"""
 
 }
@@ -322,10 +280,10 @@ process PULL_IPD_HLA {
 process CONCAT_HLA {
 	
 	input:
-	path(gbk)
+	path gbk
 	
 	output:
-	path("*.gbk")
+	path "*.gbk"
 	
 	shell:
 	'''
@@ -353,17 +311,17 @@ process CONCAT_HLA {
 
 process COMPRESS_HLA {
 	
-	publishDir params.hla_results, pattern: '*.gbk.xz', mode: 'move'
+	publishDir params.hla_results, pattern: '*.zst', mode: 'move'
 	
 	input:
-	path(gbk)
+	path gbk
 	
 	output:
-	path(gbk)
+	path "*.zst"
 	
 	script:
 	"""
-	xz -9 ${gbk}
+	zstd `realpath ${gbk}` -o ipd-hla-${params.date}.gbk.zst
 	"""
 	
 }
@@ -379,24 +337,25 @@ process PULL_IPD_KIR {
 	
 	tag "${ipd_num}"
 	
-	time '1minute'
+	cpus 8
+
 	errorStrategy 'retry'
-	maxRetries 4
+	maxRetries 2
 	
 	publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
 	
-	when:
-	params.pull_kir == true
-	
 	input:
-	val(ipd_num)
+	val allele_count
 
 	output:
-	path("*.gbk")
+	path "*.embl"
+	
+	when:
+	params.pull_kir == true
 
 	script:
 	"""
-	goDownloadIPD KIR ${params.kir_allele_count} ${params.last_release_date}
+	goDownloadIPD KIR ${allele_count} ${params.last_release_date}
 	"""
 
 }
@@ -430,19 +389,21 @@ process PULL_MHC_PROTEINS {
 	maxRetries 2
 	
 	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
-	
-	when:
-	params.pull_mhc_proteins == true
+
+	cpus 8
 	
 	input:
-	val(ipd_num)
+	val protein_count
 
 	output:
 	path("*.fasta")
+	
+	when:
+	params.pull_mhc_proteins == true
 
 	script:
 	"""
-	goDownloadIPD MHCPRO ${params.mhc_protein_count} ${params.last_release_date}
+	goDownloadIPD MHCPRO ${protein_count} ${params.last_release_date}
 	"""
 
 }
@@ -453,10 +414,10 @@ process CONCAT_MHC_PROTEINS {
 	publishDir params.mhc_prot_results, mode: params.publishMode
 	
 	input:
-	path(fasta)
+	path fastas
 	
 	output:
-	path("*.fasta")
+	path "*.fasta"
 	
 	script:
 	"""
@@ -479,18 +440,18 @@ process PULL_KIR_PROTEINS {
 	
 	publishDir params.kir_prot_temp, pattern: '*.fasta', mode: params.publishMode
 	
-	when:
-	params.pull_kir_proteins == true
-	
 	input:
-	val(ipd_num)
+	val protein_count
 
 	output:
-	path("*.fasta")
+	path "*.fasta"
+	
+	when:
+	params.pull_kir_proteins == true
 
 	script:
 	"""
-	goDownloadIPD KIRPRO ${params.kir_protein_count} ${params.last_release_date}
+	goDownloadIPD KIRPRO ${protein_count} ${params.last_release_date}
 	"""
 
 }
@@ -501,10 +462,10 @@ process CONCAT_KIR_PROTEINS {
 	publishDir params.kir_prot_results, mode: params.publishMode
 	
 	input:
-	path(fasta)
+	path fastas
 	
 	output:
-	path("*.fasta")
+	path "*.fasta"
 	
 	script:
 	"""
