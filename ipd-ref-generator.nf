@@ -412,45 +412,10 @@ process CONCAT_KIR {
 	output:
 	path("*.gbk")
 	
-	shell:
-	'''
-	
-	touch ipd-kir-mafa-!{params.date}.gbk
-	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mafa*.gbk" > kir_mafa_list.txt && \
-	for i in $(cat kir_mafa_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mafa-!{params.date}.gbk
-	done
-	
-	touch ipd-kir-mamu-!{params.date}.gbk
-	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mamu*.gbk" > kir_mamu_list.txt && \
-	for i in $(cat kir_mamu_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mamu-!{params.date}.gbk
-	done
-	
-	touch ipd-kir-mane-!{params.date}.gbk
-	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-mane*.gbk" > kir_mane_list.txt && \
-	for i in $(cat kir_mane_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-mane-!{params.date}.gbk
-	done
-	
-	touch ipd-kir-nhp-!{params.date}.gbk
-	find !{params.kir_temp} -maxdepth 1 -type f -name "ipd-kir-nhp*.gbk" > kir_nhp_list.txt && \
-	for i in $(cat kir_nhp_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_temp}/$f >> ipd-kir-nhp-!{params.date}.gbk
-	done
-	
-	rm -rf !{params.kir_temp}
-	find . -name "*.gbk" -size 0 -print -delete
-	
-	'''
+	script:
+	"""
+	collate_alleles_by_animal.py --gene KIR --previous_database "${params.resources}/previous_kir_database.gbk"
+	"""
 
 	
 }
@@ -460,12 +425,9 @@ process PULL_MHC_PROTEINS {
 
 	// This process pulls the current full roster non-human MHC proteins, as listed in
 	// the latest Immuno Polymorphism Database release.
-	
-	tag "${ipd_num}"
-	
-	time '1minute'
+
 	errorStrategy 'retry'
-	maxRetries 4
+	maxRetries 2
 	
 	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
 	
@@ -480,9 +442,7 @@ process PULL_MHC_PROTEINS {
 
 	script:
 	"""
-	
-	download_ipd-mhc_proteins.py ${ipd_num}
-	
+	goDownloadIPD MHCPRO ${params.mhc_protein_count} ${params.last_release_date}
 	"""
 
 }
@@ -498,45 +458,10 @@ process CONCAT_MHC_PROTEINS {
 	output:
 	path("*.fasta")
 	
-	shell:
-	'''
-	
-	touch ipd-mhc-mafa-prot-!{params.date}.fasta
-	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mafa-prot*.fasta" > mafa_prot_list.txt && \
-	for i in $(cat mafa_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mafa-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-mhc-mamu-prot-!{params.date}.fasta
-	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mamu-prot*.fasta" > mamu_prot_list.txt && \
-	for i in $(cat mamu_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mamu-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-mhc-mane-prot-!{params.date}.fasta
-	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-mane-prot*.fasta" > mane_prot_list.txt && \
-	for i in $(cat mane_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-mane-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-mhc-nhp-prot-!{params.date}.fasta
-	find !{params.mhc_prot_temp} -maxdepth 1 -type f -name "ipd-mhc-nhp-prot*.fasta" > nhp_prot_list.txt && \
-	for i in $(cat nhp_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.mhc_prot_temp}/$f >> ipd-mhc-nhp-prot-!{params.date}.fasta
-	done
-	
-	rm -rf !{params.mhc_prot_temp}
-	find . -name "-prot*.fasta" -size 0 -print -delete
-	
-	'''
+	script:
+	"""
+	collate_proteins_by_animal.py --gene MHC
+	"""
 	
 }
 
@@ -565,9 +490,7 @@ process PULL_KIR_PROTEINS {
 
 	script:
 	"""
-
-	download_ipd-kir_proteins.py ${ipd_num}
-
+	goDownloadIPD KIRPRO ${params.kir_protein_count} ${params.last_release_date}
 	"""
 
 }
@@ -583,45 +506,10 @@ process CONCAT_KIR_PROTEINS {
 	output:
 	path("*.fasta")
 	
-	shell:
-	'''
-	
-	touch ipd-kir-mafa-prot-!{params.date}.fasta
-	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mafa-prot*.fasta" > mafa_prot_list.txt && \
-	for i in $(cat mafa_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mafa-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-kir-mamu-prot-!{params.date}.fasta
-	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mamu-prot*.fasta" > mamu_prot_list.txt && \
-	for i in $(cat mamu_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mamu-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-kir-mane-prot-!{params.date}.fasta
-	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-mane-prot*.fasta" > mane_prot_list.txt && \
-	for i in $(cat mane_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-mane-prot-!{params.date}.fasta
-	done
-	
-	touch ipd-kir-nhp-prot-!{params.date}.fasta
-	find !{params.kir_prot_temp} -maxdepth 1 -type f -name "ipd-kir-nhp-prot*.fasta" > nhp_prot_list.txt && \
-	for i in $(cat nhp_prot_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.kir_prot_temp}/$f >> ipd-kir-nhp-prot-!{params.date}.fasta
-	done
-	
-	rm -rf !{params.kir_prot_temp}
-	find . -name "-prot*.fasta" -size 0 -print -delete
-	
-	'''
+	script:
+	"""
+	collate_proteins_by_animal.py --gene KIR
+	"""
 	
 }
 
@@ -649,9 +537,7 @@ process CLEAN_ALLELES {
 	tag = name.substring(4,12)
 
 	"""
-
 	ipd_genbank_cleaner.py --animal ${animal_name} --gene ${locus_name} --file ${gbk}
-
 	"""
 }
 
