@@ -91,45 +91,61 @@ func checkAndSaveFile(fileContent io.Reader, dateStr string) error {
 		if strings.HasPrefix(line, "ID") {
 			// fmt.Println("Found line starting with 'ID':", line)
 			idLine = line
+		} else if strings.HasPrefix(line, ">") {
+			idLine = line
 		}
 		if strings.HasPrefix(line, "DT") {
 			// fmt.Println("Found line starting with 'DT':", line)
 			dateLine = line
 		}
 	}
-	if err := scanner.Err(); err != nil {
-		fmt.Println("Error finding date line:", err)
+
+	if idLine == "ERROR 12 No entries found." {
+		return nil
 	}
 
-	if idLine != "ERROR 12 No entries found." {
-		// parse the date line
-		dateLine = strings.TrimPrefix(dateLine, "DT")
-		dateLine = strings.TrimSpace(dateLine)       // Remove any leading or trailing spaces
-		dateInFileStr := strings.Fields(dateLine)[0] // Get the first field, which should be the date
-		dateInFile, err := time.Parse("02/01/2006", dateInFileStr)
+	if strings.HasPrefix(idLine, ">") {
+
+		tmp_str := strings.Split(idLine, " ")[0]
+		idInFileStr := strings.Split(tmp_str, ":")[1]
+		// define the output file name for a protein FASTA
+		outputFilename := fmt.Sprintf("%s.fasta", idInFileStr)
+		outputFile, err := os.Create(outputFilename)
 		if err != nil {
 			return err
 		}
+		defer outputFile.Close()
+		_, err = io.Copy(outputFile, &fileContentBuffer)
+		return err
+	}
 
-		// parse the ID line
-		idLine = strings.TrimPrefix(idLine, "ID")
-		idLine = strings.TrimSpace(idLine)
-		idInFileStr := strings.Split(idLine, ";")[0]
-		idInFileStr = strings.TrimSpace(idInFileStr)
+	// parse the date line
+	dateLine = strings.TrimPrefix(dateLine, "DT")
+	dateLine = strings.TrimSpace(dateLine)       // Remove any leading or trailing spaces
+	dateInFileStr := strings.Fields(dateLine)[0] // Get the first field, which should be the date
+	dateInFile, err := time.Parse("02/01/2006", dateInFileStr)
+	if err != nil {
+		return err
+	}
 
-		// define the output file name
-		outputFilename := fmt.Sprintf("%s.embl", idInFileStr)
+	// parse the ID line
+	idLine = strings.TrimPrefix(idLine, "ID")
+	idLine = strings.TrimSpace(idLine)
+	idInFileStr := strings.Split(idLine, ";")[0]
+	idInFileStr = strings.TrimSpace(idInFileStr)
 
-		// Compare the dates and save the file if the date in the file is after the given date
-		if dateInFile.After(givenDate) {
-			outputFile, err := os.Create(outputFilename)
-			if err != nil {
-				return err
-			}
-			defer outputFile.Close()
-			_, err = io.Copy(outputFile, &fileContentBuffer)
+	// define the output file name
+	outputFilename := fmt.Sprintf("%s.embl", idInFileStr)
+
+	// Compare the dates and save the file if the date in the file is after the given date
+	if dateInFile.After(givenDate) {
+		outputFile, err := os.Create(outputFilename)
+		if err != nil {
 			return err
 		}
+		defer outputFile.Close()
+		_, err = io.Copy(outputFile, &fileContentBuffer)
+		return err
 	}
 
 	return nil

@@ -13,6 +13,8 @@ results/samplesheet_sequences/
 bin/find_missing_accessions.R
 src/downloadIPD
 src/goDownloadIPD
+src/*.embl
+src/*.fasta
 
 .nextflow.log*
 .DS_Store
