@@ -1,6 +1,7 @@
 deprecated/
 work/
 .nextflow/
+.vscode/
 .nova/
 results/mhc_tmp/
 results/mhc_prot_tmp/
@@ -10,6 +11,8 @@ results/hla_tmp/
 results/testing/
 results/samplesheet_sequences/
 bin/find_missing_accessions.R
+src/downloadIPD
+src/goDownloadIPD
 
 .nextflow.log*
 .DS_Store

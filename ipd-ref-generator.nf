@@ -248,7 +248,7 @@ process PULL_IPD_MHC {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 
-	tag "${params.mhc_allele_count} seqs"
+	tag "${params.mhc_allele_count} alleles"
 	
 	// publishDir params.mhc_allele_results, mode: params.publishMode, overwrite: true
 	
@@ -260,7 +260,7 @@ process PULL_IPD_MHC {
 
 	script:
 	"""
-	download_ipd-mhc_sequences.py ${params.mhc_allele_count} ${params.date}
+	goDownloadIPD MHC ${params.mhc_allele_count} ${params.last_release_date}
 	"""
 
 }
@@ -269,6 +269,7 @@ process PULL_IPD_MHC {
 process CONCAT_MHC {
 
 	publishDir params.mhc_allele_results, mode: 'copy', overwrite: true
+	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_mhc_database.gbk", mode: 'copy', overwrite: true
 	
 	input:
 	path gbk_files
@@ -281,41 +282,7 @@ process CONCAT_MHC {
 
 	script:
 	"""
-	touch ipd-mhc-nhp-${params.date}_cleaned.gbk
-	if [ -f ipd-mhc-nhp-${params.date}.gbk ]; then
-		cat ipd-mhc-nhp-${params.date}.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
-	fi
-
-	if [ -f ipd-mhc-nhp-${params.date}_added.gbk ]; then
-		cat ipd-mhc-nhp-${params.date}_added.gbk >> ipd-mhc-nhp-${params.date}_cleaned.gbk
-	fi
-
-	touch ipd-mhc-mamu-${params.date}_cleaned.gbk
-	if [ -f ipd-mhc-mamu-${params.date}.gbk ]; then
-		cat ipd-mhc-mamu-${params.date}.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
-	fi
-
-	if [ -f ipd-mhc-mamu-${params.date}_added.gbk ]; then
-		cat ipd-mhc-mamu-${params.date}_added.gbk >> ipd-mhc-mamu-${params.date}_cleaned.gbk
-	fi
-
-	touch ipd-mhc-mafa-${params.date}_cleaned.gbk
-	if [ -f ipd-mhc-mafa-${params.date}.gbk ]; then
-		cat ipd-mhc-mafa-${params.date}.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
-	fi
-
-	if [ -f ipd-mhc-mafa-${params.date}_added.gbk ]; then
-		cat ipd-mhc-mafa-${params.date}_added.gbk >> ipd-mhc-mafa-${params.date}_cleaned.gbk
-	fi
-
-	touch ipd-mhc-mane-${params.date}_cleaned.gbk
-	if [ -f ipd-mhc-mane-${params.date}.gbk ]; then
-		cat ipd-mhc-mane-${params.date}.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
-	fi
-
-	if [ -f ipd-mhc-mane-${params.date}_added.gbk ]; then
-		cat ipd-mhc-mane-${params.date}_added.gbk >> ipd-mhc-mane-${params.date}_cleaned.gbk
-	fi
+	collate_alleles_by_animal.py --gene MHC --previous_database "${params.resources}/previous_mhc_database.gbk"
 	"""
 
 }
@@ -323,7 +290,7 @@ process CONCAT_MHC {
 
 process PULL_IPD_HLA {
 
-	// This process pulls the current full roster HLA alleles, as listed
+	// This process pulls the updated roster of HLA alleles, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
 	tag "${ipd_num}"
@@ -346,9 +313,7 @@ process PULL_IPD_HLA {
 
 	script:
 	"""
-	
-	download_ipd-hla_sequences.py ${ipd_num}
-	
+	goDownloadIPD HLA ${ipd_num} ${params.last_release_date}
 	"""
 
 }
@@ -431,9 +396,7 @@ process PULL_IPD_KIR {
 
 	script:
 	"""
-
-	download_ipd-kir_sequences.py ${ipd_num}
-
+	goDownloadIPD KIR ${params.kir_allele_count} ${params.last_release_date}
 	"""
 
 }
