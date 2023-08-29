@@ -162,9 +162,9 @@ workflow {
 		MISEQ_TRIMMING.out
 	)
 
-	ALLELE_GROUP_NAMING (
-		ALLELE_SORTING.out
-	)
+	// ALLELE_GROUP_NAMING (
+	// 	ALLELE_SORTING.out
+	// )
 
 }
 
