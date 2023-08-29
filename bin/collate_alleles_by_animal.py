@@ -9,7 +9,8 @@ import argparse
 from contextlib import ExitStack
 from typing import IO, Optional
 from datetime import date
-from Bio import SeqIO
+import warnings
+from Bio import SeqIO, BiopythonWarning
 
 def parse_command_line_args() -> tuple[Optional[str], str]:
     """Parse command line arguments."""
@@ -37,17 +38,31 @@ def parse_ipd_file(file_path: str):
         # read the file
         ipd_embl = input_handle.read()
 
-        # IPD MHC uses non-standard ID line
-        # need to remove first two semicolons in ID line
-        ipd_line = ipd_embl.splitlines() # split by line
-        id_line = ipd_line[0] # get ID line
-        id_line_split = id_line.split(';') # split elements by semicolon
+        # split lines and remove empty or whitespace-only lines
+        ipd_lines = [line for line in ipd_embl.splitlines() if line.strip()]
+
+        # Check if there are any lines left after filtering
+        if ipd_lines:
+            id_line = ipd_lines[0]  # get the first non-empty line
+        else:
+            raise ValueError("The file is empty or contains only whitespace.")
+
+        # split elements by semicolon
+        id_line_split = id_line.split(';')
+
+        assert len(id_line_split) == 6, f"The record at the following file path could \
+                                        not be parsed: {file_path}"
 
         # reconstruct ID line in EMBL format that can be parsed by biopython
-        ipd_line[0] = f"{id_line_split[0]} {id_line_split[1]} {id_line_split[2]}; {id_line_split[3]}; {id_line_split[4]}; {id_line_split[5]}"
+        ipd_lines[0] = f"{id_line_split[0]} {id_line_split[1]} {id_line_split[2]}; \
+            {id_line_split[3]}; {id_line_split[4]}; {id_line_split[5]}"
+
+        # remove the last XX line that will confuse BioPython
+        if ipd_lines[-2] == "XX":
+            del ipd_lines[-2]
 
         # join lines to create embl file
-        corrected_embl = ('\n').join(ipd_line)
+        corrected_embl = ('\n').join(ipd_lines)
 
     return corrected_embl
 
@@ -108,22 +123,26 @@ def collate_alleles(old_database: Optional[str], gene: str, current_date: str) -
     gene_str = gene.lower()
 
     # name a temporary embl file
-    temp_name = "response.embl"
+    temp_name = "tmp.embl"
 
     # define stack of file objects for each animal
     with ExitStack() as stack:
         temp_embl = stack.enter_context(open(temp_name, "a", encoding="utf-8"))
-        all_nhp = stack.enter_context(open(f"ipd-{gene_str}-nhp-{current_date}.gbk","a", encoding="utf-8"))
-        mamu = stack.enter_context(open(f"ipd-{gene_str}-mamu-{current_date}.gbk", "a", encoding="utf-8"))
-        mafa = stack.enter_context(open(f"ipd-{gene_str}-mafa-{current_date}.gbk", "a", encoding="utf-8"))
-        mane = stack.enter_context(open(f"ipd-{gene_str}-mane-{current_date}.gbk", "a", encoding="utf-8"))
+        all_nhp = stack.enter_context(open(f"ipd-{gene_str}-nhp-{current_date}.gbk",
+                                           "a", encoding="utf-8"))
+        mamu = stack.enter_context(open(f"ipd-{gene_str}-mamu-{current_date}.gbk",
+                                        "a", encoding="utf-8"))
+        mafa = stack.enter_context(open(f"ipd-{gene_str}-mafa-{current_date}.gbk",
+                                        "a", encoding="utf-8"))
+        mane = stack.enter_context(open(f"ipd-{gene_str}-mane-{current_date}.gbk",
+                                        "a", encoding="utf-8"))
 
         # make an empty list that will keep track of which alleles are
         # new or updated
         updated_accessions = []
 
         # build a list of files to collate
-        files = [f for f in os.listdir(".") if f.endswith('.embl')]
+        files = [f for f in os.listdir('.') if f.endswith('.embl') and f != temp_name]
 
         # iterate over all NHP files
         for file in files:
@@ -132,6 +151,7 @@ def collate_alleles(old_database: Optional[str], gene: str, current_date: str) -
             corrected_embl = parse_ipd_file(file)
 
             # create temporary file in correct EMBL format
+            temp_embl.write('\n')
             temp_embl.write(corrected_embl)
 
         # keep track of which alleles were added or updated in the latest release
@@ -166,6 +186,9 @@ def collate_alleles(old_database: Optional[str], gene: str, current_date: str) -
             if file_to_write:
                 SeqIO.write(record, file_to_write, "genbank")
 
+        # remove the temporary embl file
+        os.remove(temp_name)
+
         return len(updated_accessions)
 
 def main():
@@ -174,6 +197,9 @@ def main():
 
     # define the expected number of IPD alleles
     old_db, gene = parse_command_line_args()
+
+    # turn off biopython warnings
+    warnings.simplefilter('ignore', BiopythonWarning)
 
     # store a string of the current date for file naming
     todays_date = str(date.today())
