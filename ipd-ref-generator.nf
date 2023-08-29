@@ -93,27 +93,27 @@ workflow {
 		)
 	)
 
-	// EXON2_TRIMMING (
-	// 	CONCAT_MHC.out
-	// 		.flatten()
-	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-	// )
+	EXON2_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
 
-	// IWES_TRIMMING (
-	// 	CONCAT_MHC.out
-	// 		.flatten()
-	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-	// )
+	IWES_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
 
-	// MISEQ_TRIMMING (
-	// 	CONCAT_MHC.out
-	// 		.flatten()
-	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-	// )
+	MISEQ_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
 
-	// ALLELE_SORTING (
-	// 	MISEQ_TRIMMING.out
-	// )
+	ALLELE_SORTING (
+		MISEQ_TRIMMING.out
+	)
 
 	// ALLELE_GROUP_NAMING (
 	// 	ALLELE_SORTING.out
@@ -254,7 +254,7 @@ process PULL_IPD_HLA {
 	tag "${ipd_num} alleles"
 	
 	cpus 8
-	
+
 	errorStrategy 'retry'
 	maxRetries 2
 	
