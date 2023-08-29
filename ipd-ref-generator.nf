@@ -650,7 +650,7 @@ process CLEAN_ALLELES {
 
 	"""
 
-	ipd_genbank_cleaner.py ${animal_name} ${locus_name} ${gbk}
+	ipd_genbank_cleaner.py --animal ${animal_name} --gene ${locus_name} --file ${gbk}
 
 	"""
 }

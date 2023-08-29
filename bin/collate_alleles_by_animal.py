@@ -11,7 +11,7 @@ from typing import IO, Optional
 from datetime import date
 from Bio import SeqIO
 
-def parse_command_line_args():
+def parse_command_line_args() -> tuple[Optional[str], str]:
     """Parse command line arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--previous_database", "-d",
@@ -24,7 +24,7 @@ def parse_command_line_args():
                         type=str,
                         help="The immunological gene of interest, e.g. MHC or KIR.")
     args = parser.parse_args()
-    return args.allele_count
+    return args.previous_database, args.gene
 
 def parse_ipd_file(file_path: str):
     """
