@@ -99,21 +99,21 @@ workflow {
 			.map{ file -> tuple(file.getSimpleName(), file) }
 	)
 
-	IWES_TRIMMING (
-		CONCAT_MHC.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-	)
+	// IWES_TRIMMING (
+	// 	CONCAT_MHC.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
+	// )
 
-	MISEQ_TRIMMING (
-		CONCAT_MHC.out
-			.flatten()
-			.map{ file -> tuple(file.getSimpleName(), file) }
-	)
+	// MISEQ_TRIMMING (
+	// 	CONCAT_MHC.out
+	// 		.flatten()
+	// 		.map{ file -> tuple(file.getSimpleName(), file) }
+	// )
 
-	ALLELE_SORTING (
-		MISEQ_TRIMMING.out
-	)
+	// ALLELE_SORTING (
+	// 	MISEQ_TRIMMING.out
+	// )
 
 	// ALLELE_GROUP_NAMING (
 	// 	ALLELE_SORTING.out
@@ -175,15 +175,15 @@ process PULL_SPEC_SAMPLES {
 	errorStrategy 'retry'
 	maxRetries 2
 	
-	when:
-	params.pull_added_seqs == true
-	
 	input:
 	path samplesheet
 	val sample_count
 	
 	output:
 	path "*.gbk"
+	
+	when:
+	params.pull_added_seqs == true
 	
 	script:
 	"""
@@ -201,7 +201,7 @@ process PULL_IPD_MHC {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 
-	tag "${params.mhc_allele_count} alleles"
+	tag "${allele_count} alleles"
 
 	cpus 8
 
@@ -251,14 +251,13 @@ process PULL_IPD_HLA {
 	// This process pulls the updated roster of HLA alleles, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num} alleles"
+	tag "${allele_count} alleles"
+	// publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	cpus 8
 
 	errorStrategy 'retry'
 	maxRetries 2
-	
-	publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	input:
 	val allele_count
@@ -335,14 +334,13 @@ process PULL_IPD_KIR {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
-	tag "${ipd_num}"
+	tag "${allele_count}"
+	// publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	cpus 8
 
 	errorStrategy 'retry'
 	maxRetries 2
-	
-	publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	input:
 	val allele_count
@@ -364,19 +362,21 @@ process PULL_IPD_KIR {
 process CONCAT_KIR {
 	
 	// publishDir params.kir_allele_results, mode: params.publishMode
+	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_kir_database.gbk", mode: 'copy', overwrite: true
+
+	cpus 1
 	
 	input:
-	path(gbk)
+	path gbk
 	
 	output:
-	path("*.gbk")
+	path "*.gbk"
 	
 	script:
 	"""
 	collate_alleles_by_animal.py --gene KIR --previous_database "${params.resources}/previous_kir_database.gbk"
 	"""
 
-	
 }
 
 
@@ -388,7 +388,7 @@ process PULL_MHC_PROTEINS {
 	errorStrategy 'retry'
 	maxRetries 2
 	
-	publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
+	// publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
 
 	cpus 8
 	
@@ -396,7 +396,7 @@ process PULL_MHC_PROTEINS {
 	val protein_count
 
 	output:
-	path("*.fasta")
+	path "*.fasta"
 	
 	when:
 	params.pull_mhc_proteins == true
@@ -432,13 +432,11 @@ process PULL_KIR_PROTEINS {
 	// This process pulls the current full roster non-human KIR proteins, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${ipd_num}"
+	tag "${protein_count}"
+	// publishDir params.kir_prot_temp, pattern: '*.fasta', mode: params.publishMode
 	
-	time '1minute'
 	errorStrategy 'retry'
-	maxRetries 4
-	
-	publishDir params.kir_prot_temp, pattern: '*.fasta', mode: params.publishMode
+	maxRetries 2
 	
 	input:
 	val protein_count
@@ -480,7 +478,7 @@ process CLEAN_ALLELES {
 	// This process removes X's that are in amongst the bases in each sequence, and b) removes
 	// sequences that are less than 100 base pairs long.
 
-	tag "${tag}"
+	tag "${animal_name} ${locus_name}"
 	publishDir params.mhc_allele_results, pattern: "*mhc*.gbk", mode: 'copy'
 	publishDir params.kir_allele_results, pattern: "*kir*.gbk", mode: 'copy'
 	publishDir params.hla_results, pattern: "*hla*.gbk", mode: 'copy'
@@ -492,11 +490,8 @@ process CLEAN_ALLELES {
 	tuple val(animal_name), val(locus_name), path("*_cleaned.gbk")
 
 	script:
-
 	animal_name = name.substring(8,12)
 	locus_name = name.substring(4,7)
-	tag = name.substring(4,12)
-
 	"""
 	ipd_genbank_cleaner.py --animal ${animal_name} --gene ${locus_name} --file ${gbk}
 	"""
@@ -516,7 +511,7 @@ process EXON2_TRIMMING {
 	*/
 
 	tag "${animal_name}"
-	publishDir params.exon2_results, pattern: '*exon2_deduplicated*' mode: 'move'
+	publishDir params.exon2_results, pattern: '*exon2_deduplicated*', mode: 'move'
 
 	input:
 	tuple val(name), path(gbk)
@@ -544,28 +539,23 @@ process IWES_TRIMMING {
 	// bases to exon 2 will use the same strategy I used when making miSeq amplicon trimmed data-
 	// bases.
 
-	tag "${animal_name}"
+	tag "${animal_name} ${locus_name}"
 	publishDir params.iwes_results, mode: 'move'
-	
-	when:
-	params.trim_for_iwes == true 
 
 	input:
 	tuple val(name), path(gbk)
 
 	output:
 	path "*.fasta"
+	
+	when:
+	params.trim_for_iwes == true 
 
 	script:
-
 	animal_name = name.substring(8,12)
 	locus_name = name.substring(4,7)
-	tag = name.substring(4,12)
-	
 	"""
-
 	trim_to_immunowes.py ${animal_name} ${gbk} ${params.iwes_exemplar}
-
 	"""
 
 }
@@ -576,7 +566,7 @@ process MISEQ_TRIMMING {
 	// This process removes primers from IPD sequences and then deduplicates identical sequences,
 	// so that groups of identical sequences can be used when genotyping.
 
-	tag "${animal_name}"
+	tag "${animal_name} ${locus_name}"
 	publishDir params.miseq_results, pattern: "*hla*.fasta", mode: 'copy'
 	
 	when:
@@ -589,15 +579,10 @@ process MISEQ_TRIMMING {
 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
 
 	script:
-
 	animal_name = name.substring(8,12)
 	locus_name = name.substring(4,7)
-	tag = name.substring(4,12)
-
 	"""
-
 	trim_to_miseq_amplicon.py ${animal_name} ${gbk} ${params.miseq_exemplar}
-
 	"""
 
 }
@@ -610,44 +595,40 @@ process ALLELE_SORTING {
 	
 	tag "${animal_name}"
 	
-	when:
-	params.trim_for_miseq == true && animal_name != "nhp" && animal_name != "hum"
-	
 	input:
 	tuple val(animal_name), path(fasta)
 	
 	output:
 	tuple val(animal_name), path("*.sorted.fasta")
 	
+	when:
+	params.trim_for_miseq == true && animal_name != "nhp" && animal_name != "hum"
+	
 	script:
 	"""
-	
 	allele_group_sorting.R ${fasta}
-	
 	"""
 	
 }
 
 
-process ALLELE_GROUP_NAMING {
+// process ALLELE_GROUP_NAMING {
 	
-	// This process classifies allele "groups" for instances where a reference allele
-	// sequence matches with numerous alleles
+// 	// This process classifies allele "groups" for instances where a reference allele
+// 	// sequence matches with numerous alleles
 	
-	tag "${animal_name}"
-	publishDir params.miseq_results, mode: 'move'
+// 	tag "${animal_name}"
+// 	publishDir params.miseq_results, mode: 'move'
 	
-	input:
-	tuple val(animal_name), path(fasta)
+// 	input:
+// 	tuple val(animal_name), path(fasta)
 	
-	output:
-	path("*")
+// 	output:
+// 	path "*"
 	
-	script:
-	"""
+// 	script:
+// 	"""
+// 	allele_group_naming.R ${fasta}
+// 	"""
 	
-	allele_group_naming.R ${fasta}
-	
-	"""
-	
-}
+// }
