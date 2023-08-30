@@ -203,7 +203,7 @@ process PULL_IPD_MHC {
 
 	tag "${allele_count} alleles"
 
-	cpus 8
+	cpus params.max_shared_cpus
 
 	input:
 	val allele_count
@@ -254,7 +254,7 @@ process PULL_IPD_HLA {
 	tag "${allele_count} alleles"
 	// publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
-	cpus 8
+	cpus params.max_shared_cpus
 
 	errorStrategy 'retry'
 	maxRetries 2
@@ -337,7 +337,7 @@ process PULL_IPD_KIR {
 	tag "${allele_count}"
 	// publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
 	
-	cpus 8
+	cpus params.max_shared_cpus
 
 	errorStrategy 'retry'
 	maxRetries 2
@@ -390,7 +390,7 @@ process PULL_MHC_PROTEINS {
 	
 	// publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
 
-	cpus 8
+	cpus params.max_shared_cpus
 	
 	input:
 	val protein_count
