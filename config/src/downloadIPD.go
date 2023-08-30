@@ -6,9 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -17,54 +19,79 @@ import (
 	"github.com/gofrs/flock"
 )
 
-func determineStartingPoint(dir string, gene string, date string) (int, []int) {
+func determineStartingPoint(dir string, gene string, date string) []int {
 
-	var allValues []int
+	// Parse the provided date
+	t, err := time.Parse("2006-01-02", date)
+	if err != nil {
+		fmt.Println("Error parsing date:", err)
+	}
+
+	// Make empty slice to store IDs
+	var allIntegers []int
 
 	// Define the path to the JSON file
-	jsonFilePath := dir + "/" + gene + "_date_lookup.json"
+	jsonFilePath := filepath.Join(dir, fmt.Sprintf("%s_date_lookup.json", gene))
 
 	// Check if the file exists
 	if _, err := os.Stat(jsonFilePath); os.IsNotExist(err) {
-		return 1, allValues
+		return allIntegers
 	}
 
 	// Read the JSON file
 	jsonFile, err := os.Open(jsonFilePath)
 	if err != nil {
 		fmt.Println("Error opening JSON file:", err)
-		return 1, allValues
+		return allIntegers
 	}
 	defer jsonFile.Close()
 
 	// Parse the JSON into a map
 	byteValue, _ := io.ReadAll(jsonFile)
-	var dateLookup map[string]int
+	var dateLookup map[string]string
 	json.Unmarshal(byteValue, &dateLookup)
 
-	// Collect all integer values in a slice
+	// Initialize variables to keep track of the nearest date and corresponding key
+	var nearestDate time.Time
+
+	// Loop through the map to find the nearest prior date
 	for _, value := range dateLookup {
-		allValues = append(allValues, value)
+		dateValue, err := time.Parse("02/01/2006", value)
+		if err != nil {
+			fmt.Println("Error parsing date in JSON:", err)
+			continue
+		}
+
+		// Check if the date is prior and nearer to the query date
+		if dateValue.Before(t) && (nearestDate.IsZero() || dateValue.After(nearestDate)) {
+			nearestDate = dateValue
+		}
 	}
 
-	// Look for the date in the map
-	if val, ok := dateLookup[date]; ok {
-		return val, allValues
+	if !nearestDate.IsZero() {
+		for key, value := range dateLookup {
+			dateValue, err := time.Parse("02/01/2006", value)
+			if err != nil {
+				continue
+			}
+			if dateValue.Equal(nearestDate) {
+				// Convert the remaining part of the key to an integer and add it to allIntegers
+				intValue, err := strconv.Atoi(key[3:])
+				if err == nil {
+					allIntegers = append(allIntegers, intValue)
+				}
+			}
+		}
 	}
 
-	// If the date was not found
-	return 1, allValues
+	sort.Ints(allIntegers)
+
+	return allIntegers
 }
 
-func buildDateLookup(id string, dateStr string, lookupDir string) error {
+func buildDateLookup(id string, dateStr string, lookupDir string, gene string) error {
 
-	trimmedID := id[3:]
-	intID, err := strconv.Atoi(trimmedID)
-	if err != nil {
-		return fmt.Errorf("failed to convert identifier to integer: %v", err)
-	}
-
-	jsonFilePath := filepath.Join(lookupDir, "date_lookup.json")
+	jsonFilePath := filepath.Join(lookupDir, fmt.Sprintf("%s_date_lookup.json", gene))
 
 	// Initialize file lock
 	fileLock := flock.New(jsonFilePath)
@@ -96,7 +123,7 @@ func buildDateLookup(id string, dateStr string, lookupDir string) error {
 
 	defer fileLock.Unlock()
 
-	dateMap := make(map[string]int)
+	dateMap := make(map[string]string)
 
 	jsonFile, err := os.Open(jsonFilePath)
 	if err != nil && !os.IsNotExist(err) {
@@ -109,7 +136,7 @@ func buildDateLookup(id string, dateStr string, lookupDir string) error {
 		json.Unmarshal(byteValue, &dateMap)
 	}
 
-	dateMap[dateStr] = intID
+	dateMap[id] = dateStr
 
 	jsonData, err := json.MarshalIndent(dateMap, "", "  ")
 	if err != nil {
@@ -129,12 +156,28 @@ func buildDateLookup(id string, dateStr string, lookupDir string) error {
 	return nil
 }
 
-func defineUrls(startingPoint int, maxCount int, gene string) ([]string, []string) {
+func defineUrls(startingIDs []int, maxCount int, gene string) ([]string, []string) {
 
-	sliceSize := maxCount - startingPoint + 1
+	// Find the maximum integer in the array
+	maxInteger := math.MinInt64 // Start with the smallest possible int64
+	for _, num := range startingIDs {
+		if num > maxInteger {
+			maxInteger = num
+		}
+	}
 
-	var urls = make([]string, sliceSize)
-	var ids = make([]string, sliceSize)
+	// If the array is empty, initialize maxInteger to 0
+	if maxInteger == math.MinInt64 {
+		maxInteger = 0
+	}
+
+	// Append missing integers between maxInteger and maxCount
+	for i := maxInteger + 1; i <= maxCount; i++ {
+		startingIDs = append(startingIDs, i)
+	}
+
+	var urls []string
+	var ids []string
 
 	if gene == "MHC" || gene == "KIR" || gene == "HLA" || gene == "MHCPRO" || gene == "KIRPRO" {
 
@@ -153,12 +196,12 @@ func defineUrls(startingPoint int, maxCount int, gene string) ([]string, []strin
 			baseURL = "https://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=ipdnhkirpro;id="
 		}
 
-		for i := startingPoint; i <= maxCount; i++ {
+		for _, i := range startingIDs {
 			id := fmt.Sprintf("%s%05d", prefix, i)
 			url := baseURL + id + ";style=raw"
 
-			ids[i-startingPoint] = id
-			urls[i-startingPoint] = url
+			ids = append(ids, id)
+			urls = append(urls, url)
 		}
 	}
 
@@ -167,7 +210,7 @@ func defineUrls(startingPoint int, maxCount int, gene string) ([]string, []strin
 }
 
 // checkAndSaveFile reads the date 'DT' line of the given file, parses the date, and saves the file if the date is after dateStr.
-func checkAndSaveFile(id string, lookupIDs []string, fileContent io.Reader, dateStr string, lookup_dir string) error {
+func checkAndSaveFile(id string, lookupIDs []string, fileContent io.Reader, dateStr string, lookup_dir string, gene string) error {
 	// Parse the given date string
 	givenDate, err := time.Parse("2006-01-02", dateStr)
 	if err != nil {
@@ -246,7 +289,7 @@ func checkAndSaveFile(id string, lookupIDs []string, fileContent io.Reader, date
 		}
 	}
 	if !found {
-		err := buildDateLookup(idInFileStr, dateInFileStr, lookup_dir)
+		err := buildDateLookup(idInFileStr, dateInFileStr, lookup_dir, gene)
 		if err != nil {
 			return err
 		}
@@ -266,7 +309,7 @@ func checkAndSaveFile(id string, lookupIDs []string, fileContent io.Reader, date
 	return nil
 }
 
-func downloadFile(url string, id string, lookup_records []int, wg *sync.WaitGroup, dateStr string, lookup_dir string) error {
+func downloadFile(url string, id string, lookup_records []int, wg *sync.WaitGroup, dateStr string, lookup_dir string, gene string) error {
 	// defer wg.Done() // Decrease counter when the goroutine completes
 
 	var resp *http.Response
@@ -313,7 +356,7 @@ func downloadFile(url string, id string, lookup_records []int, wg *sync.WaitGrou
 	}
 
 	// Check and save the file if conditions are met
-	return checkAndSaveFile(id, allIDs, resp.Body, dateStr, lookup_dir)
+	return checkAndSaveFile(id, allIDs, resp.Body, dateStr, lookup_dir, gene)
 }
 
 func main() {
@@ -340,10 +383,10 @@ func main() {
 		ID  string
 	}
 
-	startingPoint, values := determineStartingPoint(lookup_dir, gene, lastReleaseDate)
+	starterIDs := determineStartingPoint(lookup_dir, gene, lastReleaseDate)
 
 	// retrieve IPD urls and ids
-	urls, ids := defineUrls(startingPoint, alleleCount, gene)
+	urls, ids := defineUrls(starterIDs, alleleCount, gene)
 
 	// Define the number of concurrent workers
 	const numWorkers = 100
@@ -361,7 +404,7 @@ func main() {
 			defer wg.Done()
 			for urlWithID := range urlsChannel {
 				url, id := urlWithID.Url, urlWithID.ID
-				err := downloadFile(url, id, values, &wg, lastReleaseDate, lookup_dir)
+				err := downloadFile(url, id, starterIDs, &wg, lastReleaseDate, lookup_dir, gene)
 				if err != nil {
 					fmt.Printf("Error downloading URL %s: %v\n", url, err)
 				}
