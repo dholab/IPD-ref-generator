@@ -48,9 +48,10 @@ def clean_ipd_genbank_file(animal: str, gene: str, file_path: str):
 
             # use an assertion to make sure the script isn't accidentally being used on
             # amino acid sequences
-            allowed_characters = set("ATGCN-")
+            allowed_characters = set("ATGCNURYKMSWBDHVN-atgcnurykmswbdhvn")
             assert all(char in allowed_characters for char in seq_record.seq), \
-                "The sequence contains invalid characters. Only A, T, G, C, N, and '-' are allowed."
+                f"The sequence contains invalid characters. Only A, T, G, C, N, and '-' are allowed. \
+                    Double check {seq_record.name} for unexpected characters."
 
             # write to the output handle if the sequence is at least 100 bases long
             if len(seq_record.seq) >= 100:

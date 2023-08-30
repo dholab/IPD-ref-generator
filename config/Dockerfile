@@ -4,9 +4,12 @@ SHELL ["/bin/bash", "-c"]
 
 ADD env.yaml /tmp/env.yaml
 
-RUN conda env create -f /tmp/env.yaml -n ipd-ref-generator \
-	&& conda clean --all -f --yes \
-	&& conda init bash \
+# Install Mamba
+RUN conda install mamba libarchive -c conda-forge --yes
+
+RUN mamba env create -f /tmp/env.yaml -n ipd-ref-generator \
+	&& mamba clean --all -f --yes \
+	&& mamba init bash \
 	&& echo "conda activate ipd-ref-generator" > ~/.bashrc
 
 ENV PATH=/opt/conda/envs/ipd-ref-generator/bin:$PATH

@@ -373,7 +373,7 @@ process PULL_MHC_PROTEINS {
 
 	script:
 	"""
-	goDownloadIPD MHCPRO ${protein_count} ${params.last_release_date}
+	goDownloadIPD MHCPRO ${protein_count} ${params.last_release_date} ${params.resources}
 	"""
 
 }
@@ -419,7 +419,7 @@ process PULL_KIR_PROTEINS {
 
 	script:
 	"""
-	goDownloadIPD KIRPRO ${protein_count} ${params.last_release_date}
+	goDownloadIPD KIRPRO ${protein_count} ${params.last_release_date} ${params.resources}
 	"""
 
 }
@@ -455,8 +455,6 @@ process CLEAN_ALLELES {
 	publishDir params.kir_allele_results, pattern: "*kir*.gbk", mode: 'copy'
 	publishDir params.hla_results, pattern: "*hla*.gbk", mode: 'copy'
 
-	errorStrategy 'ignore'
-
 	input:
 	tuple val(name), path(gbk)
 
@@ -487,8 +485,6 @@ process EXON2_TRIMMING {
 	tag "${animal_name}"
 	publishDir params.exon2_results, pattern: '*exon2_deduplicated*', mode: 'move'
 
-	errorStrategy 'ignore'
-
 	input:
 	tuple val(name), path(gbk)
 
@@ -518,8 +514,6 @@ process IWES_TRIMMING {
 	tag "${animal_name} ${locus_name}"
 	publishDir params.iwes_results, mode: 'move'
 
-	errorStrategy 'ignore'
-
 	input:
 	tuple val(name), path(gbk)
 
@@ -546,8 +540,6 @@ process MISEQ_TRIMMING {
 
 	tag "${animal_name} ${locus_name}"
 	publishDir params.miseq_results, pattern: "*hla*.fasta", mode: 'copy'
-
-	errorStrategy 'ignore'
 
 	input:
 	tuple val(name), path(gbk)
