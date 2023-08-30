@@ -99,21 +99,21 @@ workflow {
 			.map{ file -> tuple(file.getSimpleName(), file) }
 	)
 
-	// IWES_TRIMMING (
-	// 	CONCAT_MHC.out
-	// 		.flatten()
-	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-	// )
+	IWES_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
 
-	// MISEQ_TRIMMING (
-	// 	CONCAT_MHC.out
-	// 		.flatten()
-	// 		.map{ file -> tuple(file.getSimpleName(), file) }
-	// )
+	MISEQ_TRIMMING (
+		CONCAT_MHC.out
+			.flatten()
+			.map{ file -> tuple(file.getSimpleName(), file) }
+	)
 
-	// ALLELE_SORTING (
-	// 	MISEQ_TRIMMING.out
-	// )
+	ALLELE_SORTING (
+		MISEQ_TRIMMING.out
+	)
 
 	// ALLELE_GROUP_NAMING (
 	// 	ALLELE_SORTING.out
@@ -122,37 +122,23 @@ workflow {
 }
 
 
-// specifying whether to run in resumable mode
-if( params.resumable == true ) {
-	params.publishMode = 'copy'
-}
-else {
-	params.publishMode = 'move'
-}
-
 // Defining where to place results
 // hla alleles
-params.hla_temp = params.results + "/" + "hla_tmp"
 params.hla_results = params.results + "/" + "hla_alleles"
 
 // mhc alleles
-params.mhc_temp = params.results + "/" + "mhc_tmp"
 params.mhc_allele_results = params.results + "/" + "mhc_alleles"
 
 // kir alleles
-params.kir_temp = params.results + "/" + "kir_tmp"
 params.kir_allele_results = params.results + "/" + "kir_alleles"
 
 // mhc proteins
-params.mhc_prot_temp = params.results + "/" + "mhc_prot_tmp"
 params.mhc_prot_results = params.results + "/" + "mhc_proteins"
 
 // kir proteins
-params.kir_prot_temp = params.results + "/" + "kir_prot_tmp"
 params.kir_prot_results = params.results + "/" + "kir_proteins"
 
 // additions from samplesheet
-// params.gbk_additions_temp = params.results + "/" + "gbk_add_tmp"
 params.spec_results = params.results + "/" + "samplesheet_sequences"
 
 // Exon 2 results
@@ -252,7 +238,6 @@ process PULL_IPD_HLA {
 	// in the latest Immuno Polymorphism Database release.
 	
 	tag "${allele_count} alleles"
-	// publishDir params.hla_temp, pattern: '*.gbk', mode: params.publishMode
 	
 	cpus params.max_shared_cpus
 
@@ -284,26 +269,10 @@ process CONCAT_HLA {
 	output:
 	path "*.gbk"
 	
-	shell:
-	'''
-	
-	touch ipd-hla-!{params.date}.gbk
-	find !{params.hla_temp} -maxdepth 1 -type f -name "*.gbk" > gbk_list.txt && \
-	for i in $(cat gbk_list.txt);
-	do
-		f=$(basename "$i")
-		cat !{params.hla_temp}/$f >> ipd-hla-!{params.date}.gbk
-	done && \
-	rm -rf !{params.hla_temp}
-	
-	if test -f !{params.results}/ipd-hla-!{params.date}_added.gbk; then
-		cat !{params.results}/ipd-hla-!{params.date}_added.gbk >> ipd-hla-${params.date}.gbk
-		rm !{params.results}/ipd-hla-!{params.date}_added.gbk
-	fi
-	
-	find !{params.results} -name "*.gbk" -size 0 -print -delete
-	
-	'''
+	script:
+	"""
+	collate_alleles_by_animal.py --gene HLA --previous_database "${params.resources}/previous_hla_database.gbk"
+	"""
 	
 }
 
@@ -334,13 +303,11 @@ process PULL_IPD_KIR {
 	// aque (Macaca fascicularis a.k.a. Mafa), and Southern pig-tailed macaque (Macaca nem-
 	// estrina, a.k.a. Mame)
 	
-	tag "${allele_count}"
-	// publishDir params.kir_temp, pattern: '*.gbk', mode: params.publishMode
+	tag "${allele_count} alleles"
 	
 	cpus params.max_shared_cpus
 
-	errorStrategy 'retry'
-	maxRetries 2
+	errorStrategy 'ignore'
 	
 	input:
 	val allele_count
@@ -361,7 +328,7 @@ process PULL_IPD_KIR {
 
 process CONCAT_KIR {
 	
-	// publishDir params.kir_allele_results, mode: params.publishMode
+	publishDir params.kir_allele_results, mode: 'copy'
 	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_kir_database.gbk", mode: 'copy', overwrite: true
 
 	cpus 1
@@ -385,10 +352,10 @@ process PULL_MHC_PROTEINS {
 	// This process pulls the current full roster non-human MHC proteins, as listed in
 	// the latest Immuno Polymorphism Database release.
 
+	tag "${protein_count} proteins"
+
 	errorStrategy 'retry'
 	maxRetries 2
-	
-	// publishDir params.mhc_prot_temp, pattern: '*.fasta', mode: params.publishMode
 
 	cpus params.max_shared_cpus
 	
@@ -411,7 +378,7 @@ process PULL_MHC_PROTEINS {
 
 process CONCAT_MHC_PROTEINS {
 	
-	publishDir params.mhc_prot_results, mode: params.publishMode
+	publishDir params.mhc_prot_results, mode: 'copy'
 	
 	input:
 	path fastas
@@ -432,8 +399,7 @@ process PULL_KIR_PROTEINS {
 	// This process pulls the current full roster non-human KIR proteins, as listed
 	// in the latest Immuno Polymorphism Database release.
 	
-	tag "${protein_count}"
-	// publishDir params.kir_prot_temp, pattern: '*.fasta', mode: params.publishMode
+	tag "${protein_count} proteins"
 	
 	errorStrategy 'retry'
 	maxRetries 2
@@ -457,7 +423,7 @@ process PULL_KIR_PROTEINS {
 
 process CONCAT_KIR_PROTEINS {
 	
-	publishDir params.kir_prot_results, mode: params.publishMode
+	publishDir params.kir_prot_results, mode: 'copy'
 	
 	input:
 	path fastas

@@ -15,7 +15,9 @@ ENV CONDA_DEFAULT_ENV=ipd-ref-generator
 
 COPY src/downloadIPD.go .
 
-RUN go build -o goDownloadIPD downloadIPD.go && \
+RUN go mod init goDownloadIPD && \
+	go get github.com/gofrs/flock && \
+	go build -o goDownloadIPD downloadIPD.go && \
 	mv goDownloadIPD /usr/local/bin && \
 	chmod +x /usr/local/bin/goDownloadIPD
 

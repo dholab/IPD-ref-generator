@@ -26,3 +26,5 @@ report.html*
 *.png.*
 ._*
 .Rhistory
+goDownloadIPD
+downloadIPD
