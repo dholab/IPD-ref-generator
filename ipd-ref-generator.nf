@@ -37,7 +37,7 @@ workflow {
 	)
 
 	CONCAT_MHC (
-		PULL_IPD_MHC.out.collect()
+		PULL_IPD_MHC.out.embl.collect()
 			.mix (
 				PULL_SPEC_SAMPLES.out.collect()
 			)
@@ -157,9 +157,8 @@ process PULL_SPEC_SAMPLES {
 	tag "${sample_count} seqs"
 
 	cpus 1
-	
-	errorStrategy 'retry'
-	maxRetries 2
+
+	errorStrategy 'ignore'
 	
 	input:
 	path samplesheet
@@ -188,16 +187,18 @@ process PULL_IPD_MHC {
 	// estrina, a.k.a. Mame)
 
 	tag "${allele_count} alleles"
-	publishDir params.resources, mode: 'copy', pattern: '*.json'
+	// publishDir params.resources, mode: 'copy', pattern: '*.json'
 
 	cpus params.max_shared_cpus
+
+	errorStrategy 'ignore'
 
 	input:
 	val allele_count
 	
 	output:
 	path "*.embl", emit: embl
-	path "*.json", emit: lookup
+	// path "*.json", emit: lookup
 	
 	when:
 	params.pull_mhc == true
@@ -213,7 +214,7 @@ process PULL_IPD_MHC {
 process CONCAT_MHC {
 
 	publishDir params.mhc_allele_results, mode: 'copy', overwrite: true
-	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_mhc_database.gbk", mode: 'copy', overwrite: true
+	// publishDir params.resources, pattern: '*nhp*.gbk', saveAs: {item -> "previous_mhc_database.gbk"}, mode: 'copy', overwrite: true
 	
 	cpus 1
 
@@ -243,8 +244,7 @@ process PULL_IPD_HLA {
 	
 	cpus params.max_shared_cpus
 
-	errorStrategy 'retry'
-	maxRetries 2
+	errorStrategy 'ignore'
 	
 	input:
 	val allele_count
@@ -322,7 +322,7 @@ process PULL_IPD_KIR {
 
 	script:
 	"""
-	goDownloadIPD KIR ${allele_count} ${params.last_release_date}
+	goDownloadIPD KIR ${allele_count} ${params.last_release_date} ${params.resources}
 	"""
 
 }
@@ -332,6 +332,8 @@ process CONCAT_KIR {
 	
 	publishDir params.kir_allele_results, mode: 'copy'
 	publishDir params.resources, pattern: '*nhp*.gbk', saveAs: "previous_kir_database.gbk", mode: 'copy', overwrite: true
+
+	errorStrategy 'ignore'
 
 	cpus 1
 	
@@ -356,8 +358,7 @@ process PULL_MHC_PROTEINS {
 
 	tag "${protein_count} proteins"
 
-	errorStrategy 'retry'
-	maxRetries 2
+	errorStrategy 'ignore'
 
 	cpus params.max_shared_cpus
 	
@@ -381,6 +382,8 @@ process PULL_MHC_PROTEINS {
 process CONCAT_MHC_PROTEINS {
 	
 	publishDir params.mhc_prot_results, mode: 'copy'
+
+	errorStrategy 'ignore'
 	
 	input:
 	path fastas
@@ -402,9 +405,8 @@ process PULL_KIR_PROTEINS {
 	// in the latest Immuno Polymorphism Database release.
 	
 	tag "${protein_count} proteins"
-	
-	errorStrategy 'retry'
-	maxRetries 2
+
+	errorStrategy 'ignore'
 	
 	input:
 	val protein_count
@@ -426,6 +428,8 @@ process PULL_KIR_PROTEINS {
 process CONCAT_KIR_PROTEINS {
 	
 	publishDir params.kir_prot_results, mode: 'copy'
+
+	errorStrategy 'ignore'
 	
 	input:
 	path fastas
@@ -450,6 +454,8 @@ process CLEAN_ALLELES {
 	publishDir params.mhc_allele_results, pattern: "*mhc*.gbk", mode: 'copy'
 	publishDir params.kir_allele_results, pattern: "*kir*.gbk", mode: 'copy'
 	publishDir params.hla_results, pattern: "*hla*.gbk", mode: 'copy'
+
+	errorStrategy 'ignore'
 
 	input:
 	tuple val(name), path(gbk)
@@ -481,6 +487,8 @@ process EXON2_TRIMMING {
 	tag "${animal_name}"
 	publishDir params.exon2_results, pattern: '*exon2_deduplicated*', mode: 'move'
 
+	errorStrategy 'ignore'
+
 	input:
 	tuple val(name), path(gbk)
 
@@ -510,6 +518,8 @@ process IWES_TRIMMING {
 	tag "${animal_name} ${locus_name}"
 	publishDir params.iwes_results, mode: 'move'
 
+	errorStrategy 'ignore'
+
 	input:
 	tuple val(name), path(gbk)
 
@@ -536,15 +546,17 @@ process MISEQ_TRIMMING {
 
 	tag "${animal_name} ${locus_name}"
 	publishDir params.miseq_results, pattern: "*hla*.fasta", mode: 'copy'
-	
-	when:
-	params.trim_for_miseq == true
+
+	errorStrategy 'ignore'
 
 	input:
 	tuple val(name), path(gbk)
 
 	output:
 	tuple val(animal_name), path("*.miseq.trimmed.deduplicated.fasta")
+	
+	when:
+	params.trim_for_miseq == true
 
 	script:
 	animal_name = name.substring(8,12)
@@ -562,6 +574,8 @@ process ALLELE_SORTING {
 	// be classified correctly
 	
 	tag "${animal_name}"
+
+	errorStrategy 'ignore'
 	
 	input:
 	tuple val(animal_name), path(fasta)
