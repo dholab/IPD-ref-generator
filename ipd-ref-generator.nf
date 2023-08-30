@@ -188,6 +188,7 @@ process PULL_IPD_MHC {
 	// estrina, a.k.a. Mame)
 
 	tag "${allele_count} alleles"
+	publishDir params.resources, mode: 'copy', pattern: '*.json'
 
 	cpus params.max_shared_cpus
 
@@ -195,14 +196,15 @@ process PULL_IPD_MHC {
 	val allele_count
 	
 	output:
-	path "*.embl"
+	path "*.embl", emit: embl
+	path "*.json", emit: lookup
 	
 	when:
 	params.pull_mhc == true
 
 	script:
 	"""
-	goDownloadIPD MHC ${allele_count} ${params.last_release_date}
+	goDownloadIPD MHC ${allele_count} ${params.last_release_date} ${params.resources}
 	"""
 
 }
