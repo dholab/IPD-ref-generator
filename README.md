@@ -1,6 +1,6 @@
 # Immuno Polymorphism Database - Reference Sequence Generator
 
-_Latest Release:_ 3.9.0.0 (2022-07) build 209 (July 2022)
+_Latest Release:_ Jan 2023, build 72
 
 ## Overview
 
