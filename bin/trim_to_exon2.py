@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
-import sys
 import os
-import subprocess
+import argparse
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 
-input_genbank = sys.argv[1]
+def parse_command_line_args() -> str:
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--genbank_file", "-g",
+                        required=True,
+                        type=str,
+                        help="A genbank file path of sequences to be trimmed.")
+    args = parser.parse_args()
+    return args.genbank_file
 
 def removeSpecialCharacters(in_str, special_characters='*|: ', replace_character='_'):
     '''remove specified special characters from input str'''
@@ -22,7 +29,7 @@ def separateExon2(in_gbk, exon2_fasta):
   # each allele, trim to those coordinates,
   # and save the sequence to a new file.
 
-  with open(in_gbk) as input_handle, open(exon2_fasta, "w") as output_handle:
+  with open(in_gbk, "r") as input_handle, open(exon2_fasta, "w") as output_handle:
     
     # iterate over sequences
     sequences = SeqIO.parse(input_handle, "genbank")
@@ -55,50 +62,50 @@ def separateExon2(in_gbk, exon2_fasta):
   
   
 def deduplicate_fasta(in_fasta, out_fasta):
-  '''manually deduplicate FASTA records with identical sequences
-  create new FASTA file named with all matching sequences'''
+    '''manually deduplicate FASTA records with identical sequences
+    create new FASTA file named with all matching sequences'''
 
-  # create dictionary to store names and sequences
+    # create dictionary to store names and sequences
 
-  deduplicated = dict()
-  unique_seqs = set()
+    deduplicated = dict()
+    unique_seqs = set()
 
-  ipd = SeqIO.parse(in_fasta, "fasta")
+    ipd = SeqIO.parse(in_fasta, "fasta")
 
-  # create a set of unique sequences
-  for record in ipd:
-    unique_seqs.add(str(record.seq))
+    # create a set of unique sequences
+    for record in ipd:
+        unique_seqs.add(str(record.seq))
 
-  # create another biopython object
-  ipd = SeqIO.parse(in_fasta, "fasta")
+    # create another biopython object
+    ipd = SeqIO.parse(in_fasta, "fasta")
 
-  # iterate over object.
-  # add list elements when sequences match
-  for record in ipd:
-      for i in unique_seqs:
-        if record.seq == i:
-          # if key does not exist, add it
-          if i not in deduplicated:
-            deduplicated[i] = [record.id]
-          else:
-            deduplicated[i].append(record.id)
+    # iterate over object.
+    # add list elements when sequences match
+    for record in ipd:
+        for i in unique_seqs:
+            if record.seq == i:
+            # if key does not exist, add it
+                if i not in deduplicated:
+                    deduplicated[i] = [record.id]
+                else:
+                    deduplicated[i].append(record.id)
 
-  # create deduplicated FASTA file from dictionary
-  with open(out_fasta, "w") as output_handle:
-    for item in deduplicated.items():
-      # concatenate identical sequence names
-      seq_name = ','.join(item[1])
-      # get sequence
-      deduplicated_sequence = item[0]
-      # create biopython object
-      record = SeqRecord(
-      Seq(deduplicated_sequence),
-      id=seq_name,
-      description=''
-      )
-      SeqIO.write(record, output_handle, "fasta")
+    # create deduplicated FASTA file from dictionary
+    with open(out_fasta, "w") as output_handle:
+        for item in deduplicated.items():
+            # concatenate identical sequence names
+            seq_name = ','.join(item[1])
+            # get sequence
+            deduplicated_sequence = item[0]
+            # create biopython object
+            record = SeqRecord(
+            Seq(deduplicated_sequence),
+            id=seq_name,
+            description=''
+            )
+            SeqIO.write(record, output_handle, "fasta")
 
-    return out_fasta
+        return out_fasta
 
 
 def splitByAlleleClass(in_fasta, classI_fasta, classII_fasta):
@@ -137,33 +144,35 @@ def splitByAlleleClass(in_fasta, classI_fasta, classII_fasta):
         return classI, classII
 
 
-def createExon2Fasta(in_gbk):
-  '''given an IPD genbank file chain together above functions 
-  to create FASTA file trimmed to exon 2 only, both for class
-  I and class II alleles.
-  '''
+def main():
+    '''given an IPD genbank file chain together above functions 
+    to create FASTA file trimmed to exon 2 only, both for class
+    I and class II alleles.
+    '''
 
-  # create output file names
-  IPD_BASENAME = os.path.basename(in_gbk[:-4])
-  IPD_EXON2_FASTA = IPD_BASENAME + '_exon2.fasta'
-  IPD_DEDUP_FASTA = IPD_BASENAME + '_exon2_deduplicated.fasta'
-  IPD_CLASS_I_FASTA = IPD_BASENAME + '_exon2_deduplicated_classI.fasta'
-  IPD_CLASS_II_FASTA = IPD_BASENAME + '_exon2_deduplicated_classII.fasta'
-  
-  # make sure file names are available to subprocess environment
-  os.environ['IPD_BASENAME'] = IPD_BASENAME
-  os.environ['IPD_EXON2_FASTA'] = IPD_EXON2_FASTA
-  os.environ['IPD_DEDUP_FASTA'] = IPD_DEDUP_FASTA
-  os.environ['IPD_CLASS_I_FASTA'] = IPD_CLASS_I_FASTA
-  os.environ['IPD_CLASS_II_FASTA'] = IPD_CLASS_II_FASTA
+    in_gbk = parse_command_line_args()
 
-  separateExon2(in_gbk, IPD_EXON2_FASTA)
+    # create output file names
+    IPD_BASENAME = os.path.basename(in_gbk[:-4])
+    IPD_EXON2_FASTA = IPD_BASENAME + '_exon2.fasta'
+    IPD_DEDUP_FASTA = IPD_BASENAME + '_exon2_deduplicated.fasta'
+    IPD_CLASS_I_FASTA = IPD_BASENAME + '_exon2_deduplicated_classI.fasta'
+    IPD_CLASS_II_FASTA = IPD_BASENAME + '_exon2_deduplicated_classII.fasta'
 
-  # deduplicate cDNA
-  deduplicate_fasta(IPD_EXON2_FASTA, IPD_DEDUP_FASTA)
-  
-  # separate out Class I and class II
-  splitByAlleleClass(IPD_DEDUP_FASTA, IPD_CLASS_I_FASTA, IPD_CLASS_II_FASTA)
+    # make sure file names are available to subprocess environment
+    os.environ['IPD_BASENAME'] = IPD_BASENAME
+    os.environ['IPD_EXON2_FASTA'] = IPD_EXON2_FASTA
+    os.environ['IPD_DEDUP_FASTA'] = IPD_DEDUP_FASTA
+    os.environ['IPD_CLASS_I_FASTA'] = IPD_CLASS_I_FASTA
+    os.environ['IPD_CLASS_II_FASTA'] = IPD_CLASS_II_FASTA
 
-# Run all the steps
-createExon2Fasta(input_genbank)
+    separateExon2(in_gbk, IPD_EXON2_FASTA)
+
+    # deduplicate cDNA
+    deduplicate_fasta(IPD_EXON2_FASTA, IPD_DEDUP_FASTA)
+
+    # separate out Class I and class II
+    splitByAlleleClass(IPD_DEDUP_FASTA, IPD_CLASS_I_FASTA, IPD_CLASS_II_FASTA)
+
+if __name__ == "__main__":
+    main()
