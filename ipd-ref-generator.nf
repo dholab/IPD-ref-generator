@@ -115,9 +115,9 @@ workflow {
 		MISEQ_TRIMMING.out
 	)
 
-	ALLELE_GROUP_NAMING (
-		ALLELE_SORTING.out
-	)
+	// ALLELE_GROUP_NAMING (
+	// 	ALLELE_SORTING.out
+	// )
 
 }
 
@@ -566,6 +566,7 @@ process ALLELE_SORTING {
 	// be classified correctly
 	
 	tag "${animal_name}"
+	publishDir params.miseq_results, mode: 'copy'
 
 	errorStrategy 'ignore'
 	
@@ -586,23 +587,23 @@ process ALLELE_SORTING {
 }
 
 
-process ALLELE_GROUP_NAMING {
+// process ALLELE_GROUP_NAMING {
 	
-	// This process classifies allele "groups" for instances where a reference allele
-	// sequence matches with numerous alleles
+// 	// This process classifies allele "groups" for instances where a reference allele
+// 	// sequence matches with numerous alleles
 	
-	tag "${animal_name}"
-	publishDir params.miseq_results, mode: 'copy'
+// 	tag "${animal_name}"
+// 	publishDir params.miseq_results, mode: 'copy'
 	
-	input:
-	tuple val(animal_name), path(fasta)
+// 	input:
+// 	tuple val(animal_name), path(fasta)
 	
-	output:
-	path "*"
+// 	output:
+// 	path "*"
 	
-	script:
-	"""
-	allele_group_naming.R ${fasta}
-	"""
+// 	script:
+// 	"""
+// 	allele_group_naming.R ${fasta}
+// 	"""
 	
-}
+// }
