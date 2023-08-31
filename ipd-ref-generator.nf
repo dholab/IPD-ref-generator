@@ -115,9 +115,9 @@ workflow {
 		MISEQ_TRIMMING.out
 	)
 
-	// ALLELE_GROUP_NAMING (
-	// 	ALLELE_SORTING.out
-	// )
+	ALLELE_GROUP_NAMING (
+		ALLELE_SORTING.out
+	)
 
 }
 
@@ -281,7 +281,7 @@ process CONCAT_HLA {
 
 process COMPRESS_HLA {
 	
-	publishDir params.hla_results, pattern: '*.zst', mode: 'move'
+	publishDir params.hla_results, pattern: '*.zst', mode: 'copy'
 	
 	input:
 	path gbk
@@ -483,7 +483,7 @@ process EXON2_TRIMMING {
 	*/
 
 	tag "${animal_name}"
-	publishDir params.exon2_results, pattern: '*exon2_deduplicated*', mode: 'move'
+	publishDir params.exon2_results, pattern: '*exon2_deduplicated*', mode: 'copy'
 
 	input:
 	tuple val(name), path(gbk)
@@ -512,7 +512,7 @@ process IWES_TRIMMING {
 	// bases.
 
 	tag "${animal_name} ${locus_name}"
-	publishDir params.iwes_results, mode: 'move'
+	publishDir params.iwes_results, mode: 'copy'
 
 	input:
 	tuple val(name), path(gbk)
@@ -586,23 +586,23 @@ process ALLELE_SORTING {
 }
 
 
-// process ALLELE_GROUP_NAMING {
+process ALLELE_GROUP_NAMING {
 	
-// 	// This process classifies allele "groups" for instances where a reference allele
-// 	// sequence matches with numerous alleles
+	// This process classifies allele "groups" for instances where a reference allele
+	// sequence matches with numerous alleles
 	
-// 	tag "${animal_name}"
-// 	publishDir params.miseq_results, mode: 'move'
+	tag "${animal_name}"
+	publishDir params.miseq_results, mode: 'copy'
 	
-// 	input:
-// 	tuple val(animal_name), path(fasta)
+	input:
+	tuple val(animal_name), path(fasta)
 	
-// 	output:
-// 	path "*"
+	output:
+	path "*"
 	
-// 	script:
-// 	"""
-// 	allele_group_naming.R ${fasta}
-// 	"""
+	script:
+	"""
+	allele_group_naming.R ${fasta}
+	"""
 	
-// }
+}

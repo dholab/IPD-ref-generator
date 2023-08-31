@@ -13,20 +13,20 @@ file_basename <- str_remove(args[1], ".fasta")
 main <- compiler::cmpfun(function(sequences, basename) {
 
   # how many rows of allele groups are there?
-  paste("There are", length(fasta[grepl("|", fasta[, 1], fixed = TRUE), 1]),
+  paste("There are", length(sequences[grepl("|", sequences[, 1], fixed = TRUE), 1]),
         "rows to examine in this fasta.", sep = " ")
 
   # correcting allele order in unsorted allele group rows
   rows_fixed <- NA
-  for (i in seq_len(nrow(df))) {
+  for (i in 1:nrow(sequences)) {
 
-    if (!grepl(">", fasta[i, 1])) {
+    if (!grepl(">", sequences[i, 1])) {
       next
     }
-    if (!grepl("|", fasta[i, 1], fixed = TRUE)) {
+    if (!grepl("|", sequences[i, 1], fixed = TRUE)) {
       next
     }
-    sub <- fasta[i, 1]
+    sub <- sequences[i, 1]
 
     # PRE-SORTING PROCESSING:
     sub <- str_replace_all(sub, fixed(">"), "") %>%
@@ -41,12 +41,12 @@ main <- compiler::cmpfun(function(sequences, basename) {
     # POST-SORTING PROCESSING:
     sub_sorted <- paste(sub_sorted, collapse = "|", sep = "")
     sub_sorted <- paste(">", sub_sorted, sep = "")
-    if (sub_sorted == fasta[i, 1]) {
+    if (sub_sorted == sequences[i, 1]) {
       next
     }
 
     # INSERTING BACK INTO FASTA:
-    fasta[i, 1] <- sub_sorted
+    sequences[i, 1] <- sub_sorted
     rows_fixed <- c(na.omit(rows_fixed), i)
 
   } # end for loop
@@ -55,7 +55,7 @@ main <- compiler::cmpfun(function(sequences, basename) {
         "rows in the inserted fasta.", sep = " ")
 
   # exporting now-sorted fasta
-  write.table(fasta,
+  write.table(sequences,
               paste(file_basename, ".sorted.fasta", sep = ""),
               sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
 
