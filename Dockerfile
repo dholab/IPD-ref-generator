@@ -2,12 +2,12 @@ FROM continuumio/miniconda3
 
 SHELL ["/bin/bash", "-c"]
 
-ADD env.yaml /tmp/env.yaml
+ADD environment.yaml /tmp/environment.yaml
 
 # Install Mamba
 RUN conda install mamba libarchive -c conda-forge --yes
 
-RUN mamba env create -f /tmp/env.yaml -n ipd-ref-generator \
+RUN mamba env create -f /tmp/environment.yaml -n ipd-ref-generator \
 	&& mamba clean --all -f --yes \
 	&& mamba init bash \
 	&& echo "conda activate ipd-ref-generator" > ~/.bashrc
